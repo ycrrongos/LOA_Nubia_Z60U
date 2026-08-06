@@ -51,3 +51,4 @@ timestamp	step	outcome	detail	boot_img
 2026-08-06T19:56:47+08:00	274	pass	late_fastboot@33.028s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
 2026-08-06T20:10:47+08:00	2	pass	late_fastboot@68.068s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
 2026-08-06T20:11:00+08:00	meta	note	fallback_SAFE_MAP_shrink_to_256MiB_before_step3	-
+2026-08-06T20:13:53+08:00	3	pass	late_fastboot@83.247s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img

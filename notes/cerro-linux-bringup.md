@@ -118,19 +118,20 @@
 | **VA52** + step273（`__map_memblock` 1 页 @ `0xa0000000`，低端 pt alloc） | **PASS**（晚 sticky @41.0s） | **线性映射 1 页 OK** |
 | **VA52** + step274（`__map_memblock` 内核 1 页，低端 pt alloc） | **PASS**（晚 sticky @33.0s） | **映射内核 PA 1 页 OK** |
 | **VA52** + step2（映射内核 text+data 两段，跳过 DRAM） | **PASS**（晚 sticky @68.1s，SKIP_UNLOCK） | **内核两段线性映射 OK** |
+| **VA52** + step3（`for_each_mem_range`，fallback/SAFE_MAP=**256MiB**） | **PASS**（晚 sticky @83.2s） | **全量 map_mem（限 256MiB bank）OK** |
 
 **证据等级（防再带偏进度）：**
 
 | 等级 | 含义 | 本表适用 |
 |------|------|----------|
-| **硬** | sticky fastboot 早晚判定 / Dump；`SKIP_UNLOCK` 时不算解锁等待 | 含 **2723–2726、273、274、2** |
+| **硬** | sticky fastboot 早晚判定 / Dump；`SKIP_UNLOCK` 时不算解锁等待 | 含 **2723–2726、273、274、2、3** |
 | **弱** | 仅 quiet / PASS_MIN 过短 | （旧 quiet；已作废） |
 | **已撤销** | 曾记 PASS 后被 Dump/用户纠正/计时作废 | 272 quiet；264 误确认；+2GiB 的 2725 hang |
 
-**当前卡点（2026-08-06 20:10）：**  
-1. **已过**：低端写/alloc、`__map_memblock` 1 页（273/274）、**step2 内核两段**。前提：`early_pgtable_alloc` **限在 bank 低 256MiB**。  
-2. **下一步**：step **3**（`for_each_mem_range`）；**先把 fallback/SAFE_MAP 缩到已验证的 256MiB**，再全量 map，避免假上沿。  
-3. +2GiB 上限曾 hang；正式靠 ABL FDT harvest，不要死守 `0x260000000`。
+**当前卡点（2026-08-06 20:13）：**  
+1. **已过**：`map_mem` 全路径（step3）在 **256MiB** 已知安全 bank + 低端 pt alloc 下 **PASS**。  
+2. **下一步**：去掉/后移 stage31 探针，让启动继续；或把 bank **逐步放大**（512MiB→1GiB→…）找假上沿；正式靠 ABL FDT harvest `/memory`。  
+3. 勿再无脑用 `0x260000000` 全量 map。
 
 观察自动规则（`cerro-map-bisect.sh`，**靠 sticky fastboot 时机**）：  
 - **很快** sticky `fastboot`（&lt; `PASS_MIN`）→ **early_fastboot**（几乎无循环 / 像一开就进 fb）  
@@ -225,9 +226,10 @@ make ARCH=arm64 LLVM=1 -j$(nproc) Image
 
 ## 7. 下一步候选（未验证；SKIP_UNLOCK=1 时只看 sticky fb 早晚）
 
-1. ~~**step 2**~~：**PASS**（映内核两段）。  
-2. **step 3**：完整 `for_each_mem_range`（fallback/SAFE_MAP 先缩到 **256MiB** 再测）。  
-3. 正式方案：ABL FDT harvest `/memory`；`early_pgtable_alloc` 保留低端限制或改 bottom-up。
+1. ~~**step 2**~~ / ~~**step 3@256MiB**~~：**PASS**。  
+2. **放大 bank**：512MiB → 1GiB → … 找假上沿；或 ABL FDT harvest `/memory`。  
+3. **越过 map_mem**：stage31 探针后移/关闭，看 paging_init 后续。  
+4. `early_pgtable_alloc` 保留低端限制或改 bottom-up。
 
 ---
 
@@ -269,6 +271,7 @@ make ARCH=arm64 LLVM=1 -j$(nproc) Image
 | 2026-08-06 | early_pgtable_alloc 限低 2GiB 后 **2725 黑屏 hang**（top-down 仍贴区间上沿）；改回 +256MiB |
 | 2026-08-06 | **2725/273/274 全 PASS**（+256MiB pt alloc）；下一步 step2→3 扩 map |
 | 2026-08-06 | **step2 PASS**（晚 sticky @68.1s）；准备缩 fallback→step3；首推 GitHub（FlClash） |
+| 2026-08-06 | fallback/SAFE_MAP→**256MiB**；**step3 PASS**（@83.2s）；map_mem 限安全 bank 已通 |
 
 ---
 
