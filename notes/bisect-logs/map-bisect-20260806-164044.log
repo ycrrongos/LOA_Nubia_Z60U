@@ -1,0 +1,13 @@
+==== cerro-map-bisect Thu 06 Aug 2026 16:40:44 AWST pid=1066448 ====
+steps: 268
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-164044.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 268 ################
+set #define CERRO_MAP_MEM_STEP 268
+dry-run: skip build/flash
+
+==== ALL STEPS DONE Thu 06 Aug 2026 16:40:44 AWST ====
+Results:
+timestamp  step  outcome  detail  boot_img
+run log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-164044.log

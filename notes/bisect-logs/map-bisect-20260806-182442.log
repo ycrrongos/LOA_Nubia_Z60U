@@ -1,0 +1,274 @@
+==== cerro-map-bisect Thu 06 Aug 2026 18:24:42 AWST pid=1729728 ====
+steps: 2720 2721 2722
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-182442.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 2720 ################
+set #define CERRO_MAP_MEM_STEP 2720 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 18:24 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 18:24 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: fastboot
+==== via fastboot ====
+Sending 'boot_a' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_a'                                   OKAY [  0.030s]
+Finished. Total time: 0.194s
+Sending 'boot_b' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_b'                                   OKAY [  0.029s]
+Finished. Total time: 0.193s
+flash returned Thu 06 Aug 2026 18:24:57 AWST
+==== observe 20s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786011899.957790885
+[1.623] mode=none
+[3.749] mode=none
+[5.875] mode=none
+[8.005] mode=none
+[10.138] mode=none
+[12.267] mode=none
+[14.394] mode=none
+[16.52] mode=none
+[18.646] mode=none
+[20.766] mode=none
+observe done: none_streak=40 udev_events=0 first_fb=none
+==== quiet so far; extend 45s (auto: late-fb=PASS, early was already caught) ====
+[34.572] fastboot during extend
+outcome=pass late_fastboot_after_20s_quiet@34.572s
+recorded → /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+STEP 2720 PASS — 等可刷模式；若随后 Dump 会撤销 PASS
+already flashable: fastboot
+
+################ STEP 2721 ################
+set #define CERRO_MAP_MEM_STEP 2721 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 18:25 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 18:25 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: fastboot
+==== via fastboot ====
+Sending 'boot_a' (55680 KB)                        OKAY [  0.126s]
+Writing 'boot_a'                                   OKAY [  0.024s]
+Finished. Total time: 0.186s
+Sending 'boot_b' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_b'                                   OKAY [  0.028s]
+Finished. Total time: 0.189s
+flash returned Thu 06 Aug 2026 18:25:52 AWST
+==== observe 20s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786011955.671323530
+[1.615] mode=none
+[3.737] mode=none
+[5.861] mode=none
+[7.994] mode=none
+[10.121] mode=none
+[12.243] mode=none
+[14.369] mode=none
+[16.493] mode=none
+[18.619] mode=none
+[20.74] mode=none
+observe done: none_streak=40 udev_events=0 first_fb=none
+==== quiet so far; extend 45s (auto: late-fb=PASS, early was already caught) ====
+[26.051] fastboot during extend
+outcome=pass late_fastboot_after_20s_quiet@26.051s
+recorded → /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+STEP 2721 PASS — 等可刷模式；若随后 Dump 会撤销 PASS
+already flashable: fastboot
+
+################ STEP 2722 ################
+set #define CERRO_MAP_MEM_STEP 2722 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 18:26 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 18:26 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: fastboot
+==== via fastboot ====
+Sending 'boot_a' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_a'                                   OKAY [  0.028s]
+Finished. Total time: 0.189s
+Sending 'boot_b' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_b'                                   OKAY [  0.024s]
+Finished. Total time: 0.186s
+flash returned Thu 06 Aug 2026 18:26:39 AWST
+==== observe 20s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786012002.164582264
+[1.607] mode=none
+[3.726] mode=none
+[5.846] mode=none
+[7.965] mode=none
+[10.077] mode=none
+[12.199] mode=none
+[14.311] mode=none
+[16.432] mode=none
+[18.554] mode=none
+[20.672] mode=none
+observe done: none_streak=40 udev_events=0 first_fb=none
+==== quiet so far; extend 45s (auto: late-fb=PASS, early was already caught) ====
+outcome=dump MemoryDump@34.422s(extend)
+recorded → /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+******** STEP 2722 DUMP — 下一轮前需手动进 9008 ********
+
+
+******** MemoryDump — 强制关机后音量+和−同时按住进 9008 ********
+
+DUMP_WHILE_WAITING
+
+==== ALL STEPS DONE Thu 06 Aug 2026 18:27:16 AWST ====
+Results:
+timestamp                  step  outcome       detail                                      boot_img
+2026-08-06T16:48:09+08:00  0     hang          quiet_18s                                   /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T16:50:38+08:00  0     inconclusive  panic_signal_quiet_not_hang                 (re-run with PSCI)
+2026-08-06T16:52:37+08:00  0     pass          quiet_user_psci_reboot                      /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:02:06+08:00  264   pass          quiet_user_psci_reboot                      /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:08:59+08:00  264   revoked       user_said_misconfirmed_pass                 -
+2026-08-06T17:11:38+08:00  264   pass          quiet_user_psci_reboot                      /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:13:39+08:00  268   pass          quiet_user_psci_reboot                      /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:19:41+08:00  269   pass          quiet_user_psci_reboot                      /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:41:42+08:00  270   pass          quiet_auto_psci_12s_udev0                   /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:43:50+08:00  271   pass          quiet_auto_psci_12s_udev0                   /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:46:11+08:00  272   pass          quiet_auto_psci_12s_udev0                   /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:49:32+08:00  272   retest        user_requested_reverify_after_dump          -
+2026-08-06T17:50:59+08:00  272   pass          quiet_auto_psci_20s_udev0                   /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:53:58+08:00  272   dump          MemoryDump_after_false_quiet_pass           -
+2026-08-06T18:18:11+08:00  2720  pass          late_fastboot_after_15s_quiet@54.376s       /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:23:33+08:00  2720  pass          user_confirm_auto_reboot_then_fastboot      -
+2026-08-06T18:23:33+08:00  2721  flash_fail    fastboot_download_size_exceeded_after_2720  -
+2026-08-06T18:24:26+08:00  2720  restart       user_requested_rerun_from_2720              -
+2026-08-06T18:25:35+08:00  2720  pass          late_fastboot_after_20s_quiet@34.572s       /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:26:22+08:00  2721  pass          late_fastboot_after_20s_quiet@26.051s       /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:27:16+08:00  2722  dump          MemoryDump@34.422s(extend)                  /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+run log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-182442.log

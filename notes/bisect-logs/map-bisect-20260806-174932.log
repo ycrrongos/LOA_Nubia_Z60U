@@ -1,0 +1,216 @@
+==== cerro-map-bisect Thu 06 Aug 2026 17:49:32 AWST pid=1681803 ====
+steps: 272 273 274
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-174932.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 272 ################
+set #define CERRO_MAP_MEM_STEP 272 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 17:49 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 17:49 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: edl
+==== via EDL 9008 ====
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x3660) 0.00 MB/s               Progress: |----------|   1.8% Write (Sector 0x100 of 0x3660, ) 135.18 MB/s    Progress: |----------|   3.7% Write (Sector 0x200 of 0x3660, ) 188.40 MB/s    Progress: |█---------|   5.5% Write (Sector 0x300 of 0x3660, ) 201.30 MB/s    Progress: |█---------|   7.4% Write (Sector 0x400 of 0x3660, ) 191.74 MB/s    Progress: |█---------|   9.2% Write (Sector 0x500 of 0x3660, ) 190.88 MB/s    Progress: |█---------|  11.0% Write (Sector 0x600 of 0x3660, ) 203.16 MB/s    Progress: |█---------|  12.9% Write (Sector 0x700 of 0x3660, ) 194.90 MB/s    Progress: |█---------|  14.7% Write (Sector 0x800 of 0x3660, ) 166.69 MB/s    Progress: |██--------|  16.6% Write (Sector 0x900 of 0x3660, ) 165.99 MB/s    Progress: |██--------|  18.4% Write (Sector 0xA00 of 0x3660, ) 201.38 MB/s    Progress: |██--------|  20.2% Write (Sector 0xB00 of 0x3660, ) 195.84 MB/s    Progress: |██--------|  22.1% Write (Sector 0xC00 of 0x3660, ) 191.87 MB/s    Progress: |██--------|  23.9% Write (Sector 0xD00 of 0x3660, ) 197.92 MB/s    Progress: |███-------|  25.7% Write (Sector 0xE00 of 0x3660, ) 200.82 MB/s    Progress: |███-------|  27.6% Write (Sector 0xF00 of 0x3660, ) 165.85 MB/s    Progress: |███-------|  29.4% Write (Sector 0x1000 of 0x3660, ) 170.12 MB/s   Progress: |███-------|  31.3% Write (Sector 0x1100 of 0x3660, ) 176.13 MB/s   Progress: |███-------|  33.1% Write (Sector 0x1200 of 0x3660, ) 193.08 MB/s   Progress: |███-------|  34.9% Write (Sector 0x1300 of 0x3660, ) 191.43 MB/s   Progress: |████------|  36.8% Write (Sector 0x1400 of 0x3660, ) 200.49 MB/s   Progress: |████------|  38.6% Write (Sector 0x1500 of 0x3660, ) 190.91 MB/s   Progress: |████------|  40.5% Write (Sector 0x1600 of 0x3660, ) 196.75 MB/s   Progress: |████------|  42.3% Write (Sector 0x1700 of 0x3660, ) 192.93 MB/s   Progress: |████------|  44.1% Write (Sector 0x1800 of 0x3660, ) 191.99 MB/s   Progress: |█████-----|  46.0% Write (Sector 0x1900 of 0x3660, ) 177.78 MB/s   Progress: |█████-----|  47.8% Write (Sector 0x1A00 of 0x3660, ) 165.49 MB/s   Progress: |█████-----|  49.7% Write (Sector 0x1B00 of 0x3660, ) 169.08 MB/s   Progress: |█████-----|  51.5% Write (Sector 0x1C00 of 0x3660, ) 172.41 MB/s   Progress: |█████-----|  53.3% Write (Sector 0x1D00 of 0x3660, ) 195.45 MB/s   Progress: |██████----|  55.2% Write (Sector 0x1E00 of 0x3660, ) 192.97 MB/s   Progress: |██████----|  57.0% Write (Sector 0x1F00 of 0x3660, ) 194.65 MB/s   Progress: |██████----|  58.9% Write (Sector 0x2000 of 0x3660, ) 206.05 MB/s   Progress: |██████----|  60.7% Write (Sector 0x2100 of 0x3660, ) 200.87 MB/s   Progress: |██████----|  62.5% Write (Sector 0x2200 of 0x3660, ) 186.66 MB/s   Progress: |██████----|  64.4% Write (Sector 0x2300 of 0x3660, ) 200.26 MB/s   Progress: |███████---|  66.2% Write (Sector 0x2400 of 0x3660, ) 202.56 MB/s   Progress: |███████---|  68.0% Write (Sector 0x2500 of 0x3660, ) 187.50 MB/s   Progress: |███████---|  69.9% Write (Sector 0x2600 of 0x3660, ) 198.08 MB/s   Progress: |███████---|  71.7% Write (Sector 0x2700 of 0x3660, ) 190.77 MB/s   Progress: |███████---|  73.6% Write (Sector 0x2800 of 0x3660, ) 201.51 MB/s   Progress: |████████--|  75.4% Write (Sector 0x2900 of 0x3660, ) 172.61 MB/s   Progress: |████████--|  77.2% Write (Sector 0x2A00 of 0x3660, ) 168.16 MB/s   Progress: |████████--|  79.1% Write (Sector 0x2B00 of 0x3660, ) 168.89 MB/s   Progress: |████████--|  80.9% Write (Sector 0x2C00 of 0x3660, ) 181.77 MB/s   Progress: |████████--|  82.8% Write (Sector 0x2D00 of 0x3660, ) 201.69 MB/s   Progress: |████████--|  84.6% Write (Sector 0x2E00 of 0x3660, ) 194.18 MB/s   Progress: |█████████-|  86.4% Write (Sector 0x2F00 of 0x3660, ) 185.38 MB/s   Progress: |█████████-|  88.3% Write (Sector 0x3000 of 0x3660, ) 206.57 MB/s   Progress: |█████████-|  90.1% Write (Sector 0x3100 of 0x3660, ) 203.42 MB/s   Progress: |█████████-|  92.0% Write (Sector 0x3200 of 0x3660, ) 197.94 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x3300 of 0x3660, ) 193.49 MB/s   Progress: |██████████|  95.6% Write (Sector 0x3400 of 0x3660, ) 205.96 MB/s   Progress: |██████████|  97.5% Write (Sector 0x3500 of 0x3660, ) 198.19 MB/s   Progress: |██████████|  99.3% Write (Sector 0x3600 of 0x3660, ) 197.58 MB/s   Progress: |██████████| 100.0% Write (Sector 0x3660 of 0x3660, ) 188.32 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img to sector 112006.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x3660) 0.00 MB/s               Progress: |----------|   1.8% Write (Sector 0x100 of 0x3660, ) 155.25 MB/s    Progress: |----------|   3.7% Write (Sector 0x200 of 0x3660, ) 168.30 MB/s    Progress: |█---------|   5.5% Write (Sector 0x300 of 0x3660, ) 173.76 MB/s    Progress: |█---------|   7.4% Write (Sector 0x400 of 0x3660, ) 166.53 MB/s    Progress: |█---------|   9.2% Write (Sector 0x500 of 0x3660, ) 195.30 MB/s    Progress: |█---------|  11.0% Write (Sector 0x600 of 0x3660, ) 197.10 MB/s    Progress: |█---------|  12.9% Write (Sector 0x700 of 0x3660, ) 189.77 MB/s    Progress: |█---------|  14.7% Write (Sector 0x800 of 0x3660, ) 188.14 MB/s    Progress: |██--------|  16.6% Write (Sector 0x900 of 0x3660, ) 201.46 MB/s    Progress: |██--------|  18.4% Write (Sector 0xA00 of 0x3660, ) 195.34 MB/s    Progress: |██--------|  20.2% Write (Sector 0xB00 of 0x3660, ) 183.29 MB/s    Progress: |██--------|  22.1% Write (Sector 0xC00 of 0x3660, ) 168.71 MB/s    Progress: |██--------|  23.9% Write (Sector 0xD00 of 0x3660, ) 168.12 MB/s    Progress: |███-------|  25.7% Write (Sector 0xE00 of 0x3660, ) 174.58 MB/s    Progress: |███-------|  27.6% Write (Sector 0xF00 of 0x3660, ) 166.52 MB/s    Progress: |███-------|  29.4% Write (Sector 0x1000 of 0x3660, ) 165.23 MB/s   Progress: |███-------|  31.3% Write (Sector 0x1100 of 0x3660, ) 184.08 MB/s   Progress: |███-------|  33.1% Write (Sector 0x1200 of 0x3660, ) 186.21 MB/s   Progress: |███-------|  34.9% Write (Sector 0x1300 of 0x3660, ) 171.22 MB/s   Progress: |████------|  36.8% Write (Sector 0x1400 of 0x3660, ) 171.66 MB/s   Progress: |████------|  38.6% Write (Sector 0x1500 of 0x3660, ) 166.65 MB/s   Progress: |████------|  40.5% Write (Sector 0x1600 of 0x3660, ) 186.86 MB/s   Progress: |████------|  42.3% Write (Sector 0x1700 of 0x3660, ) 167.77 MB/s   Progress: |████------|  44.1% Write (Sector 0x1800 of 0x3660, ) 182.03 MB/s   Progress: |█████-----|  46.0% Write (Sector 0x1900 of 0x3660, ) 171.83 MB/s   Progress: |█████-----|  47.8% Write (Sector 0x1A00 of 0x3660, ) 169.93 MB/s   Progress: |█████-----|  49.7% Write (Sector 0x1B00 of 0x3660, ) 166.72 MB/s   Progress: |█████-----|  51.5% Write (Sector 0x1C00 of 0x3660, ) 165.32 MB/s   Progress: |█████-----|  53.3% Write (Sector 0x1D00 of 0x3660, ) 164.59 MB/s   Progress: |██████----|  55.2% Write (Sector 0x1E00 of 0x3660, ) 182.35 MB/s   Progress: |██████----|  57.0% Write (Sector 0x1F00 of 0x3660, ) 169.07 MB/s   Progress: |██████----|  58.9% Write (Sector 0x2000 of 0x3660, ) 132.79 MB/s   Progress: |██████----|  60.7% Write (Sector 0x2100 of 0x3660, ) 149.73 MB/s   Progress: |██████----|  62.5% Write (Sector 0x2200 of 0x3660, ) 152.68 MB/s   Progress: |██████----|  64.4% Write (Sector 0x2300 of 0x3660, ) 150.73 MB/s   Progress: |███████---|  66.2% Write (Sector 0x2400 of 0x3660, ) 143.41 MB/s   Progress: |███████---|  68.0% Write (Sector 0x2500 of 0x3660, ) 159.07 MB/s   Progress: |███████---|  69.9% Write (Sector 0x2600 of 0x3660, ) 139.96 MB/s   Progress: |███████---|  71.7% Write (Sector 0x2700 of 0x3660, ) 188.83 MB/s   Progress: |███████---|  73.6% Write (Sector 0x2800 of 0x3660, ) 134.44 MB/s   Progress: |████████--|  75.4% Write (Sector 0x2900 of 0x3660, ) 150.66 MB/s   Progress: |████████--|  77.2% Write (Sector 0x2A00 of 0x3660, ) 173.30 MB/s   Progress: |████████--|  79.1% Write (Sector 0x2B00 of 0x3660, ) 120.96 MB/s   Progress: |████████--|  80.9% Write (Sector 0x2C00 of 0x3660, ) 134.31 MB/s   Progress: |████████--|  82.8% Write (Sector 0x2D00 of 0x3660, ) 158.81 MB/s   Progress: |████████--|  84.6% Write (Sector 0x2E00 of 0x3660, ) 161.67 MB/s   Progress: |█████████-|  86.4% Write (Sector 0x2F00 of 0x3660, ) 164.17 MB/s   Progress: |█████████-|  88.3% Write (Sector 0x3000 of 0x3660, ) 165.81 MB/s   Progress: |█████████-|  90.1% Write (Sector 0x3100 of 0x3660, ) 168.32 MB/s   Progress: |█████████-|  92.0% Write (Sector 0x3200 of 0x3660, ) 170.34 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x3300 of 0x3660, ) 170.35 MB/s   Progress: |██████████|  95.6% Write (Sector 0x3400 of 0x3660, ) 157.84 MB/s   Progress: |██████████|  97.5% Write (Sector 0x3500 of 0x3660, ) 156.04 MB/s   Progress: |██████████|  99.3% Write (Sector 0x3600 of 0x3660, ) 189.32 MB/s   Progress: |██████████| 100.0% Write (Sector 0x3660 of 0x3660, ) 192.47 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img to sector 462810.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x6000) 0.00 MB/s               Progress: |----------|   1.0% Write (Sector 0x100 of 0x6000, ) 175.73 MB/s    Progress: |----------|   2.1% Write (Sector 0x200 of 0x6000, ) 184.84 MB/s    Progress: |----------|   3.1% Write (Sector 0x300 of 0x6000, ) 172.73 MB/s    Progress: |----------|   4.2% Write (Sector 0x400 of 0x6000, ) 170.31 MB/s    Progress: |█---------|   5.2% Write (Sector 0x500 of 0x6000, ) 179.77 MB/s    Progress: |█---------|   6.2% Write (Sector 0x600 of 0x6000, ) 201.17 MB/s    Progress: |█---------|   7.3% Write (Sector 0x700 of 0x6000, ) 204.20 MB/s    Progress: |█---------|   8.3% Write (Sector 0x800 of 0x6000, ) 196.65 MB/s    Progress: |█---------|   9.4% Write (Sector 0x900 of 0x6000, ) 184.12 MB/s    Progress: |█---------|  10.4% Write (Sector 0xA00 of 0x6000, ) 189.61 MB/s    Progress: |█---------|  11.5% Write (Sector 0xB00 of 0x6000, ) 190.93 MB/s    Progress: |█---------|  12.5% Write (Sector 0xC00 of 0x6000, ) 188.23 MB/s    Progress: |█---------|  13.5% Write (Sector 0xD00 of 0x6000, ) 179.97 MB/s    Progress: |█---------|  14.6% Write (Sector 0xE00 of 0x6000, ) 169.98 MB/s    Progress: |██--------|  15.6% Write (Sector 0xF00 of 0x6000, ) 175.73 MB/s    Progress: |██--------|  16.7% Write (Sector 0x1000 of 0x6000, ) 195.60 MB/s   Progress: |██--------|  17.7% Write (Sector 0x1100 of 0x6000, ) 194.15 MB/s   Progress: |██--------|  18.8% Write (Sector 0x1200 of 0x6000, ) 194.95 MB/s   Progress: |██--------|  19.8% Write (Sector 0x1300 of 0x6000, ) 195.62 MB/s   Progress: |██--------|  20.8% Write (Sector 0x1400 of 0x6000, ) 198.25 MB/s   Progress: |██--------|  21.9% Write (Sector 0x1500 of 0x6000, ) 193.97 MB/s   Progress: |██--------|  22.9% Write (Sector 0x1600 of 0x6000, ) 199.87 MB/s   Progress: |██--------|  24.0% Write (Sector 0x1700 of 0x6000, ) 177.79 MB/s   Progress: |██--------|  25.0% Write (Sector 0x1800 of 0x6000, ) 200.76 MB/s   Progress: |███-------|  26.0% Write (Sector 0x1900 of 0x6000, ) 190.88 MB/s   Progress: |███-------|  27.1% Write (Sector 0x1A00 of 0x6000, ) 180.79 MB/s   Progress: |███-------|  28.1% Write (Sector 0x1B00 of 0x6000, ) 183.08 MB/s   Progress: |███-------|  29.2% Write (Sector 0x1C00 of 0x6000, ) 175.23 MB/s   Progress: |███-------|  30.2% Write (Sector 0x1D00 of 0x6000, ) 199.35 MB/s   Progress: |███-------|  31.2% Write (Sector 0x1E00 of 0x6000, ) 173.42 MB/s   Progress: |███-------|  32.3% Write (Sector 0x1F00 of 0x6000, ) 181.34 MB/s   Progress: |███-------|  33.3% Write (Sector 0x2000 of 0x6000, ) 177.90 MB/s   Progress: |███-------|  34.4% Write (Sector 0x2100 of 0x6000, ) 171.43 MB/s   Progress: |████------|  35.4% Write (Sector 0x2200 of 0x6000, ) 170.78 MB/s   Progress: |████------|  36.5% Write (Sector 0x2300 of 0x6000, ) 192.59 MB/s   Progress: |████------|  37.5% Write (Sector 0x2400 of 0x6000, ) 185.13 MB/s   Progress: |████------|  38.5% Write (Sector 0x2500 of 0x6000, ) 187.45 MB/s   Progress: |████------|  39.6% Write (Sector 0x2600 of 0x6000, ) 181.97 MB/s   Progress: |████------|  40.6% Write (Sector 0x2700 of 0x6000, ) 199.76 MB/s   Progress: |████------|  41.7% Write (Sector 0x2800 of 0x6000, ) 182.69 MB/s   Progress: |████------|  42.7% Write (Sector 0x2900 of 0x6000, ) 171.46 MB/s   Progress: |████------|  43.8% Write (Sector 0x2A00 of 0x6000, ) 200.74 MB/s   Progress: |████------|  44.8% Write (Sector 0x2B00 of 0x6000, ) 197.07 MB/s   Progress: |█████-----|  45.8% Write (Sector 0x2C00 of 0x6000, ) 208.25 MB/s   Progress: |█████-----|  46.9% Write (Sector 0x2D00 of 0x6000, ) 225.85 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x2E00 of 0x6000, ) 200.15 MB/s   Progress: |█████-----|  49.0% Write (Sector 0x2F00 of 0x6000, ) 194.59 MB/s   Progress: |█████-----|  50.0% Write (Sector 0x3000 of 0x6000, ) 196.33 MB/s   Progress: |█████-----|  51.0% Write (Sector 0x3100 of 0x6000, ) 201.47 MB/s   Progress: |█████-----|  52.1% Write (Sector 0x3200 of 0x6000, ) 202.70 MB/s   Progress: |█████-----|  53.1% Write (Sector 0x3300 of 0x6000, ) 198.02 MB/s   Progress: |█████-----|  54.2% Write (Sector 0x3400 of 0x6000, ) 194.95 MB/s   Progress: |██████----|  55.2% Write (Sector 0x3500 of 0x6000, ) 199.55 MB/s   Progress: |██████----|  56.2% Write (Sector 0x3600 of 0x6000, ) 197.87 MB/s   Progress: |██████----|  57.3% Write (Sector 0x3700 of 0x6000, ) 194.68 MB/s   Progress: |██████----|  58.3% Write (Sector 0x3800 of 0x6000, ) 199.68 MB/s   Progress: |██████----|  59.4% Write (Sector 0x3900 of 0x6000, ) 183.78 MB/s   Progress: |██████----|  60.4% Write (Sector 0x3A00 of 0x6000, ) 189.63 MB/s   Progress: |██████----|  61.5% Write (Sector 0x3B00 of 0x6000, ) 195.10 MB/s   Progress: |██████----|  62.5% Write (Sector 0x3C00 of 0x6000, ) 199.49 MB/s   Progress: |██████----|  63.5% Write (Sector 0x3D00 of 0x6000, ) 196.14 MB/s   Progress: |██████----|  64.6% Write (Sector 0x3E00 of 0x6000, ) 171.60 MB/s   Progress: |███████---|  65.6% Write (Sector 0x3F00 of 0x6000, ) 172.25 MB/s   Progress: |███████---|  66.7% Write (Sector 0x4000 of 0x6000, ) 195.52 MB/s   Progress: |███████---|  67.7% Write (Sector 0x4100 of 0x6000, ) 202.65 MB/s   Progress: |███████---|  68.8% Write (Sector 0x4200 of 0x6000, ) 179.97 MB/s   Progress: |███████---|  69.8% Write (Sector 0x4300 of 0x6000, ) 183.69 MB/s   Progress: |███████---|  70.8% Write (Sector 0x4400 of 0x6000, ) 197.52 MB/s   Progress: |███████---|  71.9% Write (Sector 0x4500 of 0x6000, ) 195.17 MB/s   Progress: |███████---|  72.9% Write (Sector 0x4600 of 0x6000, ) 187.45 MB/s   Progress: |███████---|  74.0% Write (Sector 0x4700 of 0x6000, ) 167.11 MB/s   Progress: |████████--|  75.0% Write (Sector 0x4800 of 0x6000, ) 195.19 MB/s   Progress: |████████--|  76.0% Write (Sector 0x4900 of 0x6000, ) 202.63 MB/s   Progress: |████████--|  77.1% Write (Sector 0x4A00 of 0x6000, ) 195.98 MB/s   Progress: |████████--|  78.1% Write (Sector 0x4B00 of 0x6000, ) 188.00 MB/s   Progress: |████████--|  79.2% Write (Sector 0x4C00 of 0x6000, ) 198.35 MB/s   Progress: |████████--|  80.2% Write (Sector 0x4D00 of 0x6000, ) 192.27 MB/s   Progress: |████████--|  81.2% Write (Sector 0x4E00 of 0x6000, ) 206.00 MB/s   Progress: |████████--|  82.3% Write (Sector 0x4F00 of 0x6000, ) 188.30 MB/s   Progress: |████████--|  83.3% Write (Sector 0x5000 of 0x6000, ) 200.69 MB/s   Progress: |████████--|  84.4% Write (Sector 0x5100 of 0x6000, ) 196.80 MB/s   Progress: |█████████-|  85.4% Write (Sector 0x5200 of 0x6000, ) 188.49 MB/s   Progress: |█████████-|  86.5% Write (Sector 0x5300 of 0x6000, ) 181.99 MB/s   Progress: |█████████-|  87.5% Write (Sector 0x5400 of 0x6000, ) 187.06 MB/s   Progress: |█████████-|  88.5% Write (Sector 0x5500 of 0x6000, ) 195.42 MB/s   Progress: |█████████-|  89.6% Write (Sector 0x5600 of 0x6000, ) 174.01 MB/s   Progress: |█████████-|  90.6% Write (Sector 0x5700 of 0x6000, ) 198.14 MB/s   Progress: |█████████-|  91.7% Write (Sector 0x5800 of 0x6000, ) 198.49 MB/s   Progress: |█████████-|  92.7% Write (Sector 0x5900 of 0x6000, ) 199.24 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x5A00 of 0x6000, ) 193.63 MB/s   Progress: |█████████-|  94.8% Write (Sector 0x5B00 of 0x6000, ) 196.66 MB/s   Progress: |██████████|  95.8% Write (Sector 0x5C00 of 0x6000, ) 198.89 MB/s   Progress: |██████████|  96.9% Write (Sector 0x5D00 of 0x6000, ) 191.89 MB/s   Progress: |██████████|  97.9% Write (Sector 0x5E00 of 0x6000, ) 195.20 MB/s   Progress: |██████████|  99.0% Write (Sector 0x5F00 of 0x6000, ) 194.42 MB/s   Progress: |██████████| 100.0% Write (Sector 0x6000 of 0x6000, ) 195.35 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/pmos-flash/backup-20260806-020517/vendor_boot_a.img to sector 281670.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x6000) 0.00 MB/s               Progress: |----------|   1.0% Write (Sector 0x100 of 0x6000, ) 175.74 MB/s    Progress: |----------|   2.1% Write (Sector 0x200 of 0x6000, ) 193.53 MB/s    Progress: |----------|   3.1% Write (Sector 0x300 of 0x6000, ) 201.41 MB/s    Progress: |----------|   4.2% Write (Sector 0x400 of 0x6000, ) 196.60 MB/s    Progress: |█---------|   5.2% Write (Sector 0x500 of 0x6000, ) 204.47 MB/s    Progress: |█---------|   6.2% Write (Sector 0x600 of 0x6000, ) 178.37 MB/s    Progress: |█---------|   7.3% Write (Sector 0x700 of 0x6000, ) 187.37 MB/s    Progress: |█---------|   8.3% Write (Sector 0x800 of 0x6000, ) 202.01 MB/s    Progress: |█---------|   9.4% Write (Sector 0x900 of 0x6000, ) 198.42 MB/s    Progress: |█---------|  10.4% Write (Sector 0xA00 of 0x6000, ) 170.62 MB/s    Progress: |█---------|  11.5% Write (Sector 0xB00 of 0x6000, ) 198.08 MB/s    Progress: |█---------|  12.5% Write (Sector 0xC00 of 0x6000, ) 185.84 MB/s    Progress: |█---------|  13.5% Write (Sector 0xD00 of 0x6000, ) 172.73 MB/s    Progress: |█---------|  14.6% Write (Sector 0xE00 of 0x6000, ) 191.67 MB/s    Progress: |██--------|  15.6% Write (Sector 0xF00 of 0x6000, ) 194.21 MB/s    Progress: |██--------|  16.7% Write (Sector 0x1000 of 0x6000, ) 206.18 MB/s   Progress: |██--------|  17.7% Write (Sector 0x1100 of 0x6000, ) 197.51 MB/s   Progress: |██--------|  18.8% Write (Sector 0x1200 of 0x6000, ) 194.06 MB/s   Progress: |██--------|  19.8% Write (Sector 0x1300 of 0x6000, ) 161.88 MB/s   Progress: |██--------|  20.8% Write (Sector 0x1400 of 0x6000, ) 203.04 MB/s   Progress: |██--------|  21.9% Write (Sector 0x1500 of 0x6000, ) 193.92 MB/s   Progress: |██--------|  22.9% Write (Sector 0x1600 of 0x6000, ) 195.08 MB/s   Progress: |██--------|  24.0% Write (Sector 0x1700 of 0x6000, ) 198.29 MB/s   Progress: |██--------|  25.0% Write (Sector 0x1800 of 0x6000, ) 202.91 MB/s   Progress: |███-------|  26.0% Write (Sector 0x1900 of 0x6000, ) 180.23 MB/s   Progress: |███-------|  27.1% Write (Sector 0x1A00 of 0x6000, ) 198.30 MB/s   Progress: |███-------|  28.1% Write (Sector 0x1B00 of 0x6000, ) 194.49 MB/s   Progress: |███-------|  29.2% Write (Sector 0x1C00 of 0x6000, ) 176.47 MB/s   Progress: |███-------|  30.2% Write (Sector 0x1D00 of 0x6000, ) 174.53 MB/s   Progress: |███-------|  31.2% Write (Sector 0x1E00 of 0x6000, ) 169.10 MB/s   Progress: |███-------|  32.3% Write (Sector 0x1F00 of 0x6000, ) 170.17 MB/s   Progress: |███-------|  33.3% Write (Sector 0x2000 of 0x6000, ) 166.84 MB/s   Progress: |███-------|  34.4% Write (Sector 0x2100 of 0x6000, ) 201.47 MB/s   Progress: |████------|  35.4% Write (Sector 0x2200 of 0x6000, ) 173.18 MB/s   Progress: |████------|  36.5% Write (Sector 0x2300 of 0x6000, ) 170.76 MB/s   Progress: |████------|  37.5% Write (Sector 0x2400 of 0x6000, ) 178.04 MB/s   Progress: |████------|  38.5% Write (Sector 0x2500 of 0x6000, ) 184.07 MB/s   Progress: |████------|  39.6% Write (Sector 0x2600 of 0x6000, ) 170.40 MB/s   Progress: |████------|  40.6% Write (Sector 0x2700 of 0x6000, ) 160.08 MB/s   Progress: |████------|  41.7% Write (Sector 0x2800 of 0x6000, ) 191.70 MB/s   Progress: |████------|  42.7% Write (Sector 0x2900 of 0x6000, ) 197.84 MB/s   Progress: |████------|  43.8% Write (Sector 0x2A00 of 0x6000, ) 184.89 MB/s   Progress: |████------|  44.8% Write (Sector 0x2B00 of 0x6000, ) 174.69 MB/s   Progress: |█████-----|  45.8% Write (Sector 0x2C00 of 0x6000, ) 175.03 MB/s   Progress: |█████-----|  46.9% Write (Sector 0x2D00 of 0x6000, ) 171.43 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x2E00 of 0x6000, ) 172.48 MB/s   Progress: |█████-----|  49.0% Write (Sector 0x2F00 of 0x6000, ) 179.08 MB/s   Progress: |█████-----|  50.0% Write (Sector 0x3000 of 0x6000, ) 194.56 MB/s   Progress: |█████-----|  51.0% Write (Sector 0x3100 of 0x6000, ) 206.22 MB/s   Progress: |█████-----|  52.1% Write (Sector 0x3200 of 0x6000, ) 147.43 MB/s   Progress: |█████-----|  53.1% Write (Sector 0x3300 of 0x6000, ) 147.86 MB/s   Progress: |█████-----|  54.2% Write (Sector 0x3400 of 0x6000, ) 198.40 MB/s   Progress: |██████----|  55.2% Write (Sector 0x3500 of 0x6000, ) 195.52 MB/s   Progress: |██████----|  56.2% Write (Sector 0x3600 of 0x6000, ) 200.92 MB/s   Progress: |██████----|  57.3% Write (Sector 0x3700 of 0x6000, ) 202.09 MB/s   Progress: |██████----|  58.3% Write (Sector 0x3800 of 0x6000, ) 201.81 MB/s   Progress: |██████----|  59.4% Write (Sector 0x3900 of 0x6000, ) 192.45 MB/s   Progress: |██████----|  60.4% Write (Sector 0x3A00 of 0x6000, ) 182.29 MB/s   Progress: |██████----|  61.5% Write (Sector 0x3B00 of 0x6000, ) 196.73 MB/s   Progress: |██████----|  62.5% Write (Sector 0x3C00 of 0x6000, ) 188.75 MB/s   Progress: |██████----|  63.5% Write (Sector 0x3D00 of 0x6000, ) 166.84 MB/s   Progress: |██████----|  64.6% Write (Sector 0x3E00 of 0x6000, ) 168.28 MB/s   Progress: |███████---|  65.6% Write (Sector 0x3F00 of 0x6000, ) 165.89 MB/s   Progress: |███████---|  66.7% Write (Sector 0x4000 of 0x6000, ) 170.29 MB/s   Progress: |███████---|  67.7% Write (Sector 0x4100 of 0x6000, ) 198.57 MB/s   Progress: |███████---|  68.8% Write (Sector 0x4200 of 0x6000, ) 165.21 MB/s   Progress: |███████---|  69.8% Write (Sector 0x4300 of 0x6000, ) 178.69 MB/s   Progress: |███████---|  70.8% Write (Sector 0x4400 of 0x6000, ) 185.87 MB/s   Progress: |███████---|  71.9% Write (Sector 0x4500 of 0x6000, ) 163.70 MB/s   Progress: |███████---|  72.9% Write (Sector 0x4600 of 0x6000, ) 169.95 MB/s   Progress: |███████---|  74.0% Write (Sector 0x4700 of 0x6000, ) 165.40 MB/s   Progress: |████████--|  75.0% Write (Sector 0x4800 of 0x6000, ) 169.28 MB/s   Progress: |████████--|  76.0% Write (Sector 0x4900 of 0x6000, ) 171.89 MB/s   Progress: |████████--|  77.1% Write (Sector 0x4A00 of 0x6000, ) 169.27 MB/s   Progress: |████████--|  78.1% Write (Sector 0x4B00 of 0x6000, ) 172.98 MB/s   Progress: |████████--|  79.2% Write (Sector 0x4C00 of 0x6000, ) 177.19 MB/s   Progress: |████████--|  80.2% Write (Sector 0x4D00 of 0x6000, ) 160.68 MB/s   Progress: |████████--|  81.2% Write (Sector 0x4E00 of 0x6000, ) 178.28 MB/s   Progress: |████████--|  82.3% Write (Sector 0x4F00 of 0x6000, ) 169.36 MB/s   Progress: |████████--|  83.3% Write (Sector 0x5000 of 0x6000, ) 173.94 MB/s   Progress: |████████--|  84.4% Write (Sector 0x5100 of 0x6000, ) 174.35 MB/s   Progress: |█████████-|  85.4% Write (Sector 0x5200 of 0x6000, ) 171.55 MB/s   Progress: |█████████-|  86.5% Write (Sector 0x5300 of 0x6000, ) 175.03 MB/s   Progress: |█████████-|  87.5% Write (Sector 0x5400 of 0x6000, ) 175.55 MB/s   Progress: |█████████-|  88.5% Write (Sector 0x5500 of 0x6000, ) 187.98 MB/s   Progress: |█████████-|  89.6% Write (Sector 0x5600 of 0x6000, ) 175.30 MB/s   Progress: |█████████-|  90.6% Write (Sector 0x5700 of 0x6000, ) 181.61 MB/s   Progress: |█████████-|  91.7% Write (Sector 0x5800 of 0x6000, ) 191.60 MB/s   Progress: |█████████-|  92.7% Write (Sector 0x5900 of 0x6000, ) 198.38 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x5A00 of 0x6000, ) 195.70 MB/s   Progress: |█████████-|  94.8% Write (Sector 0x5B00 of 0x6000, ) 176.61 MB/s   Progress: |██████████|  95.8% Write (Sector 0x5C00 of 0x6000, ) 191.77 MB/s   Progress: |██████████|  96.9% Write (Sector 0x5D00 of 0x6000, ) 196.03 MB/s   Progress: |██████████|  97.9% Write (Sector 0x5E00 of 0x6000, ) 200.44 MB/s   Progress: |██████████|  99.0% Write (Sector 0x5F00 of 0x6000, ) 206.74 MB/s   Progress: |██████████| 100.0% Write (Sector 0x6000 of 0x6000, ) 200.03 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/pmos-flash/backup-20260806-020517/vendor_boot_a.img to sector 632474.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Erased dtbo_a starting at sector 136650 with sector count 6144.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Erased dtbo_b starting at sector 487454 with sector count 6144.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+DeviceClass - USBError(19, 'No such device (it may have been disconnected)')
+flash returned Thu 06 Aug 2026 17:50:10 AWST
+==== observe 20s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786009813.041389287
+[1.624] mode=none
+[3.753] mode=none
+[5.888] mode=none
+[8.019] mode=none
+[10.156] mode=none
+[12.289] mode=none
+[14.421] mode=none
+[16.552] mode=none
+[18.684] mode=none
+[20.814] mode=none
+observe done: none_streak=40 udev_events=0 first_fb=none
+==== quiet so far; extend 25s (auto: late-fb=PASS, early was already caught) ====
+outcome=pass quiet_auto_psci_20s_udev0 (QUIET_POLICY=pass; 无早 fb/dump = 当 PSCI PASS)
+recorded → /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+STEP 272 PASS — 请音量键进 fastboot 或 9008 以刷下一档
+
+******** PASS 后刷下一档 — 请进 fastboot 或 9008 ********
+
+waiting for mode in [edl,fastboot] (timeout 600s)…
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+[17:51:39] now=dump lsusb=Bus 004 Device 087: ID 19d2:0112 ZTE WCDMA Technologies MSM QUSB_BULK_CID:0448_SN:A077D999;
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+[17:51:59] now=dump lsusb=Bus 004 Device 087: ID 19d2:0112 ZTE WCDMA Technologies MSM QUSB_BULK_CID:0448_SN:A077D999;
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+[17:52:19] now=dump lsusb=Bus 004 Device 087: ID 19d2:0112 ZTE WCDMA Technologies MSM QUSB_BULK_CID:0448_SN:A077D999;
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+[17:52:39] now=dump lsusb=Bus 004 Device 087: ID 19d2:0112 ZTE WCDMA Technologies MSM QUSB_BULK_CID:0448_SN:A077D999;
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+[17:52:59] now=dump lsusb=Bus 004 Device 087: ID 19d2:0112 ZTE WCDMA Technologies MSM QUSB_BULK_CID:0448_SN:A077D999;
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008
+NOTE: MemoryDump (19d2:0112) — force power off, then vol± for 9008

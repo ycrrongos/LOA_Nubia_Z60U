@@ -1,0 +1,91 @@
+==== cerro-map-bisect Thu 06 Aug 2026 17:02:13 AWST pid=1215836 ====
+steps: 268 269
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-170213.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 268 ################
+set #define CERRO_MAP_MEM_STEP 268 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 17:02 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 17:02 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: fastboot
+==== via fastboot ====
+Sending 'boot_a' (55680 KB)                        OKAY [  0.134s]
+Writing 'boot_a'                                   OKAY [  0.035s]
+Finished. Total time: 0.213s
+Sending 'boot_b' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_b'                                   OKAY [  0.025s]
+Finished. Total time: 0.197s
+flash returned Thu 06 Aug 2026 17:02:54 AWST
+==== observe 18s (Uotan-style detect + debounce) ====
+  pre: raw=adb stable=adb
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+WARN: never saw leave-flash; t0=1786007016.983615131 mode=adb
+[1.834] mode=adb
+[4.135] mode=adb
+[6.399] mode=adb
+[8.744] mode=adb
+[11.03] mode=adb
+[13.346] mode=adb
+[15.69] mode=adb
+[17.981] mode=adb
+[20.322] mode=adb
+
+******** USB 静默 — 看屏幕后写 /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/quiet-ans.txt ********
+
+  循环重启 → echo p > /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/quiet-ans.txt
+  一直黑   → echo h > /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/quiet-ans.txt
+[17:04:13] waiting quiet-ans… now=adb
+[17:04:43] waiting quiet-ans… now=fastboot
+[17:05:13] waiting quiet-ans… now=fastboot
+[17:05:43] waiting quiet-ans… now=fastboot
+[17:06:13] waiting quiet-ans… now=fastboot
+[17:06:43] waiting quiet-ans… now=fastboot
+[17:07:13] waiting quiet-ans… now=fastboot
+[17:07:43] waiting quiet-ans… now=fastboot
+[17:08:13] waiting quiet-ans… now=fastboot
+[17:08:43] waiting quiet-ans… now=fastboot

@@ -1,0 +1,14 @@
+===== boot_a header =====
+boot magic: ANDROID!
+kernel_size: 35641856
+ramdisk size: 0
+os version: 16.0.0
+os patch level: 2026-07
+boot image header version: 4
+command line args: 
+boot.img signature size: 0
+
+===== boot_unpack files =====
+总计 34808
+-rw-r--r-- 1 rong rong 35641856 Jul 27 14:59 kernel
+-rw-r--r-- 1 rong rong        0 Jul 27 14:59 ramdisk

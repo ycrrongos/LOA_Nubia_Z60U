@@ -1,0 +1,231 @@
+==== cerro-map-bisect Thu 06 Aug 2026 19:33:53 AWST pid=2067106 ====
+steps: 2725 273 274
+judge: sticky fastboot early(<PASS_MIN) = FAIL; late(>=PASS_MIN after quiet) = PASS
+timing: SKIP_UNLOCK=1 UNLOCK_WAIT=0s CYCLE=6s PASS_MIN=12s OBSERVE=18s EXTEND=70s
+NOTE: 你跳过解锁时不算解锁时长；请在橙屏时跳过，脚本只看 fastboot 早晚
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-193353.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 2725 ################
+set #define CERRO_MAP_MEM_STEP 2725 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 19:34 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 19:34 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: fastboot
+==== via fastboot ====
+Sending 'boot_a' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_a'                                   OKAY [  0.029s]
+Finished. Total time: 0.190s
+Sending 'boot_b' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_b'                                   OKAY [  0.030s]
+Finished. Total time: 0.192s
+flash returned Thu 06 Aug 2026 19:34:18 AWST
+==== observe 18s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786016061.191725048
+[1.618] mode=none
+[3.751] mode=none
+[5.881] mode=none
+[8.018] mode=none
+[10.149] mode=none
+[12.279] mode=none
+[14.414] mode=none
+[16.555] mode=none
+[18.685] mode=none
+observe done: none_streak=36 udev_events=0 first_fb=none
+==== quiet so far; extend 70s (wait late sticky fb ≥ PASS_MIN=12s) ====
+outcome=hang quiet_18+70s_no_sticky_fb_PASS_MIN=12
+recorded → /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+******** STEP 2725 HANG — 强制进 9008 后继续 ********
+
+
+******** hang 后继续 — 请进 fastboot 或 9008 ********
+
+waiting for mode in [edl,fastboot] (timeout 600s)…
+[19:36:30] now=none
+[19:36:50] now=none
+[19:37:10] now=none
+[19:37:30] now=none
+[19:37:50] now=none
+[19:38:30] now=none
+[19:38:50] now=none
+[19:39:10] now=none
+[19:39:30] now=none
+[19:39:50] now=none
+[19:40:50] now=none
+[19:41:10] now=none
+[19:41:30] now=none
+[19:41:50] now=none
+[19:42:10] now=none
+[19:43:10] now=none
+[19:43:30] now=none
+got mode=edl
+
+################ STEP 273 ################
+set #define CERRO_MAP_MEM_STEP 273 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 19:44 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 19:44 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: edl
+==== via EDL 9008 ====
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+sahara - Protocol version: 3, Version supported: 1
+main - Mode detected: sahara
+sahara - 
+Reading Chip Info : OK
+sahara - - Sahara version  : 3
+sahara - - Chip Serial Number : 448a077d999
+sahara - - Chip Identifier V3 : 00020000
+sahara - - MSM HWID : 0x2270e1 | model_id:0x0000 | oem_id:0004
+sahara - - OEM PKHASH : 63c76071854448af8089b884603e478e15a717ccdd3a0c53ab96b8c23ba12bd8d4e4c5ca05729c2432250b6b1c33fed3
+sahara - - HW_ID : 002270e100040000
+sahara - Protocol version: 3, Version supported: 1
+sahara - Uploading loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+sahara - 64-Bit mode detected.
+sahara - Loader successfully uploaded.
+main - Trying to connect to firehose loader ...
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35 
+firehose - INFO: Chip serial num (0x0) Chip ID (0x0)
+firehose - INFO: Supported Functions (16):
+firehose - INFO: program
+firehose - INFO: read
+firehose - INFO: nop
+firehose - INFO: patch
+firehose - INFO: configure
+firehose - INFO: setbootablestoragedrive
+firehose - INFO: erase
+firehose - INFO: power
+firehose - INFO: firmwarewrite
+firehose - INFO: getstorageinfo
+firehose - INFO: benchmark
+firehose - INFO: emmc
+firehose - INFO: ufs
+firehose - INFO: fixgpt
+firehose - INFO: getnumdisksectors
+firehose - INFO: getsha256digest
+firehose - INFO: End of supported functions 16
+firehose_client
+firehose_client - [LIB]: [33mNo --memory option set, we assume "UFS" as default ..., if it fails, try using "--memory" with "UFS","NAND" or "spinor" instead ![0m
+firehose
+firehose - [LIB]: [33mCouldn't detect MaxPayloadSizeFromTargetinBytes[0m
+firehose
+firehose - [LIB]: [33mCouldn't detect TargetName[0m
+firehose - TargetName=Unknown
+firehose - MemoryName=UFS
+firehose - Version=1
+firehose - Trying to read first storage sector...
+firehose - Running configure...
+firehose - Storage report:
+firehose - total_blocks:124002304
+firehose - block_size:4096
+firehose - page_size:4096
+firehose - num_physical:6
+firehose - manufacturer_id:462
+firehose - serial_num:1297306958
+firehose - fw_version:801
+firehose - mem_type:UFS
+firehose - prod_name:KLUFG8RHHD-B0G1
+firehose_client - Supported functions:
+-----------------
+program,read,nop,patch,configure,setbootablestoragedrive,erase,power,firmwarewrite,getstorageinfo,benchmark,emmc,ufs,fixgpt,getnumdisksectors,getsha256digest
+firehose - 
+Writing to physical partition 4, sector 112006, sectors 13920
+Done |----------|   0.0% Write (Sector 0x0 of 0x3660) 0.00 MB/s               Progress: |----------|   1.8% Write (Sector 0x100 of 0x3660, ) 150.79 MB/s    Progress: |----------|   3.7% Write (Sector 0x200 of 0x3660, ) 179.33 MB/s    Progress: |█---------|   5.5% Write (Sector 0x300 of 0x3660, ) 170.59 MB/s    Progress: |█---------|   7.4% Write (Sector 0x400 of 0x3660, ) 185.09 MB/s    Progress: |█---------|   9.2% Write (Sector 0x500 of 0x3660, ) 177.60 MB/s    Progress: |█---------|  11.0% Write (Sector 0x600 of 0x3660, ) 172.83 MB/s    Progress: |█---------|  12.9% Write (Sector 0x700 of 0x3660, ) 178.37 MB/s    Progress: |█---------|  14.7% Write (Sector 0x800 of 0x3660, ) 168.43 MB/s    Progress: |██--------|  16.6% Write (Sector 0x900 of 0x3660, ) 161.79 MB/s    Progress: |██--------|  18.4% Write (Sector 0xA00 of 0x3660, ) 148.83 MB/s    Progress: |██--------|  20.2% Write (Sector 0xB00 of 0x3660, ) 165.07 MB/s    Progress: |██--------|  22.1% Write (Sector 0xC00 of 0x3660, ) 142.00 MB/s    Progress: |██--------|  23.9% Write (Sector 0xD00 of 0x3660, ) 158.78 MB/s    Progress: |███-------|  25.7% Write (Sector 0xE00 of 0x3660, ) 141.11 MB/s    Progress: |███-------|  27.6% Write (Sector 0xF00 of 0x3660, ) 156.94 MB/s    Progress: |███-------|  29.4% Write (Sector 0x1000 of 0x3660, ) 168.47 MB/s   Progress: |███-------|  31.3% Write (Sector 0x1100 of 0x3660, ) 163.41 MB/s   Progress: |███-------|  33.1% Write (Sector 0x1200 of 0x3660, ) 172.65 MB/s   Progress: |███-------|  34.9% Write (Sector 0x1300 of 0x3660, ) 158.85 MB/s   Progress: |████------|  36.8% Write (Sector 0x1400 of 0x3660, ) 170.07 MB/s   Progress: |████------|  38.6% Write (Sector 0x1500 of 0x3660, ) 161.33 MB/s   Progress: |████------|  40.5% Write (Sector 0x1600 of 0x3660, ) 157.47 MB/s   Progress: |████------|  42.3% Write (Sector 0x1700 of 0x3660, ) 184.54 MB/s   Progress: |████------|  44.1% Write (Sector 0x1800 of 0x3660, ) 162.77 MB/s   Progress: |█████-----|  46.0% Write (Sector 0x1900 of 0x3660, ) 155.22 MB/s   Progress: |█████-----|  47.8% Write (Sector 0x1A00 of 0x3660, ) 198.27 MB/s   Progress: |█████-----|  49.7% Write (Sector 0x1B00 of 0x3660, ) 190.23 MB/s   Progress: |█████-----|  51.5% Write (Sector 0x1C00 of 0x3660, ) 192.68 MB/s   Progress: |█████-----|  53.3% Write (Sector 0x1D00 of 0x3660, ) 184.17 MB/s   Progress: |██████----|  55.2% Write (Sector 0x1E00 of 0x3660, ) 181.68 MB/s   Progress: |██████----|  57.0% Write (Sector 0x1F00 of 0x3660, ) 176.34 MB/s   Progress: |██████----|  58.9% Write (Sector 0x2000 of 0x3660, ) 173.89 MB/s   Progress: |██████----|  60.7% Write (Sector 0x2100 of 0x3660, ) 153.23 MB/s   Progress: |██████----|  62.5% Write (Sector 0x2200 of 0x3660, ) 176.71 MB/s   Progress: |██████----|  64.4% Write (Sector 0x2300 of 0x3660, ) 190.38 MB/s   Progress: |███████---|  66.2% Write (Sector 0x2400 of 0x3660, ) 203.17 MB/s   Progress: |███████---|  68.0% Write (Sector 0x2500 of 0x3660, ) 192.43 MB/s   Progress: |███████---|  69.9% Write (Sector 0x2600 of 0x3660, ) 205.82 MB/s   Progress: |███████---|  71.7% Write (Sector 0x2700 of 0x3660, ) 176.48 MB/s   Progress: |███████---|  73.6% Write (Sector 0x2800 of 0x3660, ) 154.77 MB/s   Progress: |████████--|  75.4% Write (Sector 0x2900 of 0x3660, ) 164.53 MB/s   Progress: |████████--|  77.2% Write (Sector 0x2A00 of 0x3660, ) 162.71 MB/s   Progress: |████████--|  79.1% Write (Sector 0x2B00 of 0x3660, ) 157.42 MB/s   Progress: |████████--|  80.9% Write (Sector 0x2C00 of 0x3660, ) 187.47 MB/s   Progress: |████████--|  82.8% Write (Sector 0x2D00 of 0x3660, ) 178.13 MB/s   Progress: |████████--|  84.6% Write (Sector 0x2E00 of 0x3660, ) 199.79 MB/s   Progress: |█████████-|  86.4% Write (Sector 0x2F00 of 0x3660, ) 175.33 MB/s   Progress: |█████████-|  88.3% Write (Sector 0x3000 of 0x3660, ) 186.41 MB/s   Progress: |█████████-|  90.1% Write (Sector 0x3100 of 0x3660, ) 194.50 MB/s   Progress: |█████████-|  92.0% Write (Sector 0x3200 of 0x3660, ) 194.71 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x3300 of 0x3660, ) 196.80 MB/s   Progress: |██████████|  95.6% Write (Sector 0x3400 of 0x3660, ) 174.52 MB/s   Progress: |██████████|  97.5% Write (Sector 0x3500 of 0x3660, ) 182.85 MB/s   Progress: |██████████|  99.3% Write (Sector 0x3600 of 0x3660, ) 197.62 MB/s   Progress: |██████████| 100.0% Write (Sector 0x3660 of 0x3660, ) 187.25 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img to sector 112006.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose

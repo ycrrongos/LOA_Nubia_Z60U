@@ -1,0 +1,81 @@
+==== cerro-map-bisect Thu 06 Aug 2026 19:31:08 AWST pid=2038669 ====
+steps: 2725 273 274
+judge: sticky fastboot early(<PASS_MIN) = FAIL; late(>=PASS_MIN after quiet) = PASS
+timing: SKIP_UNLOCK=1 UNLOCK_WAIT=0s CYCLE=6s PASS_MIN=12s OBSERVE=18s EXTEND=70s
+NOTE: 你跳过解锁时不算解锁时长；请在橙屏时跳过，脚本只看 fastboot 早晚
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-193108.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 2725 ################
+set #define CERRO_MAP_MEM_STEP 2725 (PROBE_SIGNAL=0 PSCI)
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:323:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  323 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:323:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  323 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.
+Stack dump:
+0.	Program arguments: clang -Wp,-MMD,arch/arm64/mm/.mmu.o.d -nostdinc -I./arch/arm64/include -I./arch/arm64/include/generated -I./include -I./include -I./arch/arm64/include/uapi -I./arch/arm64/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ --target=aarch64-linux-gnu -fintegrated-as -Werror=unknown-warning-option -Werror=ignored-optimization-argument -Werror=option-ignored -Werror=unused-command-line-argument -mlittle-endian -DKASAN_SHADOW_SCALE_SHIFT= -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -std=gnu11 -fms-extensions -Wno-gnu -Wno-microsoft-anon-tag -mgeneral-regs-only -DCONFIG_CC_HAS_K_CONSTRAINT=1 -Wno-psabi -fno-asynchronous-unwind-tables -fno-unwind-tables -mbranch-protection=pac-ret+bti -Wa,-march=armv8.5-a -DARM64_ASM_ARCH=\"armv8.5-a\" -DKASAN_SHADOW_SCALE_SHIFT= -fno-delete-null-pointer-checks -O2 -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fexperimental-late-parse-attributes -fno-stack-clash-protection -falign-functions=4 -fstrict-flex-arrays=3 -fno-strict-overflow -fno-stack-check -fno-builtin-wcslen -Wall -Wextra -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=2048 -Wno-format-overflow-non-kprintf -Wno-format-truncation-non-kprintf -Wno-default-const-init-unsafe -Wno-type-limits -Wno-pointer-sign -Wcast-function-type -Wno-unterminated-string-initialization -Wimplicit-fallthrough -Werror=date-time -Werror=incompatible-pointer-types -Wenum-conversion -Wunused -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-format-overflow -Wno-override-init -Wno-pointer-to-enum-cast -Wno-tautological-constant-out-of-range-compare -Wno-unaligned-access -Wno-enum-compare-conditional -Wno-missing-field-initializers -Wno-shift-negative-value -Wno-enum-enum-conversion -Wno-sign-compare -Wno-unused-parameter -g -fno-var-tracking -mstack-protector-guard=sysreg -mstack-protector-guard-reg=sp_el0 -mstack-protector-guard-offset=1344 -DKBUILD_MODFILE=\"arch/arm64/mm/mmu\" -DKBUILD_BASENAME=\"mmu\" -DKBUILD_MODNAME=\"mmu\" -D__KBUILD_MODNAME=mmu -c -o arch/arm64/mm/mmu.o arch/arm64/mm/mmu.c
+1.	<unknown> parser at unknown location
+2.	arch/arm64/mm/mmu.c:2666:1: parsing function body 'arch_set_user_pkey_access'
+3.	arch/arm64/mm/mmu.c:2666:1: in compound statement ('{}')
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  libLLVM.so.22.1      0x00007f4d34f9143a llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 58
+1  libLLVM.so.22.1      0x00007f4d34f911cb llvm::sys::CleanupOnSignal(unsigned long) + 203
+2  libLLVM.so.22.1      0x00007f4d34f46b40
+3  libLLVM.so.22.1      0x00007f4d34f46d5d
+4  libc.so.6            0x00007f4d2c444e70
+5  libclang-cpp.so.22.1 0x00007f4d36b730ee
+6  libclang-cpp.so.22.1 0x00007f4d372cd919 clang::Lexer::SkipBlockComment(clang::Token&, char const*, bool&) + 1385
+7  libclang-cpp.so.22.1 0x00007f4d36b5fc82 clang::Lexer::Lex(clang::Token&) + 6962
+8  libclang-cpp.so.22.1 0x00007f4d36e9c47c clang::Parser::ParseStatementOrDeclaration(llvm::SmallVector<clang::Stmt*, 24u>&, clang::Parser::ParsedStmtContext, clang::SourceLocation*, clang::LabelDecl*) + 13884
+9  libclang-cpp.so.22.1 0x00007f4d36e97164 clang::Parser::ParseFunctionStatementBody(clang::Decl*, clang::Parser::ParseScope&) + 980
+10 libclang-cpp.so.22.1 0x00007f4d36bbb362 clang::Parser::ParseFunctionDefinition(clang::ParsingDeclarator&, clang::Parser::ParsedTemplateInfo const&, clang::Parser::LateParsedAttrList*) + 1378
+11 libclang-cpp.so.22.1 0x00007f4d36f9d41e clang::Parser::ParseDeclGroup(clang::ParsingDeclSpec&, clang::DeclaratorContext, clang::ParsedAttributes&, clang::Parser::ParsedTemplateInfo&, clang::SourceLocation*, clang::Parser::ForRangeInit*) + 12846
+12 libclang-cpp.so.22.1 0x00007f4d36f9986b clang::Parser::ParseDeclOrFunctionDefInternal(clang::ParsedAttributes&, clang::ParsedAttributes&, clang::ParsingDeclSpec&, clang::AccessSpecifier) + 379
+13 libclang-cpp.so.22.1 0x00007f4d36da7874 clang::Parser::ParseExternalDeclaration(clang::ParsedAttributes&, clang::ParsedAttributes&, clang::ParsingDeclSpec*) + 1892
+14 libclang-cpp.so.22.1 0x00007f4d36da49df clang::ParseAST(clang::Sema&, bool, bool) + 1215
+15 libclang-cpp.so.22.1 0x00007f4d37087dfe clang::CompilerInstance::ExecuteAction(clang::FrontendAction&) + 574
+16 libclang-cpp.so.22.1 0x00007f4d3708758a clang::ExecuteCompilerInvocation(clang::CompilerInstance*) + 330
+17 clang                0x000055fde9a8d280 cc1_main(llvm::ArrayRef<char const*>, char const*, void*) + 2304
+18 clang                0x000055fde9a8c679
+19 clang                0x000055fde9a8c556
+20 libclang-cpp.so.22.1 0x00007f4d3876721d
+21 libLLVM.so.22.1      0x00007f4d34f46ada llvm::CrashRecoveryContext::RunSafely(llvm::function_ref<void ()>) + 138
+22 libclang-cpp.so.22.1 0x00007f4d37385bb2 clang::driver::CC1Command::Execute(llvm::ArrayRef<std::optional<llvm::StringRef>>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>*, bool*) const + 290
+23 libclang-cpp.so.22.1 0x00007f4d3726e4ff clang::driver::Compilation::ExecuteCommand(clang::driver::Command const&, clang::driver::Command const*&, bool) const + 175
+24 libclang-cpp.so.22.1 0x00007f4d3726de92 clang::driver::Driver::ExecuteCompilation(clang::driver::Compilation&, llvm::SmallVectorImpl<std::pair<int, clang::driver::Command const*>>&) + 258
+25 clang                0x000055fde9a8b0f9 clang_main(int, char**, llvm::ToolContext const&) + 2937
+26 clang                0x000055fde9a8a54b main + 107
+27 libc.so.6            0x00007f4d2c427d0e
+28 libc.so.6            0x00007f4d2c427e4b __libc_start_main + 139
+29 clang                0x000055fde9a901d5 _start + 37
+clang: error: clang frontend command failed with exit code 139 (use -v to see invocation)
+clang version 22.1.8
+Target: aarch64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /usr/bin
+clang: note: diagnostic msg: 
+********************
+
+PLEASE ATTACH THE FOLLOWING FILES TO THE BUG REPORT:
+Preprocessed source(s) and associated run script(s) are located at:
+clang: note: diagnostic msg: /tmp/mmu-cef9b4.c
+clang: note: diagnostic msg: /tmp/mmu-cef9b4.sh
+clang: note: diagnostic msg: 
+
+********************
+make[4]: *** [scripts/Makefile.build:289：arch/arm64/mm/mmu.o] 错误 1
+make[3]: *** [scripts/Makefile.build:549：arch/arm64/mm] 错误 2
+make[2]: *** [scripts/Makefile.build:549：arch/arm64] 错误 2
+make[1]: *** [/mnt/data/LOA_Nubia_Z60U/build/linux/Makefile:2189：.] 错误 2
+make: *** [Makefile:248：__sub-make] 错误 2
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”

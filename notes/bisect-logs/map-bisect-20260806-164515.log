@@ -1,0 +1,51 @@
+==== cerro-map-bisect Thu 06 Aug 2026 16:45:15 AWST pid=1093461 ====
+steps: 0 264 268 269
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-164515.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 0 ################
+set #define CERRO_MAP_MEM_STEP 0
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:324:23: warning: unused variable 'res' [-Wunused-variable]
+  324 |         struct arm_smccc_res res;
+      |                              ^~~
+arch/arm64/kernel/setup.c:322:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  322 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:322:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  322 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+2 warnings generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+ERROR: Image missing built-in DTB banner
