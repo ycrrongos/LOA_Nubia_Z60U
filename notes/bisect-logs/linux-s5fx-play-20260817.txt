@@ -1,0 +1,58 @@
+cat /proc/cmdline | tr " " "\n" | grep cerro; uptime
+cerro_dtb=s5fx
+ 16:32:03 up 2 min,  0 users,  load average: 0.24, 0.18, 0.07
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+echo user | sudo -S -v >/dev/null; cat /proc/asound/cards; aplay 
+-l | head
+[sudo: authenticate] Password: 
+ 0 [SM8650CERRO    ]: sm8650 - SM8650-CERRO
+                      SM8650-CERRO
+**** List of PLAYBACK Hardware Devices ****
+card 0: SM8650CERRO [SM8650-CERRO], device 0: MultiMedia1 Playback (*) []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+python3 -c 'import struct;from pathlib import Path;b=Path("/lib/f
+irmware/qcom/sm8650/SM8650-CERRO-tplg.bin").read_bytes();print("TOK",struct.unpa
+ck_from("<II",b,6028))'
+TOK (251, 0)
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+amixer -c0 sset 'PRIMARY_MI2S_RX Audio Mixer MultiMedia1' on; tim
+eout 6 speaker-test -D hw:0,0 -c 2 -r 48000 -t sine -f 440 -l 1 > /tmp/play-s5fx
+.txt 2>&1; echo PLAY_EXIT:$?; cat /tmp/play-s5fx.txt
+Simple mixer control 'PRIMARY_MI2S_RX Audio Mixer MultiMedia1',0
+  Capabilities: pswitch
+  Playback channels: Front Left - Front Right
+  Mono:
+  Front Left: Playback [on]
+  Front Right: Playback [on]
+PLAY_EXIT:0
+
+speaker-test 1.2.16
+
+Playback device is hw:0,0
+Stream parameters are 48000Hz, S16_LE, 2 channels
+Sine wave rate is 440.0000Hz
+Rate set to 48000Hz (requested 48000Hz)
+Buffer size range from 960 to 130560
+Period size range from 480 to 16320
+Periods = 4
+was set period_size = 12000
+was set buffer_size = 48000
+ 0 - Front Left
+ 1 - Front Right
+Time per period = 5.197744
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+dmesg | grep -Ei 'media format|1001006|Failed to set|PRI_MI2S|pri
+_mi2s' | tail -30; echo S5FX_DONE
+S5FX_DONE
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n

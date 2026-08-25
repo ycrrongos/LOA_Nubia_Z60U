@@ -1,0 +1,3 @@
+[cerro-s5bw] root part=/dev/sda12
+[cerro-s5bw] boot mount try bpart=/dev/sde65
+[cerro-s5bw] switch_root → /cerro-sd-prep → systemd

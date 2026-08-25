@@ -1,0 +1,308 @@
+==== cerro-map-bisect Thu 06 Aug 2026 21:35:38 AWST pid=3067555 ====
+steps: 3
+judge: sticky fastboot early(<PASS_MIN) = FAIL; late(>=PASS_MIN after quiet) = PASS
+timing: SKIP_UNLOCK=1 UNLOCK_WAIT=0s CYCLE=6s PASS_MIN=12s OBSERVE=18s EXTEND=70s
+NOTE: 你跳过解锁时不算解锁时长；请在橙屏时跳过，脚本只看 fastboot 早晚
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-213538.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 3 ################
+set bank FALLBACK=SAFE_MAP=0x10000000 (LOW_ALLOC unchanged)
+set CERRO_PROBE_STAGE=312
+set CERRO_IDMAP_STEP=1
+set CERRO_SKIP_UNFLATTEN=1
+set #define CERRO_MAP_MEM_STEP 3 (PROBE_SIGNAL=0 PSCI) record_step=3
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:325:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  325 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:325:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  325 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+arch/arm64/mm/mmu.c:1730:4: warning: unused variable 'kpti_bbml2_ptes' [-Wunused-variable]
+ 1730 |           kpti_bbml2_ptes[IDMAP_LEVELS - 1][PAGE_SIZE] __aligned(PAGE_SIZE) __ro_after_init;
+      |           ^~~~~~~~~~~~~~~
+1 warning generated.
+  AR      arch/arm64/kernel/built-in.a
+1 warning generated.
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 21:35 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42335933 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 21:35 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: edl
+==== via EDL 9008 ====
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+sahara - Protocol version: 3, Version supported: 1
+main - Mode detected: sahara
+sahara - 
+Reading Chip Info : OK
+sahara - - Sahara version  : 3
+sahara - - Chip Serial Number : 448a077d999
+sahara - - Chip Identifier V3 : 00020000
+sahara - - MSM HWID : 0x2270e1 | model_id:0x0000 | oem_id:0004
+sahara - - OEM PKHASH : 63c76071854448af8089b884603e478e15a717ccdd3a0c53ab96b8c23ba12bd8d4e4c5ca05729c2432250b6b1c33fed3
+sahara - - HW_ID : 002270e100040000
+sahara - Protocol version: 3, Version supported: 1
+sahara - Uploading loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+sahara - 64-Bit mode detected.
+sahara - Loader successfully uploaded.
+main - Trying to connect to firehose loader ...
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35 
+firehose - INFO: Chip serial num (0x0) Chip ID (0x0)
+firehose - INFO: Supported Functions (16):
+firehose - INFO: program
+firehose - INFO: read
+firehose - INFO: nop
+firehose - INFO: patch
+firehose - INFO: configure
+firehose - INFO: setbootablestoragedrive
+firehose - INFO: erase
+firehose - INFO: power
+firehose - INFO: firmwarewrite
+firehose - INFO: getstorageinfo
+firehose - INFO: benchmark
+firehose - INFO: emmc
+firehose - INFO: ufs
+firehose - INFO: fixgpt
+firehose - INFO: getnumdisksectors
+firehose - INFO: getsha256digest
+firehose - INFO: End of supported functions 16
+firehose_client
+firehose_client - [LIB]: [33mNo --memory option set, we assume "UFS" as default ..., if it fails, try using "--memory" with "UFS","NAND" or "spinor" instead ![0m
+firehose
+firehose - [LIB]: [33mCouldn't detect MaxPayloadSizeFromTargetinBytes[0m
+firehose
+firehose - [LIB]: [33mCouldn't detect TargetName[0m
+firehose - TargetName=Unknown
+firehose - MemoryName=UFS
+firehose - Version=1
+firehose - Trying to read first storage sector...
+firehose - Running configure...
+firehose - Storage report:
+firehose - total_blocks:124002304
+firehose - block_size:4096
+firehose - page_size:4096
+firehose - num_physical:6
+firehose - manufacturer_id:462
+firehose - serial_num:1297306958
+firehose - fw_version:801
+firehose - mem_type:UFS
+firehose - prod_name:KLUFG8RHHD-B0G1
+firehose_client - Supported functions:
+-----------------
+program,read,nop,patch,configure,setbootablestoragedrive,erase,power,firmwarewrite,getstorageinfo,benchmark,emmc,ufs,fixgpt,getnumdisksectors,getsha256digest
+firehose - 
+Writing to physical partition 4, sector 112006, sectors 13904
+Done |----------|   0.0% Write (Sector 0x0 of 0x3650) 0.00 MB/s               Progress: |----------|   1.8% Write (Sector 0x100 of 0x3650, ) 166.89 MB/s    Progress: |----------|   3.7% Write (Sector 0x200 of 0x3650, ) 169.44 MB/s    Progress: |█---------|   5.5% Write (Sector 0x300 of 0x3650, ) 167.40 MB/s    Progress: |█---------|   7.4% Write (Sector 0x400 of 0x3650, ) 159.18 MB/s    Progress: |█---------|   9.2% Write (Sector 0x500 of 0x3650, ) 170.63 MB/s    Progress: |█---------|  11.0% Write (Sector 0x600 of 0x3650, ) 187.00 MB/s    Progress: |█---------|  12.9% Write (Sector 0x700 of 0x3650, ) 161.15 MB/s    Progress: |█---------|  14.7% Write (Sector 0x800 of 0x3650, ) 175.13 MB/s    Progress: |██--------|  16.6% Write (Sector 0x900 of 0x3650, ) 167.36 MB/s    Progress: |██--------|  18.4% Write (Sector 0xA00 of 0x3650, ) 162.62 MB/s    Progress: |██--------|  20.3% Write (Sector 0xB00 of 0x3650, ) 190.32 MB/s    Progress: |██--------|  22.1% Write (Sector 0xC00 of 0x3650, ) 158.63 MB/s    Progress: |██--------|  23.9% Write (Sector 0xD00 of 0x3650, ) 176.38 MB/s    Progress: |███-------|  25.8% Write (Sector 0xE00 of 0x3650, ) 152.30 MB/s    Progress: |███-------|  27.6% Write (Sector 0xF00 of 0x3650, ) 160.87 MB/s    Progress: |███-------|  29.5% Write (Sector 0x1000 of 0x3650, ) 176.41 MB/s   Progress: |███-------|  31.3% Write (Sector 0x1100 of 0x3650, ) 174.81 MB/s   Progress: |███-------|  33.1% Write (Sector 0x1200 of 0x3650, ) 150.09 MB/s   Progress: |████------|  35.0% Write (Sector 0x1300 of 0x3650, ) 166.01 MB/s   Progress: |████------|  36.8% Write (Sector 0x1400 of 0x3650, ) 188.69 MB/s   Progress: |████------|  38.7% Write (Sector 0x1500 of 0x3650, ) 176.19 MB/s   Progress: |████------|  40.5% Write (Sector 0x1600 of 0x3650, ) 155.36 MB/s   Progress: |████------|  42.3% Write (Sector 0x1700 of 0x3650, ) 161.92 MB/s   Progress: |████------|  44.2% Write (Sector 0x1800 of 0x3650, ) 179.24 MB/s   Progress: |█████-----|  46.0% Write (Sector 0x1900 of 0x3650, ) 187.79 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x1A00 of 0x3650, ) 169.16 MB/s   Progress: |█████-----|  49.7% Write (Sector 0x1B00 of 0x3650, ) 167.03 MB/s   Progress: |█████-----|  51.6% Write (Sector 0x1C00 of 0x3650, ) 162.37 MB/s   Progress: |█████-----|  53.4% Write (Sector 0x1D00 of 0x3650, ) 171.65 MB/s   Progress: |██████----|  55.2% Write (Sector 0x1E00 of 0x3650, ) 172.80 MB/s   Progress: |██████----|  57.1% Write (Sector 0x1F00 of 0x3650, ) 172.50 MB/s   Progress: |██████----|  58.9% Write (Sector 0x2000 of 0x3650, ) 167.71 MB/s   Progress: |██████----|  60.8% Write (Sector 0x2100 of 0x3650, ) 159.91 MB/s   Progress: |██████----|  62.6% Write (Sector 0x2200 of 0x3650, ) 164.83 MB/s   Progress: |██████----|  64.4% Write (Sector 0x2300 of 0x3650, ) 189.11 MB/s   Progress: |███████---|  66.3% Write (Sector 0x2400 of 0x3650, ) 185.53 MB/s   Progress: |███████---|  68.1% Write (Sector 0x2500 of 0x3650, ) 156.74 MB/s   Progress: |███████---|  70.0% Write (Sector 0x2600 of 0x3650, ) 159.97 MB/s   Progress: |███████---|  71.8% Write (Sector 0x2700 of 0x3650, ) 159.39 MB/s   Progress: |███████---|  73.6% Write (Sector 0x2800 of 0x3650, ) 183.50 MB/s   Progress: |████████--|  75.5% Write (Sector 0x2900 of 0x3650, ) 161.17 MB/s   Progress: |████████--|  77.3% Write (Sector 0x2A00 of 0x3650, ) 168.05 MB/s   Progress: |████████--|  79.2% Write (Sector 0x2B00 of 0x3650, ) 174.47 MB/s   Progress: |████████--|  81.0% Write (Sector 0x2C00 of 0x3650, ) 154.60 MB/s   Progress: |████████--|  82.9% Write (Sector 0x2D00 of 0x3650, ) 178.18 MB/s   Progress: |████████--|  84.7% Write (Sector 0x2E00 of 0x3650, ) 140.60 MB/s   Progress: |█████████-|  86.5% Write (Sector 0x2F00 of 0x3650, ) 163.60 MB/s   Progress: |█████████-|  88.4% Write (Sector 0x3000 of 0x3650, ) 148.75 MB/s   Progress: |█████████-|  90.2% Write (Sector 0x3100 of 0x3650, ) 148.95 MB/s   Progress: |█████████-|  92.1% Write (Sector 0x3200 of 0x3650, ) 153.16 MB/s   Progress: |█████████-|  93.9% Write (Sector 0x3300 of 0x3650, ) 159.77 MB/s   Progress: |██████████|  95.7% Write (Sector 0x3400 of 0x3650, ) 158.01 MB/s   Progress: |██████████|  97.6% Write (Sector 0x3500 of 0x3650, ) 173.53 MB/s   Progress: |██████████|  99.4% Write (Sector 0x3600 of 0x3650, ) 164.51 MB/s   Progress: |██████████| 100.0% Write (Sector 0x3650 of 0x3650, ) 172.26 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img to sector 112006.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x3650) 0.00 MB/s               Progress: |----------|   1.8% Write (Sector 0x100 of 0x3650, ) 62.48 MB/s     Progress: |----------|   3.7% Write (Sector 0x200 of 0x3650, ) 51.80 MB/s     Progress: |█---------|   5.5% Write (Sector 0x300 of 0x3650, ) 52.26 MB/s     Progress: |█---------|   7.4% Write (Sector 0x400 of 0x3650, ) 56.93 MB/s     Progress: |█---------|   9.2% Write (Sector 0x500 of 0x3650, ) 114.02 MB/s    Progress: |█---------|  11.0% Write (Sector 0x600 of 0x3650, ) 117.99 MB/s    Progress: |█---------|  12.9% Write (Sector 0x700 of 0x3650, ) 91.77 MB/s     Progress: |█---------|  14.7% Write (Sector 0x800 of 0x3650, ) 120.10 MB/s    Progress: |██--------|  16.6% Write (Sector 0x900 of 0x3650, ) 97.24 MB/s     Progress: |██--------|  18.4% Write (Sector 0xA00 of 0x3650, ) 108.44 MB/s    Progress: |██--------|  20.3% Write (Sector 0xB00 of 0x3650, ) 111.79 MB/s    Progress: |██--------|  22.1% Write (Sector 0xC00 of 0x3650, ) 122.67 MB/s    Progress: |██--------|  23.9% Write (Sector 0xD00 of 0x3650, ) 88.47 MB/s     Progress: |███-------|  25.8% Write (Sector 0xE00 of 0x3650, ) 88.49 MB/s     Progress: |███-------|  27.6% Write (Sector 0xF00 of 0x3650, ) 108.60 MB/s    Progress: |███-------|  29.5% Write (Sector 0x1000 of 0x3650, ) 118.94 MB/s   Progress: |███-------|  31.3% Write (Sector 0x1100 of 0x3650, ) 82.39 MB/s    Progress: |███-------|  33.1% Write (Sector 0x1200 of 0x3650, ) 130.96 MB/s   Progress: |████------|  35.0% Write (Sector 0x1300 of 0x3650, ) 71.63 MB/s    Progress: |████------|  36.8% Write (Sector 0x1400 of 0x3650, ) 111.43 MB/s   Progress: |████------|  38.7% Write (Sector 0x1500 of 0x3650, ) 103.57 MB/s   Progress: |████------|  40.5% Write (Sector 0x1600 of 0x3650, ) 99.25 MB/s    Progress: |████------|  42.3% Write (Sector 0x1700 of 0x3650, ) 106.13 MB/s   Progress: |████------|  44.2% Write (Sector 0x1800 of 0x3650, ) 124.32 MB/s   Progress: |█████-----|  46.0% Write (Sector 0x1900 of 0x3650, ) 123.46 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x1A00 of 0x3650, ) 96.05 MB/s    Progress: |█████-----|  49.7% Write (Sector 0x1B00 of 0x3650, ) 80.77 MB/s    Progress: |█████-----|  51.6% Write (Sector 0x1C00 of 0x3650, ) 69.34 MB/s    Progress: |█████-----|  53.4% Write (Sector 0x1D00 of 0x3650, ) 102.45 MB/s   Progress: |██████----|  55.2% Write (Sector 0x1E00 of 0x3650, ) 87.37 MB/s    Progress: |██████----|  57.1% Write (Sector 0x1F00 of 0x3650, ) 106.51 MB/s   Progress: |██████----|  58.9% Write (Sector 0x2000 of 0x3650, ) 103.31 MB/s   Progress: |██████----|  60.8% Write (Sector 0x2100 of 0x3650, ) 126.59 MB/s   Progress: |██████----|  62.6% Write (Sector 0x2200 of 0x3650, ) 124.03 MB/s   Progress: |██████----|  64.4% Write (Sector 0x2300 of 0x3650, ) 102.02 MB/s   Progress: |███████---|  66.3% Write (Sector 0x2400 of 0x3650, ) 111.74 MB/s   Progress: |███████---|  68.1% Write (Sector 0x2500 of 0x3650, ) 109.12 MB/s   Progress: |███████---|  70.0% Write (Sector 0x2600 of 0x3650, ) 113.88 MB/s   Progress: |███████---|  71.8% Write (Sector 0x2700 of 0x3650, ) 124.82 MB/s   Progress: |███████---|  73.6% Write (Sector 0x2800 of 0x3650, ) 109.37 MB/s   Progress: |████████--|  75.5% Write (Sector 0x2900 of 0x3650, ) 108.32 MB/s   Progress: |████████--|  77.3% Write (Sector 0x2A00 of 0x3650, ) 128.18 MB/s   Progress: |████████--|  79.2% Write (Sector 0x2B00 of 0x3650, ) 67.81 MB/s    Progress: |████████--|  81.0% Write (Sector 0x2C00 of 0x3650, ) 126.32 MB/s   Progress: |████████--|  82.9% Write (Sector 0x2D00 of 0x3650, ) 124.26 MB/s   Progress: |████████--|  84.7% Write (Sector 0x2E00 of 0x3650, ) 91.31 MB/s    Progress: |█████████-|  86.5% Write (Sector 0x2F00 of 0x3650, ) 107.70 MB/s   Progress: |█████████-|  88.4% Write (Sector 0x3000 of 0x3650, ) 133.95 MB/s   Progress: |█████████-|  90.2% Write (Sector 0x3100 of 0x3650, ) 91.33 MB/s    Progress: |█████████-|  92.1% Write (Sector 0x3200 of 0x3650, ) 130.57 MB/s   Progress: |█████████-|  93.9% Write (Sector 0x3300 of 0x3650, ) 91.90 MB/s    Progress: |██████████|  95.7% Write (Sector 0x3400 of 0x3650, ) 126.47 MB/s   Progress: |██████████|  97.6% Write (Sector 0x3500 of 0x3650, ) 110.31 MB/s   Progress: |██████████|  99.4% Write (Sector 0x3600 of 0x3650, ) 129.66 MB/s   Progress: |██████████| 100.0% Write (Sector 0x3650 of 0x3650, ) 84.42 MB/s    
+Wrote /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img to sector 462810.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x6000) 0.00 MB/s               Progress: |----------|   1.0% Write (Sector 0x100 of 0x6000, 01s left) 81.81 MB/sProgress: |----------|   2.1% Write (Sector 0x200 of 0x6000, ) 113.66 MB/s    Progress: |----------|   3.1% Write (Sector 0x300 of 0x6000, 01s left) 60.07 MB/sProgress: |----------|   4.2% Write (Sector 0x400 of 0x6000, 01s left) 32.73 MB/sProgress: |█---------|   5.2% Write (Sector 0x500 of 0x6000, 01s left) 138.02 MB/sProgress: |█---------|   6.2% Write (Sector 0x600 of 0x6000, 01s left) 91.93 MB/sProgress: |█---------|   7.3% Write (Sector 0x700 of 0x6000, 01s left) 109.99 MB/sProgress: |█---------|   8.3% Write (Sector 0x800 of 0x6000, 01s left) 66.80 MB/sProgress: |█---------|   9.4% Write (Sector 0x900 of 0x6000, 01s left) 89.82 MB/sProgress: |█---------|  10.4% Write (Sector 0xA00 of 0x6000, 01s left) 116.09 MB/sProgress: |█---------|  11.5% Write (Sector 0xB00 of 0x6000, 01s left) 97.17 MB/sProgress: |█---------|  12.5% Write (Sector 0xC00 of 0x6000, 01s left) 47.62 MB/sProgress: |█---------|  13.5% Write (Sector 0xD00 of 0x6000, 01s left) 71.26 MB/sProgress: |█---------|  14.6% Write (Sector 0xE00 of 0x6000, 01s left) 77.67 MB/sProgress: |██--------|  15.6% Write (Sector 0xF00 of 0x6000, 01s left) 74.60 MB/sProgress: |██--------|  16.7% Write (Sector 0x1000 of 0x6000, 01s left) 66.36 MB/sProgress: |██--------|  17.7% Write (Sector 0x1100 of 0x6000, 01s left) 51.49 MB/sProgress: |██--------|  18.8% Write (Sector 0x1200 of 0x6000, 01s left) 61.46 MB/sProgress: |██--------|  19.8% Write (Sector 0x1300 of 0x6000, 01s left) 128.10 MB/sProgress: |██--------|  20.8% Write (Sector 0x1400 of 0x6000, 01s left) 33.93 MB/sProgress: |██--------|  21.9% Write (Sector 0x1500 of 0x6000, 01s left) 85.20 MB/sProgress: |██--------|  22.9% Write (Sector 0x1600 of 0x6000, 01s left) 62.64 MB/sProgress: |██--------|  24.0% Write (Sector 0x1700 of 0x6000, 01s left) 72.70 MB/sProgress: |██--------|  25.0% Write (Sector 0x1800 of 0x6000, 01s left) 29.78 MB/sProgress: |███-------|  26.0% Write (Sector 0x1900 of 0x6000, 01s left) 41.32 MB/sProgress: |███-------|  27.1% Write (Sector 0x1A00 of 0x6000, 01s left) 60.84 MB/sProgress: |███-------|  28.1% Write (Sector 0x1B00 of 0x6000, 01s left) 82.81 MB/sProgress: |███-------|  29.2% Write (Sector 0x1C00 of 0x6000, 01s left) 45.30 MB/sProgress: |███-------|  30.2% Write (Sector 0x1D00 of 0x6000, 01s left) 62.08 MB/sProgress: |███-------|  31.2% Write (Sector 0x1E00 of 0x6000, 01s left) 76.90 MB/sProgress: |███-------|  32.3% Write (Sector 0x1F00 of 0x6000, 01s left) 68.21 MB/sProgress: |███-------|  33.3% Write (Sector 0x2000 of 0x6000, 01s left) 34.72 MB/sProgress: |███-------|  34.4% Write (Sector 0x2100 of 0x6000, 01s left) 80.16 MB/sProgress: |████------|  35.4% Write (Sector 0x2200 of 0x6000, ) 63.54 MB/s    Progress: |████------|  36.5% Write (Sector 0x2300 of 0x6000, ) 60.38 MB/s    Progress: |████------|  37.5% Write (Sector 0x2400 of 0x6000, ) 83.25 MB/s    Progress: |████------|  38.5% Write (Sector 0x2500 of 0x6000, ) 71.05 MB/s    Progress: |████------|  39.6% Write (Sector 0x2600 of 0x6000, ) 132.42 MB/s   Progress: |████------|  40.6% Write (Sector 0x2700 of 0x6000, ) 88.72 MB/s    Progress: |████------|  41.7% Write (Sector 0x2800 of 0x6000, ) 160.47 MB/s   Progress: |████------|  42.7% Write (Sector 0x2900 of 0x6000, ) 111.57 MB/s   Progress: |████------|  43.8% Write (Sector 0x2A00 of 0x6000, ) 124.39 MB/s   Progress: |████------|  44.8% Write (Sector 0x2B00 of 0x6000, ) 156.40 MB/s   Progress: |█████-----|  45.8% Write (Sector 0x2C00 of 0x6000, ) 50.65 MB/s    Progress: |█████-----|  46.9% Write (Sector 0x2D00 of 0x6000, ) 108.28 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x2E00 of 0x6000, ) 88.49 MB/s    Progress: |█████-----|  49.0% Write (Sector 0x2F00 of 0x6000, ) 115.41 MB/s   Progress: |█████-----|  50.0% Write (Sector 0x3000 of 0x6000, ) 52.18 MB/s    Progress: |█████-----|  51.0% Write (Sector 0x3100 of 0x6000, ) 103.06 MB/s   Progress: |█████-----|  52.1% Write (Sector 0x3200 of 0x6000, ) 99.38 MB/s    Progress: |█████-----|  53.1% Write (Sector 0x3300 of 0x6000, ) 81.53 MB/s    Progress: |█████-----|  54.2% Write (Sector 0x3400 of 0x6000, ) 59.98 MB/s    Progress: |██████----|  55.2% Write (Sector 0x3500 of 0x6000, ) 74.89 MB/s    Progress: |██████----|  56.2% Write (Sector 0x3600 of 0x6000, ) 100.80 MB/s   Progress: |██████----|  57.3% Write (Sector 0x3700 of 0x6000, ) 119.50 MB/s   Progress: |██████----|  58.3% Write (Sector 0x3800 of 0x6000, ) 51.83 MB/s    Progress: |██████----|  59.4% Write (Sector 0x3900 of 0x6000, ) 90.69 MB/s    Progress: |██████----|  60.4% Write (Sector 0x3A00 of 0x6000, ) 161.52 MB/s   Progress: |██████----|  61.5% Write (Sector 0x3B00 of 0x6000, ) 114.95 MB/s   Progress: |██████----|  62.5% Write (Sector 0x3C00 of 0x6000, ) 92.36 MB/s    Progress: |██████----|  63.5% Write (Sector 0x3D00 of 0x6000, ) 117.55 MB/s   Progress: |██████----|  64.6% Write (Sector 0x3E00 of 0x6000, ) 161.92 MB/s   Progress: |███████---|  65.6% Write (Sector 0x3F00 of 0x6000, ) 166.59 MB/s   Progress: |███████---|  66.7% Write (Sector 0x4000 of 0x6000, ) 60.42 MB/s    Progress: |███████---|  67.7% Write (Sector 0x4100 of 0x6000, ) 96.23 MB/s    Progress: |███████---|  68.8% Write (Sector 0x4200 of 0x6000, ) 168.09 MB/s   Progress: |███████---|  69.8% Write (Sector 0x4300 of 0x6000, ) 110.76 MB/s   Progress: |███████---|  70.8% Write (Sector 0x4400 of 0x6000, ) 48.38 MB/s    Progress: |███████---|  71.9% Write (Sector 0x4500 of 0x6000, ) 112.35 MB/s   Progress: |███████---|  72.9% Write (Sector 0x4600 of 0x6000, ) 110.42 MB/s   Progress: |███████---|  74.0% Write (Sector 0x4700 of 0x6000, ) 100.11 MB/s   Progress: |████████--|  75.0% Write (Sector 0x4800 of 0x6000, ) 57.58 MB/s    Progress: |████████--|  76.0% Write (Sector 0x4900 of 0x6000, ) 158.40 MB/s   Progress: |████████--|  77.1% Write (Sector 0x4A00 of 0x6000, ) 84.37 MB/s    Progress: |████████--|  78.1% Write (Sector 0x4B00 of 0x6000, ) 172.53 MB/s   Progress: |████████--|  79.2% Write (Sector 0x4C00 of 0x6000, ) 37.86 MB/s    Progress: |████████--|  80.2% Write (Sector 0x4D00 of 0x6000, ) 77.99 MB/s    Progress: |████████--|  81.2% Write (Sector 0x4E00 of 0x6000, ) 71.55 MB/s    Progress: |████████--|  82.3% Write (Sector 0x4F00 of 0x6000, ) 89.91 MB/s    Progress: |████████--|  83.3% Write (Sector 0x5000 of 0x6000, ) 39.66 MB/s    Progress: |████████--|  84.4% Write (Sector 0x5100 of 0x6000, ) 74.53 MB/s    Progress: |█████████-|  85.4% Write (Sector 0x5200 of 0x6000, ) 56.37 MB/s    Progress: |█████████-|  86.5% Write (Sector 0x5300 of 0x6000, ) 46.52 MB/s    Progress: |█████████-|  87.5% Write (Sector 0x5400 of 0x6000, ) 26.01 MB/s    Progress: |█████████-|  88.5% Write (Sector 0x5500 of 0x6000, ) 47.26 MB/s    Progress: |█████████-|  89.6% Write (Sector 0x5600 of 0x6000, ) 70.23 MB/s    Progress: |█████████-|  90.6% Write (Sector 0x5700 of 0x6000, ) 86.79 MB/s    Progress: |█████████-|  91.7% Write (Sector 0x5800 of 0x6000, ) 81.82 MB/s    Progress: |█████████-|  92.7% Write (Sector 0x5900 of 0x6000, ) 56.65 MB/s    Progress: |█████████-|  93.8% Write (Sector 0x5A00 of 0x6000, ) 67.50 MB/s    Progress: |█████████-|  94.8% Write (Sector 0x5B00 of 0x6000, ) 77.33 MB/s    Progress: |██████████|  95.8% Write (Sector 0x5C00 of 0x6000, ) 34.91 MB/s    Progress: |██████████|  96.9% Write (Sector 0x5D00 of 0x6000, ) 90.96 MB/s    Progress: |██████████|  97.9% Write (Sector 0x5E00 of 0x6000, ) 70.17 MB/s    Progress: |██████████|  99.0% Write (Sector 0x5F00 of 0x6000, ) 74.58 MB/s    Progress: |██████████| 100.0% Write (Sector 0x6000 of 0x6000, ) 77.23 MB/s    
+Wrote /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/pmos-flash/backup-20260806-020517/vendor_boot_a.img to sector 281670.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x6000) 0.00 MB/s               Progress: |----------|   1.0% Write (Sector 0x100 of 0x6000, ) 170.61 MB/s    Progress: |----------|   2.1% Write (Sector 0x200 of 0x6000, ) 182.80 MB/s    Progress: |----------|   3.1% Write (Sector 0x300 of 0x6000, ) 180.54 MB/s    Progress: |----------|   4.2% Write (Sector 0x400 of 0x6000, ) 152.06 MB/s    Progress: |█---------|   5.2% Write (Sector 0x500 of 0x6000, ) 152.89 MB/s    Progress: |█---------|   6.2% Write (Sector 0x600 of 0x6000, ) 156.77 MB/s    Progress: |█---------|   7.3% Write (Sector 0x700 of 0x6000, ) 149.74 MB/s    Progress: |█---------|   8.3% Write (Sector 0x800 of 0x6000, ) 164.88 MB/s    Progress: |█---------|   9.4% Write (Sector 0x900 of 0x6000, ) 152.32 MB/s    Progress: |█---------|  10.4% Write (Sector 0xA00 of 0x6000, ) 156.84 MB/s    Progress: |█---------|  11.5% Write (Sector 0xB00 of 0x6000, ) 154.91 MB/s    Progress: |█---------|  12.5% Write (Sector 0xC00 of 0x6000, ) 157.17 MB/s    Progress: |█---------|  13.5% Write (Sector 0xD00 of 0x6000, ) 151.94 MB/s    Progress: |█---------|  14.6% Write (Sector 0xE00 of 0x6000, ) 156.01 MB/s    Progress: |██--------|  15.6% Write (Sector 0xF00 of 0x6000, ) 176.22 MB/s    Progress: |██--------|  16.7% Write (Sector 0x1000 of 0x6000, ) 181.34 MB/s   Progress: |██--------|  17.7% Write (Sector 0x1100 of 0x6000, ) 191.47 MB/s   Progress: |██--------|  18.8% Write (Sector 0x1200 of 0x6000, ) 182.58 MB/s   Progress: |██--------|  19.8% Write (Sector 0x1300 of 0x6000, ) 188.87 MB/s   Progress: |██--------|  20.8% Write (Sector 0x1400 of 0x6000, ) 182.35 MB/s   Progress: |██--------|  21.9% Write (Sector 0x1500 of 0x6000, ) 152.86 MB/s   Progress: |██--------|  22.9% Write (Sector 0x1600 of 0x6000, ) 167.62 MB/s   Progress: |██--------|  24.0% Write (Sector 0x1700 of 0x6000, ) 172.57 MB/s   Progress: |██--------|  25.0% Write (Sector 0x1800 of 0x6000, ) 157.81 MB/s   Progress: |███-------|  26.0% Write (Sector 0x1900 of 0x6000, ) 149.30 MB/s   Progress: |███-------|  27.1% Write (Sector 0x1A00 of 0x6000, ) 163.23 MB/s   Progress: |███-------|  28.1% Write (Sector 0x1B00 of 0x6000, ) 152.46 MB/s   Progress: |███-------|  29.2% Write (Sector 0x1C00 of 0x6000, ) 147.51 MB/s   Progress: |███-------|  30.2% Write (Sector 0x1D00 of 0x6000, ) 176.42 MB/s   Progress: |███-------|  31.2% Write (Sector 0x1E00 of 0x6000, ) 194.87 MB/s   Progress: |███-------|  32.3% Write (Sector 0x1F00 of 0x6000, ) 183.04 MB/s   Progress: |███-------|  33.3% Write (Sector 0x2000 of 0x6000, ) 160.79 MB/s   Progress: |███-------|  34.4% Write (Sector 0x2100 of 0x6000, ) 149.17 MB/s   Progress: |████------|  35.4% Write (Sector 0x2200 of 0x6000, ) 148.14 MB/s   Progress: |████------|  36.5% Write (Sector 0x2300 of 0x6000, ) 152.75 MB/s   Progress: |████------|  37.5% Write (Sector 0x2400 of 0x6000, ) 176.74 MB/s   Progress: |████------|  38.5% Write (Sector 0x2500 of 0x6000, ) 190.17 MB/s   Progress: |████------|  39.6% Write (Sector 0x2600 of 0x6000, ) 196.28 MB/s   Progress: |████------|  40.6% Write (Sector 0x2700 of 0x6000, ) 191.34 MB/s   Progress: |████------|  41.7% Write (Sector 0x2800 of 0x6000, ) 172.70 MB/s   Progress: |████------|  42.7% Write (Sector 0x2900 of 0x6000, ) 184.12 MB/s   Progress: |████------|  43.8% Write (Sector 0x2A00 of 0x6000, ) 150.33 MB/s   Progress: |████------|  44.8% Write (Sector 0x2B00 of 0x6000, ) 155.84 MB/s   Progress: |█████-----|  45.8% Write (Sector 0x2C00 of 0x6000, ) 149.82 MB/s   Progress: |█████-----|  46.9% Write (Sector 0x2D00 of 0x6000, ) 155.62 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x2E00 of 0x6000, ) 182.03 MB/s   Progress: |█████-----|  49.0% Write (Sector 0x2F00 of 0x6000, ) 166.02 MB/s   Progress: |█████-----|  50.0% Write (Sector 0x3000 of 0x6000, ) 180.24 MB/s   Progress: |█████-----|  51.0% Write (Sector 0x3100 of 0x6000, ) 179.18 MB/s   Progress: |█████-----|  52.1% Write (Sector 0x3200 of 0x6000, ) 160.76 MB/s   Progress: |█████-----|  53.1% Write (Sector 0x3300 of 0x6000, ) 169.15 MB/s   Progress: |█████-----|  54.2% Write (Sector 0x3400 of 0x6000, ) 165.44 MB/s   Progress: |██████----|  55.2% Write (Sector 0x3500 of 0x6000, ) 157.45 MB/s   Progress: |██████----|  56.2% Write (Sector 0x3600 of 0x6000, ) 154.57 MB/s   Progress: |██████----|  57.3% Write (Sector 0x3700 of 0x6000, ) 152.86 MB/s   Progress: |██████----|  58.3% Write (Sector 0x3800 of 0x6000, ) 190.61 MB/s   Progress: |██████----|  59.4% Write (Sector 0x3900 of 0x6000, ) 157.59 MB/s   Progress: |██████----|  60.4% Write (Sector 0x3A00 of 0x6000, ) 155.73 MB/s   Progress: |██████----|  61.5% Write (Sector 0x3B00 of 0x6000, ) 175.35 MB/s   Progress: |██████----|  62.5% Write (Sector 0x3C00 of 0x6000, ) 162.07 MB/s   Progress: |██████----|  63.5% Write (Sector 0x3D00 of 0x6000, ) 159.10 MB/s   Progress: |██████----|  64.6% Write (Sector 0x3E00 of 0x6000, ) 181.97 MB/s   Progress: |███████---|  65.6% Write (Sector 0x3F00 of 0x6000, ) 169.06 MB/s   Progress: |███████---|  66.7% Write (Sector 0x4000 of 0x6000, ) 161.10 MB/s   Progress: |███████---|  67.7% Write (Sector 0x4100 of 0x6000, ) 166.36 MB/s   Progress: |███████---|  68.8% Write (Sector 0x4200 of 0x6000, ) 194.13 MB/s   Progress: |███████---|  69.8% Write (Sector 0x4300 of 0x6000, ) 193.21 MB/s   Progress: |███████---|  70.8% Write (Sector 0x4400 of 0x6000, ) 191.49 MB/s   Progress: |███████---|  71.9% Write (Sector 0x4500 of 0x6000, ) 190.17 MB/s   Progress: |███████---|  72.9% Write (Sector 0x4600 of 0x6000, ) 181.60 MB/s   Progress: |███████---|  74.0% Write (Sector 0x4700 of 0x6000, ) 152.51 MB/s   Progress: |████████--|  75.0% Write (Sector 0x4800 of 0x6000, ) 153.60 MB/s   Progress: |████████--|  76.0% Write (Sector 0x4900 of 0x6000, ) 147.54 MB/s   Progress: |████████--|  77.1% Write (Sector 0x4A00 of 0x6000, ) 151.27 MB/s   Progress: |████████--|  78.1% Write (Sector 0x4B00 of 0x6000, ) 152.15 MB/s   Progress: |████████--|  79.2% Write (Sector 0x4C00 of 0x6000, ) 170.50 MB/s   Progress: |████████--|  80.2% Write (Sector 0x4D00 of 0x6000, ) 167.74 MB/s   Progress: |████████--|  81.2% Write (Sector 0x4E00 of 0x6000, ) 156.47 MB/s   Progress: |████████--|  82.3% Write (Sector 0x4F00 of 0x6000, ) 146.13 MB/s   Progress: |████████--|  83.3% Write (Sector 0x5000 of 0x6000, ) 148.28 MB/s   Progress: |████████--|  84.4% Write (Sector 0x5100 of 0x6000, ) 143.67 MB/s   Progress: |█████████-|  85.4% Write (Sector 0x5200 of 0x6000, ) 151.04 MB/s   Progress: |█████████-|  86.5% Write (Sector 0x5300 of 0x6000, ) 172.13 MB/s   Progress: |█████████-|  87.5% Write (Sector 0x5400 of 0x6000, ) 173.76 MB/s   Progress: |█████████-|  88.5% Write (Sector 0x5500 of 0x6000, ) 174.28 MB/s   Progress: |█████████-|  89.6% Write (Sector 0x5600 of 0x6000, ) 172.86 MB/s   Progress: |█████████-|  90.6% Write (Sector 0x5700 of 0x6000, ) 153.54 MB/s   Progress: |█████████-|  91.7% Write (Sector 0x5800 of 0x6000, ) 137.32 MB/s   Progress: |█████████-|  92.7% Write (Sector 0x5900 of 0x6000, ) 157.89 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x5A00 of 0x6000, ) 179.93 MB/s   Progress: |█████████-|  94.8% Write (Sector 0x5B00 of 0x6000, ) 150.78 MB/s   Progress: |██████████|  95.8% Write (Sector 0x5C00 of 0x6000, ) 147.79 MB/s   Progress: |██████████|  96.9% Write (Sector 0x5D00 of 0x6000, ) 167.81 MB/s   Progress: |██████████|  97.9% Write (Sector 0x5E00 of 0x6000, ) 174.39 MB/s   Progress: |██████████|  99.0% Write (Sector 0x5F00 of 0x6000, ) 185.24 MB/s   Progress: |██████████| 100.0% Write (Sector 0x6000 of 0x6000, ) 147.39 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/pmos-flash/backup-20260806-020517/vendor_boot_a.img to sector 632474.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Erased dtbo_a starting at sector 136650 with sector count 6144.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Erased dtbo_b starting at sector 487454 with sector count 6144.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+DeviceClass - USBError(19, 'No such device (it may have been disconnected)')
+flash returned Thu 06 Aug 2026 21:36:24 AWST
+==== observe 18s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786023387.622894336
+[1.693] mode=none
+[3.897] mode=none
+[6.091] mode=none
+[8.291] mode=none
+[10.497] mode=none
+[12.677] mode=none
+[14.882] mode=none
+[17.058] mode=none
+[19.239] mode=none
+observe done: none_streak=36 udev_events=0 first_fb=none
+==== quiet so far; extend 70s (wait late sticky fb ≥ PASS_MIN=12s) ====
+[35.15] fastboot during extend
+outcome=pass late_fastboot@35.15s(extend)_PASS_MIN=12_CYCLE=6
+recorded → /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+STEP 3 PASS — 等可刷模式；若随后 Dump 会撤销 PASS
+already flashable: fastboot
+
+==== ALL STEPS DONE Thu 06 Aug 2026 21:37:03 AWST ====
+Results:
+timestamp                  step                        outcome           detail                                                    boot_img
+2026-08-06T16:48:09+08:00  0                           hang              quiet_18s                                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T16:50:38+08:00  0                           inconclusive      panic_signal_quiet_not_hang                               (re-run with PSCI)
+2026-08-06T16:52:37+08:00  0                           pass              quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:02:06+08:00  264                         pass              quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:08:59+08:00  264                         revoked           user_said_misconfirmed_pass                               -
+2026-08-06T17:11:38+08:00  264                         pass              quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:13:39+08:00  268                         pass              quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:19:41+08:00  269                         pass              quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:41:42+08:00  270                         pass              quiet_auto_psci_12s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:43:50+08:00  271                         pass              quiet_auto_psci_12s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:46:11+08:00  272                         pass              quiet_auto_psci_12s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:49:32+08:00  272                         retest            user_requested_reverify_after_dump                        -
+2026-08-06T17:50:59+08:00  272                         pass              quiet_auto_psci_20s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:53:58+08:00  272                         dump              MemoryDump_after_false_quiet_pass                         -
+2026-08-06T18:18:11+08:00  2720                        pass              late_fastboot_after_15s_quiet@54.376s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:23:33+08:00  2720                        pass              user_confirm_auto_reboot_then_fastboot                    -
+2026-08-06T18:23:33+08:00  2721                        flash_fail        fastboot_download_size_exceeded_after_2720                -
+2026-08-06T18:24:26+08:00  2720                        restart           user_requested_rerun_from_2720                            -
+2026-08-06T18:25:35+08:00  2720                        pass              late_fastboot_after_20s_quiet@34.572s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:26:22+08:00  2721                        pass              late_fastboot_after_20s_quiet@26.051s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:27:16+08:00  2722                        dump              MemoryDump@34.422s(extend)                                /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:48:26+08:00  270                         note              evidence_weak_quiet_only_no_late_fb_reconfirm             -
+2026-08-06T18:48:26+08:00  271                         note              evidence_weak_quiet_only_no_late_fb_reconfirm             -
+2026-08-06T18:48:26+08:00  meta                        audit             chat_tsv_crosscheck_downgrade_270_271_fix_263_nextsteps   -
+2026-08-06T18:54:29+08:00  270                         pass              late_fastboot_after_quiet@5.841s                          /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:54:47+08:00  271                         early_fastboot    early_fastboot@1.077s                                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:55:38+08:00  270                         retest_suspect    late_fb@5.841s_too_early_for_psci_loop_retest_edl         -
+2026-08-06T18:55:38+08:00  271                         retest_suspect    early_fb@1.077s_after_fastboot_flash_retest_edl           -
+2026-08-06T18:56:09+08:00  271                         early_fastboot    retest_reboot_only_early_fastboot@3.789s                  already_on_device_step271
+2026-08-06T18:58:29+08:00  270                         pass              late_fastboot_after_30s_quiet@50.023s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:59:21+08:00  271                         pass              late_fastboot_after_30s_quiet@32.495s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:05:47+08:00  270                         revoked           user_assisted_unlock_skip_invalidates_prior_retest        -
+2026-08-06T19:05:48+08:00  271                         revoked           user_assisted_unlock_skip_invalidates_prior_retest        -
+2026-08-06T19:05:48+08:00  meta                        timing_fix        PASS_via_late_sticky_fb_after_N_cycles_incl_UNLOCK_WAIT   -
+2026-08-06T19:08:24+08:00  270                         pass              late_fastboot@83.295s(extend)_PASS_MIN=28_CYCLE=14        /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:10:15+08:00  271                         pass              late_fastboot@83.314s(extend)_PASS_MIN=28_CYCLE=14        /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:15:45+08:00  meta                        note              user_will_skip_unlock_SKIP_UNLOCK=1_from_here             -
+2026-08-06T19:16:55+08:00  2723                        hang              quiet_21+21s_no_sticky_fb_PASS_MIN=14                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:18:10+08:00  2723                        revoked           hang_was_extend_too_short_with_SKIP_UNLOCK_retest         -
+2026-08-06T19:19:10+08:00  2723                        inconclusive      user_forgot_unlock_skip_aborted_SKIP_UNLOCK_run           -
+2026-08-06T19:21:49+08:00  meta                        note              SKIP_UNLOCK_no_count_unlock_wait_judge_by_fastboot_only   -
+2026-08-06T19:23:08+08:00  2723                        pass              late_fastboot@51.61s(extend)_PASS_MIN=12_CYCLE=6          /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:24:00+08:00  2724                        pass              late_fastboot@29.335s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:24:54+08:00  2725                        dump              MemoryDump@32.524s(extend)                                /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:26:23+08:00  2726                        pass              late_fastboot@45.785s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:31:08+08:00  meta                        note              early_pgtable_alloc_limited_low_2GiB_retest_2725_273_274  -
+2026-08-06T19:35:50+08:00  2725                        hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:54:45+08:00  2725                        pass              late_fastboot@58.956s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:55:47+08:00  273                         pass              late_fastboot@41.013s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:56:47+08:00  274                         pass              late_fastboot@33.028s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:10:47+08:00  2                           pass              late_fastboot@68.068s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:11:00+08:00  meta                        note              fallback_SAFE_MAP_shrink_to_256MiB_before_step3           -
+2026-08-06T20:13:53+08:00  3                           pass              late_fastboot@83.247s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:20:57+08:00  meta                        note              start_bank_bisect_256_to_9728MiB_then_probe32             -
+2026-08-06T20:22:40+08:00  39728                       pass              late_fastboot@74.081s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:22:40+08:00  meta                        bank_bisect       9728MiB_pass                                              late_fastboot@74.081s(extend)_PASS_MIN=12_CYCLE=6
+2026-08-06T20:22:40+08:00  meta                        bank_bisect       ceiling_pass_9728MiB                                      map_mem_tolerates_oversized_bank
+2026-08-06T20:26:20+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:27:18+08:00  meta                        revoke_ambiguous  step3_hang_was_PROBE_STAGE32_bank9728MiB                  retest_probe32_bank256
+2026-08-06T20:27:18+08:00  p32b9728                    hang              quiet_18+70s_PROBE32_full_bank                            -
+2026-08-06T20:31:59+08:00  meta                        probe_retest      p32_b256_stage32_bank0x10000000                           see_prev_step3_row
+2026-08-06T20:32:13+08:00  meta                        probe_retest      p311_b256_stage311_bank0x10000000                         see_prev_step3_row
+2026-08-06T20:32:58+08:00  meta                        revoked           p32_p311_hang_invalid_edl_venv_missing_no_flash           -
+2026-08-06T20:35:10+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:35:32+08:00  p32b256                     hang              quiet_18+70s_PROBE32_bank256_real_edl_ok                  -
+2026-08-06T20:37:30+08:00  3                           pass              late_fastboot@32.469s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:37:30+08:00  p311b256                    pass              PROBE311_bank256_real                                     -
+2026-08-06T20:38:54+08:00  meta                        note              p311_pass_create_idmap_next_probe312                      -
+2026-08-06T20:40:43+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:41:53+08:00  p312b256                    hang              after_first_pi_map_range                                  -
+2026-08-06T20:44:39+08:00  meta                        note              user_cerro_crash_never_auto_9008_manual_only              -
+2026-08-06T20:47:12+08:00  3                           pass              late_fastboot@82.841s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:47:12+08:00  p312id0                     pass              IDMAP_STEP0_skip_pi_map                                   -
+2026-08-06T20:49:28+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:53:16+08:00  p312id1                     hang              IDMAP_STEP1_one_page_cursor_crash_black_manual_9008       -
+2026-08-06T20:53:16+08:00  meta                        note              resume_after_cursor_crash_phone_9008                      -
+2026-08-06T20:58:03+08:00  3                           pass              late_fastboot@82.513s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:58:04+08:00  p312id4                     pass              IDMAP_STEP4_kimg_va_offset_1page                          -
+2026-08-06T20:59:01+08:00  meta                        note              idmap_lm_va_offset_broken_use_kimg                        -
+2026-08-06T21:01:59+08:00  3                           pass              late_fastboot@82.74s(extend)_PASS_MIN=12_CYCLE=6          /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:01:59+08:00  p32id2kimg                  pass              IDMAP_STEP2_kimg_full_text_probe32                        -
+2026-08-06T21:03:52+08:00  3                           pass              late_fastboot@54.297s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:03:52+08:00  p33id3kimg                  pass              IDMAP_STEP3_kimg_full_kpti_probe33                        -
+2026-08-06T21:05:48+08:00  3                           pass              late_fastboot@36.809s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:05:49+08:00  setup_p3                    pass              after_paging_init_IDMAP3_kimg                             -
+2026-08-06T21:08:13+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:08:45+08:00  setup_p4                    hang              PROBE_STAGE4_IDMAP3_kimg                                  -
+2026-08-06T21:09:36+08:00  meta                        note              setup_p4_hang_user_manual_9008_bisect_35_36               -
+2026-08-06T21:11:00+08:00  3                           pass              late_fastboot@41.572s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:11:01+08:00  setup_p35                   pass              PROBE_STAGE35                                             -
+2026-08-06T21:12:19+08:00  3                           pass              late_fastboot@55.711s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:12:19+08:00  setup_p36                   pass              PROBE_STAGE36                                             -
+2026-08-06T21:14:14+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:14:42+08:00  setup_p4                    hang              PROBE_STAGE4                                              -
+2026-08-06T21:20:25+08:00  meta                        note              user_in_9008_test_SKIP_UNFLATTEN_probe4                   -
+2026-08-06T21:22:31+08:00  3                           pass              late_fastboot@82.661s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:22:32+08:00  setup_p4_skip_uf            pass              SKIP_UNFLATTEN1_probe4                                    -
+2026-08-06T21:26:02+08:00  setup_p4_memstart_fix       pass              VA52_memstart_adj_unflatten_on                            -
+2026-08-06T21:26:28+08:00  meta                        revoked           setup_p4_memstart_fix_false_pass_build_failed             -
+2026-08-06T21:28:31+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:28:49+08:00  setup_p4_memstart_fix       hang              VA52_memstart_adj_unflatten_on                            -
+2026-08-06T21:29:22+08:00  meta                        note              memstart_adj_unflatten_still_hang_test_idmap_lm           -
+2026-08-06T21:31:36+08:00  3                           hang              quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:31:36+08:00  p312id1_after_memstart_fix  hang              IDMAP_STEP1_lm_retest                                     -
+2026-08-06T21:35:14+08:00  meta                        note              map_mem_clobbered_memstart_no_VA52_adj_rootcause          -
+2026-08-06T21:35:14+08:00  p312id1_after_memstart_fix  hang              IDMAP_STEP1_lm_retest_confirmed_user_manual_9008          -
+2026-08-06T21:35:38+08:00  meta                        note              fix_map_mem_VA52_memstart_adj_test_idmap_lm               -
+2026-08-06T21:37:03+08:00  3                           pass              late_fastboot@35.15s(extend)_PASS_MIN=12_CYCLE=6          /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+run log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-213538.log

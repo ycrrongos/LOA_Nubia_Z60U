@@ -1,0 +1,409 @@
+[    0.000000] OF: reserved mem: 0x0000000086b00000..0x000000008b3fffff (74752 KiB) nomap non-reusable mpss_dsm_region@86b00000
+[    0.000000] OF: reserved mem: 0x000000008b400000..0x000000008bbfffff (8192 KiB) nomap non-reusable mpss_dsm_region_2@8b400000
+[    0.000000] OF: reserved mem: 0x000000008bc00000..0x000000009affffff (249856 KiB) nomap non-reusable mpss_region@8bc00000
+[    0.000000] OF: reserved mem: 0x000000009b000000..0x000000009b07ffff (512 KiB) nomap non-reusable q6_mpss_dtb_region@9b000000
+[    0.251024] init: Loading module /lib/modules/qrtr.ko with args ''
+[    0.256299] Modules linked in: pmic_pon_log pinctrl_cliffs(+) qcom_aoss(+) memory_dump_v2(+) thermal_minidump pinctrl_pineapple(+) qrtr ufshcd_crypto_qti pinctrl_msm qcom_pdc qcom_ipc_logging minidump qcom_dma_heaps mem_buf_dev gh_mem_notifier qcom_iommu_util crypto_qti mdt_loader gh_cpusys_vm_mem_access secure_buffer gunyah_qcom qcom_scm socinfo thermal_pause sched_walt gh_rm_drv smem qcom_spmi_pmic hwkm phy_qcom_ufs_qmp_v4_pineapple gdsc_regulator stub_regulator phy_qcom_ufs_qrbtc_sdm845 qcom_pmu_lib gh_arm_drv debug_symbol cmd_db cpu_hotplug debug_regulator proxy_consumer gh_dbl gh_msgq gic_intr_routing tmecom_intf icc_debug icc_test iommu_logger msm_dma_iommu_mapping nvmem_qcom_spmi_sdam phy_qcom_ufs qcom_scmi_client qcom_cpufreq_hw qcom_cpu_vendor_hooks qcom_cpucp qcom_hwspinlock qcom_ipcc qcom_llcc_pmu qcom_reboot_reason qcom_scmi_vendor qnoc_qos qti_regmap_debugfs rtc_pm8xxx spmi_pmic_arb
+[    0.265539] init: Loaded kernel module /lib/modules/qrtr.ko
+[    0.307052] init: Loading module /lib/modules/qrtr-gunyah.ko with args ''
+[    0.309765] init: Loaded kernel module /lib/modules/qrtr-gunyah.ko
+[    0.759040] init: Parsing file /vendor/etc/init/dpmQmiMgr.rc...
+[    0.760771] init: Parsing file /vendor/etc/init/qmipriod.debug.rc...
+[    0.760811] init: Parsing file /vendor/etc/init/qmipriod.rc...
+[    1.070386] modprobe: Loading module /vendor_dlkm/lib/modules/qmi_helpers.ko with args ''
+[    1.070879] modprobe: Loaded kernel module /vendor_dlkm/lib/modules/qmi_helpers.ko
+[    1.184105] cnss_plat: CNSS Platform IPC QMI Service is started
+[    1.456138] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.458737] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.469085] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.470394] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.471643] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.472571] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.473278] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.476141] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.477486] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.478770] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.479265] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.480247] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.480907] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.481833] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.483090] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.483711] adsprpc: fastrpc_device_init: SSR notifier registered for mpss
+[    1.484003] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.490337] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.492958] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.508502] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.543334] uaudio-qmi soc:usb_audio_qmi_dev: Adding to iommu group 25
+[    1.545163] uaudio-qmi soc:usb_audio_qmi_dev: failed to register disconnect callback ret = 0
+[    1.549341] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.549520] qcom_slim_ngd_runtime_resume QMI handle is NULL
+[    1.570870] msm_mpss: [parse_devicetree]rproc phandle not ready
+[    1.582396] qcom_q6v5_pas 4080000.remoteproc-mss: assigned reserved memory node linux,cma
+[    1.582654] qcom_q6v5_pas 4080000.remoteproc-mss: Low SVS vote for ICC is not set
+[    1.584361] remoteproc remoteproc2: 4080000.remoteproc-mss is available
+[    1.589894] memshare soc:qcom,memshare:qcom,client_1: memshare: Continuing with allocation from CMA
+[    1.590918] memshare soc:qcom,memshare:qcom,client_2: memshare: Continuing with allocation from CMA
+[    1.591110] memshare soc:qcom,memshare:qcom,client_3: memshare: Continuing with allocation from CMA
+[    1.591277] memshare soc:qcom,memshare:qcom,client_4: assigned reserved memory node qmc_dma_region
+[    1.591278] memshare soc:qcom,memshare:qcom,client_4: memshare: Memory allocation from shared DMA pool
+[    1.591528] memshare soc:qcom,memshare:qcom,client_5: memshare: Continuing with allocation from CMA
+[    5.549642] init: processing action (post-fs-data) from (/vendor/etc/init/qmipriod.rc:17)
+[    6.066620] init: processing action (boot) from (/vendor/etc/init/qmipriod.debug.rc:5)
+[    6.086498] cnss: QMI WLFW service connected, state: 0x2c00009
+[    6.174695] remoteproc remoteproc2: powering up 4080000.remoteproc-mss
+[    6.183866] ueventd: firmware: loading 'modem.mdt' for '/devices/platform/soc/4080000.remoteproc-mss/remoteproc/remoteproc2/modem.mdt'
+[    6.184033] ueventd: found /vendor/firmware_mnt/image/modem.mdt for /devices/platform/soc/4080000.remoteproc-mss/remoteproc/remoteproc2/modem.mdt
+[    6.184216] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/remoteproc/remoteproc2/modem.mdt took 0ms
+[    6.184315] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem_dtb.mdt failed with error -13
+[    6.184318] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem_dtb.mdt failed with error -13
+[    6.184333] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem_dtb.mdt failed with error -2
+[    6.184335] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem_dtb.mdt
+[    6.185035] ueventd: firmware: loading 'modem_dtb.mdt' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.mdt'
+[    6.185197] ueventd: found /vendor/firmware_mnt/image/modem_dtb.mdt for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.mdt
+[    6.185379] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.mdt took 0ms
+[    6.191303] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem_dtb.b02 failed with error -13
+[    6.191307] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem_dtb.b02 failed with error -13
+[    6.191325] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem_dtb.b02 failed with error -2
+[    6.191326] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem_dtb.b02
+[    6.192118] ueventd: firmware: loading 'modem_dtb.b02' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.b02'
+[    6.192269] ueventd: found /vendor/firmware_mnt/image/modem_dtb.b02 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.b02
+[    6.192527] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.b02 took 0ms
+[    6.204971] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem_dtb.b01 failed with error -13
+[    6.204975] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem_dtb.b01 failed with error -13
+[    6.204990] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem_dtb.b01 failed with error -2
+[    6.204991] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem_dtb.b01
+[    6.205302] qcom_smd_qrtr_probe: SMD QRTR driver probed
+[    6.206122] ueventd: firmware: loading 'modem_dtb.b01' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.b01'
+[    6.206256] ueventd: found /vendor/firmware_mnt/image/modem_dtb.b01 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.b01
+[    6.207112] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem_dtb.b01 took 1ms
+[    6.207338] coresight-remote-etm soc:turing_etm0: Connection established between QMI handle and 13 service
+[    6.207467] adsprpc: fastrpc_restart_notifier_cb: subsystem mpss is about to start
+[    6.207472] ipa-wan ipa3_lcl_mdm_ssr_notifier_cb:4035 IPA received MPSS BEFORE_POWERUP
+[    6.227823] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b46 failed with error -13
+[    6.227826] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b46 failed with error -13
+[    6.227841] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b46 failed with error -2
+[    6.227843] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b46
+[    6.228803] ueventd: firmware: loading 'modem.b46' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b46'
+[    6.228943] ueventd: found /vendor/firmware_mnt/image/modem.b46 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b46
+[    6.229393] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b46 took 0ms
+[    6.249310] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b01 failed with error -13
+[    6.249315] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b01 failed with error -13
+[    6.249338] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b01 failed with error -2
+[    6.249340] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b01
+[    6.250227] ueventd: firmware: loading 'modem.b01' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b01'
+[    6.250363] ueventd: found /vendor/firmware_mnt/image/modem.b01 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b01
+[    6.251076] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b01 took 0ms
+[    6.251401] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b02 failed with error -13
+[    6.251403] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b02 failed with error -13
+[    6.251412] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b02 failed with error -2
+[    6.251413] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b02
+[    6.252598] ueventd: firmware: loading 'modem.b02' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b02'
+[    6.252720] ueventd: found /vendor/firmware_mnt/image/modem.b02 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b02
+[    6.252886] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b02 took 0ms
+[    6.252956] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b03 failed with error -13
+[    6.252960] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b03 failed with error -13
+[    6.252974] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b03 failed with error -2
+[    6.252976] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b03
+[    6.253733] ueventd: firmware: loading 'modem.b03' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b03'
+[    6.253859] ueventd: found /vendor/firmware_mnt/image/modem.b03 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b03
+[    6.254313] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b03 took 0ms
+[    6.254380] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b04 failed with error -13
+[    6.254383] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b04 failed with error -13
+[    6.254399] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b04 failed with error -2
+[    6.254400] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b04
+[    6.255273] ueventd: firmware: loading 'modem.b04' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b04'
+[    6.255399] ueventd: found /vendor/firmware_mnt/image/modem.b04 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b04
+[    6.255751] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b05 failed with error -13
+[    6.255755] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b05 failed with error -13
+[    6.255773] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b05 failed with error -2
+[    6.255774] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b05
+[    6.255859] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b04 took 0ms
+[    6.257556] ueventd: firmware: loading 'modem.b05' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b05'
+[    6.257705] ueventd: found /vendor/firmware_mnt/image/modem.b05 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b05
+[    6.260648] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b06 failed with error -13
+[    6.260652] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b06 failed with error -13
+[    6.260667] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b06 failed with error -2
+[    6.260668] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b06
+[    6.260716] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b05 took 3ms
+[    6.262827] ueventd: firmware: loading 'modem.b06' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b06'
+[    6.262965] ueventd: found /vendor/firmware_mnt/image/modem.b06 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b06
+[    6.263977] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b06 took 1ms
+[    6.264454] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b07 failed with error -13
+[    6.264458] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b07 failed with error -13
+[    6.264480] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b07 failed with error -2
+[    6.264481] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b07
+[    6.265921] ueventd: firmware: loading 'modem.b07' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b07'
+[    6.267419] ueventd: found /vendor/firmware_mnt/image/modem.b07 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b07
+[    6.268049] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b08 failed with error -13
+[    6.268054] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b08 failed with error -13
+[    6.268070] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b08 failed with error -2
+[    6.268071] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b08
+[    6.268247] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b07 took 2ms
+[    6.269990] ueventd: firmware: loading 'modem.b08' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b08'
+[    6.270126] ueventd: found /vendor/firmware_mnt/image/modem.b08 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b08
+[    6.270502] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b08 took 0ms
+[    6.270681] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b09 failed with error -13
+[    6.270684] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b09 failed with error -13
+[    6.270700] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b09 failed with error -2
+[    6.270701] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b09
+[    6.272319] ueventd: firmware: loading 'modem.b09' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b09'
+[    6.272466] ueventd: found /vendor/firmware_mnt/image/modem.b09 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b09
+[    6.272710] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b09 took 0ms
+[    6.272797] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b10 failed with error -13
+[    6.272801] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b10 failed with error -13
+[    6.272814] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b10 failed with error -2
+[    6.272815] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b10
+[    6.273978] init: processing action (persist.vendor.dpm.vndr.halservice.enable=*) from (/vendor/etc/init/dpmQmiMgr.rc:13)
+[    6.274056] init: starting service 'dpmQmiMgr'...
+[    6.274205] ueventd: firmware: loading 'modem.b10' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b10'
+[    6.274752] ueventd: found /vendor/firmware_mnt/image/modem.b10 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b10
+[    6.275806] init: ... started service 'dpmQmiMgr' has pid 1846
+[    6.278941] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b10 took 4ms
+[    6.279189] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b11 failed with error -13
+[    6.279194] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b11 failed with error -13
+[    6.279219] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b11 failed with error -2
+[    6.279221] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b11
+[    6.280644] ueventd: firmware: loading 'modem.b11' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b11'
+[    6.280810] ueventd: found /vendor/firmware_mnt/image/modem.b11 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b11
+[    6.281857] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b11 took 1ms
+[    6.281938] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b12 failed with error -13
+[    6.281942] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b12 failed with error -13
+[    6.281960] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b12 failed with error -2
+[    6.281961] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b12
+[    6.289644] ueventd: firmware: loading 'modem.b12' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b12'
+[    6.290209] ueventd: found /vendor/firmware_mnt/image/modem.b12 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b12
+[    6.299279] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b12 took 9ms
+[    6.299554] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b13 failed with error -13
+[    6.299566] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b13 failed with error -13
+[    6.299620] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b13 failed with error -2
+[    6.299624] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b13
+[    6.301259] ueventd: firmware: loading 'modem.b13' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b13'
+[    6.301950] ueventd: found /vendor/firmware_mnt/image/modem.b13 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b13
+[    6.302267] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b13 took 1ms
+[    6.302510] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b14 failed with error -13
+[    6.302519] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b14 failed with error -13
+[    6.302563] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b14 failed with error -2
+[    6.302567] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b14
+[    6.305582] ueventd: firmware: loading 'modem.b14' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b14'
+[    6.305748] ueventd: found /vendor/firmware_mnt/image/modem.b14 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b14
+[    6.306153] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b14 took 0ms
+[    6.306296] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b15 failed with error -13
+[    6.306304] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b15 failed with error -13
+[    6.306340] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b15 failed with error -2
+[    6.306344] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b15
+[    6.307328] ueventd: firmware: loading 'modem.b15' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b15'
+[    6.307485] ueventd: found /vendor/firmware_mnt/image/modem.b15 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b15
+[    6.308894] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b16 failed with error -13
+[    6.308898] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b16 failed with error -13
+[    6.308920] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b16 failed with error -2
+[    6.308921] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b16
+[    6.309005] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b15 took 1ms
+[    6.312852] ueventd: firmware: loading 'modem.b16' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b16'
+[    6.313319] ueventd: found /vendor/firmware_mnt/image/modem.b16 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b16
+[    6.317709] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b16 took 4ms
+[    6.317802] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b17 failed with error -13
+[    6.317806] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b17 failed with error -13
+[    6.317832] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b17 failed with error -2
+[    6.317845] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b17
+[    6.321460] ueventd: firmware: loading 'modem.b17' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b17'
+[    6.321937] ueventd: found /vendor/firmware_mnt/image/modem.b17 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b17
+[    6.323065] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b17 took 1ms
+[    6.323216] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b18 failed with error -13
+[    6.323224] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b18 failed with error -13
+[    6.323266] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b18 failed with error -2
+[    6.323270] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b18
+[    6.327895] ueventd: firmware: loading 'modem.b18' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b18'
+[    6.328067] ueventd: found /vendor/firmware_mnt/image/modem.b18 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b18
+[    6.328377] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b18 took 1ms
+[    6.328652] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b19 failed with error -13
+[    6.328659] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b19 failed with error -13
+[    6.328696] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b19 failed with error -2
+[    6.328700] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b19
+[    6.333362] ueventd: firmware: loading 'modem.b19' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b19'
+[    6.333567] ueventd: found /vendor/firmware_mnt/image/modem.b19 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b19
+[    6.337058] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b19 took 3ms
+[    6.337189] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b20 failed with error -13
+[    6.337197] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b20 failed with error -13
+[    6.337238] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b20 failed with error -2
+[    6.337242] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b20
+[    6.347222] ueventd: firmware: loading 'modem.b20' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b20'
+[    6.347443] ueventd: found /vendor/firmware_mnt/image/modem.b20 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b20
+[    6.348018] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b20 took 0ms
+[    6.348161] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b21 failed with error -13
+[    6.348170] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b21 failed with error -13
+[    6.348208] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b21 failed with error -2
+[    6.348212] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b21
+[    6.355272] ueventd: firmware: loading 'modem.b21' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b21'
+[    6.355880] ueventd: found /vendor/firmware_mnt/image/modem.b21 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b21
+[    6.361816] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b21 took 6ms
+[    6.361891] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b23 failed with error -13
+[    6.361896] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b23 failed with error -13
+[    6.361923] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b23 failed with error -2
+[    6.361925] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b23
+[    6.375153] ueventd: firmware: loading 'modem.b23' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b23'
+[    6.375472] ueventd: found /vendor/firmware_mnt/image/modem.b23 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b23
+[    6.377018] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b24 failed with error -13
+[    6.377023] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b24 failed with error -13
+[    6.377049] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b24 failed with error -2
+[    6.377051] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b24
+[    6.377452] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b23 took 2ms
+[    6.380877] ueventd: firmware: loading 'modem.b24' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b24'
+[    6.381361] ueventd: found /vendor/firmware_mnt/image/modem.b24 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b24
+[    6.388920] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b24 took 8ms
+[    6.389021] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b25 failed with error -13
+[    6.389026] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b25 failed with error -13
+[    6.389050] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b25 failed with error -2
+[    6.389051] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b25
+[    6.392429] ueventd: firmware: loading 'modem.b25' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b25'
+[    6.393258] ueventd: found /vendor/firmware_mnt/image/modem.b25 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b25
+[    6.398298] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b25 took 5ms
+[    6.398456] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b26 failed with error -13
+[    6.398461] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b26 failed with error -13
+[    6.398484] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b26 failed with error -2
+[    6.398485] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b26
+[    6.399888] ueventd: firmware: loading 'modem.b26' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b26'
+[    6.400061] ueventd: found /vendor/firmware_mnt/image/modem.b26 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b26
+[    6.420162] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b26 took 20ms
+[    6.420524] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b27 failed with error -13
+[    6.420529] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b27 failed with error -13
+[    6.420554] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b27 failed with error -2
+[    6.420555] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b27
+[    6.424710] ueventd: firmware: loading 'modem.b27' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b27'
+[    6.426709] ueventd: found /vendor/firmware_mnt/image/modem.b27 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b27
+[    6.438494] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b27 took 13ms
+[    6.439155] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b28 failed with error -13
+[    6.439159] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b28 failed with error -13
+[    6.439181] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b28 failed with error -2
+[    6.439183] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b28
+[    6.441322] ueventd: firmware: loading 'modem.b28' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b28'
+[    6.444652] ueventd: found /vendor/firmware_mnt/image/modem.b28 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b28
+[    6.458744] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b28 took 17ms
+[    6.461030] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b30 failed with error -13
+[    6.461035] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b30 failed with error -13
+[    6.461067] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b30 failed with error -2
+[    6.461069] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b30
+[    6.470317] ueventd: firmware: loading 'modem.b30' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b30'
+[    6.470504] ueventd: found /vendor/firmware_mnt/image/modem.b30 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b30
+[    6.475525] init: service 'dpmQmiMgr' requested start, but it is already running (flags: 132, pid: 1846, started 200ms ago)
+[    6.475550] init: Control message: Processed ctl.interface_start for 'com.qualcomm.qti.dpm.api@1.0::IdpmQmi/dpmQmiService' from pid: 836 (/system/system_ext/bin/hwservicemanager)
+[    6.481747] init: starting service 'ssgqmigd'...
+[    6.481860] init: Created socket '/dev/socket/ssgqmig', mode 660, user 1001, group 3003
+[    6.482422] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b31 failed with error -13
+[    6.482426] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b31 failed with error -13
+[    6.482454] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b31 failed with error -2
+[    6.482455] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b31
+[    6.482796] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b30 took 12ms
+[    6.484143] ueventd: firmware: loading 'modem.b31' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b31'
+[    6.484632] ueventd: found /vendor/firmware_mnt/image/modem.b31 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b31
+[    6.487693] init: ... started service 'ssgqmigd' has pid 1987
+[    6.510801] cnss_plat: cnss_plat_ipc_qmi_reg_client_req_handler: QMI Client Connected. QMI Socket Node: 1 Port: 16540 ID: 1
+[    6.515454] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b31 took 31ms
+[    6.515811] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b32 failed with error -13
+[    6.515820] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b32 failed with error -13
+[    6.515870] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b32 failed with error -2
+[    6.515874] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b32
+[    6.521233] ueventd: firmware: loading 'modem.b32' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b32'
+[    6.521616] ueventd: found /vendor/firmware_mnt/image/modem.b32 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b32
+[    6.548107] init: service 'dpmQmiMgr' requested start, but it is already running (flags: 132, pid: 1846, started 272ms ago)
+[    6.548114] init: Control message: Processed ctl.interface_start for 'com.qualcomm.qti.dpm.api@1.0::IdpmQmi/dpmQmiService' from pid: 836 (/system/system_ext/bin/hwservicemanager)
+[    6.553001] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b32 took 32ms
+[    6.553281] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b33 failed with error -13
+[    6.553290] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b33 failed with error -13
+[    6.553335] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b33 failed with error -2
+[    6.553339] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b33
+[    6.563752] ueventd: firmware: loading 'modem.b33' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b33'
+[    6.564011] ueventd: found /vendor/firmware_mnt/image/modem.b33 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b33
+[    6.567582] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b34 failed with error -13
+[    6.567586] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b34 failed with error -13
+[    6.567610] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b34 failed with error -2
+[    6.567612] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b34
+[    6.568277] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b33 took 4ms
+[    6.575926] qcom_smd_qrtr_probe: SMD QRTR driver probed
+[    6.578899] ueventd: firmware: loading 'modem.b34' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b34'
+[    6.583563] coresight-remote-etm soc:audio_etm0: Connection established between QMI handle and 5 service
+[    6.587195] ueventd: found /vendor/firmware_mnt/image/modem.b34 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b34
+[    6.587466] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b34 took 9ms
+[    6.587609] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b35 failed with error -13
+[    6.587613] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b35 failed with error -13
+[    6.587638] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b35 failed with error -2
+[    6.587640] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b35
+[    6.589980] ueventd: firmware: loading 'modem.b35' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b35'
+[    6.590153] ueventd: found /vendor/firmware_mnt/image/modem.b35 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b35
+[    6.590820] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b35 took 1ms
+[    6.590919] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b36 failed with error -13
+[    6.590923] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b36 failed with error -13
+[    6.590942] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b36 failed with error -2
+[    6.590944] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b36
+[    6.599850] ueventd: firmware: loading 'modem.b36' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b36'
+[    6.600459] ueventd: found /vendor/firmware_mnt/image/modem.b36 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b36
+[    6.602221] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b37 failed with error -13
+[    6.602225] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b37 failed with error -13
+[    6.602254] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b37 failed with error -2
+[    6.602256] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b37
+[    6.602707] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b36 took 2ms
+[    6.604086] ueventd: firmware: loading 'modem.b37' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b37'
+[    6.604591] ueventd: found /vendor/firmware_mnt/image/modem.b37 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b37
+[    6.605152] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b37 took 1ms
+[    6.605603] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b38 failed with error -13
+[    6.605607] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b38 failed with error -13
+[    6.605630] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b38 failed with error -2
+[    6.605632] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b38
+[    6.611764] init: processing action (persist.vendor.data.qmipriod_load=1) from (/vendor/etc/init/qmipriod.rc:11)
+[    6.612073] init: starting service 'vendor.qmipriod'...
+[    6.612422] ueventd: firmware: loading 'modem.b38' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b38'
+[    6.612683] ueventd: found /vendor/firmware_mnt/image/modem.b38 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b38
+[    6.613039] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b38 took 4ms
+[    6.613288] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b39 failed with error -13
+[    6.613292] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b39 failed with error -13
+[    6.613313] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b39 failed with error -2
+[    6.613315] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b39
+[    6.619449] init: ... started service 'vendor.qmipriod' has pid 2278
+[    6.625764] ueventd: firmware: loading 'modem.b39' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b39'
+[    6.631974] ueventd: found /vendor/firmware_mnt/image/modem.b39 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b39
+[    6.634833] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b39 took 9ms
+[    6.634935] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b40 failed with error -13
+[    6.634940] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b40 failed with error -13
+[    6.634964] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b40 failed with error -2
+[    6.634966] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b40
+[    6.639635] ueventd: firmware: loading 'modem.b40' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b40'
+[    6.639849] ueventd: found /vendor/firmware_mnt/image/modem.b40 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b40
+[    6.641138] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b40 took 1ms
+[    6.641217] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b41 failed with error -13
+[    6.641221] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b41 failed with error -13
+[    6.641242] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b41 failed with error -2
+[    6.641244] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b41
+[    6.642387] ueventd: firmware: loading 'modem.b41' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b41'
+[    6.642669] ueventd: found /vendor/firmware_mnt/image/modem.b41 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b41
+[    6.642936] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b41 took 0ms
+[    6.643101] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b43 failed with error -13
+[    6.643105] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b43 failed with error -13
+[    6.643124] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b43 failed with error -2
+[    6.643126] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b43
+[    6.644223] ueventd: firmware: loading 'modem.b43' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b43'
+[    6.644384] ueventd: found /vendor/firmware_mnt/image/modem.b43 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b43
+[    6.644779] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b43 took 0ms
+[    6.644826] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/modem.b44 failed with error -13
+[    6.644830] qcom_q6v5_pas 4080000.remoteproc-mss: loading /vendor/firmware_mnt/image/kiwi/modem.b44 failed with error -13
+[    6.644864] qcom_q6v5_pas 4080000.remoteproc-mss: Direct firmware load for modem.b44 failed with error -2
+[    6.644866] qcom_q6v5_pas 4080000.remoteproc-mss: Falling back to sysfs fallback for: modem.b44
+[    6.646017] ueventd: firmware: loading 'modem.b44' for '/devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b44'
+[    6.648248] ueventd: found /vendor/firmware_mnt/image/modem.b44 for /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b44
+[    6.649435] ueventd: loading /devices/platform/soc/4080000.remoteproc-mss/firmware/modem.b44 took 3ms
+[    7.373991] adsprpc: fastrpc_restart_notifier_cb: mpss subsystem is up
+[    7.373996] ipa-wan ipa3_lcl_mdm_ssr_notifier_cb:4051 IPA received MPSS AFTER_POWERUP
+[    7.374006] remoteproc remoteproc2: remote processor 4080000.remoteproc-mss is now up
+[    7.399817] qcom_smd_qrtr_probe: SMD QRTR driver probed
+[    7.654966] coresight-remote-etm soc:modem2_etm0: Connection established between QMI handle and 11 service
+[    7.655195] coresight-remote-etm soc:modem_etm0: Connection established between QMI handle and 2 service
+[    7.676068] memshare soc:qcom,memshare: memshare_query: client_id : 1, query_resp.size :5242880, query_resp.resp.result :0
+[    7.676152] memshare soc:qcom,memshare: memshare_alloc: memory alloc request received for client id: 1, proc_id: 0, request size: 5242880
+[    7.676154] memshare soc:qcom,memshare: memshare_alloc: found client with client_id: 1, index: 2
+[    7.681134] memshare soc:qcom,memshare: memshare_alloc: client_id: 1, alloc_resp.num_bytes: 5242880, alloc_resp.resp.result: 0
+[    7.744231] Sending QMI_IPA_INIT_MODEM_DRIVER_REQ_V01
+[    7.766968] QMI_IPA_INIT_MODEM_DRIVER_REQ_V01 response received
+[    8.386367] cnss: QMI DMS service connected, state: 0x2f0600f
+[   14.675082] cnss: QMI WLFW service disconnected, state: 0x12fa6000
+[   15.230105] qrtr: announce_servers(): Avoiding duplicate announce for NODE ID 7
+[   15.232382] cnss: QMI WLFW service connected, state: 0x6f26011
+[   15.353115] cnss: QMI_DMS_GET_MAC_ADDRESS_REQ_V01 failed, result: 1, err: 16
+[   16.063385] cnss: QMI WLFW service disconnected, state: 0x16fa6100

@@ -1,0 +1,62 @@
+[/sys/firmware/devicetree/base/soc/qcom,memshare/compatible]
+qcom,memshare
+[/sys/firmware/devicetree/base/soc/qcom,memshare/name]
+ 71 63 6f 6d 2c 6d 65 6d 73 68 61 72 65 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_1/compatible]
+qcom,memshare-peripheral
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_1/label]
+ 6d 6f 64 65 6d 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_1/name]
+ 71 63 6f 6d 2c 63 6c 69 65 6e 74 5f 31 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_1/qcom,allocate-boot-time]
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_1/qcom,client-id]
+ 00 00 00 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_1/qcom,peripheral-size]
+ 00 00 00 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_2/compatible]
+qcom,memshare-peripheral
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_2/label]
+ 6d 6f 64 65 6d 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_2/name]
+ 71 63 6f 6d 2c 63 6c 69 65 6e 74 5f 32 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_2/qcom,client-id]
+ 00 00 00 02
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_2/qcom,peripheral-size]
+ 00 00 00 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_3/compatible]
+qcom,memshare-peripheral
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_3/label]
+ 6d 6f 64 65 6d 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_3/name]
+ 71 63 6f 6d 2c 63 6c 69 65 6e 74 5f 33 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_3/qcom,allocate-on-request]
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_3/qcom,client-id]
+ 00 00 00 01
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_3/qcom,peripheral-size]
+ 00 50 00 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/compatible]
+qcom,memshare-peripheral
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/label]
+ 6d 6f 64 65 6d 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/memory-region]
+ 00 00 00 41
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/name]
+ 71 63 6f 6d 2c 63 6c 69 65 6e 74 5f 34 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/qcom,allocate-on-request]
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/qcom,client-id]
+ 00 00 00 05
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/qcom,peripheral-size]
+ 01 00 00 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_4/qcom,shared]
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_5/compatible]
+qcom,memshare-peripheral
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_5/label]
+ 6d 6f 64 65 6d 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_5/name]
+ 71 63 6f 6d 2c 63 6c 69 65 6e 74 5f 35 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_5/qcom,allocate-on-request]
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_5/qcom,client-id]
+ 00 00 00 06
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_5/qcom,peripheral-size]
+ 00 40 00 00
+[/sys/firmware/devicetree/base/soc/qcom,memshare/qcom,client_5/qcom,shared]

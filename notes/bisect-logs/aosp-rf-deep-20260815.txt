@@ -1,0 +1,189 @@
+=== GPIO 16/17/18/94/95/96 ===
+gpio16: gpio17: gpio18: gpio94: gpio95: gpio96: export
+gpiochip214
+gpiochip237
+gpiochip239
+gpiochip245
+gpiochip251
+gpiochip257
+gpiochip263
+gpiochip269
+gpiochip277
+
+=== BT firmware files ===
+total 1328
+dr-xr-x--- 2 bluetooth net_bt  16384 2011-07-06 01:30 .
+dr-xr-x--- 3 bluetooth net_bt  16384 1970-01-01 08:00 ..
+-r--r----- 1 bluetooth net_bt  91308 2025-12-15 11:42 hmtbtfw10.tlv
+-r--r----- 1 bluetooth net_bt     34 2025-12-15 11:42 hmtbtfw10.ver
+-r--r----- 1 bluetooth net_bt 274692 2025-12-15 11:42 hmtbtfw20.tlv
+-r--r----- 1 bluetooth net_bt     43 2025-12-15 11:42 hmtbtfw20.ver
+-r--r----- 1 bluetooth net_bt   7347 2025-12-15 11:42 hmtnv10.b0c
+-r--r----- 1 bluetooth net_bt   6255 2025-12-15 11:42 hmtnv10.bin
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b0204
+-r--r----- 1 bluetooth net_bt   9420 2025-12-15 11:42 hmtnv20.b0205
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b104
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b105
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b106
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b107
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b108
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b109
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b10a
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b10b
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b10c
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b10d
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b10e
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b10f
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b110
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b111
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b112
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b113
+-r--r----- 1 bluetooth net_bt   9401 2025-12-15 11:42 hmtnv20.b120
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b14
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b16
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b17
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b18
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b19
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b1e
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b1f
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b20
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b21
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b22
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b23
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b24
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b29
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b2a
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b2b
+-r--r----- 1 bluetooth net_bt   9832 2025-12-15 11:42 hmtnv20.b2c
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b2d
+-r--r----- 1 bluetooth net_bt   9832 2025-12-15 11:42 hmtnv20.b2e
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b2f
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b30
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b31
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b32
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b33
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b34
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b35
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b36
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b37
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b38
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b39
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b3a
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b3b
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 11:42 hmtnv20.b3c
+-r--r----- 1 bluetooth net_bt   9442 2025-12-15 11:42 hmtnv20.b3d
+-r--r----- 1 bluetooth net_bt   9304 2025-12-15 11:42 hmtnv20.b3f
+-r--r----- 1 bluetooth net_bt   9352 2025-12-15 13:01 hmtnv20.bin
+
+=== cnss power / regulators ===
+== pm_humu_l15 (/sys/class/regulator/regulator.34) ==
+1800000
+1800000
+1800000
+enabled
+== video_cc_mvs1c_gdsc (/sys/class/regulator/regulator.89) ==
+disabled
+
+=== dmesg cnss/btpower early ===
+[    0.000000] OF: reserved mem: initialized node cnss_wlan_region, compatible id shared-dma-pool
+[    0.000000] OF: reserved mem: 0x00000000e7800000..0x00000000e97fffff (32768 KiB) map reusable cnss_wlan_region
+[    0.000000] Kernel command line: console=ttynull stack_depot_disable=on cgroup_disable=pressure kasan.page_alloc.sample=10 kasan.stacktrace=off kvm-arm.mode=protected bootconfig ioremap_guard loglevel=6 kpti=0 log_buf_len=256K swiotlb=noforce kernel.panic_on_rcu_stall=1 fw_devlink.strict=1 service_locator.enable=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 irqaffinity=0-1 cpufreq.default_governor=performance sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure cgroup.memory=nokmem,nosocket printk.console_no_auto_verbose=1 kasan=off service_locator.enable=1 loop.max_part=7 no-steal-acc can.stats_timer=0 ufs_qcom.crash_on_ber=n ftrace_dump_on_oops firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware_mnt/image/kiwi,/vendor/vm-system/oemvm/boot,/vendor/vm-system/trustedvm/boot,/vendor/firmware,/vendor/firmware/wlan/qca_cld/kiwi_v2 pcie_ports=compat disable_dma32=on pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x2 slub_debug=- \
+[    0.071315] OF: /soc/qcom,pcie@1c00000: could not get #gpio-cells for /soc/thermal-zones/cpu-2-0-1/trips/cpu2-emerg1-cfg
+[    1.148261] cnss_plat: CNSS Platform IPC QMI Service is started
+[    1.498257] msm_geni_serial 898000.qcom,qup_uart: Wakeup byte 0xfd
+[    1.498720] msm_geni_serial 898000.qcom,qup_uart: gsi_mode:0
+[    1.498888] msm_geni_serial 898000.qcom,qup_uart: Serial port: 0 added.FifoSize: 64 is_console: 0
+[    1.498963] 898000.qcom,qup_uart: ttyHS0 at MMIO 0x898000 (irq = 204, base_baud = 0) is a MSM
+[    1.568018] bt_power_probe: is_ganges_dt = 0
+[    1.568021] pci-msm 1c00000.qcom,pcie: host bridge /soc/qcom,pcie@1c00000 ranges:
+[    1.568297] bt_power_populate_dt_pinfo
+[    1.568363] pci-msm 1c00000.qcom,pcie:   No bus range found for /soc/qcom,pcie@1c00000, using [bus 00-ff]
+[    1.573045] bt_power_probe:send platform data of btpower
+[    1.573460] btpower_aop_mbox_init: vreg for iPA not configured
+[    1.626465] btpower_register_slimdev
+[    1.703665] cnss_prealloc: assign cnss pool for device id 0x1107
+[    1.703700] cnss_prealloc: created mempool cnss-pool-8k of min size 16 * 8192
+[    1.703720] cnss_prealloc: created mempool cnss-pool-16k of min size 16 * 16384
+[    1.703754] cnss_prealloc: created mempool cnss-pool-32k of min size 22 * 32768
+[    1.703859] cnss_prealloc: created mempool cnss-pool-64k of min size 38 * 65536
+[    1.703911] cnss_prealloc: created mempool cnss-pool-128k of min size 10 * 131072
+[    1.784572] cnss_pci 0000:01:00.0: Adding to iommu group 54
+[    1.784825] cnss_pci 0000:01:00.0: assigned reserved memory node cnss_wlan_region
+[    1.784870] cnss_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x605fffff 64bit]: assigned
+[    1.784917] cnss_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    1.903538] cnss: Platform driver probed successfully.
+[    1.912465] goodix_ts goodix_ts.0: loading /vendor/firmware_mnt/image/kiwi/goodix_cfg_group_9916r.bin failed with error -13
+[    1.912708] goodix_ts goodix_ts.0: loading /vendor/firmware_mnt/image/kiwi/goodix_firmware_9916r.bin failed with error -13
+[    1.950615] qca_cld3_kiwi_v2: Loading driver v5.2.1.97C
+[    1.951102] cnss: WLAN register driver deferred for Calibration
+[    2.029041] ipa 3e00000.qcom,ipa: loading /vendor/firmware_mnt/image/kiwi/ipa_fws.b04 failed with error -13
+[    2.380370] ipa 3e00000.qcom,ipa: loading /vendor/firmware_mnt/image/kiwi/ipa_fws.b01 failed with error -13
+[    2.381662] ipa 3e00000.qcom,ipa: loading /vendor/firmware_mnt/image/kiwi/ipa_fws.b02 failed with error -13
+[    2.382801] ipa 3e00000.qcom,ipa: loading /vendor/firmware_mnt/image/kiwi/ipa_fws.b03 failed with error -13
+[    5.554902] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/amss20.bin failed with error -13
+[    5.554906] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/kiwi/amss20.bin failed with error -13
+[    5.554935] cnss_pci 0000:01:00.0: Direct firmware load for kiwi/amss20.bin failed with error -2
+[    5.554938] cnss_pci 0000:01:00.0: Falling back to sysfs fallback for: kiwi/amss20.bin
+[    5.556202] ueventd: firmware: loading 'kiwi/amss20.bin' for '/devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/kiwi!amss20.bin'
+[    5.558531] ueventd: found /vendor/firmware_mnt/image/kiwi/amss20.bin for /devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/kiwi!amss20.bin
+[    5.562018] ueventd: loading /devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/kiwi!amss20.bin took 5ms
+[    5.867491] remoteproc remoteproc1: loading /vendor/firmware_mnt/image/kiwi/adsp.mdt failed with error -13
+[    5.867715] remoteproc remoteproc3: loading /vendor/firmware_mnt/image/kiwi/cdsp.mdt failed with error -13
+[    5.869282] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp_dtb.mdt failed with error -13
+[    5.869979] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp_dtb.mdt failed with error -13
+[    5.871271] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp_dtb.b02 failed with error -13
+[    5.871980] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp_dtb.b02 failed with error -13
+[    5.873453] msm_cvp ab00000.qcom,cvp: loading /vendor/firmware_mnt/image/kiwi/evass.mbn failed with error -13
+[    5.888328] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp_dtb.b01 failed with error -13
+[    5.903907] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp_dtb.b01 failed with error -13
+[    5.906506] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b56 failed with error -13
+[    5.946692] bt_ioctl: BT_CMD_GET_CHIPSET_ID = qcom,kiwi
+[    5.950327] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b01 failed with error -13
+[    5.954585] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b15 failed with error -13
+[    5.957852] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b02 failed with error -13
+[    5.966204] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b03 failed with error -13
+[    5.974087] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b04 failed with error -13
+[    5.979066] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b05 failed with error -13
+[    5.980579] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b06 failed with error -13
+[    5.982748] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b07 failed with error -13
+[    5.984229] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b08 failed with error -13
+[    5.985475] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b09 failed with error -13
+[    5.993151] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b10 failed with error -13
+[    6.000657] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b11 failed with error -13
+[    6.010648] kgsl-3d 3d00000.qcom,kgsl-3d0: loading /vendor/firmware_mnt/image/kiwi/gen70900_sqe.fw failed with error -13
+[    6.010901] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b01 failed with error -13
+[    6.011165] kgsl-3d 3d00000.qcom,kgsl-3d0: loading /vendor/firmware_mnt/image/kiwi/gen70900_aqe.fw failed with error -13
+[    6.011570] adreno-gen7-gmu 3d68000.qcom,gmu: loading /vendor/firmware_mnt/image/kiwi/gmu_gen70900.bin failed with error -13
+[    6.013270] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b12 failed with error -13
+[    6.017140] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b02 failed with error -13
+[    6.023297] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b13 failed with error -13
+[    6.025561] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b03 failed with error -13
+[    6.027623] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b14 failed with error -13
+[    6.045666] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b04 failed with error -13
+[    6.058807] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b15 failed with error -13
+[    6.061034] kgsl-3d 3d00000.qcom,kgsl-3d0: loading /vendor/firmware_mnt/image/kiwi/gen70900_zap.mbn failed with error -13
+[    6.062492] cnss: QMI WLFW service connected, state: 0x2c00009
+[    6.071276] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b16 failed with error -13
+[    6.077406] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b17 failed with error -13
+[    6.079301] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b05 failed with error -13
+[    6.083825] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b18 failed with error -13
+[    6.084660] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b06 failed with error -13
+[    6.086273] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b19 failed with error -13
+[    6.087251] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b07 failed with error -13
+[    6.088523] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b20 failed with error -13
+[    6.089416] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b08 failed with error -13
+[    6.090743] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b09 failed with error -13
+[    6.090902] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/regdb.bin failed with error -13
+[    6.090906] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/regdb.bin failed with error -13
+[    6.091514] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b21 failed with error -13
+[    6.092616] ueventd: firmware: loading 'kiwi/regdb.bin' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin'
+[    6.092785] ueventd: found /vendor/firmware_mnt/image/kiwi/regdb.bin for /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin
+[    6.093351] ueventd: loading /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin took 0ms
+[    6.094286] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b10 failed with error -13
+[    6.094730] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b22 failed with error -13
+[    6.095894] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b11 failed with error -13
+[    6.097840] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b12 failed with error -13
+[    6.099208] qcom_q6v5_pas 3000000.remoteproc-adsp: loading /vendor/firmware_mnt/image/kiwi/adsp.b23 failed with error -13
+[    6.100029] qcom_q6v5_pas 32300000.remoteproc-cdsp: loading /vendor/firmware_mnt/image/kiwi/cdsp.b13 failed with error -13
+
+=== RF clock ===

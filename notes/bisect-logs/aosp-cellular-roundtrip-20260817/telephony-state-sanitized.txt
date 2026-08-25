@@ -1,0 +1,11 @@
+TELEPHONY
+    mCallState=0
+    mDataConnectionState=2
+    mCallState=0
+    mDataConnectionState=-1
+RMNET
+rmnet_data0 unknown
+rmnet_data1 unknown
+rmnet_data2 unknown
+rmnet_data3 down
+rmnet_ipa0 unknown

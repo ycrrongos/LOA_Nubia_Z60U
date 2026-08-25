@@ -1,0 +1,70 @@
+==== cerro-map-bisect Thu 06 Aug 2026 20:20:46 AWST pid=2441831 ====
+steps: 39600
+judge: sticky fastboot early(<PASS_MIN) = FAIL; late(>=PASS_MIN after quiet) = PASS
+timing: SKIP_UNLOCK=1 UNLOCK_WAIT=0s CYCLE=6s PASS_MIN=12s OBSERVE=40s EXTEND=50s
+NOTE: 你跳过解锁时不算解锁时长；请在橙屏时跳过，脚本只看 fastboot 早晚
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-202046.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 39600 ################
+set bank FALLBACK=SAFE_MAP=0x258000000 (LOW_ALLOC unchanged)
+set #define CERRO_MAP_MEM_STEP 3 (PROBE_SIGNAL=0 PSCI) record_step=39600
+dry-run: skip build/flash
+
+==== ALL STEPS DONE Thu 06 Aug 2026 20:20:46 AWST ====
+Results:
+timestamp                  step  outcome         detail                                                    boot_img
+2026-08-06T16:48:09+08:00  0     hang            quiet_18s                                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T16:50:38+08:00  0     inconclusive    panic_signal_quiet_not_hang                               (re-run with PSCI)
+2026-08-06T16:52:37+08:00  0     pass            quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:02:06+08:00  264   pass            quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:08:59+08:00  264   revoked         user_said_misconfirmed_pass                               -
+2026-08-06T17:11:38+08:00  264   pass            quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:13:39+08:00  268   pass            quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:19:41+08:00  269   pass            quiet_user_psci_reboot                                    /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:41:42+08:00  270   pass            quiet_auto_psci_12s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:43:50+08:00  271   pass            quiet_auto_psci_12s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:46:11+08:00  272   pass            quiet_auto_psci_12s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:49:32+08:00  272   retest          user_requested_reverify_after_dump                        -
+2026-08-06T17:50:59+08:00  272   pass            quiet_auto_psci_20s_udev0                                 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T17:53:58+08:00  272   dump            MemoryDump_after_false_quiet_pass                         -
+2026-08-06T18:18:11+08:00  2720  pass            late_fastboot_after_15s_quiet@54.376s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:23:33+08:00  2720  pass            user_confirm_auto_reboot_then_fastboot                    -
+2026-08-06T18:23:33+08:00  2721  flash_fail      fastboot_download_size_exceeded_after_2720                -
+2026-08-06T18:24:26+08:00  2720  restart         user_requested_rerun_from_2720                            -
+2026-08-06T18:25:35+08:00  2720  pass            late_fastboot_after_20s_quiet@34.572s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:26:22+08:00  2721  pass            late_fastboot_after_20s_quiet@26.051s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:27:16+08:00  2722  dump            MemoryDump@34.422s(extend)                                /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:48:26+08:00  270   note            evidence_weak_quiet_only_no_late_fb_reconfirm             -
+2026-08-06T18:48:26+08:00  271   note            evidence_weak_quiet_only_no_late_fb_reconfirm             -
+2026-08-06T18:48:26+08:00  meta  audit           chat_tsv_crosscheck_downgrade_270_271_fix_263_nextsteps   -
+2026-08-06T18:54:29+08:00  270   pass            late_fastboot_after_quiet@5.841s                          /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:54:47+08:00  271   early_fastboot  early_fastboot@1.077s                                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:55:38+08:00  270   retest_suspect  late_fb@5.841s_too_early_for_psci_loop_retest_edl         -
+2026-08-06T18:55:38+08:00  271   retest_suspect  early_fb@1.077s_after_fastboot_flash_retest_edl           -
+2026-08-06T18:56:09+08:00  271   early_fastboot  retest_reboot_only_early_fastboot@3.789s                  already_on_device_step271
+2026-08-06T18:58:29+08:00  270   pass            late_fastboot_after_30s_quiet@50.023s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T18:59:21+08:00  271   pass            late_fastboot_after_30s_quiet@32.495s                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:05:47+08:00  270   revoked         user_assisted_unlock_skip_invalidates_prior_retest        -
+2026-08-06T19:05:48+08:00  271   revoked         user_assisted_unlock_skip_invalidates_prior_retest        -
+2026-08-06T19:05:48+08:00  meta  timing_fix      PASS_via_late_sticky_fb_after_N_cycles_incl_UNLOCK_WAIT   -
+2026-08-06T19:08:24+08:00  270   pass            late_fastboot@83.295s(extend)_PASS_MIN=28_CYCLE=14        /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:10:15+08:00  271   pass            late_fastboot@83.314s(extend)_PASS_MIN=28_CYCLE=14        /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:15:45+08:00  meta  note            user_will_skip_unlock_SKIP_UNLOCK=1_from_here             -
+2026-08-06T19:16:55+08:00  2723  hang            quiet_21+21s_no_sticky_fb_PASS_MIN=14                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:18:10+08:00  2723  revoked         hang_was_extend_too_short_with_SKIP_UNLOCK_retest         -
+2026-08-06T19:19:10+08:00  2723  inconclusive    user_forgot_unlock_skip_aborted_SKIP_UNLOCK_run           -
+2026-08-06T19:21:49+08:00  meta  note            SKIP_UNLOCK_no_count_unlock_wait_judge_by_fastboot_only   -
+2026-08-06T19:23:08+08:00  2723  pass            late_fastboot@51.61s(extend)_PASS_MIN=12_CYCLE=6          /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:24:00+08:00  2724  pass            late_fastboot@29.335s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:24:54+08:00  2725  dump            MemoryDump@32.524s(extend)                                /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:26:23+08:00  2726  pass            late_fastboot@45.785s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:31:08+08:00  meta  note            early_pgtable_alloc_limited_low_2GiB_retest_2725_273_274  -
+2026-08-06T19:35:50+08:00  2725  hang            quiet_18+70s_no_sticky_fb_PASS_MIN=12                     /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:54:45+08:00  2725  pass            late_fastboot@58.956s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:55:47+08:00  273   pass            late_fastboot@41.013s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T19:56:47+08:00  274   pass            late_fastboot@33.028s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:10:47+08:00  2     pass            late_fastboot@68.068s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:11:00+08:00  meta  note            fallback_SAFE_MAP_shrink_to_256MiB_before_step3           -
+2026-08-06T20:13:53+08:00  3     pass            late_fastboot@83.247s(extend)_PASS_MIN=12_CYCLE=6         /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+run log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-202046.log

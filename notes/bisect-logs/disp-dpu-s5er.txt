@@ -1,0 +1,655 @@
+applied angles from press-angles.env: PRESSU:82 PRESSD:97 PRESSP:97
+enter-9008-hand: hold until 9008 (max 90s, min 8s)  usb=Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget 
+port=/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_34:85:18:92:18:D8-if00
+reboot-acm sent via /dev/serial/by-id/usb-nubia_Z60U_USB_console+net_cerro-debug-if00
+hold-edl press SA:82,97,97 until-9008 (max 90s, min 8s)
+OK SA:82,97,97
+  … 0s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 1s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 2s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 3s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 4s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 5s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 6s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 7s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 8s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 9s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 10s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 11s usb=Bus 004 Device 070: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 12s usb=(no phone usb)
+  … 13s usb=Bus 004 Device 071: ID 05c6:9008 Qualcomm, Inc. Gobi Wireless Modem (QDL mode)
+  … 14s — 9008 seen, releasing
+OK SA:90,90,90
+hold-edl released
+OK: 9008
+Bus 004 Device 071: ID 05c6:9008 Qualcomm, Inc. Gobi Wireless Modem (QDL mode)
+GOT_9008
+==== via EDL 9008 (both A/B slots) ====
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+sahara - Protocol version: 3, Version supported: 1
+main - Mode detected: sahara
+sahara - 
+Reading Chip Info : OK
+sahara - - Sahara version  : 3
+sahara - - Chip Serial Number : 448a077d999
+sahara - - Chip Identifier V3 : 00020000
+sahara - - MSM HWID : 0x2270e1 | model_id:0x0000 | oem_id:0004
+sahara - - OEM PKHASH : 63c76071854448af8089b884603e478e15a717ccdd3a0c53ab96b8c23ba12bd8d4e4c5ca05729c2432250b6b1c33fed3
+sahara - - HW_ID : 002270e100040000
+sahara - Protocol version: 3, Version supported: 1
+sahara - Uploading loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+sahara - 64-Bit mode detected.
+sahara - Loader successfully uploaded.
+main - Trying to connect to firehose loader ...
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35 
+firehose - INFO: Chip serial num (0x0) Chip ID (0x0)
+firehose - INFO: Supported Functions (16):
+firehose - INFO: program
+firehose - INFO: read
+firehose - INFO: nop
+firehose - INFO: patch
+firehose - INFO: configure
+firehose - INFO: setbootablestoragedrive
+firehose - INFO: erase
+firehose - INFO: power
+firehose - INFO: firmwarewrite
+firehose - INFO: getstorageinfo
+firehose - INFO: benchmark
+firehose - INFO: emmc
+firehose - INFO: ufs
+firehose - INFO: fixgpt
+firehose - INFO: getnumdisksectors
+firehose - INFO: getsha256digest
+firehose - INFO: End of supported functions 16
+firehose_client
+firehose_client - [LIB]: [33mNo --memory option set, we assume "UFS" as default ..., if it fails, try using "--memory" with "UFS","NAND" or "spinor" instead ![0m
+firehose
+firehose - [LIB]: [33mCouldn't detect MaxPayloadSizeFromTargetinBytes[0m
+firehose
+firehose - [LIB]: [33mCouldn't detect TargetName[0m
+firehose - TargetName=Unknown
+firehose - MemoryName=UFS
+firehose - Version=1
+firehose - Trying to read first storage sector...
+firehose - Running configure...
+firehose - Storage report:
+firehose - total_blocks:124002304
+firehose - block_size:4096
+firehose - page_size:4096
+firehose - num_physical:6
+firehose - manufacturer_id:462
+firehose - serial_num:1297306958
+firehose - fw_version:801
+firehose - mem_type:UFS
+firehose - prod_name:KLUFG8RHHD-B0G1
+firehose_client - Supported functions:
+-----------------
+program,read,nop,patch,configure,setbootablestoragedrive,erase,power,firmwarewrite,getstorageinfo,benchmark,emmc,ufs,fixgpt,getnumdisksectors,getsha256digest
+firehose - 
+Writing to physical partition 4, sector 112006, sectors 18002
+Done |----------|   0.0% Write (Sector 0x0 of 0x4652) 0.00 MB/s               Progress: |----------|   1.4% Write (Sector 0x100 of 0x4652, ) 139.35 MB/s    Progress: |----------|   2.8% Write (Sector 0x200 of 0x4652, ) 151.93 MB/s    Progress: |----------|   4.3% Write (Sector 0x300 of 0x4652, ) 164.50 MB/s    Progress: |█---------|   5.7% Write (Sector 0x400 of 0x4652, ) 163.15 MB/s    Progress: |█---------|   7.1% Write (Sector 0x500 of 0x4652, ) 159.84 MB/s    Progress: |█---------|   8.5% Write (Sector 0x600 of 0x4652, ) 185.65 MB/s    Progress: |█---------|  10.0% Write (Sector 0x700 of 0x4652, ) 192.54 MB/s    Progress: |█---------|  11.4% Write (Sector 0x800 of 0x4652, ) 194.93 MB/s    Progress: |█---------|  12.8% Write (Sector 0x900 of 0x4652, ) 176.22 MB/s    Progress: |█---------|  14.2% Write (Sector 0xA00 of 0x4652, ) 170.95 MB/s    Progress: |██--------|  15.6% Write (Sector 0xB00 of 0x4652, ) 170.24 MB/s    Progress: |██--------|  17.1% Write (Sector 0xC00 of 0x4652, ) 173.55 MB/s    Progress: |██--------|  18.5% Write (Sector 0xD00 of 0x4652, ) 169.08 MB/s    Progress: |██--------|  19.9% Write (Sector 0xE00 of 0x4652, ) 174.61 MB/s    Progress: |██--------|  21.3% Write (Sector 0xF00 of 0x4652, ) 172.97 MB/s    Progress: |██--------|  22.8% Write (Sector 0x1000 of 0x4652, ) 184.00 MB/s   Progress: |██--------|  24.2% Write (Sector 0x1100 of 0x4652, ) 205.73 MB/s   Progress: |███-------|  25.6% Write (Sector 0x1200 of 0x4652, ) 195.66 MB/s   Progress: |███-------|  27.0% Write (Sector 0x1300 of 0x4652, ) 197.95 MB/s   Progress: |███-------|  28.4% Write (Sector 0x1400 of 0x4652, ) 195.11 MB/s   Progress: |███-------|  29.9% Write (Sector 0x1500 of 0x4652, ) 200.48 MB/s   Progress: |███-------|  31.3% Write (Sector 0x1600 of 0x4652, ) 208.80 MB/s   Progress: |███-------|  32.7% Write (Sector 0x1700 of 0x4652, ) 197.68 MB/s   Progress: |███-------|  34.1% Write (Sector 0x1800 of 0x4652, ) 203.80 MB/s   Progress: |████------|  35.6% Write (Sector 0x1900 of 0x4652, ) 203.43 MB/s   Progress: |████------|  37.0% Write (Sector 0x1A00 of 0x4652, ) 199.40 MB/s   Progress: |████------|  38.4% Write (Sector 0x1B00 of 0x4652, ) 201.31 MB/s   Progress: |████------|  39.8% Write (Sector 0x1C00 of 0x4652, ) 205.58 MB/s   Progress: |████------|  41.2% Write (Sector 0x1D00 of 0x4652, ) 198.42 MB/s   Progress: |████------|  42.7% Write (Sector 0x1E00 of 0x4652, ) 200.41 MB/s   Progress: |████------|  44.1% Write (Sector 0x1F00 of 0x4652, ) 161.17 MB/s   Progress: |█████-----|  45.5% Write (Sector 0x2000 of 0x4652, ) 174.51 MB/s   Progress: |█████-----|  46.9% Write (Sector 0x2100 of 0x4652, ) 183.25 MB/s   Progress: |█████-----|  48.4% Write (Sector 0x2200 of 0x4652, ) 197.69 MB/s   Progress: |█████-----|  49.8% Write (Sector 0x2300 of 0x4652, ) 196.44 MB/s   Progress: |█████-----|  51.2% Write (Sector 0x2400 of 0x4652, ) 203.27 MB/s   Progress: |█████-----|  52.6% Write (Sector 0x2500 of 0x4652, ) 187.32 MB/s   Progress: |█████-----|  54.0% Write (Sector 0x2600 of 0x4652, ) 211.20 MB/s   Progress: |██████----|  55.5% Write (Sector 0x2700 of 0x4652, ) 204.74 MB/s   Progress: |██████----|  56.9% Write (Sector 0x2800 of 0x4652, ) 197.37 MB/s   Progress: |██████----|  58.3% Write (Sector 0x2900 of 0x4652, ) 177.31 MB/s   Progress: |██████----|  59.7% Write (Sector 0x2A00 of 0x4652, ) 203.74 MB/s   Progress: |██████----|  61.1% Write (Sector 0x2B00 of 0x4652, ) 194.75 MB/s   Progress: |██████----|  62.6% Write (Sector 0x2C00 of 0x4652, ) 202.22 MB/s   Progress: |██████----|  64.0% Write (Sector 0x2D00 of 0x4652, ) 196.55 MB/s   Progress: |███████---|  65.4% Write (Sector 0x2E00 of 0x4652, ) 199.62 MB/s   Progress: |███████---|  66.8% Write (Sector 0x2F00 of 0x4652, ) 203.82 MB/s   Progress: |███████---|  68.3% Write (Sector 0x3000 of 0x4652, ) 200.87 MB/s   Progress: |███████---|  69.7% Write (Sector 0x3100 of 0x4652, ) 199.57 MB/s   Progress: |███████---|  71.1% Write (Sector 0x3200 of 0x4652, ) 187.42 MB/s   Progress: |███████---|  72.5% Write (Sector 0x3300 of 0x4652, ) 205.52 MB/s   Progress: |███████---|  73.9% Write (Sector 0x3400 of 0x4652, ) 201.62 MB/s   Progress: |████████--|  75.4% Write (Sector 0x3500 of 0x4652, ) 193.31 MB/s   Progress: |████████--|  76.8% Write (Sector 0x3600 of 0x4652, ) 209.50 MB/s   Progress: |████████--|  78.2% Write (Sector 0x3700 of 0x4652, ) 206.21 MB/s   Progress: |████████--|  79.6% Write (Sector 0x3800 of 0x4652, ) 200.45 MB/s   Progress: |████████--|  81.1% Write (Sector 0x3900 of 0x4652, ) 196.88 MB/s   Progress: |████████--|  82.5% Write (Sector 0x3A00 of 0x4652, ) 206.67 MB/s   Progress: |████████--|  83.9% Write (Sector 0x3B00 of 0x4652, ) 192.08 MB/s   Progress: |█████████-|  85.3% Write (Sector 0x3C00 of 0x4652, ) 184.88 MB/s   Progress: |█████████-|  86.7% Write (Sector 0x3D00 of 0x4652, ) 178.97 MB/s   Progress: |█████████-|  88.2% Write (Sector 0x3E00 of 0x4652, ) 169.95 MB/s   Progress: |█████████-|  89.6% Write (Sector 0x3F00 of 0x4652, ) 202.89 MB/s   Progress: |█████████-|  91.0% Write (Sector 0x4000 of 0x4652, ) 151.66 MB/s   Progress: |█████████-|  92.4% Write (Sector 0x4100 of 0x4652, ) 165.04 MB/s   Progress: |█████████-|  93.9% Write (Sector 0x4200 of 0x4652, ) 171.19 MB/s   Progress: |██████████|  95.3% Write (Sector 0x4300 of 0x4652, ) 175.66 MB/s   Progress: |██████████|  96.7% Write (Sector 0x4400 of 0x4652, ) 206.95 MB/s   Progress: |██████████|  98.1% Write (Sector 0x4500 of 0x4652, ) 199.93 MB/s   Progress: |██████████|  99.5% Write (Sector 0x4600 of 0x4652, ) 196.71 MB/s   Progress: |██████████| 100.0% Write (Sector 0x4652 of 0x4652, ) 186.80 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5er.img to sector 112006.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x4652) 0.00 MB/s               Progress: |----------|   1.4% Write (Sector 0x100 of 0x4652, ) 164.95 MB/s    Progress: |----------|   2.8% Write (Sector 0x200 of 0x4652, ) 186.36 MB/s    Progress: |----------|   4.3% Write (Sector 0x300 of 0x4652, ) 198.42 MB/s    Progress: |█---------|   5.7% Write (Sector 0x400 of 0x4652, ) 178.37 MB/s    Progress: |█---------|   7.1% Write (Sector 0x500 of 0x4652, ) 171.33 MB/s    Progress: |█---------|   8.5% Write (Sector 0x600 of 0x4652, ) 168.32 MB/s    Progress: |█---------|  10.0% Write (Sector 0x700 of 0x4652, ) 162.93 MB/s    Progress: |█---------|  11.4% Write (Sector 0x800 of 0x4652, ) 162.07 MB/s    Progress: |█---------|  12.8% Write (Sector 0x900 of 0x4652, ) 169.37 MB/s    Progress: |█---------|  14.2% Write (Sector 0xA00 of 0x4652, ) 175.45 MB/s    Progress: |██--------|  15.6% Write (Sector 0xB00 of 0x4652, ) 171.86 MB/s    Progress: |██--------|  17.1% Write (Sector 0xC00 of 0x4652, ) 171.81 MB/s    Progress: |██--------|  18.5% Write (Sector 0xD00 of 0x4652, ) 174.62 MB/s    Progress: |██--------|  19.9% Write (Sector 0xE00 of 0x4652, ) 171.98 MB/s    Progress: |██--------|  21.3% Write (Sector 0xF00 of 0x4652, ) 187.44 MB/s    Progress: |██--------|  22.8% Write (Sector 0x1000 of 0x4652, ) 217.01 MB/s   Progress: |██--------|  24.2% Write (Sector 0x1100 of 0x4652, ) 208.41 MB/s   Progress: |███-------|  25.6% Write (Sector 0x1200 of 0x4652, ) 206.30 MB/s   Progress: |███-------|  27.0% Write (Sector 0x1300 of 0x4652, ) 199.33 MB/s   Progress: |███-------|  28.4% Write (Sector 0x1400 of 0x4652, ) 195.96 MB/s   Progress: |███-------|  29.9% Write (Sector 0x1500 of 0x4652, ) 204.33 MB/s   Progress: |███-------|  31.3% Write (Sector 0x1600 of 0x4652, ) 201.86 MB/s   Progress: |███-------|  32.7% Write (Sector 0x1700 of 0x4652, ) 193.80 MB/s   Progress: |███-------|  34.1% Write (Sector 0x1800 of 0x4652, ) 165.17 MB/s   Progress: |████------|  35.6% Write (Sector 0x1900 of 0x4652, ) 185.52 MB/s   Progress: |████------|  37.0% Write (Sector 0x1A00 of 0x4652, ) 212.85 MB/s   Progress: |████------|  38.4% Write (Sector 0x1B00 of 0x4652, ) 199.64 MB/s   Progress: |████------|  39.8% Write (Sector 0x1C00 of 0x4652, ) 204.82 MB/s   Progress: |████------|  41.2% Write (Sector 0x1D00 of 0x4652, ) 203.14 MB/s   Progress: |████------|  42.7% Write (Sector 0x1E00 of 0x4652, ) 199.42 MB/s   Progress: |████------|  44.1% Write (Sector 0x1F00 of 0x4652, ) 200.26 MB/s   Progress: |█████-----|  45.5% Write (Sector 0x2000 of 0x4652, ) 201.14 MB/s   Progress: |█████-----|  46.9% Write (Sector 0x2100 of 0x4652, ) 202.49 MB/s   Progress: |█████-----|  48.4% Write (Sector 0x2200 of 0x4652, ) 199.11 MB/s   Progress: |█████-----|  49.8% Write (Sector 0x2300 of 0x4652, ) 196.33 MB/s   Progress: |█████-----|  51.2% Write (Sector 0x2400 of 0x4652, ) 203.86 MB/s   Progress: |█████-----|  52.6% Write (Sector 0x2500 of 0x4652, ) 199.66 MB/s   Progress: |█████-----|  54.0% Write (Sector 0x2600 of 0x4652, ) 196.24 MB/s   Progress: |██████----|  55.5% Write (Sector 0x2700 of 0x4652, ) 207.39 MB/s   Progress: |██████----|  56.9% Write (Sector 0x2800 of 0x4652, ) 211.94 MB/s   Progress: |██████----|  58.3% Write (Sector 0x2900 of 0x4652, ) 202.14 MB/s   Progress: |██████----|  59.7% Write (Sector 0x2A00 of 0x4652, ) 197.40 MB/s   Progress: |██████----|  61.1% Write (Sector 0x2B00 of 0x4652, ) 204.71 MB/s   Progress: |██████----|  62.6% Write (Sector 0x2C00 of 0x4652, ) 203.37 MB/s   Progress: |██████----|  64.0% Write (Sector 0x2D00 of 0x4652, ) 192.08 MB/s   Progress: |███████---|  65.4% Write (Sector 0x2E00 of 0x4652, ) 193.13 MB/s   Progress: |███████---|  66.8% Write (Sector 0x2F00 of 0x4652, ) 173.31 MB/s   Progress: |███████---|  68.3% Write (Sector 0x3000 of 0x4652, ) 184.48 MB/s   Progress: |███████---|  69.7% Write (Sector 0x3100 of 0x4652, ) 196.45 MB/s   Progress: |███████---|  71.1% Write (Sector 0x3200 of 0x4652, ) 199.06 MB/s   Progress: |███████---|  72.5% Write (Sector 0x3300 of 0x4652, ) 204.31 MB/s   Progress: |███████---|  73.9% Write (Sector 0x3400 of 0x4652, ) 203.02 MB/s   Progress: |████████--|  75.4% Write (Sector 0x3500 of 0x4652, ) 197.46 MB/s   Progress: |████████--|  76.8% Write (Sector 0x3600 of 0x4652, ) 205.42 MB/s   Progress: |████████--|  78.2% Write (Sector 0x3700 of 0x4652, ) 204.92 MB/s   Progress: |████████--|  79.6% Write (Sector 0x3800 of 0x4652, ) 179.50 MB/s   Progress: |████████--|  81.1% Write (Sector 0x3900 of 0x4652, ) 198.34 MB/s   Progress: |████████--|  82.5% Write (Sector 0x3A00 of 0x4652, ) 205.84 MB/s   Progress: |████████--|  83.9% Write (Sector 0x3B00 of 0x4652, ) 189.05 MB/s   Progress: |█████████-|  85.3% Write (Sector 0x3C00 of 0x4652, ) 174.23 MB/s   Progress: |█████████-|  86.7% Write (Sector 0x3D00 of 0x4652, ) 198.32 MB/s   Progress: |█████████-|  88.2% Write (Sector 0x3E00 of 0x4652, ) 181.38 MB/s   Progress: |█████████-|  89.6% Write (Sector 0x3F00 of 0x4652, ) 173.99 MB/s   Progress: |█████████-|  91.0% Write (Sector 0x4000 of 0x4652, ) 170.49 MB/s   Progress: |█████████-|  92.4% Write (Sector 0x4100 of 0x4652, ) 187.31 MB/s   Progress: |█████████-|  93.9% Write (Sector 0x4200 of 0x4652, ) 176.39 MB/s   Progress: |██████████|  95.3% Write (Sector 0x4300 of 0x4652, ) 169.49 MB/s   Progress: |██████████|  96.7% Write (Sector 0x4400 of 0x4652, ) 169.95 MB/s   Progress: |██████████|  98.1% Write (Sector 0x4500 of 0x4652, ) 164.84 MB/s   Progress: |██████████|  99.5% Write (Sector 0x4600 of 0x4652, ) 201.27 MB/s   Progress: |██████████| 100.0% Write (Sector 0x4652 of 0x4652, ) 191.84 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5er.img to sector 462810.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x6000) 0.00 MB/s               Progress: |----------|   1.0% Write (Sector 0x100 of 0x6000, ) 168.20 MB/s    Progress: |----------|   2.1% Write (Sector 0x200 of 0x6000, ) 202.68 MB/s    Progress: |----------|   3.1% Write (Sector 0x300 of 0x6000, ) 194.70 MB/s    Progress: |----------|   4.2% Write (Sector 0x400 of 0x6000, ) 198.43 MB/s    Progress: |█---------|   5.2% Write (Sector 0x500 of 0x6000, ) 174.66 MB/s    Progress: |█---------|   6.2% Write (Sector 0x600 of 0x6000, ) 165.64 MB/s    Progress: |█---------|   7.3% Write (Sector 0x700 of 0x6000, ) 169.85 MB/s    Progress: |█---------|   8.3% Write (Sector 0x800 of 0x6000, ) 207.56 MB/s    Progress: |█---------|   9.4% Write (Sector 0x900 of 0x6000, ) 168.26 MB/s    Progress: |█---------|  10.4% Write (Sector 0xA00 of 0x6000, ) 170.34 MB/s    Progress: |█---------|  11.5% Write (Sector 0xB00 of 0x6000, ) 185.85 MB/s    Progress: |█---------|  12.5% Write (Sector 0xC00 of 0x6000, ) 196.94 MB/s    Progress: |█---------|  13.5% Write (Sector 0xD00 of 0x6000, ) 201.65 MB/s    Progress: |█---------|  14.6% Write (Sector 0xE00 of 0x6000, ) 172.13 MB/s    Progress: |██--------|  15.6% Write (Sector 0xF00 of 0x6000, ) 174.98 MB/s    Progress: |██--------|  16.7% Write (Sector 0x1000 of 0x6000, ) 170.46 MB/s   Progress: |██--------|  17.7% Write (Sector 0x1100 of 0x6000, ) 183.13 MB/s   Progress: |██--------|  18.8% Write (Sector 0x1200 of 0x6000, ) 181.94 MB/s   Progress: |██--------|  19.8% Write (Sector 0x1300 of 0x6000, ) 198.27 MB/s   Progress: |██--------|  20.8% Write (Sector 0x1400 of 0x6000, ) 200.04 MB/s   Progress: |██--------|  21.9% Write (Sector 0x1500 of 0x6000, ) 203.67 MB/s   Progress: |██--------|  22.9% Write (Sector 0x1600 of 0x6000, ) 201.00 MB/s   Progress: |██--------|  24.0% Write (Sector 0x1700 of 0x6000, ) 198.02 MB/s   Progress: |██--------|  25.0% Write (Sector 0x1800 of 0x6000, ) 192.95 MB/s   Progress: |███-------|  26.0% Write (Sector 0x1900 of 0x6000, ) 194.27 MB/s   Progress: |███-------|  27.1% Write (Sector 0x1A00 of 0x6000, ) 190.23 MB/s   Progress: |███-------|  28.1% Write (Sector 0x1B00 of 0x6000, ) 175.33 MB/s   Progress: |███-------|  29.2% Write (Sector 0x1C00 of 0x6000, ) 177.97 MB/s   Progress: |███-------|  30.2% Write (Sector 0x1D00 of 0x6000, ) 169.85 MB/s   Progress: |███-------|  31.2% Write (Sector 0x1E00 of 0x6000, ) 199.24 MB/s   Progress: |███-------|  32.3% Write (Sector 0x1F00 of 0x6000, ) 169.58 MB/s   Progress: |███-------|  33.3% Write (Sector 0x2000 of 0x6000, ) 172.00 MB/s   Progress: |███-------|  34.4% Write (Sector 0x2100 of 0x6000, ) 164.00 MB/s   Progress: |████------|  35.4% Write (Sector 0x2200 of 0x6000, ) 171.59 MB/s   Progress: |████------|  36.5% Write (Sector 0x2300 of 0x6000, ) 171.26 MB/s   Progress: |████------|  37.5% Write (Sector 0x2400 of 0x6000, ) 169.94 MB/s   Progress: |████------|  38.5% Write (Sector 0x2500 of 0x6000, ) 186.95 MB/s   Progress: |████------|  39.6% Write (Sector 0x2600 of 0x6000, ) 200.95 MB/s   Progress: |████------|  40.6% Write (Sector 0x2700 of 0x6000, ) 193.40 MB/s   Progress: |████------|  41.7% Write (Sector 0x2800 of 0x6000, ) 198.58 MB/s   Progress: |████------|  42.7% Write (Sector 0x2900 of 0x6000, ) 190.88 MB/s   Progress: |████------|  43.8% Write (Sector 0x2A00 of 0x6000, ) 198.47 MB/s   Progress: |████------|  44.8% Write (Sector 0x2B00 of 0x6000, ) 193.69 MB/s   Progress: |█████-----|  45.8% Write (Sector 0x2C00 of 0x6000, ) 203.86 MB/s   Progress: |█████-----|  46.9% Write (Sector 0x2D00 of 0x6000, ) 195.82 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x2E00 of 0x6000, ) 171.90 MB/s   Progress: |█████-----|  49.0% Write (Sector 0x2F00 of 0x6000, ) 171.89 MB/s   Progress: |█████-----|  50.0% Write (Sector 0x3000 of 0x6000, ) 172.21 MB/s   Progress: |█████-----|  51.0% Write (Sector 0x3100 of 0x6000, ) 205.93 MB/s   Progress: |█████-----|  52.1% Write (Sector 0x3200 of 0x6000, ) 198.14 MB/s   Progress: |█████-----|  53.1% Write (Sector 0x3300 of 0x6000, ) 190.07 MB/s   Progress: |█████-----|  54.2% Write (Sector 0x3400 of 0x6000, ) 200.46 MB/s   Progress: |██████----|  55.2% Write (Sector 0x3500 of 0x6000, ) 201.65 MB/s   Progress: |██████----|  56.2% Write (Sector 0x3600 of 0x6000, ) 198.51 MB/s   Progress: |██████----|  57.3% Write (Sector 0x3700 of 0x6000, ) 197.58 MB/s   Progress: |██████----|  58.3% Write (Sector 0x3800 of 0x6000, ) 195.25 MB/s   Progress: |██████----|  59.4% Write (Sector 0x3900 of 0x6000, ) 203.73 MB/s   Progress: |██████----|  60.4% Write (Sector 0x3A00 of 0x6000, ) 204.50 MB/s   Progress: |██████----|  61.5% Write (Sector 0x3B00 of 0x6000, ) 176.29 MB/s   Progress: |██████----|  62.5% Write (Sector 0x3C00 of 0x6000, ) 177.51 MB/s   Progress: |██████----|  63.5% Write (Sector 0x3D00 of 0x6000, ) 184.74 MB/s   Progress: |██████----|  64.6% Write (Sector 0x3E00 of 0x6000, ) 179.90 MB/s   Progress: |███████---|  65.6% Write (Sector 0x3F00 of 0x6000, ) 177.56 MB/s   Progress: |███████---|  66.7% Write (Sector 0x4000 of 0x6000, ) 160.00 MB/s   Progress: |███████---|  67.7% Write (Sector 0x4100 of 0x6000, ) 163.36 MB/s   Progress: |███████---|  68.8% Write (Sector 0x4200 of 0x6000, ) 166.90 MB/s   Progress: |███████---|  69.8% Write (Sector 0x4300 of 0x6000, ) 181.02 MB/s   Progress: |███████---|  70.8% Write (Sector 0x4400 of 0x6000, ) 171.86 MB/s   Progress: |███████---|  71.9% Write (Sector 0x4500 of 0x6000, ) 181.91 MB/s   Progress: |███████---|  72.9% Write (Sector 0x4600 of 0x6000, ) 160.42 MB/s   Progress: |███████---|  74.0% Write (Sector 0x4700 of 0x6000, ) 169.55 MB/s   Progress: |████████--|  75.0% Write (Sector 0x4800 of 0x6000, ) 198.54 MB/s   Progress: |████████--|  76.0% Write (Sector 0x4900 of 0x6000, ) 158.87 MB/s   Progress: |████████--|  77.1% Write (Sector 0x4A00 of 0x6000, ) 177.55 MB/s   Progress: |████████--|  78.1% Write (Sector 0x4B00 of 0x6000, ) 202.07 MB/s   Progress: |████████--|  79.2% Write (Sector 0x4C00 of 0x6000, ) 208.72 MB/s   Progress: |████████--|  80.2% Write (Sector 0x4D00 of 0x6000, ) 180.46 MB/s   Progress: |████████--|  81.2% Write (Sector 0x4E00 of 0x6000, ) 173.42 MB/s   Progress: |████████--|  82.3% Write (Sector 0x4F00 of 0x6000, ) 164.01 MB/s   Progress: |████████--|  83.3% Write (Sector 0x5000 of 0x6000, ) 166.67 MB/s   Progress: |████████--|  84.4% Write (Sector 0x5100 of 0x6000, ) 172.00 MB/s   Progress: |█████████-|  85.4% Write (Sector 0x5200 of 0x6000, ) 172.85 MB/s   Progress: |█████████-|  86.5% Write (Sector 0x5300 of 0x6000, ) 174.68 MB/s   Progress: |█████████-|  87.5% Write (Sector 0x5400 of 0x6000, ) 186.12 MB/s   Progress: |█████████-|  88.5% Write (Sector 0x5500 of 0x6000, ) 151.58 MB/s   Progress: |█████████-|  89.6% Write (Sector 0x5600 of 0x6000, ) 164.44 MB/s   Progress: |█████████-|  90.6% Write (Sector 0x5700 of 0x6000, ) 195.33 MB/s   Progress: |█████████-|  91.7% Write (Sector 0x5800 of 0x6000, ) 205.64 MB/s   Progress: |█████████-|  92.7% Write (Sector 0x5900 of 0x6000, ) 191.61 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x5A00 of 0x6000, ) 197.78 MB/s   Progress: |█████████-|  94.8% Write (Sector 0x5B00 of 0x6000, ) 194.88 MB/s   Progress: |██████████|  95.8% Write (Sector 0x5C00 of 0x6000, ) 206.30 MB/s   Progress: |██████████|  96.9% Write (Sector 0x5D00 of 0x6000, ) 196.62 MB/s   Progress: |██████████|  97.9% Write (Sector 0x5E00 of 0x6000, ) 203.80 MB/s   Progress: |██████████|  99.0% Write (Sector 0x5F00 of 0x6000, ) 207.24 MB/s   Progress: |██████████| 100.0% Write (Sector 0x6000 of 0x6000, ) 170.95 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/pmos-flash/backup-20260806-020517/vendor_boot_a.img to sector 281670.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Done |----------|   0.0% Write (Sector 0x0 of 0x6000) 0.00 MB/s               Progress: |----------|   1.0% Write (Sector 0x100 of 0x6000, ) 142.46 MB/s    Progress: |----------|   2.1% Write (Sector 0x200 of 0x6000, ) 166.95 MB/s    Progress: |----------|   3.1% Write (Sector 0x300 of 0x6000, ) 174.28 MB/s    Progress: |----------|   4.2% Write (Sector 0x400 of 0x6000, ) 152.27 MB/s    Progress: |█---------|   5.2% Write (Sector 0x500 of 0x6000, ) 205.88 MB/s    Progress: |█---------|   6.2% Write (Sector 0x600 of 0x6000, ) 176.48 MB/s    Progress: |█---------|   7.3% Write (Sector 0x700 of 0x6000, ) 173.91 MB/s    Progress: |█---------|   8.3% Write (Sector 0x800 of 0x6000, ) 133.18 MB/s    Progress: |█---------|   9.4% Write (Sector 0x900 of 0x6000, ) 170.83 MB/s    Progress: |█---------|  10.4% Write (Sector 0xA00 of 0x6000, ) 168.73 MB/s    Progress: |█---------|  11.5% Write (Sector 0xB00 of 0x6000, ) 200.20 MB/s    Progress: |█---------|  12.5% Write (Sector 0xC00 of 0x6000, ) 194.83 MB/s    Progress: |█---------|  13.5% Write (Sector 0xD00 of 0x6000, ) 193.00 MB/s    Progress: |█---------|  14.6% Write (Sector 0xE00 of 0x6000, ) 192.53 MB/s    Progress: |██--------|  15.6% Write (Sector 0xF00 of 0x6000, ) 198.48 MB/s    Progress: |██--------|  16.7% Write (Sector 0x1000 of 0x6000, ) 199.24 MB/s   Progress: |██--------|  17.7% Write (Sector 0x1100 of 0x6000, ) 192.74 MB/s   Progress: |██--------|  18.8% Write (Sector 0x1200 of 0x6000, ) 191.37 MB/s   Progress: |██--------|  19.8% Write (Sector 0x1300 of 0x6000, ) 171.21 MB/s   Progress: |██--------|  20.8% Write (Sector 0x1400 of 0x6000, ) 183.11 MB/s   Progress: |██--------|  21.9% Write (Sector 0x1500 of 0x6000, ) 206.30 MB/s   Progress: |██--------|  22.9% Write (Sector 0x1600 of 0x6000, ) 200.07 MB/s   Progress: |██--------|  24.0% Write (Sector 0x1700 of 0x6000, ) 200.53 MB/s   Progress: |██--------|  25.0% Write (Sector 0x1800 of 0x6000, ) 202.32 MB/s   Progress: |███-------|  26.0% Write (Sector 0x1900 of 0x6000, ) 197.64 MB/s   Progress: |███-------|  27.1% Write (Sector 0x1A00 of 0x6000, ) 192.80 MB/s   Progress: |███-------|  28.1% Write (Sector 0x1B00 of 0x6000, ) 202.91 MB/s   Progress: |███-------|  29.2% Write (Sector 0x1C00 of 0x6000, ) 200.92 MB/s   Progress: |███-------|  30.2% Write (Sector 0x1D00 of 0x6000, ) 193.62 MB/s   Progress: |███-------|  31.2% Write (Sector 0x1E00 of 0x6000, ) 196.49 MB/s   Progress: |███-------|  32.3% Write (Sector 0x1F00 of 0x6000, ) 200.89 MB/s   Progress: |███-------|  33.3% Write (Sector 0x2000 of 0x6000, ) 198.47 MB/s   Progress: |███-------|  34.4% Write (Sector 0x2100 of 0x6000, ) 193.82 MB/s   Progress: |████------|  35.4% Write (Sector 0x2200 of 0x6000, ) 206.39 MB/s   Progress: |████------|  36.5% Write (Sector 0x2300 of 0x6000, ) 192.06 MB/s   Progress: |████------|  37.5% Write (Sector 0x2400 of 0x6000, ) 201.16 MB/s   Progress: |████------|  38.5% Write (Sector 0x2500 of 0x6000, ) 195.70 MB/s   Progress: |████------|  39.6% Write (Sector 0x2600 of 0x6000, ) 200.68 MB/s   Progress: |████------|  40.6% Write (Sector 0x2700 of 0x6000, ) 201.83 MB/s   Progress: |████------|  41.7% Write (Sector 0x2800 of 0x6000, ) 196.85 MB/s   Progress: |████------|  42.7% Write (Sector 0x2900 of 0x6000, ) 200.60 MB/s   Progress: |████------|  43.8% Write (Sector 0x2A00 of 0x6000, ) 201.04 MB/s   Progress: |████------|  44.8% Write (Sector 0x2B00 of 0x6000, ) 176.77 MB/s   Progress: |█████-----|  45.8% Write (Sector 0x2C00 of 0x6000, ) 191.92 MB/s   Progress: |█████-----|  46.9% Write (Sector 0x2D00 of 0x6000, ) 186.35 MB/s   Progress: |█████-----|  47.9% Write (Sector 0x2E00 of 0x6000, ) 181.16 MB/s   Progress: |█████-----|  49.0% Write (Sector 0x2F00 of 0x6000, ) 204.87 MB/s   Progress: |█████-----|  50.0% Write (Sector 0x3000 of 0x6000, ) 173.13 MB/s   Progress: |█████-----|  51.0% Write (Sector 0x3100 of 0x6000, ) 184.74 MB/s   Progress: |█████-----|  52.1% Write (Sector 0x3200 of 0x6000, ) 192.38 MB/s   Progress: |█████-----|  53.1% Write (Sector 0x3300 of 0x6000, ) 202.75 MB/s   Progress: |█████-----|  54.2% Write (Sector 0x3400 of 0x6000, ) 188.37 MB/s   Progress: |██████----|  55.2% Write (Sector 0x3500 of 0x6000, ) 198.87 MB/s   Progress: |██████----|  56.2% Write (Sector 0x3600 of 0x6000, ) 198.44 MB/s   Progress: |██████----|  57.3% Write (Sector 0x3700 of 0x6000, ) 200.82 MB/s   Progress: |██████----|  58.3% Write (Sector 0x3800 of 0x6000, ) 185.00 MB/s   Progress: |██████----|  59.4% Write (Sector 0x3900 of 0x6000, ) 168.74 MB/s   Progress: |██████----|  60.4% Write (Sector 0x3A00 of 0x6000, ) 179.34 MB/s   Progress: |██████----|  61.5% Write (Sector 0x3B00 of 0x6000, ) 195.69 MB/s   Progress: |██████----|  62.5% Write (Sector 0x3C00 of 0x6000, ) 202.96 MB/s   Progress: |██████----|  63.5% Write (Sector 0x3D00 of 0x6000, ) 169.08 MB/s   Progress: |██████----|  64.6% Write (Sector 0x3E00 of 0x6000, ) 182.38 MB/s   Progress: |███████---|  65.6% Write (Sector 0x3F00 of 0x6000, ) 155.59 MB/s   Progress: |███████---|  66.7% Write (Sector 0x4000 of 0x6000, ) 168.10 MB/s   Progress: |███████---|  67.7% Write (Sector 0x4100 of 0x6000, ) 199.63 MB/s   Progress: |███████---|  68.8% Write (Sector 0x4200 of 0x6000, ) 193.75 MB/s   Progress: |███████---|  69.8% Write (Sector 0x4300 of 0x6000, ) 193.21 MB/s   Progress: |███████---|  70.8% Write (Sector 0x4400 of 0x6000, ) 183.25 MB/s   Progress: |███████---|  71.9% Write (Sector 0x4500 of 0x6000, ) 175.46 MB/s   Progress: |███████---|  72.9% Write (Sector 0x4600 of 0x6000, ) 171.73 MB/s   Progress: |███████---|  74.0% Write (Sector 0x4700 of 0x6000, ) 176.54 MB/s   Progress: |████████--|  75.0% Write (Sector 0x4800 of 0x6000, ) 175.16 MB/s   Progress: |████████--|  76.0% Write (Sector 0x4900 of 0x6000, ) 176.83 MB/s   Progress: |████████--|  77.1% Write (Sector 0x4A00 of 0x6000, ) 176.71 MB/s   Progress: |████████--|  78.1% Write (Sector 0x4B00 of 0x6000, ) 202.26 MB/s   Progress: |████████--|  79.2% Write (Sector 0x4C00 of 0x6000, ) 199.40 MB/s   Progress: |████████--|  80.2% Write (Sector 0x4D00 of 0x6000, ) 200.96 MB/s   Progress: |████████--|  81.2% Write (Sector 0x4E00 of 0x6000, ) 208.29 MB/s   Progress: |████████--|  82.3% Write (Sector 0x4F00 of 0x6000, ) 200.58 MB/s   Progress: |████████--|  83.3% Write (Sector 0x5000 of 0x6000, ) 199.85 MB/s   Progress: |████████--|  84.4% Write (Sector 0x5100 of 0x6000, ) 205.65 MB/s   Progress: |█████████-|  85.4% Write (Sector 0x5200 of 0x6000, ) 168.42 MB/s   Progress: |█████████-|  86.5% Write (Sector 0x5300 of 0x6000, ) 197.98 MB/s   Progress: |█████████-|  87.5% Write (Sector 0x5400 of 0x6000, ) 195.89 MB/s   Progress: |█████████-|  88.5% Write (Sector 0x5500 of 0x6000, ) 202.55 MB/s   Progress: |█████████-|  89.6% Write (Sector 0x5600 of 0x6000, ) 165.02 MB/s   Progress: |█████████-|  90.6% Write (Sector 0x5700 of 0x6000, ) 200.99 MB/s   Progress: |█████████-|  91.7% Write (Sector 0x5800 of 0x6000, ) 193.05 MB/s   Progress: |█████████-|  92.7% Write (Sector 0x5900 of 0x6000, ) 201.95 MB/s   Progress: |█████████-|  93.8% Write (Sector 0x5A00 of 0x6000, ) 215.73 MB/s   Progress: |█████████-|  94.8% Write (Sector 0x5B00 of 0x6000, ) 167.16 MB/s   Progress: |██████████|  95.8% Write (Sector 0x5C00 of 0x6000, ) 172.19 MB/s   Progress: |██████████|  96.9% Write (Sector 0x5D00 of 0x6000, ) 178.22 MB/s   Progress: |██████████|  97.9% Write (Sector 0x5E00 of 0x6000, ) 175.35 MB/s   Progress: |██████████|  99.0% Write (Sector 0x5F00 of 0x6000, ) 200.47 MB/s   Progress: |██████████| 100.0% Write (Sector 0x6000 of 0x6000, ) 191.85 MB/s   
+Wrote /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/pmos-flash/backup-20260806-020517/vendor_boot_a.img to sector 632474.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Erased dtbo_a starting at sector 136650 with sector count 6144.
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+Erased dtbo_b starting at sector 487454 with sector count 6144.
+EDL dual-slot flash done: boot_{a,b}+vendor_boot_{a,b}, dtbo erased
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+main - Mode detected: firehose
+DeviceClass - USBError(19, 'No such device (it may have been disconnected)')
+FLASH_DONE
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+......
+main - Hint:   Press and hold vol up+dwn, connect usb. For some, only use vol up.
+main - Xiaomi: Press and hold vol dwn + pwr, in fastboot mode connect usb.
+        Run "./fastpwn oem edl".
+main - Other:  Run "adb reboot edl".
+
+........servo taps done
+2026-08-16T12:26:20+08:00 boot#1 Bus 004 Device 072: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    DOWN           192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+2026-08-16T12:26:42+08:00 boot#2 none
+2026-08-16T12:26:44+08:00 boot#3 none
+2026-08-16T12:26:46+08:00 boot#4 none
+2026-08-16T12:26:48+08:00 boot#5 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+echo MARK
+MARK
+nubia-cerro:~$ grep cerro_dtb /proc/cmdline
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5er
+nubia-cerro:~$ echo ---DEVICES---
+---DEVICES---
+nubia-cerro:~$ cat /proc/bus/input/devices
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_pwrkey"
+P: Phys=pmic_pwrkey/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_resin"
+P: Phys=pmic_resin/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000000000000 0
+
+I: Bus=001c Vendor=0000 Product=0000 Version=0000
+N: Name="Goodix Berlin Capacitive TouchScreen"
+P: Phys=input/ts
+S: Sysfs=/devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+U: Uniq=
+H: Handlers=event2 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=261800000000003
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=8000000000000 0
+
+nubia-cerro:~$ echo ---PROP---
+---PROP---
+nubia-cerro:~$ cat /sys/class/input/input0/properties 2>/dev/null || true
+0
+nubia-cerro:~$ echo ---DMESG---
+---DMESG---
+nubia-cerro:~$ dmesg | grep -iE "gpio-keys|pwrkey|resin|qcom-pon|pm8941|Goodix|P
+ROP|Berlin" | tail -40
+[    0.000000] GICv3: using LPI property table @0x00000008800b0000
+[    0.111616] input: pmic_pwrkey as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+[    0.112124] input: pmic_resin as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+[    0.201282] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    0.249880]  goodix_berlin_power_on+0x28/0x178
+[    0.249891]  goodix_berlin_probe+0x154/0x260
+[    0.249900]  goodix_berlin_spi_probe+0xe4/0x130
+[    0.383620] input: Goodix Berlin Capacitive TouchScreen as /devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+[    0.461642] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    1.162317] input: gpio-keys as /devices/platform/gpio-keys/input/input3
+nubia-cerro:~$ echo ENDMARK
+ENDMARK
+nubia-cerro:~$ [6n
+HIT_S5ER
+HIT_KEYS
+HIT_KEY_EVENTS
+HIT_POINTER_STILL
+2026-08-16T12:27:26+08:00 boot#6 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+echo MARK
+MARK
+nubia-cerro:~$ grep cerro_dtb /proc/cmdline
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5er
+nubia-cerro:~$ echo ---DEVICES---
+---DEVICES---
+nubia-cerro:~$ cat /proc/bus/input/devices
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_pwrkey"
+P: Phys=pmic_pwrkey/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_resin"
+P: Phys=pmic_resin/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000000000000 0
+
+I: Bus=001c Vendor=0000 Product=0000 Version=0000
+N: Name="Goodix Berlin Capacitive TouchScreen"
+P: Phys=input/ts
+S: Sysfs=/devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+U: Uniq=
+H: Handlers=event2 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=261800000000003
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=8000000000000 0
+
+nubia-cerro:~$ echo ---PROP---
+---PROP---
+nubia-cerro:~$ cat /sys/class/input/input0/properties 2>/dev/null || true
+0
+nubia-cerro:~$ echo ---DMESG---
+---DMESG---
+nubia-cerro:~$ dmesg | grep -iE "gpio-keys|pwrkey|resin|qcom-pon|pm8941|Goodix|P
+ROP|Berlin" | tail -40
+[    0.000000] GICv3: using LPI property table @0x00000008800b0000
+[    0.111616] input: pmic_pwrkey as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+[    0.112124] input: pmic_resin as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+[    0.201282] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    0.249880]  goodix_berlin_power_on+0x28/0x178
+[    0.249891]  goodix_berlin_probe+0x154/0x260
+[    0.249900]  goodix_berlin_spi_probe+0xe4/0x130
+[    0.383620] input: Goodix Berlin Capacitive TouchScreen as /devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+[    0.461642] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    1.162317] input: gpio-keys as /devices/platform/gpio-keys/input/input3
+nubia-cerro:~$ echo ENDMARK
+ENDMARK
+nubia-cerro:~$ [6n
+HIT_S5ER
+HIT_KEYS
+HIT_KEY_EVENTS
+HIT_POINTER_STILL
+2026-08-16T12:27:55+08:00 boot#7 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+echo MARK
+MARK
+nubia-cerro:~$ grep cerro_dtb /proc/cmdline
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5er
+nubia-cerro:~$ echo ---DEVICES---
+---DEVICES---
+nubia-cerro:~$ cat /proc/bus/input/devices
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_pwrkey"
+P: Phys=pmic_pwrkey/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_resin"
+P: Phys=pmic_resin/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000000000000 0
+
+I: Bus=001c Vendor=0000 Product=0000 Version=0000
+N: Name="Goodix Berlin Capacitive TouchScreen"
+P: Phys=input/ts
+S: Sysfs=/devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+U: Uniq=
+H: Handlers=event2 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=261800000000003
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=8000000000000 0
+
+nubia-cerro:~$ echo ---PROP---
+---PROP---
+nubia-cerro:~$ cat /sys/class/input/input0/properties 2>/dev/null || true
+0
+nubia-cerro:~$ echo ---DMESG---
+---DMESG---
+nubia-cerro:~$ dmesg | grep -iE "gpio-keys|pwrkey|resin|qcom-pon|pm8941|Goodix|P
+ROP|Berlin" | tail -40
+[    0.000000] GICv3: using LPI property table @0x00000008800b0000
+[    0.111616] input: pmic_pwrkey as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+[    0.112124] input: pmic_resin as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+[    0.201282] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    0.249880]  goodix_berlin_power_on+0x28/0x178
+[    0.249891]  goodix_berlin_probe+0x154/0x260
+[    0.249900]  goodix_berlin_spi_probe+0xe4/0x130
+[    0.383620] input: Goodix Berlin Capacitive TouchScreen as /devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+[    0.461642] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    1.162317] input: gpio-keys as /devices/platform/gpio-keys/input/input3
+nubia-cerro:~$ echo ENDMARK
+ENDMARK
+nubia-cerro:~$ [6n
+HIT_S5ER
+HIT_KEYS
+HIT_KEY_EVENTS
+HIT_POINTER_STILL
+2026-08-16T12:28:24+08:00 boot#8 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+echo MARK
+MARK
+nubia-cerro:~$ grep cerro_dtb /proc/cmdline
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5er
+nubia-cerro:~$ echo ---DEVICES---
+---DEVICES---
+nubia-cerro:~$ cat /proc/bus/input/devices
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_pwrkey"
+P: Phys=pmic_pwrkey/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_resin"
+P: Phys=pmic_resin/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000000000000 0
+
+I: Bus=001c Vendor=0000 Product=0000 Version=0000
+N: Name="Goodix Berlin Capacitive TouchScreen"
+P: Phys=input/ts
+S: Sysfs=/devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+U: Uniq=
+H: Handlers=event2 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=261800000000003
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=8000000000000 0
+
+nubia-cerro:~$ echo ---PROP---
+---PROP---
+nubia-cerro:~$ cat /sys/class/input/input0/properties 2>/dev/null || true
+0
+nubia-cerro:~$ echo ---DMESG---
+---DMESG---
+nubia-cerro:~$ dmesg | grep -iE "gpio-keys|pwrkey|resin|qcom-pon|pm8941|Goodix|P
+ROP|Berlin" | tail -40
+[    0.000000] GICv3: using LPI property table @0x00000008800b0000
+[    0.111616] input: pmic_pwrkey as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+[    0.112124] input: pmic_resin as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+[    0.201282] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    0.249880]  goodix_berlin_power_on+0x28/0x178
+[    0.249891]  goodix_berlin_probe+0x154/0x260
+[    0.249900]  goodix_berlin_spi_probe+0xe4/0x130
+[    0.383620] input: Goodix Berlin Capacitive TouchScreen as /devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+[    0.461642] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    1.162317] input: gpio-keys as /devices/platform/gpio-keys/input/input3
+nubia-cerro:~$ echo ENDMARK
+ENDMARK
+nubia-cerro:~$ [6n
+HIT_S5ER
+HIT_KEYS
+HIT_KEY_EVENTS
+HIT_POINTER_STILL
+2026-08-16T12:28:53+08:00 boot#9 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+2026-08-16T12:29:18+08:00 boot#10 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+echo MARK
+MARK
+nubia-cerro:~$ grep cerro_dtb /proc/cmdline
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5er
+nubia-cerro:~$ echo ---DEVICES---
+---DEVICES---
+nubia-cerro:~$ cat /proc/bus/input/devices
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_pwrkey"
+P: Phys=pmic_pwrkey/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_resin"
+P: Phys=pmic_resin/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000000000000 0
+
+I: Bus=001c Vendor=0000 Product=0000 Version=0000
+N: Name="Goodix Berlin Capacitive TouchScreen"
+P: Phys=input/ts
+S: Sysfs=/devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+U: Uniq=
+H: Handlers=event2 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=261800000000003
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=8000000000000 0
+
+nubia-cerro:~$ echo ---PROP---
+---PROP---
+nubia-cerro:~$ cat /sys/class/input/input0/properties 2>/dev/null || true
+0
+nubia-cerro:~$ echo ---DMESG---
+---DMESG---
+nubia-cerro:~$ dmesg | grep -iE "gpio-keys|pwrkey|resin|qcom-pon|pm8941|Goodix|P
+ROP|Berlin" | tail -40
+[    0.000000] GICv3: using LPI property table @0x00000008800b0000
+[    0.111616] input: pmic_pwrkey as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+[    0.112124] input: pmic_resin as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+[    0.201282] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    0.249880]  goodix_berlin_power_on+0x28/0x178
+[    0.249891]  goodix_berlin_probe+0x154/0x260
+[    0.249900]  goodix_berlin_spi_probe+0xe4/0x130
+[    0.383620] input: Goodix Berlin Capacitive TouchScreen as /devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+[    0.461642] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    1.162317] input: gpio-keys as /devices/platform/gpio-keys/input/input3
+nubia-cerro:~$ echo ENDMARK
+ENDMARK
+nubia-cerro:~$ [6n
+HIT_S5ER
+HIT_KEYS
+HIT_KEY_EVENTS
+HIT_POINTER_STILL
+2026-08-16T12:29:47+08:00 boot#11 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+2026-08-16T12:29:57+08:00 boot#12 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+2026-08-16T12:30:10+08:00 boot#13 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+2026-08-16T12:30:27+08:00 boot#14 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+2026-08-16T12:30:48+08:00 boot#15 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+echo MARK
+MARK
+nubia-cerro:~$ grep cerro_dtb /proc/cmdline
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5er
+nubia-cerro:~$ echo ---DEVICES---
+---DEVICES---
+nubia-cerro:~$ cat /proc/bus/input/devices
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_pwrkey"
+P: Phys=pmic_pwrkey/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_resin"
+P: Phys=pmic_resin/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000000000000 0
+
+I: Bus=001c Vendor=0000 Product=0000 Version=0000
+N: Name="Goodix Berlin Capacitive TouchScreen"
+P: Phys=input/ts
+S: Sysfs=/devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+U: Uniq=
+H: Handlers=event2 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=261800000000003
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=8000000000000 0
+
+nubia-cerro:~$ echo ---PROP---
+---PROP---
+nubia-cerro:~$ cat /sys/class/input/input0/properties 2>/dev/null || true
+0
+nubia-cerro:~$ echo ---DMESG---
+---DMESG---
+nubia-cerro:~$ dmesg | grep -iE "gpio-keys|pwrkey|resin|qcom-pon|pm8941|Goodix|P
+ROP|Berlin" | tail -40
+[    0.000000] GICv3: using LPI property table @0x00000008800b0000
+[    0.111616] input: pmic_pwrkey as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+[    0.112124] input: pmic_resin as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+[    0.201282] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    0.249880]  goodix_berlin_power_on+0x28/0x178
+[    0.249891]  goodix_berlin_probe+0x154/0x260
+[    0.249900]  goodix_berlin_spi_probe+0xe4/0x130
+[    0.383620] input: Goodix Berlin Capacitive TouchScreen as /devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+[    0.461642] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    1.162317] input: gpio-keys as /devices/platform/gpio-keys/input/input3
+nubia-cerro:~$ echo ENDMARK
+ENDMARK
+nubia-cerro:~$ [6n
+rm -f /tmp/mtprobe_phone.py.b64 /tmp/mtprobe_phone.py
+nubia-cerro:~$ [6n
+HIT_S5ER
+HIT_KEYS
+HIT_KEY_EVENTS
+HIT_POINTER_STILL
+2026-08-16T12:31:16+08:00 boot#16 Bus 004 Device 074: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+OUTCOME PASS_S5ER_KEYS_ONLY

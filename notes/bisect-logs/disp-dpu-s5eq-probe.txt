@@ -1,0 +1,111 @@
+echo MARK_ETC; ls -ld /etc
+MARK_ETC
+drwxr-xr-x   74 root     root          4096 Aug 16 02:34 [1;34m/etc[m
+nubia-cerro:~$ echo MARK_SUDO; sudo -n true 2>&1 | head -1; echo SUDOE=$?
+MARK_SUDO
+sudo: interactive authentication is required
+SUDOE=0
+nubia-cerro:~$ echo MARK_LS; lsmod | grep -iE 'bluetooth|hci|btqca|btbcm|ecdh|kp
+p|ecc|rfkill' || true
+MARK_LS
+hci_uart               90112  0
+btqca                  16384  1 hci_uart
+btbcm                  24576  1 hci_uart
+bluetooth             532480  4 btqca,hci_uart,btbcm
+ecdh_generic           16384  2 bluetooth
+ecc                    49152  1 ecdh_generic
+kpp                    12288  2 ecdh_generic,bluetooth
+rfkill                 28672  3 bluetooth
+nubia-cerro:~$ echo MARK_DMESG; dmesg | grep -iE 'Bluetooth|hci0|QCA|wcn7850|hmt
+bt|cerro-bt|Unknown symbol|chown /etc|final /etc' | tail -90
+MARK_DMESG
+[   24.169165] [cerro-s5ca] chown /etc 1000:1000 -> 0:0
+[   24.186350] [cerro-s5ca] staged qca BT firmware
+[   24.205580] [cerro-s5ca] final /etc owner=0:0
+[   34.628674] cerro-bt: loaded rfkill
+[   34.637481] cerro-bt: loaded kpp
+[   34.645587] cerro-bt: loaded ecc
+[   34.654217] cerro-bt: loaded ecdh_generic
+[   34.664208] bluetooth: loading out-of-tree module taints kernel.
+[   34.670921] Bluetooth: Core ver 2.22
+[   34.672915] NET: Registered PF_BLUETOOTH protocol family
+[   34.674739] Bluetooth: HCI device and connection manager initialized
+[   34.678318] Bluetooth: HCI socket layer initialized
+[   34.680185] Bluetooth: L2CAP socket layer initialized
+[   34.681927] Bluetooth: SCO socket layer initialized
+[   34.684448] cerro-bt: loaded bluetooth
+[   34.691334] cerro-bt: loaded btbcm
+[   34.699362] cerro-bt: loaded btqca
+[   34.707977] Bluetooth: HCI UART driver ver 2.3
+[   34.709822] Bluetooth: HCI UART protocol H4 registered
+[   34.711621] Bluetooth: HCI UART protocol LL registered
+[   34.713889] Bluetooth: HCI UART protocol Broadcom registered
+[   34.715668] Bluetooth: HCI UART protocol QCA registered
+[   34.717708] Bluetooth: HCI UART protocol Marvell registered
+[   34.719879] Bluetooth: hci0: setting up wcn7850
+[   34.720300] cerro-bt: loaded hci_uart
+[   34.930317] Bluetooth: hci0: QCA Product ID   :0x00000019
+[   34.930777] Bluetooth: hci0: QCA SOC Version  :0x40170200
+[   34.931191] Bluetooth: hci0: QCA ROM Version  :0x00000200
+[   34.931615] Bluetooth: hci0: QCA Patch Version:0x000043fb
+[   34.934642] Bluetooth: hci0: QCA controller version 0x02000200
+[   34.936471] Bluetooth: hci0: QCA Downloading qca/hmtbtfw20.tlv
+[   36.087956] Bluetooth: hci0: QCA Downloading qca/hmtnv20.bin
+[   36.541588] Bluetooth: hci0: QCA FW build version: BTFW.HAMILTON.2.0.1-00257-PATCHZ-1.46586.4
+[   36.542073] Bluetooth: hci0: QCA setup on UART is completed
+[   36.542271] Bluetooth: hci0: HFP non-HCI data transport is supported
+[   36.730356] cerro-bt: done; hci0:	Type: Primary  Bus: UART 	BD Address: 00:00:00:00:5A:AD  ACL MTU: 0:0  SCO MTU: 0:0 	DOWN RAW  
+[   36.771414] Bluetooth: MGMT ver 1.23
+[   36.771800] Bluetooth: hci0: setting up wcn7850
+[   36.978858] Bluetooth: hci0: QCA Product ID   :0x00000019
+[   36.978879] Bluetooth: hci0: QCA SOC Version  :0x40170200
+[   36.978883] Bluetooth: hci0: QCA ROM Version  :0x00000200
+[   36.978888] Bluetooth: hci0: QCA Patch Version:0x000043fb
+[   36.990551] Bluetooth: hci0: QCA controller version 0x02000200
+[   36.990564] Bluetooth: hci0: QCA Downloading qca/hmtbtfw20.tlv
+[   38.130809] Bluetooth: hci0: QCA Downloading qca/hmtnv20.bin
+[   38.561045] Bluetooth: hci0: QCA FW build version: BTFW.HAMILTON.2.0.1-00257-PATCHZ-1.46586.4
+[   38.561073] Bluetooth: hci0: QCA setup on UART is completed
+[   38.561086] Bluetooth: hci0: HFP non-HCI data transport is supported
+[   44.756727] cerro-bt: loaded rfkill
+[   44.758098] cerro-bt: loaded kpp
+[   44.759393] cerro-bt: loaded ecc
+[   44.760543] cerro-bt: loaded ecdh_generic
+[   44.763679] cerro-bt: loaded bluetooth
+[   44.764858] cerro-bt: loaded btbcm
+[   44.765633] cerro-bt: loaded btqca
+[   44.766990] cerro-bt: loaded hci_uart
+[   46.788029] Bluetooth: hci0: setting up wcn7850
+[   46.996247] Bluetooth: hci0: QCA Product ID   :0x00000019
+[   46.996255] Bluetooth: hci0: QCA SOC Version  :0x40170200
+[   46.996257] Bluetooth: hci0: QCA ROM Version  :0x00000200
+[   46.996259] Bluetooth: hci0: QCA Patch Version:0x000043fb
+[   47.010030] Bluetooth: hci0: QCA controller version 0x02000200
+[   47.010054] Bluetooth: hci0: QCA Downloading qca/hmtbtfw20.tlv
+[   47.011019] Bluetooth: hci0: unexpected event for opcode 0xfc48
+[   48.173383] Bluetooth: hci0: QCA Downloading qca/hmtnv20.bin
+[   48.630668] Bluetooth: hci0: QCA FW build version: BTFW.HAMILTON.2.0.1-00257-PATCHZ-1.46586.4
+[   48.630681] Bluetooth: hci0: QCA setup on UART is completed
+[   48.630684] Bluetooth: hci0: HFP non-HCI data transport is supported
+[   48.668462] cerro-bt: done; hci0:	Type: Primary  Bus: UART 	BD Address: 02:00:95:0B:4D:FF  ACL MTU: 1024:7  SCO MTU: 240:4 	UP RUNNING  
+nubia-cerro:~$ echo MARK_HCI; hciconfig -a 2>&1 | head -50
+MARK_HCI
+hci0:	Type: Primary  Bus: UART
+	BD Address: 02:00:95:0B:4D:FF  ACL MTU: 1024:7  SCO MTU: 240:4
+	UP RUNNING 
+	RX bytes:3191 acl:0 sco:0 events:267 errors:0
+	TX bytes:874864 acl:0 sco:0 commands:3654 errors:0
+	Features: 0xff 0xfe 0x0f 0xfe 0xd8 0x3f 0x5b 0x87
+	Packet type: DM1 DM3 DM5 DH1 DH3 DH5 HV1 HV2 HV3 
+	Link policy: RSWITCH HOLD SNIFF 
+	Link mode: PERIPHERAL ACCEPT 
+	Name: ''
+	Class: 0x000000
+	Service Classes: Unspecified
+	Device Class: Miscellaneous, 
+	HCI Version: 5.4 (0xd)  Revision: 0x0
+	LMP Version: 5.4 (0xd)  Subversion: 0x689e
+	Manufacturer: Qualcomm (29)
+
+nubia-cerro:~$ echo MARK_BTCTL; bluetoothctl show 2>&1 | head -35
+MARK_BTCTL

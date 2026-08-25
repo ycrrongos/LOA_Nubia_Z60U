@@ -1,0 +1,57 @@
+
+=== FOLLOW-UP 2026-08-17T00:16:58+0800: root cause of empty WSA ===
+wsa-macro@6B00000 status=disabled
+wsa2-macro@6AA0000 status=disabled
+msm_int_wsa881x_init: WSA is not enabled (dmesg)
+
+=== Cerro speaker path = Awinic AW882xx (NOT WSA884x) ===
+i2c: 0-0034 / 0-0035 on i2c@98c000 (qcom,i2c-geni)
+compatible: awinic,aw882xx_smartpa
+[    1.459343] [Awinic][0-0034]aw882xx_read_chipid: aw882xx 2113 detected
+[    1.467961] [Awinic][0-0034]aw882xx_dai_drv_append_suffix: pstream_name name [Speaker_Playback-0-34]
+[    1.469349] [Awinic][0-0035]aw882xx_read_chipid: aw882xx 2113 detected
+[    1.495030] [Awinic][0-0035]aw882xx_dai_drv_append_suffix: pstream_name name [Speaker_Playback-0-35]
+DT sound-channel: @34=1 @35=0
+SPF ports: rx-port=0x1006 tx-port=0x1007 topo rx=0x1000ff01 tx=0x1000ff00
+0-0034
+0-0035
+bind
+module
+uevent
+unbind
+#address-cells
+#size-cells
+aw882xx_smartpa@34
+aw882xx_smartpa@35
+clock-names
+clocks
+compatible
+interconnect-names
+interconnects
+interrupts
+name
+phandle
+pinctrl-0
+pinctrl-1
+pinctrl-names
+qcom,i2c-hub
+reg
+status
+
+=== CONTRAST vs Linux s5fq ===
+Linux: enabled WSA macro + 2x wsa884x on swr0 (QRD map) → enum empty (no slaves on bus)
+AOSP: wsa-macro status=disabled; speakers = 2x AW2113 via I2C+SPF; LPASS gpio10/11/15/16/21 UNCLAIMED
+Implication: chasing WSA SoundWire enum on Cerro is wrong SKU path; need AW882xx bring-up
+
+=== Evidence anchors ===
+- AOSP dump: notes/bisect-logs/aosp-wsa-gold-20260817.txt
+- Linux baseline: notes/bisect-logs/linux-s5fq-wsa-baseline-20260817-000934.txt
+- Stock DTBO: downstream-dt/dts/dtbo_1.dts
+  - wsa-macro@6B00000 status = "disabled" (~L20828)
+  - aw882xx_smartpa@34/@35 on I2C (~L22451, fragment@159)
+- Script: tools/edl-tools/aosp-wsa-gold-dump.sh
+
+=== Verdict ===
+Cerro speaker SKU = AW882xx(I2C+SPF), not WSA884x(SoundWire).
+Linux s5ex–s5fq WSA enum-empty is expected (no slaves on that bus).
+Next: AW882xx bring-up on mainline (I2C node + DAI/routing); keep WCD for headset.

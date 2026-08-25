@@ -1,0 +1,92 @@
+==== cerro-map-bisect Thu 06 Aug 2026 22:27:53 AWST pid=3550481 ====
+steps: 3
+judge: sticky fastboot early(<PASS_MIN) = FAIL; late(>=PASS_MIN after quiet) = PASS
+timing: SKIP_UNLOCK=1 UNLOCK_WAIT=0s CYCLE=6s PASS_MIN=12s OBSERVE=18s EXTEND=70s
+NOTE: 你跳过解锁时不算解锁时长；请在橙屏时跳过，脚本只看 fastboot 早晚
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-222753.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 3 ################
+set bank FALLBACK=SAFE_MAP=0x10000000 (LOW_ALLOC unchanged)
+set CERRO_PROBE_STAGE=80
+set CERRO_IDMAP_STEP=3
+set CERRO_SKIP_UNFLATTEN=0
+set #define CERRO_MAP_MEM_STEP 3 (PROBE_SIGNAL=0 PSCI) record_step=3
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:342:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  342 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:342:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  342 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+arch/arm64/kernel/setup.c:370:6: warning: no previous prototype for function 'cerro_late_probe' [-Wmissing-prototypes]
+  370 | void cerro_late_probe(int stage)
+      |      ^
+arch/arm64/kernel/setup.c:370:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  370 | void cerro_late_probe(int stage)
+      | ^
+      | static 
+2 warnings generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 22:28 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 22:28 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: fastboot
+==== via fastboot ====
+Sending 'boot_a' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_a'                                   OKAY [  0.033s]
+Finished. Total time: 0.195s
+Sending 'boot_b' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_b'                                   OKAY [  0.020s]
+Finished. Total time: 0.181s
+flash returned Thu 06 Aug 2026 22:28:09 AWST
+==== observe 18s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786026492.102694976
+[1.625] mode=none
+[3.746] mode=none
+[5.877] mode=none
+[8.002] mode=none
+[10.129] mode=none
+[12.251] mode=none
+[14.387] mode=none
+[16.522] mode=none
+[18.651] mode=none
+observe done: none_streak=36 udev_events=0 first_fb=none
+==== quiet so far; extend 70s (wait late sticky fb ≥ PASS_MIN=12s) ====

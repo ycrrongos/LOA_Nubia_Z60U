@@ -1,0 +1,153 @@
+applied angles from press-angles.env: PRESSU:82 PRESSD:97 PRESSP:97
+enter-9008-hand: hold until 9008 (max 100s, min 8s)  usb=Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub 
+port=/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_34:85:18:92:18:D8-if00
+hold-edl press SA:82,97,97 until-9008 (max 100s, min 8s)
+OK SA:82,97,97
+  … 0s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 1s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 2s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 3s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 4s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 5s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 6s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 7s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 8s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 9s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 10s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 11s usb=Bus 004 Device 057: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+  … 12s usb=(no phone usb)
+  … 13s usb=Bus 004 Device 058: ID 05c6:9008 Qualcomm, Inc. Gobi Wireless Modem (QDL mode)
+  … 14s — 9008 seen, releasing
+OK SA:90,90,90
+hold-edl released
+OK: 9008
+Bus 004 Device 058: ID 05c6:9008 Qualcomm, Inc. Gobi Wireless Modem (QDL mode)
+GOT_9008
+Qualcomm Sahara / Firehose Client V3.62 (c) B.Kerler 2018-2025.
+main - Using loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+main - Waiting for the device
+main - Device detected :)
+sahara - Protocol version: 3, Version supported: 1
+main - Mode detected: sahara
+sahara - 
+Reading Chip Info : OK
+sahara - - Sahara version  : 3
+sahara - - Chip Serial Number : 448a077d999
+sahara - - Chip Identifier V3 : 00020000
+sahara - - MSM HWID : 0x2270e1 | model_id:0x0000 | oem_id:0004
+sahara - - OEM PKHASH : 63c76071854448af8089b884603e478e15a717ccdd3a0c53ab96b8c23ba12bd8d4e4c5ca05729c2432250b6b1c33fed3
+sahara - - HW_ID : 002270e100040000
+sahara - Protocol version: 3, Version supported: 1
+sahara - Uploading loader /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/nubia_sm8650_eng/prog_ufs_firehose_sm8650_v1_ddr.elf ...
+sahara - 64-Bit mode detected.
+sahara - Loader successfully uploaded.
+main - Trying to connect to firehose loader ...
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35
+firehose - INFO: Binary build date: Aug  2 2023 @ 09:48:35 
+firehose - INFO: Chip serial num (0x0) Chip ID (0x0)
+firehose - INFO: Supported Functions (16):
+firehose - INFO: program
+firehose - INFO: read
+firehose - INFO: nop
+firehose - INFO: patch
+firehose - INFO: configure
+firehose - INFO: setbootablestoragedrive
+firehose - INFO: erase
+firehose - INFO: power
+firehose - INFO: firmwarewrite
+firehose - INFO: getstorageinfo
+firehose - INFO: benchmark
+firehose - INFO: emmc
+firehose - INFO: ufs
+firehose - INFO: fixgpt
+firehose - INFO: getnumdisksectors
+firehose - INFO: getsha256digest
+firehose - INFO: End of supported functions 16
+firehose_client
+firehose_client - [LIB]: [33mNo --memory option set, we assume "UFS" as default ..., if it fails, try using "--memory" with "UFS","NAND" or "spinor" instead ![0m
+firehose
+firehose - [LIB]: [33mCouldn't detect MaxPayloadSizeFromTargetinBytes[0m
+firehose
+firehose - [LIB]: [33mCouldn't detect TargetName[0m
+firehose - TargetName=Unknown
+firehose - MemoryName=UFS
+firehose - Version=1
+firehose - Trying to read first storage sector...
+firehose - Running configure...
+firehose - Storage report:
+firehose - total_blocks:124002304
+firehose - block_size:4096
+firehose - page_size:4096
+firehose - num_physical:6
+firehose - manufacturer_id:462
+firehose - serial_num:1297306958
+firehose - fw_version:801
+firehose - mem_type:UFS
+firehose - prod_name:KLUFG8RHHD-B0G1
+firehose_client - Supported functions:
+-----------------
+program,read,nop,patch,configure,setbootablestoragedrive,erase,power,firmwarewrite,getstorageinfo,benchmark,emmc,ufs,fixgpt,getnumdisksectors,getsha256digest
+DeviceClass - USBError(19, 'No such device (it may have been disconnected)')
+firehose - Reset succeeded.
+2026-08-16T02:23:07+08:00 boot#1 none
+2026-08-16T02:23:10+08:00 boot#2 none
+2026-08-16T02:23:13+08:00 boot#3 none
+2026-08-16T02:23:16+08:00 boot#4 none
+2026-08-16T02:23:19+08:00 boot#5 none
+2026-08-16T02:23:22+08:00 boot#6 Bus 004 Device 059: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    DOWN           192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+BANK_MEM MemTotal:       15402248 kB
+BANK_MEM MemTotal:       15402248 kB
+BANK_MEM MemTotal:       15402248 kB
+
+2026-08-16T02:23:47+08:00 boot#7 none
+2026-08-16T02:23:50+08:00 boot#8 none
+2026-08-16T02:23:53+08:00 boot#9 Bus 004 Device 061: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u2i2
+OK: enp0s20f0u2i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u2i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::7443:3170:bdc6:74a1/64 
+whoami; grep -o "cerro_dtb=[^ ]*" /proc/cmdline; echo BOOTOK
+user
+cerro_dtb=s5eo
+BOOTOK
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+python3 - <<'PY'
+> import subprocess,time,os
+> def run(cmd):
+>     p=subprocess.run(['sudo','-S','-p','','sh','-c',cmd],input='user\n',captur
+e_output=True,text=True)
+>     print('RC',p.returncode,cmd[:75]); print(((p.stdout or '')+(p.stderr or ''
+))[-1800:])
+> run('busybox wget -O /tmp/cerro-bt-s5ep.tgz http://192.168.68.1:8766/cerro-bt-
+s5ep.tgz && tar -C / -xzf /tmp/cerro-bt-s5ep.tgz && ls /lib/firmware/qca/hmtbtfw
+20.tlv')
+> # modules-load may not auto-load out-of-tree paths without depmod; insmod manu
+ally
+> ver=os.uname().release
+> base=f'/lib/modules/{ver}/kernel'
+> for m in ['crypto/kpp.ko','crypto/ecc.ko','crypto/ecdh_generic.ko','net/rfkill
+/rfkill.ko','net/bluetooth/bluetooth.ko','drivers/bluetooth/btbcm.ko','drivers/b
+luetooth/btqca.ko','drivers/bluetooth/hci_uart.ko']:
+>     run(f'insmod {base}/{m} || true')
+> time.sleep(7)
+> run('hciconfig hci0 up || true; sleep 1; hciconfig -a')
+> run('timeout 8 bluetoothctl <<EOF
+> power on
+> show
+> EOF')
+> run('dmesg | grep -iE "QCA setup on UART is completed|hci0:|failed to" | tail 
+-25')
+> print('BTFINAL')
+> PY
+  File [35m"<stdin>"[0m, line [35m13[0m
+    run([1;31m'[0mtimeout 8 bluetoothctl <<EOF
+        [1;31m^[0m
+[1;35mSyntaxError[0m: [35munterminated string literal (detected at line 13)[0m
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+OUTCOME PASS_BT_HCI0

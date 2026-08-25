@@ -1,0 +1,9 @@
+ACM_USB 2026-08-08T07:30:49+08:00
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 005: ID 13d3:52b8 IMC Networks ASUS FHD webcam
+Bus 003 Device 007: ID 13d3:3571 IMC Networks Bluetooth Radio
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 004 Device 061: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+crw-rw---- 1 root uucp 166, 0 Aug  8 07:30 /dev/ttyACM0

@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+"""Plasma Shutdown stand-in: reboot/poweroff via logind (no kwin_x11 needed).
+
+Alpine kwin≥6.4 is Wayland-only; stock plasma-shutdown then dies with
+"KWin failed to complete logout" on X11 sessions.
+"""
+import os
+import sys
+
+import dbus
+import dbus.service
+from dbus.mainloop.glib import DBusGMainLoop
+from gi.repository import GLib
+
+DBusGMainLoop(set_as_default=True)
+
+
+class Shutdown(dbus.service.Object):
+    def __init__(self):
+        self.session_bus = dbus.SessionBus()
+        self.bus_name = dbus.service.BusName("org.kde.Shutdown", self.session_bus)
+        super().__init__(self.session_bus, "/Shutdown")
+        self.sys = dbus.SystemBus()
+        login1 = self.sys.get_object(
+            "org.freedesktop.login1", "/org/freedesktop/login1"
+        )
+        self.mgr = dbus.Interface(login1, "org.freedesktop.login1.Manager")
+
+    def _seat_session(self):
+        # Prefer graphical seat0 session of this uid
+        try:
+            sessions = self.mgr.ListSessions()
+        except dbus.DBusException:
+            return None
+        uid = os.getuid()
+        for sid, _uid, _user, seat, path in sessions:
+            if int(_uid) != uid:
+                continue
+            if seat == "seat0":
+                return sid, path
+        for sid, _uid, _user, seat, path in sessions:
+            if int(_uid) == uid:
+                return sid, path
+        return None
+
+    @dbus.service.method("org.kde.Shutdown", in_signature="", out_signature="")
+    def logout(self):
+        print("cerro-plasma-shutdown: logout", flush=True)
+        info = self._seat_session()
+        if info:
+            sid, path = info
+            sess = self.sys.get_object("org.freedesktop.login1", path)
+            dbus.Interface(sess, "org.freedesktop.login1.Session").Terminate()
+        GLib.timeout_add(500, lambda: (GLib.MainLoop().quit(), False)[1])
+
+    @dbus.service.method("org.kde.Shutdown", in_signature="", out_signature="")
+    def logoutAndReboot(self):
+        print("cerro-plasma-shutdown: reboot", flush=True)
+        # interactive=False → use polkit allow_active for local seat
+        self.mgr.Reboot(False)
+
+    @dbus.service.method("org.kde.Shutdown", in_signature="", out_signature="")
+    def logoutAndShutdown(self):
+        print("cerro-plasma-shutdown: poweroff", flush=True)
+        self.mgr.PowerOff(False)
+
+    @dbus.service.method("org.kde.Shutdown", in_signature="", out_signature="")
+    def saveSession(self):
+        print("cerro-plasma-shutdown: saveSession (noop)", flush=True)
+
+
+def main() -> int:
+    _app = Shutdown()
+    print("cerro-plasma-shutdown: ready", flush=True)
+    GLib.MainLoop().run()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

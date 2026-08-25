@@ -1,0 +1,1801 @@
+==== CERRO USB DIAG uptime=4.74 36.55 ====
+cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=off deferred_probe_timeout=60 cerro_dtb=s5bq
+Linux (none) 7.2.0-rc5-dirty #297 SMP PREEMPT Fri Aug 14 20:44:50 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+ae01000.display-controller
+ae94000.dsi
+ae95000.phy
+driver
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3da0000.iommu/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3d90000.clock-controller/waiting_for_supplier': No such file or directory
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae00000.display-subsystem -> ../../../../devices/platform/soc@0/ae00000.display-subsystem
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ae00000.display-subsystem
+bind
+module
+uevent
+unbind
+15000000.iommu
+module
+uevent
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+a90000.spi	geni_spi: Failed to get tx DMA ch
+--- apps_smmu/dispcc/mdss sysfs ---
+## 15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/15000000.iommu/driver -> ../../../../bus/platform/drivers/arm-smmu
+DRIVER=arm-smmu
+OF_NAME=iommu
+OF_FULLNAME=/soc@0/iommu@15000000
+OF_COMPATIBLE_0=qcom,sm8650-smmu-500
+OF_COMPATIBLE_1=qcom,smmu-500
+OF_COMPATIBLE_2=arm,mmu-500
+OF_COMPATIBLE_N=3
+MODALIAS=of:NiommuT(null)Cqcom,sm8650-smmu-500Cqcom,smmu-500Carm,mmu-500
+of:NiommuT(null)Cqcom,sm8650-smmu-500Cqcom,smmu-500Carm,mmu-500
+cat: can't open '/sys/devices/platform/soc@0/15000000.iommu/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/15000000.iommu/supplier:*: No such file or directory
+/sys/devices/platform/soc@0/15000000.iommu/consumer:platform:1d84000.ufshc:
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+
+## af00000.clock-controller
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/af00000.clock-controller/driver -> ../../../../bus/platform/drivers/disp_cc-sm8550
+DRIVER=disp_cc-sm8550
+OF_NAME=clock-controller
+OF_FULLNAME=/soc@0/clock-controller@af00000
+OF_COMPATIBLE_0=qcom,sm8650-dispcc
+OF_COMPATIBLE_N=1
+MODALIAS=of:Nclock-controllerT(null)Cqcom,sm8650-dispcc
+of:Nclock-controllerT(null)Cqcom,sm8650-dispcc
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/consumer:*: No such file or directory
+## ae00000.display-subsystem
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/driver -> ../../../../bus/platform/drivers/msm-mdss
+DRIVER=msm-mdss
+OF_NAME=display-subsystem
+OF_FULLNAME=/soc@0/display-subsystem@ae00000
+OF_COMPATIBLE_0=qcom,sm8650-mdss
+OF_COMPATIBLE_N=1
+MODALIAS=of:Ndisplay-subsystemT(null)Cqcom,sm8650-mdss
+of:Ndisplay-subsystemT(null)Cqcom,sm8650-mdss
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/consumer:*: No such file or directory
+--- mdss children (sysfs) ---
+total 0
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   63 0        0                0 Jan  1 00:00 ..
+drwxr-xr-x    5 0        0                0 Jan  1 00:00 ae01000.display-controller
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 ae94000.dsi
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 ae95000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../bus/platform/drivers/msm-mdss
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 iommu -> ../15000000.iommu/iommu/smmu.0x0000000015000000
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 iommu_group -> ../../../../kernel/iommu_groups/4
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:platform:15000000.iommu -> ../../../virtual/devlink/platform:15000000.iommu--platform:ae00000.display-subsystem
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+--- dsi/phy under mdss ---
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+total 0
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 ae94000.dsi.0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dsi
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/dsi@ae94000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:regulator:regulator.20 -> ../../../../virtual/devlink/regulator:regulator.20--platform:ae94000.dsi
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dsi
+OF_NAME=dsi
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/dsi@ae94000
+OF_COMPATIBLE_0=qcom,sm8650-dsi-ctrl
+OF_COMPATIBLE_1=qcom,mdss-dsi-ctrl
+OF_COMPATIBLE_N=2
+MODALIAS=of:NdsiT(null)Cqcom,sm8650-dsi-ctrlCqcom,mdss-dsi-ctrl
+of:NdsiT(null)Cqcom,sm8650-dsi-ctrlCqcom,mdss-dsi-ctrl
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/driver -> ../../../../../bus/platform/drivers/msm_dsi
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+total 0
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/phy@ae95000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:regulator:regulator.14 -> ../../../../virtual/devlink/regulator:regulator.14--platform:ae95000.phy
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dsi_phy
+OF_NAME=phy
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/phy@ae95000
+OF_COMPATIBLE_0=qcom,sm8650-dsi-phy-4nm
+OF_COMPATIBLE_N=1
+MODALIAS=of:NphyT(null)Cqcom,sm8650-dsi-phy-4nm
+of:NphyT(null)Cqcom,sm8650-dsi-phy-4nm
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy/driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/uevent': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/modalias': No such file or directory
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/driver: No such file or directory
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/uevent': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/modalias': No such file or directory
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/driver: No such file or directory
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller
+total 0
+drwxr-xr-x    5 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dpu
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 drm
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 graphics
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/display-controller@ae01000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dpu
+OF_NAME=display-controller
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/display-controller@ae01000
+OF_COMPATIBLE_0=qcom,sm8650-dpu
+OF_COMPATIBLE_N=1
+MODALIAS=of:Ndisplay-controllerT(null)Cqcom,sm8650-dpu
+of:Ndisplay-controllerT(null)Cqcom,sm8650-dpu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/driver -> ../../../../../bus/platform/drivers/msm_dpu
+--- livetree dsi status ---
+/proc/device-tree/soc@0/display-subsystem@ae00000/dsi@ae94000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/phy@ae95000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/dsi@ae96000/status: disabled 
+/proc/device-tree/soc@0/display-subsystem@ae00000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/display-controller@ae01000/status: okay 
+--- find *dsi* *ae94* ---
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/ae94000.dsi.0
+/sys/devices/platform/display-panel-vddd-regulator/regulator/regulator.33/ae94000.dsi.0-vddd
+/sys/devices/platform/display-panel-vddd-regulator/regulator/regulator.33/consumer:mipi-dsi:ae94000.dsi.0
+/sys/devices/platform/display-panel-vddio-regulator/regulator/regulator.32/consumer:mipi-dsi:ae94000.dsi.0
+/sys/devices/platform/display-panel-vddio-regulator/regulator/regulator.32/ae94000.dsi.0-vddio
+--- dsi drivers ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi -> ../../../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae95000.phy -> ../../../../devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+--- try bind phy/dsi under mdss (once) ---
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy/driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/driver -> ../../../../../bus/platform/drivers/msm_dsi
+--- dmesg dispcc/mdss/smmu/scm ---
+[    0.048391] iommu: Default domain type: Translated
+[    0.048396] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.049287] scmi_core: SCMI protocol bus registered
+[    0.146186] qcom_scm: convention: smc arm 64
+[    0.147422] qcom_scm firmware:scm: qseecom: found qseecom with version 0x1402000
+[    0.147443] qcom_scm firmware:scm: qseecom: untested machine, skipping
+[    0.160374] arm-smmu 15000000.iommu: probing hardware configuration...
+[    0.160390] arm-smmu 15000000.iommu: SMMUv2 with:
+[    0.160418] arm-smmu 15000000.iommu: 	stage 1 translation
+[    0.160425] arm-smmu 15000000.iommu: 	coherent table walk
+[    0.160433] arm-smmu 15000000.iommu: 	stream matching with 107 register groups
+[    0.160448] arm-smmu 15000000.iommu: 	71 context banks (0 stage-2 only)
+[    0.161076] arm-smmu 15000000.iommu: 	Supported page sizes: 0x61311000
+[    0.161083] arm-smmu 15000000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+[    0.161137] arm-smmu 15000000.iommu: 	preserved 0 boot mappings
+[    0.162724] platform ac0000.geniqup: Adding to iommu group 0
+[    0.162815] platform 1d84000.ufshc: Adding to iommu group 1
+[    0.162912] platform 1dc4000.dma-controller: Adding to iommu group 2
+[    0.162993] platform 1dfa000.crypto: Adding to iommu group 2
+[    0.163166] platform a600000.usb: Adding to iommu group 3
+[    0.163267] platform ae00000.display-subsystem: Adding to iommu group 4
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi -> ../../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae95000.phy -> ../../../devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+/dev/dri:
+total 0
+drwxr-xr-x    2 0        0               80 Jan  1 00:00 .
+drwxr-xr-x    8 0        0             5200 Jan  1 00:00 ..
+crw-rw----    1 0        0         226,   0 Jan  1 00:00 card0
+crw-rw----    1 0        0         226, 128 Jan  1 00:00 renderD128
+
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0-DSI-1 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0/card0-DSI-1
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0-Writeback-1 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0/card0-Writeback-1
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 renderD128 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/renderD128
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+crw-rw----    1 0        0          29,   0 Jan  1 00:00 /dev/fb0
+
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fb0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/graphics/fb0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- fb modes ---
+U:1116x2480p-0
+1116,2480
+32
+--- connectors ---
+## /sys/class/drm/card0-DSI-1
+connected
+enabled
+1116x2480
+## /sys/class/drm/card0-Writeback-1
+unknown
+disabled
+--- backlight ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi.0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/ae94000.dsi.0/backlight/ae94000.dsi.0
+## /sys/class/backlight/ae94000.dsi.0
+3515
+3515
+3515
+after-set:
+3515
+3515
+--- panel regulators ---
+vreg_l11b_1p2 enabled 1200000
+vreg_l12b_1p8 unknown 1800000
+vreg_l13b_3p0 enabled 3000000
+display_panel_vddio enabled 1800000
+display_panel_vddd enabled 1200000
+--- dmesg cerro/dsi/phy ---
+[    0.000000] cerro: baseline fallback memory 0xa0000000+0x10000000
+[    0.000000] cerro: BL initrd apply disabled; using embedded initramfs
+[    0.000000] cerro: post-memblock_init re-add 0xa0000000+0x10000000 memstart=fff10000a0000000 vabits=48
+[    0.085818] cerro: msm_drm_register enter modeset=1
+[    0.086027] cerro: msm_dsi_register: registering phy+ctrl drivers
+[    0.086219] cerro: msm_dsi_register done
+[    0.086615] cerro: msm_drm_register done
+[    0.187931] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.187986] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.188009] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.188091] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.188109] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.188116] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.188124] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=4)
+[    0.188158] msm_dpu ae01000.display-controller: cerro: msm add_mdp ok
+[    0.188328] msm_dpu ae01000.display-controller: cerro: msm add_gpu ok
+[    0.188336] msm_dpu ae01000.display-controller: cerro: msm dma_set_mask ok
+[    0.188343] msm_dpu ae01000.display-controller: cerro: msm calling component_master_add
+[    0.188358] msm_dpu ae01000.display-controller: cerro: msm component_master_add ok
+[    0.190568] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe enter (stop_after=1)
+[    0.191014] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe ok id=0
+[    0.339664] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe enter (stop_after=3)
+[    0.339857] msm_dsi ae94000.dsi: cerro: dsi_ctrl host_init ret=0
+[    0.339896] msm_dsi ae94000.dsi: cerro: dsi_ctrl get_phy ret=0
+[    0.340111] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe enter (stop_after=3)
+[    0.340467] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 panel_add ok
+[    0.340476] msm_dsi ae94000.dsi: [drm:dsi_host_attach] cerro: DSC slice_count=2 slice_per_pkt=2
+[    0.340497] msm_dpu ae01000.display-controller: cerro: msm_drm_bind enter (bind_stop=5)
+[    0.340505] msm_dpu ae01000.display-controller: cerro: msm_drm_init enter (bind_stop=5)
+[    0.340595] msm_dpu ae01000.display-controller: cerro: msm drm_dev_alloc ok
+[    0.340605] msm_dpu ae01000.display-controller: cerro: msm calling component_bind_all
+[    0.340627] msm_dpu ae01000.display-controller: bound ae94000.dsi (ops dsi_ops)
+[    0.340639] msm_dpu ae01000.display-controller: cerro: msm component_bind_all ok
+[    0.340647] msm_dpu ae01000.display-controller: cerro: msm calling shrinker_init
+[    0.340656] msm_dpu ae01000.display-controller: cerro: msm shrinker ok
+[    0.340663] msm_dpu ae01000.display-controller: cerro: msm calling kms_init
+[    0.353991] msm_dpu ae01000.display-controller: cerro: msm kms_init ok
+[    0.361816] cerro: msm_framebuffer_dirtyfb skip (dirtyfb_ref=1, CMD plane not armed)
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    2.381067] cerro: s5bq repush#1 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.048782] usbcore: registered new interface driver usbfs
+[    0.048792] usbcore: registered new interface driver hub
+[    0.048804] usbcore: registered new device driver usb
+[    0.084251] msm_serial: driver initialized
+[    0.085818] cerro: msm_drm_register enter modeset=1
+[    0.086027] cerro: msm_dsi_register: registering phy+ctrl drivers
+[    0.086219] cerro: msm_dsi_register done
+[    0.086615] cerro: msm_drm_register done
+[    0.103640] usbcore: registered new interface driver usb-storage
+[    0.117416] usbcore: registered new interface driver usbhid
+[    0.117418] usbhid: USB HID core driver
+[    0.150249] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+[    0.163166] platform a600000.usb: Adding to iommu group 3
+[    0.187931] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.187986] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.188009] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.188091] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.188109] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.188116] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.188124] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=4)
+[    0.188158] msm_dpu ae01000.display-controller: cerro: msm add_mdp ok
+[    0.188328] msm_dpu ae01000.display-controller: cerro: msm add_gpu ok
+[    0.188336] msm_dpu ae01000.display-controller: cerro: msm dma_set_mask ok
+[    0.188343] msm_dpu ae01000.display-controller: cerro: msm calling component_master_add
+[    0.188358] msm_dpu ae01000.display-controller: cerro: msm component_master_add ok
+[    0.190568] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe enter (stop_after=1)
+[    0.191014] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe ok id=0
+[    0.339664] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe enter (stop_after=3)
+[    0.339857] msm_dsi ae94000.dsi: cerro: dsi_ctrl host_init ret=0
+[    0.339896] msm_dsi ae94000.dsi: cerro: dsi_ctrl get_phy ret=0
+[    0.340111] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe enter (stop_after=3)
+[    0.340467] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 panel_add ok
+[    0.340476] msm_dsi ae94000.dsi: [drm:dsi_host_attach] cerro: DSC slice_count=2 slice_per_pkt=2
+[    0.340497] msm_dpu ae01000.display-controller: cerro: msm_drm_bind enter (bind_stop=5)
+[    0.340505] msm_dpu ae01000.display-controller: cerro: msm_drm_init enter (bind_stop=5)
+[    0.340595] msm_dpu ae01000.display-controller: cerro: msm drm_dev_alloc ok
+[    0.340605] msm_dpu ae01000.display-controller: cerro: msm calling component_bind_all
+[    0.340627] msm_dpu ae01000.display-controller: bound ae94000.dsi (ops dsi_ops)
+[    0.340639] msm_dpu ae01000.display-controller: cerro: msm component_bind_all ok
+[    0.340647] msm_dpu ae01000.display-controller: cerro: msm calling shrinker_init
+[    0.340656] msm_dpu ae01000.display-controller: cerro: msm shrinker ok
+[    0.340663] msm_dpu ae01000.display-controller: cerro: msm calling kms_init
+[    0.351462] [drm:dpu_kms_hw_init:1171] dpu hardware revision:0xa0000000
+[    0.351763] [drm] dpu: TE qcom,te-source=mdp_vsync_p vsync_source=0
+[    0.353991] msm_dpu ae01000.display-controller: cerro: msm kms_init ok
+[    0.354839] [drm] Initialized msm 1.13.0 for ae01000.display-controller on minor 0
+[    0.354895] msm_dpu ae01000.display-controller: no GPU device was found
+[    0.361816] cerro: msm_framebuffer_dirtyfb skip (dirtyfb_ref=1, CMD plane not armed)
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+--- last dmesg ---
+[    0.361521] scsi 0:0:0:5: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.361776] sd 0:0:0:4: [sde] 917504 4096-byte logical blocks: (3.76 GB/3.50 GiB)
+[    0.361816] cerro: msm_framebuffer_dirtyfb skip (dirtyfb_ref=1, CMD plane not armed)
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.361877] sd 0:0:0:4: [sde] Write Protect is off
+[    0.361893] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.361996] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.362098] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.362103] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.362648] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.362696] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.362697] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.362861] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.362945] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.362949] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.384292]  sdd: sdd1 sdd2 sdd3
+[    0.384508]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.384513]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.385446] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.385465]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.386418] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.386694] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.386694] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.396791]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.396896] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.397828]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.402467] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.910881] Console: switching to colour frame buffer device 139x155
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    0.939477] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    0.939977] clk: Not disabling unused clocks
+[    0.939981] PM: genpd: Not disabling unused power domains
+[    0.940247] Warning: unable to open an initial console.
+[    0.941812] Freeing unused kernel memory: 16512K
+[    0.941873] Run /init as init process
+[    0.941878]   with arguments:
+[    0.941880]     /init
+[    0.941882]   with environment:
+[    0.941884]     HOME=/
+[    0.941887]     TERM=linux
+[    0.941889]     cerro_dtb=s5bq
+[    2.381067] cerro: s5bq repush#1 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    4.519714] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.520666] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+==== CERRO USB DIAG uptime=25.74 204.34 ====
+cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=off deferred_probe_timeout=60 cerro_dtb=s5bq
+Linux (none) 7.2.0-rc5-dirty #297 SMP PREEMPT Fri Aug 14 20:44:50 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+ae01000.display-controller
+ae94000.dsi
+ae95000.phy
+driver
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3da0000.iommu/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3d90000.clock-controller/waiting_for_supplier': No such file or directory
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae00000.display-subsystem -> ../../../../devices/platform/soc@0/ae00000.display-subsystem
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ae00000.display-subsystem
+bind
+module
+uevent
+unbind
+15000000.iommu
+module
+uevent
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+a90000.spi	geni_spi: Failed to get tx DMA ch
+--- apps_smmu/dispcc/mdss sysfs ---
+## 15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/15000000.iommu/driver -> ../../../../bus/platform/drivers/arm-smmu
+DRIVER=arm-smmu
+OF_NAME=iommu
+OF_FULLNAME=/soc@0/iommu@15000000
+OF_COMPATIBLE_0=qcom,sm8650-smmu-500
+OF_COMPATIBLE_1=qcom,smmu-500
+OF_COMPATIBLE_2=arm,mmu-500
+OF_COMPATIBLE_N=3
+MODALIAS=of:NiommuT(null)Cqcom,sm8650-smmu-500Cqcom,smmu-500Carm,mmu-500
+of:NiommuT(null)Cqcom,sm8650-smmu-500Cqcom,smmu-500Carm,mmu-500
+cat: can't open '/sys/devices/platform/soc@0/15000000.iommu/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/15000000.iommu/supplier:*: No such file or directory
+/sys/devices/platform/soc@0/15000000.iommu/consumer:platform:1d84000.ufshc:
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+
+## af00000.clock-controller
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/af00000.clock-controller/driver -> ../../../../bus/platform/drivers/disp_cc-sm8550
+DRIVER=disp_cc-sm8550
+OF_NAME=clock-controller
+OF_FULLNAME=/soc@0/clock-controller@af00000
+OF_COMPATIBLE_0=qcom,sm8650-dispcc
+OF_COMPATIBLE_N=1
+MODALIAS=of:Nclock-controllerT(null)Cqcom,sm8650-dispcc
+of:Nclock-controllerT(null)Cqcom,sm8650-dispcc
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/consumer:*: No such file or directory
+## ae00000.display-subsystem
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/driver -> ../../../../bus/platform/drivers/msm-mdss
+DRIVER=msm-mdss
+OF_NAME=display-subsystem
+OF_FULLNAME=/soc@0/display-subsystem@ae00000
+OF_COMPATIBLE_0=qcom,sm8650-mdss
+OF_COMPATIBLE_N=1
+MODALIAS=of:Ndisplay-subsystemT(null)Cqcom,sm8650-mdss
+of:Ndisplay-subsystemT(null)Cqcom,sm8650-mdss
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/consumer:*: No such file or directory
+--- mdss children (sysfs) ---
+total 0
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   63 0        0                0 Jan  1 00:00 ..
+drwxr-xr-x    5 0        0                0 Jan  1 00:00 ae01000.display-controller
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 ae94000.dsi
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 ae95000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../bus/platform/drivers/msm-mdss
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 iommu -> ../15000000.iommu/iommu/smmu.0x0000000015000000
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 iommu_group -> ../../../../kernel/iommu_groups/4
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:platform:15000000.iommu -> ../../../virtual/devlink/platform:15000000.iommu--platform:ae00000.display-subsystem
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+--- dsi/phy under mdss ---
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+total 0
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 ae94000.dsi.0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dsi
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/dsi@ae94000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:regulator:regulator.20 -> ../../../../virtual/devlink/regulator:regulator.20--platform:ae94000.dsi
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dsi
+OF_NAME=dsi
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/dsi@ae94000
+OF_COMPATIBLE_0=qcom,sm8650-dsi-ctrl
+OF_COMPATIBLE_1=qcom,mdss-dsi-ctrl
+OF_COMPATIBLE_N=2
+MODALIAS=of:NdsiT(null)Cqcom,sm8650-dsi-ctrlCqcom,mdss-dsi-ctrl
+of:NdsiT(null)Cqcom,sm8650-dsi-ctrlCqcom,mdss-dsi-ctrl
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/driver -> ../../../../../bus/platform/drivers/msm_dsi
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+total 0
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/phy@ae95000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:regulator:regulator.14 -> ../../../../virtual/devlink/regulator:regulator.14--platform:ae95000.phy
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dsi_phy
+OF_NAME=phy
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/phy@ae95000
+OF_COMPATIBLE_0=qcom,sm8650-dsi-phy-4nm
+OF_COMPATIBLE_N=1
+MODALIAS=of:NphyT(null)Cqcom,sm8650-dsi-phy-4nm
+of:NphyT(null)Cqcom,sm8650-dsi-phy-4nm
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy/driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/uevent': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/modalias': No such file or directory
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/driver: No such file or directory
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/uevent': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/modalias': No such file or directory
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/driver: No such file or directory
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller
+total 0
+drwxr-xr-x    5 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dpu
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 drm
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 graphics
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/display-controller@ae01000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dpu
+OF_NAME=display-controller
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/display-controller@ae01000
+OF_COMPATIBLE_0=qcom,sm8650-dpu
+OF_COMPATIBLE_N=1
+MODALIAS=of:Ndisplay-controllerT(null)Cqcom,sm8650-dpu
+of:Ndisplay-controllerT(null)Cqcom,sm8650-dpu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/driver -> ../../../../../bus/platform/drivers/msm_dpu
+--- livetree dsi status ---
+/proc/device-tree/soc@0/display-subsystem@ae00000/dsi@ae94000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/phy@ae95000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/dsi@ae96000/status: disabled 
+/proc/device-tree/soc@0/display-subsystem@ae00000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/display-controller@ae01000/status: okay 
+--- find *dsi* *ae94* ---
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/ae94000.dsi.0
+/sys/devices/platform/display-panel-vddd-regulator/regulator/regulator.33/ae94000.dsi.0-vddd
+/sys/devices/platform/display-panel-vddd-regulator/regulator/regulator.33/consumer:mipi-dsi:ae94000.dsi.0
+/sys/devices/platform/display-panel-vddio-regulator/regulator/regulator.32/consumer:mipi-dsi:ae94000.dsi.0
+/sys/devices/platform/display-panel-vddio-regulator/regulator/regulator.32/ae94000.dsi.0-vddio
+--- dsi drivers ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi -> ../../../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae95000.phy -> ../../../../devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+--- try bind phy/dsi under mdss (once) ---
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy/driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/driver -> ../../../../../bus/platform/drivers/msm_dsi
+--- dmesg dispcc/mdss/smmu/scm ---
+[    0.048391] iommu: Default domain type: Translated
+[    0.048396] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.049287] scmi_core: SCMI protocol bus registered
+[    0.146186] qcom_scm: convention: smc arm 64
+[    0.147422] qcom_scm firmware:scm: qseecom: found qseecom with version 0x1402000
+[    0.147443] qcom_scm firmware:scm: qseecom: untested machine, skipping
+[    0.160374] arm-smmu 15000000.iommu: probing hardware configuration...
+[    0.160390] arm-smmu 15000000.iommu: SMMUv2 with:
+[    0.160418] arm-smmu 15000000.iommu: 	stage 1 translation
+[    0.160425] arm-smmu 15000000.iommu: 	coherent table walk
+[    0.160433] arm-smmu 15000000.iommu: 	stream matching with 107 register groups
+[    0.160448] arm-smmu 15000000.iommu: 	71 context banks (0 stage-2 only)
+[    0.161076] arm-smmu 15000000.iommu: 	Supported page sizes: 0x61311000
+[    0.161083] arm-smmu 15000000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+[    0.161137] arm-smmu 15000000.iommu: 	preserved 0 boot mappings
+[    0.162724] platform ac0000.geniqup: Adding to iommu group 0
+[    0.162815] platform 1d84000.ufshc: Adding to iommu group 1
+[    0.162912] platform 1dc4000.dma-controller: Adding to iommu group 2
+[    0.162993] platform 1dfa000.crypto: Adding to iommu group 2
+[    0.163166] platform a600000.usb: Adding to iommu group 3
+[    0.163267] platform ae00000.display-subsystem: Adding to iommu group 4
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi -> ../../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae95000.phy -> ../../../devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+/dev/dri:
+total 0
+drwxr-xr-x    2 0        0               80 Jan  1 00:00 .
+drwxr-xr-x    8 0        0             5200 Jan  1 00:00 ..
+crw-rw----    1 0        0         226,   0 Jan  1 00:00 card0
+crw-rw----    1 0        0         226, 128 Jan  1 00:00 renderD128
+
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0-DSI-1 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0/card0-DSI-1
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0-Writeback-1 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0/card0-Writeback-1
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 renderD128 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/renderD128
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+crw-rw----    1 0        0          29,   0 Jan  1 00:00 /dev/fb0
+
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fb0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/graphics/fb0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- fb modes ---
+U:1116x2480p-0
+1116,2480
+32
+--- connectors ---
+## /sys/class/drm/card0-DSI-1
+connected
+enabled
+1116x2480
+## /sys/class/drm/card0-Writeback-1
+unknown
+disabled
+--- backlight ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi.0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/ae94000.dsi.0/backlight/ae94000.dsi.0
+## /sys/class/backlight/ae94000.dsi.0
+3515
+3515
+3515
+after-set:
+3515
+3515
+--- panel regulators ---
+vreg_l11b_1p2 enabled 1200000
+vreg_l12b_1p8 unknown 1800000
+vreg_l13b_3p0 enabled 3000000
+display_panel_vddio enabled 1800000
+display_panel_vddd enabled 1200000
+--- dmesg cerro/dsi/phy ---
+[    0.000000] cerro: baseline fallback memory 0xa0000000+0x10000000
+[    0.000000] cerro: BL initrd apply disabled; using embedded initramfs
+[    0.000000] cerro: post-memblock_init re-add 0xa0000000+0x10000000 memstart=fff10000a0000000 vabits=48
+[    0.085818] cerro: msm_drm_register enter modeset=1
+[    0.086027] cerro: msm_dsi_register: registering phy+ctrl drivers
+[    0.086219] cerro: msm_dsi_register done
+[    0.086615] cerro: msm_drm_register done
+[    0.187931] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.187986] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.188009] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.188091] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.188109] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.188116] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.188124] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=4)
+[    0.188158] msm_dpu ae01000.display-controller: cerro: msm add_mdp ok
+[    0.188328] msm_dpu ae01000.display-controller: cerro: msm add_gpu ok
+[    0.188336] msm_dpu ae01000.display-controller: cerro: msm dma_set_mask ok
+[    0.188343] msm_dpu ae01000.display-controller: cerro: msm calling component_master_add
+[    0.188358] msm_dpu ae01000.display-controller: cerro: msm component_master_add ok
+[    0.190568] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe enter (stop_after=1)
+[    0.191014] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe ok id=0
+[    0.339664] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe enter (stop_after=3)
+[    0.339857] msm_dsi ae94000.dsi: cerro: dsi_ctrl host_init ret=0
+[    0.339896] msm_dsi ae94000.dsi: cerro: dsi_ctrl get_phy ret=0
+[    0.340111] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe enter (stop_after=3)
+[    0.340467] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 panel_add ok
+[    0.340476] msm_dsi ae94000.dsi: [drm:dsi_host_attach] cerro: DSC slice_count=2 slice_per_pkt=2
+[    0.340497] msm_dpu ae01000.display-controller: cerro: msm_drm_bind enter (bind_stop=5)
+[    0.340505] msm_dpu ae01000.display-controller: cerro: msm_drm_init enter (bind_stop=5)
+[    0.340595] msm_dpu ae01000.display-controller: cerro: msm drm_dev_alloc ok
+[    0.340605] msm_dpu ae01000.display-controller: cerro: msm calling component_bind_all
+[    0.340627] msm_dpu ae01000.display-controller: bound ae94000.dsi (ops dsi_ops)
+[    0.340639] msm_dpu ae01000.display-controller: cerro: msm component_bind_all ok
+[    0.340647] msm_dpu ae01000.display-controller: cerro: msm calling shrinker_init
+[    0.340656] msm_dpu ae01000.display-controller: cerro: msm shrinker ok
+[    0.340663] msm_dpu ae01000.display-controller: cerro: msm calling kms_init
+[    0.353991] msm_dpu ae01000.display-controller: cerro: msm kms_init ok
+[    0.361816] cerro: msm_framebuffer_dirtyfb skip (dirtyfb_ref=1, CMD plane not armed)
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    2.381067] cerro: s5bq repush#1 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    5.682219] cerro: s5bq repush#2 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    8.959761] cerro: s5bq repush#3 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[   25.860803] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.048782] usbcore: registered new interface driver usbfs
+[    0.048792] usbcore: registered new interface driver hub
+[    0.048804] usbcore: registered new device driver usb
+[    0.084251] msm_serial: driver initialized
+[    0.085818] cerro: msm_drm_register enter modeset=1
+[    0.086027] cerro: msm_dsi_register: registering phy+ctrl drivers
+[    0.086219] cerro: msm_dsi_register done
+[    0.086615] cerro: msm_drm_register done
+[    0.103640] usbcore: registered new interface driver usb-storage
+[    0.117416] usbcore: registered new interface driver usbhid
+[    0.117418] usbhid: USB HID core driver
+[    0.150249] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+[    0.163166] platform a600000.usb: Adding to iommu group 3
+[    0.187931] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.187986] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.188009] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.188091] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.188109] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.188116] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.188124] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=4)
+[    0.188158] msm_dpu ae01000.display-controller: cerro: msm add_mdp ok
+[    0.188328] msm_dpu ae01000.display-controller: cerro: msm add_gpu ok
+[    0.188336] msm_dpu ae01000.display-controller: cerro: msm dma_set_mask ok
+[    0.188343] msm_dpu ae01000.display-controller: cerro: msm calling component_master_add
+[    0.188358] msm_dpu ae01000.display-controller: cerro: msm component_master_add ok
+[    0.190568] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe enter (stop_after=1)
+[    0.191014] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe ok id=0
+[    0.339664] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe enter (stop_after=3)
+[    0.339857] msm_dsi ae94000.dsi: cerro: dsi_ctrl host_init ret=0
+[    0.339896] msm_dsi ae94000.dsi: cerro: dsi_ctrl get_phy ret=0
+[    0.340111] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe enter (stop_after=3)
+[    0.340467] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 panel_add ok
+[    0.340476] msm_dsi ae94000.dsi: [drm:dsi_host_attach] cerro: DSC slice_count=2 slice_per_pkt=2
+[    0.340497] msm_dpu ae01000.display-controller: cerro: msm_drm_bind enter (bind_stop=5)
+[    0.340505] msm_dpu ae01000.display-controller: cerro: msm_drm_init enter (bind_stop=5)
+[    0.340595] msm_dpu ae01000.display-controller: cerro: msm drm_dev_alloc ok
+[    0.340605] msm_dpu ae01000.display-controller: cerro: msm calling component_bind_all
+[    0.340627] msm_dpu ae01000.display-controller: bound ae94000.dsi (ops dsi_ops)
+[    0.340639] msm_dpu ae01000.display-controller: cerro: msm component_bind_all ok
+[    0.340647] msm_dpu ae01000.display-controller: cerro: msm calling shrinker_init
+[    0.340656] msm_dpu ae01000.display-controller: cerro: msm shrinker ok
+[    0.340663] msm_dpu ae01000.display-controller: cerro: msm calling kms_init
+[    0.351462] [drm:dpu_kms_hw_init:1171] dpu hardware revision:0xa0000000
+[    0.351763] [drm] dpu: TE qcom,te-source=mdp_vsync_p vsync_source=0
+[    0.353991] msm_dpu ae01000.display-controller: cerro: msm kms_init ok
+[    0.354839] [drm] Initialized msm 1.13.0 for ae01000.display-controller on minor 0
+[    0.354895] msm_dpu ae01000.display-controller: no GPU device was found
+[    0.361816] cerro: msm_framebuffer_dirtyfb skip (dirtyfb_ref=1, CMD plane not armed)
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[   25.860803] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+--- last dmesg ---
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.361877] sd 0:0:0:4: [sde] Write Protect is off
+[    0.361893] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.361996] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.362098] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.362103] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.362648] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.362696] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.362697] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.362861] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.362945] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.362949] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.384292]  sdd: sdd1 sdd2 sdd3
+[    0.384508]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.384513]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.385446] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.385465]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.386418] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.386694] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.386694] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.396791]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.396896] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.397828]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.402467] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.910881] Console: switching to colour frame buffer device 139x155
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    0.939477] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    0.939977] clk: Not disabling unused clocks
+[    0.939981] PM: genpd: Not disabling unused power domains
+[    0.940247] Warning: unable to open an initial console.
+[    0.941812] Freeing unused kernel memory: 16512K
+[    0.941873] Run /init as init process
+[    0.941878]   with arguments:
+[    0.941880]     /init
+[    0.941882]   with environment:
+[    0.941884]     HOME=/
+[    0.941887]     TERM=linux
+[    0.941889]     cerro_dtb=s5bq
+[    2.381067] cerro: s5bq repush#1 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    4.519714] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.520666] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    5.682219] cerro: s5bq repush#2 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    8.959761] cerro: s5bq repush#3 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[   25.860803] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0
+[cerro-usb] host cmd ignored: ==== cerro usb diag uptime=4    :    1 0         .atuses0
+==== CERRO USB DIAG uptime=33.93 269.61 ====
+cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=off deferred_probe_timeout=60 cerro_dtb=s5bq
+Linux (none) 7.2.0-rc5-dirty #297 SMP PREEMPT Fri Aug 14 20:44:50 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+ae01000.display-controller
+ae94000.dsi
+ae95000.phy
+driver
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3da0000.iommu/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3d90000.clock-controller/waiting_for_supplier': No such file or directory
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae00000.display-subsystem -> ../../../../devices/platform/soc@0/ae00000.display-subsystem
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ae00000.display-subsystem
+bind
+module
+uevent
+unbind
+15000000.iommu
+module
+uevent
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+a90000.spi	geni_spi: Failed to get tx DMA ch
+--- apps_smmu/dispcc/mdss sysfs ---
+## 15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/15000000.iommu/driver -> ../../../../bus/platform/drivers/arm-smmu
+DRIVER=arm-smmu
+OF_NAME=iommu
+OF_FULLNAME=/soc@0/iommu@15000000
+OF_COMPATIBLE_0=qcom,sm8650-smmu-500
+OF_COMPATIBLE_1=qcom,smmu-500
+OF_COMPATIBLE_2=arm,mmu-500
+OF_COMPATIBLE_N=3
+MODALIAS=of:NiommuT(null)Cqcom,sm8650-smmu-500Cqcom,smmu-500Carm,mmu-500
+of:NiommuT(null)Cqcom,sm8650-smmu-500Cqcom,smmu-500Carm,mmu-500
+cat: can't open '/sys/devices/platform/soc@0/15000000.iommu/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/15000000.iommu/supplier:*: No such file or directory
+/sys/devices/platform/soc@0/15000000.iommu/consumer:platform:1d84000.ufshc:
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+
+## af00000.clock-controller
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/af00000.clock-controller/driver -> ../../../../bus/platform/drivers/disp_cc-sm8550
+DRIVER=disp_cc-sm8550
+OF_NAME=clock-controller
+OF_FULLNAME=/soc@0/clock-controller@af00000
+OF_COMPATIBLE_0=qcom,sm8650-dispcc
+OF_COMPATIBLE_N=1
+MODALIAS=of:Nclock-controllerT(null)Cqcom,sm8650-dispcc
+of:Nclock-controllerT(null)Cqcom,sm8650-dispcc
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/consumer:*: No such file or directory
+## ae00000.display-subsystem
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/driver -> ../../../../bus/platform/drivers/msm-mdss
+DRIVER=msm-mdss
+OF_NAME=display-subsystem
+OF_FULLNAME=/soc@0/display-subsystem@ae00000
+OF_COMPATIBLE_0=qcom,sm8650-mdss
+OF_COMPATIBLE_N=1
+MODALIAS=of:Ndisplay-subsystemT(null)Cqcom,sm8650-mdss
+of:Ndisplay-subsystemT(null)Cqcom,sm8650-mdss
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/consumer:*: No such file or directory
+--- mdss children (sysfs) ---
+total 0
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   63 0        0                0 Jan  1 00:00 ..
+drwxr-xr-x    5 0        0                0 Jan  1 00:00 ae01000.display-controller
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 ae94000.dsi
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 ae95000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../bus/platform/drivers/msm-mdss
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 iommu -> ../15000000.iommu/iommu/smmu.0x0000000015000000
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 iommu_group -> ../../../../kernel/iommu_groups/4
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:platform:15000000.iommu -> ../../../virtual/devlink/platform:15000000.iommu--platform:ae00000.display-subsystem
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+--- dsi/phy under mdss ---
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+total 0
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 ae94000.dsi.0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dsi
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/dsi@ae94000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:regulator:regulator.20 -> ../../../../virtual/devlink/regulator:regulator.20--platform:ae94000.dsi
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dsi
+OF_NAME=dsi
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/dsi@ae94000
+OF_COMPATIBLE_0=qcom,sm8650-dsi-ctrl
+OF_COMPATIBLE_1=qcom,mdss-dsi-ctrl
+OF_COMPATIBLE_N=2
+MODALIAS=of:NdsiT(null)Cqcom,sm8650-dsi-ctrlCqcom,mdss-dsi-ctrl
+of:NdsiT(null)Cqcom,sm8650-dsi-ctrlCqcom,mdss-dsi-ctrl
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/driver -> ../../../../../bus/platform/drivers/msm_dsi
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+total 0
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/phy@ae95000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 supplier:regulator:regulator.14 -> ../../../../virtual/devlink/regulator:regulator.14--platform:ae95000.phy
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dsi_phy
+OF_NAME=phy
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/phy@ae95000
+OF_COMPATIBLE_0=qcom,sm8650-dsi-phy-4nm
+OF_COMPATIBLE_N=1
+MODALIAS=of:NphyT(null)Cqcom,sm8650-dsi-phy-4nm
+of:NphyT(null)Cqcom,sm8650-dsi-phy-4nm
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy/driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/uevent': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/modalias': No such file or directory
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae96000.dsi/driver: No such file or directory
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/uevent': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/modalias': No such file or directory
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/ae97000.phy/driver: No such file or directory
+## /sys/devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller
+total 0
+drwxr-xr-x    5 0        0                0 Jan  1 00:00 .
+drwxr-xr-x    6 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 driver -> ../../../../../bus/platform/drivers/msm_dpu
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 driver_override
+drwxr-xr-x    4 0        0                0 Jan  1 00:00 drm
+drwxr-xr-x    3 0        0                0 Jan  1 00:00 graphics
+-r--r--r--    1 0        0             4096 Jan  1 00:00 modalias
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 of_node -> ../../../../../firmware/devicetree/base/soc@0/display-subsystem@ae00000/display-controller@ae01000
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 power
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 subsystem -> ../../../../../bus/platform
+-rw-r--r--    1 0        0             4096 Jan  1 00:00 uevent
+DRIVER=msm_dpu
+OF_NAME=display-controller
+OF_FULLNAME=/soc@0/display-subsystem@ae00000/display-controller@ae01000
+OF_COMPATIBLE_0=qcom,sm8650-dpu
+OF_COMPATIBLE_N=1
+MODALIAS=of:Ndisplay-controllerT(null)Cqcom,sm8650-dpu
+of:Ndisplay-controllerT(null)Cqcom,sm8650-dpu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/driver -> ../../../../../bus/platform/drivers/msm_dpu
+--- livetree dsi status ---
+/proc/device-tree/soc@0/display-subsystem@ae00000/dsi@ae94000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/phy@ae95000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/dsi@ae96000/status: disabled 
+/proc/device-tree/soc@0/display-subsystem@ae00000/status: okay 
+/proc/device-tree/soc@0/display-subsystem@ae00000/display-controller@ae01000/status: okay 
+--- find *dsi* *ae94* ---
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+/sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/ae94000.dsi.0
+/sys/devices/platform/display-panel-vddd-regulator/regulator/regulator.33/ae94000.dsi.0-vddd
+/sys/devices/platform/display-panel-vddd-regulator/regulator/regulator.33/consumer:mipi-dsi:ae94000.dsi.0
+/sys/devices/platform/display-panel-vddio-regulator/regulator/regulator.32/consumer:mipi-dsi:ae94000.dsi.0
+/sys/devices/platform/display-panel-vddio-regulator/regulator/regulator.32/ae94000.dsi.0-vddio
+--- dsi drivers ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi -> ../../../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae95000.phy -> ../../../../devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+--- try bind phy/dsi under mdss (once) ---
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy/driver -> ../../../../../bus/platform/drivers/msm_dsi_phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/driver -> ../../../../../bus/platform/drivers/msm_dsi
+--- dmesg dispcc/mdss/smmu/scm ---
+[    0.048391] iommu: Default domain type: Translated
+[    0.048396] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.049287] scmi_core: SCMI protocol bus registered
+[    0.146186] qcom_scm: convention: smc arm 64
+[    0.147422] qcom_scm firmware:scm: qseecom: found qseecom with version 0x1402000
+[    0.147443] qcom_scm firmware:scm: qseecom: untested machine, skipping
+[    0.160374] arm-smmu 15000000.iommu: probing hardware configuration...
+[    0.160390] arm-smmu 15000000.iommu: SMMUv2 with:
+[    0.160418] arm-smmu 15000000.iommu: 	stage 1 translation
+[    0.160425] arm-smmu 15000000.iommu: 	coherent table walk
+[    0.160433] arm-smmu 15000000.iommu: 	stream matching with 107 register groups
+[    0.160448] arm-smmu 15000000.iommu: 	71 context banks (0 stage-2 only)
+[    0.161076] arm-smmu 15000000.iommu: 	Supported page sizes: 0x61311000
+[    0.161083] arm-smmu 15000000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+[    0.161137] arm-smmu 15000000.iommu: 	preserved 0 boot mappings
+[    0.162724] platform ac0000.geniqup: Adding to iommu group 0
+[    0.162815] platform 1d84000.ufshc: Adding to iommu group 1
+[    0.162912] platform 1dc4000.dma-controller: Adding to iommu group 2
+[    0.162993] platform 1dfa000.crypto: Adding to iommu group 2
+[    0.163166] platform a600000.usb: Adding to iommu group 3
+[    0.163267] platform ae00000.display-subsystem: Adding to iommu group 4
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi -> ../../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae95000.phy -> ../../../devices/platform/soc@0/ae00000.display-subsystem/ae95000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+/dev/dri:
+total 0
+drwxr-xr-x    2 0        0               80 Jan  1 00:00 .
+drwxr-xr-x    8 0        0             5200 Jan  1 00:00 ..
+crw-rw----    1 0        0         226,   0 Jan  1 00:00 card0
+crw-rw----    1 0        0         226, 128 Jan  1 00:00 renderD128
+
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0-DSI-1 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0/card0-DSI-1
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 card0-Writeback-1 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/card0/card0-Writeback-1
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 renderD128 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/drm/renderD128
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+crw-rw----    1 0        0          29,   0 Jan  1 00:00 /dev/fb0
+
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fb0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae01000.display-controller/graphics/fb0
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- fb modes ---
+U:1116x2480p-0
+1116,2480
+32
+--- connectors ---
+## /sys/class/drm/card0-DSI-1
+connected
+enabled
+1116x2480
+## /sys/class/drm/card0-Writeback-1
+unknown
+disabled
+--- backlight ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae94000.dsi.0 -> ../../devices/platform/soc@0/ae00000.display-subsystem/ae94000.dsi/ae94000.dsi.0/backlight/ae94000.dsi.0
+## /sys/class/backlight/ae94000.dsi.0
+3515
+3515
+3515
+after-set:
+3515
+3515
+--- panel regulators ---
+vreg_l11b_1p2 enabled 1200000
+vreg_l12b_1p8 unknown 1800000
+vreg_l13b_3p0 enabled 3000000
+display_panel_vddio enabled 1800000
+display_panel_vddd enabled 1200000
+--- dmesg cerro/dsi/phy ---
+[    0.000000] cerro: baseline fallback memory 0xa0000000+0x10000000
+[    0.000000] cerro: BL initrd apply disabled; using embedded initramfs
+[    0.000000] cerro: post-memblock_init re-add 0xa0000000+0x10000000 memstart=fff10000a0000000 vabits=48
+[    0.085818] cerro: msm_drm_register enter modeset=1
+[    0.086027] cerro: msm_dsi_register: registering phy+ctrl drivers
+[    0.086219] cerro: msm_dsi_register done
+[    0.086615] cerro: msm_drm_register done
+[    0.187931] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.187986] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.188009] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.188091] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.188109] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.188116] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.188124] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=4)
+[    0.188158] msm_dpu ae01000.display-controller: cerro: msm add_mdp ok
+[    0.188328] msm_dpu ae01000.display-controller: cerro: msm add_gpu ok
+[    0.188336] msm_dpu ae01000.display-controller: cerro: msm dma_set_mask ok
+[    0.188343] msm_dpu ae01000.display-controller: cerro: msm calling component_master_add
+[    0.188358] msm_dpu ae01000.display-controller: cerro: msm component_master_add ok
+[    0.190568] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe enter (stop_after=1)
+[    0.191014] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe ok id=0
+[    0.339664] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe enter (stop_after=3)
+[    0.339857] msm_dsi ae94000.dsi: cerro: dsi_ctrl host_init ret=0
+[    0.339896] msm_dsi ae94000.dsi: cerro: dsi_ctrl get_phy ret=0
+[    0.340111] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe enter (stop_after=3)
+[    0.340467] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 panel_add ok
+[    0.340476] msm_dsi ae94000.dsi: [drm:dsi_host_attach] cerro: DSC slice_count=2 slice_per_pkt=2
+[    0.340497] msm_dpu ae01000.display-controller: cerro: msm_drm_bind enter (bind_stop=5)
+[    0.340505] msm_dpu ae01000.display-controller: cerro: msm_drm_init enter (bind_stop=5)
+[    0.340595] msm_dpu ae01000.display-controller: cerro: msm drm_dev_alloc ok
+[    0.340605] msm_dpu ae01000.display-controller: cerro: msm calling component_bind_all
+[    0.340627] msm_dpu ae01000.display-controller: bound ae94000.dsi (ops dsi_ops)
+[    0.340639] msm_dpu ae01000.display-controller: cerro: msm component_bind_all ok
+[    0.340647] msm_dpu ae01000.display-controller: cerro: msm calling shrinker_init
+[    0.340656] msm_dpu ae01000.display-controller: cerro: msm shrinker ok
+[    0.340663] msm_dpu ae01000.display-controller: cerro: msm calling kms_init
+[    0.353991] msm_dpu ae01000.display-controller: cerro: msm kms_init ok
+[    0.361816] cerro: msm_framebuffer_dirtyfb skip (dirtyfb_ref=1, CMD plane not armed)
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    2.381067] cerro: s5bq repush#1 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    5.682219] cerro: s5bq repush#2 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    8.959761] cerro: s5bq repush#3 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[   25.860803] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[   34.029905] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.048782] usbcore: registered new interface driver usbfs
+[    0.048792] usbcore: registered new interface driver hub
+[    0.048804] usbcore: registered new device driver usb
+[    0.084251] msm_serial: driver initialized
+[    0.085818] cerro: msm_drm_register enter modeset=1
+[    0.086027] cerro: msm_dsi_register: registering phy+ctrl drivers
+[    0.086219] cerro: msm_dsi_register done
+[    0.086615] cerro: msm_drm_register done
+[    0.103640] usbcore: registered new interface driver usb-storage
+[    0.117416] usbcore: registered new interface driver usbhid
+[    0.117418] usbhid: USB HID core driver
+[    0.150249] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+[    0.163166] platform a600000.usb: Adding to iommu group 3
+[    0.187931] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.187986] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.188009] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.188091] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.188109] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.188116] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.188124] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=4)
+[    0.188158] msm_dpu ae01000.display-controller: cerro: msm add_mdp ok
+[    0.188328] msm_dpu ae01000.display-controller: cerro: msm add_gpu ok
+[    0.188336] msm_dpu ae01000.display-controller: cerro: msm dma_set_mask ok
+[    0.188343] msm_dpu ae01000.display-controller: cerro: msm calling component_master_add
+[    0.188358] msm_dpu ae01000.display-controller: cerro: msm component_master_add ok
+[    0.190568] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe enter (stop_after=1)
+[    0.191014] msm_dsi_phy ae95000.phy: cerro: dsi_phy probe ok id=0
+[    0.339664] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe enter (stop_after=3)
+[    0.339857] msm_dsi ae94000.dsi: cerro: dsi_ctrl host_init ret=0
+[    0.339896] msm_dsi ae94000.dsi: cerro: dsi_ctrl get_phy ret=0
+[    0.340111] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe enter (stop_after=3)
+[    0.340467] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 panel_add ok
+[    0.340476] msm_dsi ae94000.dsi: [drm:dsi_host_attach] cerro: DSC slice_count=2 slice_per_pkt=2
+[    0.340497] msm_dpu ae01000.display-controller: cerro: msm_drm_bind enter (bind_stop=5)
+[    0.340505] msm_dpu ae01000.display-controller: cerro: msm_drm_init enter (bind_stop=5)
+[    0.340595] msm_dpu ae01000.display-controller: cerro: msm drm_dev_alloc ok
+[    0.340605] msm_dpu ae01000.display-controller: cerro: msm calling component_bind_all
+[    0.340627] msm_dpu ae01000.display-controller: bound ae94000.dsi (ops dsi_ops)
+[    0.340639] msm_dpu ae01000.display-controller: cerro: msm component_bind_all ok
+[    0.340647] msm_dpu ae01000.display-controller: cerro: msm calling shrinker_init
+[    0.340656] msm_dpu ae01000.display-controller: cerro: msm shrinker ok
+[    0.340663] msm_dpu ae01000.display-controller: cerro: msm calling kms_init
+[    0.351462] [drm:dpu_kms_hw_init:1171] dpu hardware revision:0xa0000000
+[    0.351763] [drm] dpu: TE qcom,te-source=mdp_vsync_p vsync_source=0
+[    0.353991] msm_dpu ae01000.display-controller: cerro: msm kms_init ok
+[    0.354839] [drm] Initialized msm 1.13.0 for ae01000.display-controller on minor 0
+[    0.354895] msm_dpu ae01000.display-controller: no GPU device was found
+[    0.361816] cerro: msm_framebuffer_dirtyfb skip (dirtyfb_ref=1, CMD plane not armed)
+[    0.361834] cerro: msm_fbdev mapped+white-filled 1116x2480 size=11112448 iova=0x2000 flags=0x200004 (s5bq setup_rc)
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[   25.860803] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[   34.029905] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+--- last dmesg ---
+[    0.361877] sd 0:0:0:4: [sde] Write Protect is off
+[    0.361893] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.361996] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.362098] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.362103] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.362648] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.362696] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.362697] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.362861] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.362945] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.362949] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.384292]  sdd: sdd1 sdd2 sdd3
+[    0.384508]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.384513]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.385446] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.385465]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.386294] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 prepare (stop_after=3)
+[    0.386418] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.386694] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.386694] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.396791]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.396896] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.397828]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.402467] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.465517] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 regulators+reset ok (s5bl init)
+[    0.699040] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 after-on power_mode=0x9c ret=0 id=d28000 id_ret=3 (expect ~0x9c)
+[    0.699059] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 on-command accum_err=0 (s5bl init)
+[    0.699073] [drm:dpu_encoder_virt_atomic_enable:1353] cerro: s5bq dpu dsc ON slice=558x20 count=2 bpc=10 bpp=10 blkpred=1
+[    0.846356] panel-raydium-rm692h0 ae94000.dsi.0: cerro: s5bq PPS 110000ab 30a009b0 045c0014 022e02ba | 019a01e0 chunk=698 xmit=410
+[    0.878407] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 enable power_mode=0x9c ret=0 accum=0 (s5bq setup_rc, expect ~0x9c)
+[    0.878704] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    0.910881] Console: switching to colour frame buffer device 139x155
+[    0.927141] cerro: msm_framebuffer_dirtyfb flush dirtyfb_ref=2 clips=1
+[    0.930839] msm_dpu ae01000.display-controller: [drm] fb0: msmdrmfb frame buffer device
+[    0.930908] msm_dpu ae01000.display-controller: cerro: msm_drm_init full ok
+[    0.930932] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 mipi_dsi_attach ret=0
+[    0.930953] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 probe ok
+[    0.931022] msm_dsi ae94000.dsi: cerro: dsi_ctrl manager_register ret=0
+[    0.931041] msm_dsi ae94000.dsi: cerro: dsi_ctrl probe ok
+[    0.939477] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    0.939977] clk: Not disabling unused clocks
+[    0.939981] PM: genpd: Not disabling unused power domains
+[    0.940247] Warning: unable to open an initial console.
+[    0.941812] Freeing unused kernel memory: 16512K
+[    0.941873] Run /init as init process
+[    0.941878]   with arguments:
+[    0.941880]     /init
+[    0.941882]   with environment:
+[    0.941884]     HOME=/
+[    0.941887]     TERM=linux
+[    0.941889]     cerro_dtb=s5bq
+[    2.381067] cerro: s5bq repush#1 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    4.519714] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.520666] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+[    4.659006] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    4.868986] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[    5.682219] cerro: s5bq repush#2 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[    8.959761] cerro: s5bq repush#3 dirtyfb_ref=2 dirty=0 restore=0 (dsc-diag)
+[   25.860803] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+[   34.029905] panel-raydium-rm692h0 ae94000.dsi.0: cerro: rm692h0 bl ui=3515 panel_dcs=0 ret=0
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0
+[cerro-usb] host cmd ignored: ==== cerro usb diag uptime=4    :    1 0         .atuses0
+[cerro-usb] host cmd ignored: initcerro: rm692h0 b
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0

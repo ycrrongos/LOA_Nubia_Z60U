@@ -1,0 +1,145 @@
+echo user | sudo -S -v 2>&1 | tail -3
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+cat /proc/cmdline | tr ' ' '\n' | grep cerro; cat /proc/asound/ca
+rds; aplay -l 2>&1 | head -20
+cerro_dtb=s5fw
+ 0 [SM8650CERRO    ]: sm8650 - SM8650-CERRO
+                      SM8650-CERRO
+**** List of PLAYBACK Hardware Devices ****
+card 0: SM8650CERRO [SM8650-CERRO], device 0: MultiMedia1 Playback (*) []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+for rp in /sys/class/remoteproc/remoteproc*; do [ -e $rp/name ] &
+& echo $(cat $rp/name) $(cat $rp/state); done; journalctl -u cerro-audio -b --no
+-pager 2>/dev/null | tail -20
+adsp running
+Aug 15 16:13:05 nubia-cerro systemd[1]: Starting Cerro SM8650 ADSP / WSA sound...
+Aug 15 16:13:12 nubia-cerro systemd[1]: Finished Cerro SM8650 ADSP / WSA sound.
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+echo user | sudo -S mount -t debugfs none /sys/kernel/debug 2>/de
+v/null; ls /sys/kernel/debug/clk 2>/dev/null | grep -i mi2s | head -40
+
+nubia-cerro:~$ [6n
+====
+for n in $(ls /sys/kernel/debug/clk 2>/dev/null | grep -iE 'pri.*
+mi2s|mi2s.*ibit'); do d=/sys/kernel/debug/clk/$n; echo CLK $n en=$(cat $d/enable
+_count) prep=$(cat $d/prepare_count) rate=$(cat $d/clk_rate); done
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+timeout 8 speaker-test -D hw:0,0 -c 2 -r 48000 -t sine -f 440 -l 
+1 > /tmp/play-s5fw.txt 2>&1; echo PLAY_EXIT:$?; tail -30 /tmp/play-s5fw.txt
+PLAY_EXIT:1
+
+Unable to set hw params for playback: Invalid argument
+speaker-test 1.2.16
+
+Playback device is hw:0,0
+Stream parameters are 48000Hz, S16_LE, 2 channels
+Sine wave rate is 440.0000Hz
+Rate set to 48000Hz (requested 48000Hz)
+Buffer size range from 960 to 130560
+Period size range from 480 to 16320
+Periods = 4
+Setting of hwparams failed: Invalid argument
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+for n in $(ls /sys/kernel/debug/clk 2>/dev/null | grep -iE 'pri.*
+mi2s|mi2s.*ibit'); do d=/sys/kernel/debug/clk/$n; echo AFTER $n en=$(cat $d/enab
+le_count) prep=$(cat $d/prepare_count) rate=$(cat $d/clk_rate); done
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+====
+dmesg | grep -Ei 'pri_mi2s|MI2S|media format|1001006|APM_CMD|sc82
+80|aw882|Failed to set|set_rate|ibit enable|ibit set' | tail -80; echo S5FW_DONE
+[  345.000703] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.000736] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.000758] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.001449] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.003987] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.004010] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.004022] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.004715] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.006803] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.006823] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.006833] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.007935] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.010129] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.010149] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.010160] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.010712] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.013012] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.013031] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.013043] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.013840] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.019006] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.019027] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.019043] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.019970] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.022114] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.022134] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.022145] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.022929] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.025666] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.025685] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.025696] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.026350] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.029207] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.029227] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.029237] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.029870] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.032581] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.032601] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.032611] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.033230] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.041321] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.041353] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.041372] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.042153] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.044803] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.044823] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.044834] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.045390] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.048428] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.048449] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.048460] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.049007] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.052049] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.052068] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.052079] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.052759] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.054845] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.054864] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.054874] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.055651] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.060649] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.060682] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.060698] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.061586] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.063986] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.064011] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.064023] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.064502] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.067108] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.067129] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.067139] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.067966] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.069942] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.069962] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.069972] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.070584] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+[  345.072803] qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+[  345.072822] qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+[  345.072832] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: Failed to set media format -22
+[  345.073444] q6apm-lpass-dais 6800000.remoteproc:glink-edge:gpr:service@1:bedais: ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+S5FW_DONE
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n

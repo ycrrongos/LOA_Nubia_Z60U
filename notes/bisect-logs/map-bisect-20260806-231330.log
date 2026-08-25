@@ -1,0 +1,117 @@
+==== cerro-map-bisect Thu 06 Aug 2026 23:13:30 AWST pid=3758794 ====
+steps: 3
+judge: sticky fastboot early(<PASS_MIN) = FAIL; late(>=PASS_MIN after quiet) = PASS
+timing: SKIP_UNLOCK=0 UNLOCK_WAIT=8s CYCLE=23s PASS_MIN=46s OBSERVE=69s EXTEND=184s
+NOTE: 无人跳过时 UNLOCK_WAIT 计入 PASS_MIN
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-231330.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 3 ################
+set bank FALLBACK=SAFE_MAP=0x10000000 (LOW_ALLOC unchanged)
+set CERRO_PROBE_STAGE=839
+set CERRO_IDMAP_STEP=3
+set CERRO_SKIP_UNFLATTEN=0
+set #define CERRO_MAP_MEM_STEP 3 (PROBE_SIGNAL=0 PSCI) record_step=3
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:349:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  349 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:349:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  349 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+arch/arm64/kernel/setup.c:377:6: warning: no previous prototype for function 'cerro_late_probe' [-Wmissing-prototypes]
+  377 | void cerro_late_probe(int stage)
+      |      ^
+arch/arm64/kernel/setup.c:377:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  377 | void cerro_late_probe(int stage)
+      | ^
+      | static 
+2 warnings generated.
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  AR      built-in.a
+  AR      built-in-fixup.a
+  COPY    vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+-rwxr-xr-x 1 rong rong 40M Aug  6 23:13 /mnt/data/LOA_Nubia_Z60U/build/linux/arch/arm64/boot/Image
+==== pack boot-v2-builtin-dtb.img ====
+kernel blob 42401469 hdr_dtb /mnt/data/LOA_Nubia_Z60U/build/boot_repack/out/dtb-id.dtb
+-rw-r--r-- 1 rong rong 55M Aug  6 23:13 /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+==== flash ====
+already flashable: fastboot
+==== via fastboot ====
+Sending 'boot_a' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_a'                                   OKAY [  0.020s]
+Finished. Total time: 0.180s
+Sending 'boot_b' (55680 KB)                        OKAY [  0.125s]
+Writing 'boot_b'                                   OKAY [  0.023s]
+Finished. Total time: 0.193s
+flash returned Thu 06 Aug 2026 23:13:53 AWST
+==== observe 69s (Uotan-style detect + debounce) ====
+  pre: raw=none stable=none
+  pre: fastboot devices:
+  pre: lsusb interesting:
+  pre: (none)
+boot window start mode=none t0=1786029236.569820556
+[1.62] mode=none
+[3.751] mode=none
+[5.88] mode=none
+[8.011] mode=none
+[10.136] mode=none
+[12.265] mode=none
+[14.392] mode=none
+[16.519] mode=none
+[18.644] mode=none
+[20.771] mode=none
+[22.903] mode=none
+[25.032] mode=none
+[27.154] mode=none
+[29.278] mode=none
+[31.405] mode=none
+[33.532] mode=none
+[35.663] mode=none
+[37.792] mode=none
+[39.919] mode=none
+[42.043] mode=none
+[44.166] mode=none
+[46.293] mode=none
+[48.42] mode=none
+[50.541] mode=none
+[52.668] mode=none
+[54.795] mode=none
+[56.925] mode=none
+[59.057] mode=none
+[61.193] mode=none
+[63.321] mode=none
+[65.447] mode=none
+[67.571] mode=none
+[69.691] mode=none
+[71.818] mode=none
+observe done: none_streak=138 udev_events=0 first_fb=none
+==== quiet so far; extend 184s (wait late sticky fb ≥ PASS_MIN=46s) ====

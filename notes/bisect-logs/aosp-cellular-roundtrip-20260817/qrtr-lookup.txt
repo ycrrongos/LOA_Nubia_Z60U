@@ -1,0 +1,143 @@
+  Service Version Instance Node  Port
+       66       1      180    0     1 Service registry notification service
+       43       2       18    0     4 Subsystem control service
+       15       1        5    0    16 Test service
+       21       1        0    0    17 Modem embedded file system service
+       51       1       11    0    18 CoreSight remote tracing service
+       51       1        2    0    19 CoreSight remote tracing service
+       22       1       16    0    20 Time service
+       24       1        0    0    21 Thermal mitigation device service
+     4097     N/A        1    0    28 DIAG service (MODEM:CMD)
+     4097     N/A        3    0    31 DIAG service (MODEM:DCI_CMD)
+       23       2        0    0    34 Thermal sensors service
+       23       1        0    0    35 Thermal sensors service
+       36       1        0    0    36 Persistent device configuration service
+       49       1        2    0    40 IPA control service
+     1071       1        1    0    41 DPED service
+       17       1        0    0    54 Specific absorption rate service
+       34       1        0    0    55 Coexistence service
+       41       1        1    0    57 RF radiated performance enhancement service
+       87       1        0    0    58 Smart Transmit service
+     5004     239      222    0    59 GNSS CDFW service
+       85       1        0    0    62 SSG QMSCA service
+       55       1        2    0    65 Sensor Location Interface Manager
+        9       2        0    0    71 Voice service
+        3       1        0    0    72 Network Access Service
+       76       1        0    0    75 SSG ConnSec service
+      228       2        0    0    77 <unknown>
+       74       1        0    0    80 ANT SWITCH service
+       15       1        6    0    82 Test service
+       50       1        0    0    84 <unknown>
+       12       1        0    0    85 Phonebook Management service
+        5       1        0    0    87 Wireless Messaging Service
+       10       2        0    0    88 Card Application Toolkit service (v2)
+       47       1        0    0    89 Data Port Mapper
+       11       1        0    0    90 User Identity Module service
+       25       1        0    0    91 Service access proxy service
+        1       1        0    0    92 Wireless Data Service
+        4       1        0    0    93 Quality Of Service service
+       26       1        0    0    94 Wireless data administrative service
+        8       1        0    0    95 AT service
+       77       1        0    0    96 IMS Private Service
+       42       1        0    0    98 Data system determination service
+        2       1        0    0    99 Device Management Service
+       48       1        0    0   100 Data Filter Service
+       46       1        0    0   101 Application Traffic Pairing
+       68       1        0    0   102 Over The Top service
+       73       1        0    0   103 DATA INT service
+       78       1        0    0   104 Data Flow Control (DFC) Service
+       29       1        0    0   105 Circuit switched videotelephony service
+        7       1        0    0   106 Authentication service
+       86       1        0    0   107 DTP service
+       92       1        0    0   108 <unknown>
+       89       1        0    0   112 <unknown>
+       88       1        0    0   113 Qualcomm ML Context Event Exchange Private Service
+       90       1        0    0   114 Qualcomm Modem service
+       16       2        0    0   115 Location service (~ PDS v2)
+       33       1        0    0   117 IMS application service
+       18       1        0    0   119 IMS settings service
+       71       1        0    0   122 UIM HTTP service
+     1070       1        0    1 16385 <unknown>
+     1053       1        0    1 16395 <unknown>
+       52       1        1    1 16400 Dynamic Heap Memory Sharing
+       60       1        0    1 16402 <unknown>
+       49       1        1    1 16407 IPA control service
+     4097     N/A        0    1 16412 DIAG service (MODEM:CNTL)
+     4097     N/A        2    1 16414 DIAG service (MODEM:DATA)
+     4097     N/A        4    1 16415 DIAG service (MODEM:DCI)
+     4097     N/A       64    1 16417 DIAG service (LPASS:CNTL)
+     4097     N/A       66    1 16419 DIAG service (LPASS:DATA)
+     4097     N/A       68    1 16420 DIAG service (LPASS:DCI)
+     4097     N/A      128    1 16422 DIAG service (WCNSS:CNTL)
+     4097     N/A      130    1 16424 DIAG service (WCNSS:DATA)
+     4097     N/A      132    1 16425 DIAG service (WCNSS:DCI)
+     4097     N/A      192    1 16427 DIAG service (SENSORS:CNTL)
+     4097     N/A      194    1 16429 DIAG service (SENSORS:DATA)
+     4097     N/A      196    1 16430 DIAG service (SENSORS:DCI)
+     4097     N/A      256    1 16432 DIAG service (CDSP:CNTL)
+     4097     N/A      258    1 16434 DIAG service (CDSP:DATA)
+     4097     N/A      260    1 16435 DIAG service (CDSP:DCI)
+     4097     N/A      320    1 16437 DIAG service (WDSP:CNTL)
+     4097     N/A      322    1 16439 DIAG service (WDSP:DATA)
+     4097     N/A      324    1 16440 DIAG service (WDSP:DCI)
+     4097     N/A      384    1 16442 DIAG service (NPU:CNTL)
+     4097     N/A      386    1 16444 DIAG service (NPU:DATA)
+     4097     N/A      388    1 16445 DIAG service (NPU:DCI)
+     4097     N/A      448    1 16447 DIAG service (NSP1:CNTL)
+     4097     N/A      450    1 16449 DIAG service (NSP1:DATA)
+     4097     N/A      452    1 16450 DIAG service (NSP1:DCI)
+     4097     N/A      512    1 16452 DIAG service (GPDSP0:CNTL)
+     4097     N/A      514    1 16454 DIAG service (GPDSP0:DATA)
+     4097     N/A      516    1 16455 DIAG service (GPDSP0:DCI)
+     4097     N/A      576    1 16457 DIAG service (GPDSP1:CNTL)
+     4097     N/A      578    1 16459 DIAG service (GPDSP1:DATA)
+     4097     N/A      580    1 16460 DIAG service (GPDSP1:DCI)
+     4097     N/A      640    1 16462 DIAG service (HELIOS:CNTL)
+     4097     N/A      642    1 16464 DIAG service (HELIOS:DATA)
+     4097     N/A      644    1 16465 DIAG service (HELIOS:DCI)
+     4097     N/A      704    1 16467 DIAG service (TELE_GVM:CNTL)
+     4097     N/A      706    1 16469 DIAG service (TELE_GVM:DATA)
+     4097     N/A      708    1 16470 DIAG service (TELE_GVM:DCI)
+     4097     N/A      768    1 16472 DIAG service (FOTA_GVM:CNTL)
+     4097     N/A      770    1 16474 DIAG service (FOTA_GVM:DATA)
+     4097     N/A      772    1 16475 DIAG service (FOTA_GVM:DCI)
+     5009       1        1    1 16481 <unknown>
+     5013       1        1    1 16482 <unknown>
+       53       1       16    1 16488 Subsystem Request
+     1059       1        0    1 16489 <unknown>
+     4096       1        0    1 16490 TFTP service
+     4096       2        0    1 16491 TFTP service
+     4096       3        0    1 16492 TFTP service
+     4096       4        0    1 16493 TFTP service
+     4096       5        0    1 16494 TFTP service
+     4096       6        0    1 16495 TFTP service
+     4096       7        0    1 16496 TFTP service
+     4096       8        0    1 16497 TFTP service
+     4096       9        0    1 16498 TFTP service
+     4096      10        0    1 16499 TFTP service
+       64       1        1    1 16500 Service registry locator service
+       14       1        0    1 16505 Remote file system service
+      770       1        0    1 16523 <unknown>
+     5004       1        0    1 16581 GNSS CDFW service
+     5004       2        0    1 16582 GNSS CDFW service
+       40       1        0    1 17391 IMS RTP service
+       15       1       32    5     1 Test service
+       66       1       74    5     2 Service registry notification service
+       43       2       20    5     5 Subsystem control service
+       51       1        5    5     6 CoreSight remote tracing service
+       24       1        1    5     8 Thermal mitigation device service
+       15       1       35    5     9 Test service
+     4097     N/A       65    5    13 DIAG service (LPASS:CMD)
+       15       1       33    5    16 Test service
+       51       1        9    5    18 CoreSight remote tracing service
+      769       1        0    5    19 SLIMbus control service
+       15       1       34    5    20 Test service
+       51       1       12    5    22 CoreSight remote tracing service
+     5017      10        0    5    24 <unknown>
+      400       1        0    5    26 <unknown>
+       15       1       64   10     1 Test service
+       66       1       76   10     2 Service registry notification service
+       43       2       23   10     5 Subsystem control service
+       51       1       13   10     6 CoreSight remote tracing service
+     4097     N/A      257   10    10 DIAG service (CDSP:CMD)
+       24       1       67   10    14 Thermal mitigation device service

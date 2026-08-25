@@ -1,0 +1,7 @@
+[General]
+DisplayServer=x11
+
+[Autologin]
+User=user
+Session=plasmax11.desktop
+Relogin=false

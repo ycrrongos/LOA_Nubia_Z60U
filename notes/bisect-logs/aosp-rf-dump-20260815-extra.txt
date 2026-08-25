@@ -1,0 +1,289 @@
+=== BT soc / HCI ===
+hamilton
+total 0
+Bluetooth Status:
+  State:         ON
+  Address:       XX:XX:XX:XX:6D:DD
+  Name:          nubia Z60 Ultra
+  Inner app:     com.android.bluetooth
+  Uptime:        6m 11.245597s
+
+Enable log:
+  TIMESTAMP          ACTION     REASON               PACKAGE
+  ------------------ ---------- -------------------- -------
+  08-10 17:19:14.356 Enable     SYSTEM_BOOT          android
+
+Bluetooth crashed 0 times
+
+Ble app registered: {}
+
+BluetoothManagerService:
+  mEnable:true
+  mQuietEnable:false
+  mEnableExternal:true
+  mQuietEnableExternal:false
+
+
+BluetoothAdapterProperties
+  Name: nubia Z60 Ultra
+  Address: XX:XX:XX:XX:6D:DD
+  ConnectionState: STATE_DISCONNECTED
+  MaxConnectedAudioDevices: 5
+  A2dpOffloadEnabled: true
+  Discovering: false
+  DiscoveryEndMs: 0
+
+BluetoothRemoteDevices
+  Bonded devices: 0
+
+  Other devices: 0
+
+BluetoothActiveDeviceManager
+  Audio mode: 0
+  Dual mode audio: false
+
+=== cnss / kiwi sysfs ===
+total 0
+drwxr-xr-x   4 root root    0 1970-01-01 09:51 .
+drwxr-xr-x 464 root root    0 1970-01-01 09:51 ..
+--w-------   1 root root 4096 2026-08-11 01:25 charger_mode
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 driver -> ../../../../bus/platform/drivers/cnss2
+-rw-r--r--   1 root root 4096 2026-08-11 01:25 driver_override
+--w-------   1 root root 4096 2026-08-11 01:25 enable_hds
+--w-------   1 root root 4096 1970-01-01 09:51 fs_ready
+--w-------   1 root root 4096 2026-08-11 01:25 hw_trace_override
+-r--r--r--   1 root root 4096 2026-08-11 01:25 modalias
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 of_node -> ../../../../firmware/devicetree/base/soc/qcom,cnss-kiwi@b0000000
+drwxr-xr-x   2 root root    0 1970-01-01 09:51 power
+--w-------   1 root root 4096 2026-08-11 01:25 qdss_conf_download
+--w-------   1 root root 4096 2026-08-11 01:25 qdss_trace_start
+--w-------   1 root root 4096 2026-08-11 01:25 qdss_trace_stop
+-rw-r--r--   1 root root 4096 2026-08-11 01:25 recovery
+--w-------   1 root root 4096 2026-08-11 01:25 shutdown
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 subsystem -> ../../../../bus/platform
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:16c0000.interconnect -> ../../../virtual/devlink/platform:16c0000.interconnect--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-ldob15 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldob15--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-ldoc3 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldoc3--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-ldok6 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldok6--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpc1 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc1--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpc2 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc2--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpc3 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc3--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpc6 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc6--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpi4 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpi4--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:24100000.interconnect -> ../../../virtual/devlink/platform:24100000.interconnect--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:f000000.pinctrl -> ../../../virtual/devlink/platform:f000000.pinctrl--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:platform:soc:interconnect@1 -> ../../../virtual/devlink/platform:soc:interconnect@1--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.34 -> ../../../virtual/devlink/regulator:regulator.34--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.39 -> ../../../virtual/devlink/regulator:regulator.39--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.40 -> ../../../virtual/devlink/regulator:regulator.40--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.41 -> ../../../virtual/devlink/regulator:regulator.41--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.44 -> ../../../virtual/devlink/regulator:regulator.44--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.47 -> ../../../virtual/devlink/regulator:regulator.47--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.56 -> ../../../virtual/devlink/regulator:regulator.56--platform:b0000000.qcom,cnss-kiwi
+lrwxrwxrwx   1 root root    0 2026-08-11 01:25 supplier:regulator:regulator.70 -> ../../../virtual/devlink/regulator:regulator.70--platform:b0000000.qcom,cnss-kiwi
+-rw-r--r--   1 root root 4096 2026-08-11 01:25 time_sync_period
+-rw-r--r--   1 root root 4096 2026-08-11 01:25 tme_opt_file_download
+
+=== firmware loaded (dmesg) ===
+[    0.000000] Kernel command line: console=ttynull stack_depot_disable=on cgroup_disable=pressure kasan.page_alloc.sample=10 kasan.stacktrace=off kvm-arm.mode=protected bootconfig ioremap_guard loglevel=6 kpti=0 log_buf_len=256K swiotlb=noforce kernel.panic_on_rcu_stall=1 fw_devlink.strict=1 service_locator.enable=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 irqaffinity=0-1 cpufreq.default_governor=performance sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure cgroup.memory=nokmem,nosocket printk.console_no_auto_verbose=1 kasan=off service_locator.enable=1 loop.max_part=7 no-steal-acc can.stats_timer=0 ufs_qcom.crash_on_ber=n ftrace_dump_on_oops firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware_mnt/image/kiwi,/vendor/vm-system/oemvm/boot,/vendor/vm-system/trustedvm/boot,/vendor/firmware,/vendor/firmware/wlan/qca_cld/kiwi_v2 pcie_ports=compat disable_dma32=on pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x2 slub_debug=- \
+[    0.908597] init: Command 'symlink /vendor/bt_firmware /bt_firmware' action=early-init (/vendor/etc/init/hw/init.qcom.rc:75) took 0ms and failed: symlink() failed: Read-only file system
+[    1.781803] init: [libfs_mgr] __mount(source=/dev/block/bootdevice/by-name/bluetooth_a,target=/vendor/bt_firmware,type=vfat)=0: Success
+[    1.950615] qca_cld3_kiwi_v2: Loading driver v5.2.1.97C
+[    5.554902] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/amss20.bin failed with error -13
+[    5.554906] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/kiwi/amss20.bin failed with error -13
+[    5.554935] cnss_pci 0000:01:00.0: Direct firmware load for kiwi/amss20.bin failed with error -2
+[    5.554938] cnss_pci 0000:01:00.0: Falling back to sysfs fallback for: kiwi/amss20.bin
+[    5.946692] bt_ioctl: BT_CMD_GET_CHIPSET_ID = qcom,kiwi
+[    6.090902] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/regdb.bin failed with error -13
+[    6.090906] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/regdb.bin failed with error -13
+[    6.092616] ueventd: firmware: loading 'kiwi/regdb.bin' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin'
+[    6.092785] ueventd: found /vendor/firmware_mnt/image/kiwi/regdb.bin for /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin
+[    6.093351] ueventd: loading /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin took 0ms
+[    6.103574] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/bdwlan.elf failed with error -13
+[    6.103594] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/bdwlan.elf failed with error -13
+[    6.105927] ueventd: firmware: loading 'kiwi/bdwlan.elf' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!bdwlan.elf'
+[    6.106966] ueventd: found /vendor/firmware_mnt/image/kiwi/bdwlan.elf for /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!bdwlan.elf
+[    6.107572] ueventd: loading /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!bdwlan.elf took 2ms
+[    6.150971] cnss: Host BDF config: HW_XPA: 1 CalDB: 0
+[    6.150989] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/phy_ucode20.elf failed with error -13
+[    6.150991] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/kiwi/phy_ucode20.elf failed with error -13
+[    6.156628] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/qdss_trace_config_perf_v2.cfg failed with error -13
+[    6.156630] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/qdss_trace_config_perf_v2.cfg failed with error -13
+[    6.158518] ueventd: firmware: loading 'kiwi/qdss_trace_config_perf_v2.cfg' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_perf_v2.cfg'
+[    6.159515] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/qdss_trace_config_v2.cfg failed with error -13
+[    6.159518] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/qdss_trace_config_v2.cfg failed with error -13
+[    6.160655] ueventd: firmware: loading 'kiwi/qdss_trace_config_v2.cfg' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_v2.cfg'
+[    6.161533] ueventd: found /vendor/firmware_mnt/image/kiwi/qdss_trace_config_v2.cfg for /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_v2.cfg
+[    6.161730] ueventd: loading /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_v2.cfg took 1ms
+[    6.175191] cnss: CAL DB file not required as per BDF
+[   14.639415] cnss: CAL DB file not required as per BDF
+[   14.674939] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/amss20.bin failed with error -13
+[   14.674943] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/kiwi/amss20.bin failed with error -13
+[   14.674958] cnss_pci 0000:01:00.0: Direct firmware load for kiwi/amss20.bin failed with error -2
+[   14.674960] cnss_pci 0000:01:00.0: Falling back to sysfs fallback for: kiwi/amss20.bin
+[   15.196081] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/regdb.bin failed with error -13
+[   15.196085] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/regdb.bin failed with error -13
+[   15.196995] ueventd: firmware: loading 'kiwi/regdb.bin' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin'
+[   15.197109] ueventd: found /vendor/firmware_mnt/image/kiwi/regdb.bin for /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin
+[   15.197166] ueventd: loading /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!regdb.bin took 0ms
+[   15.206651] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/bdwlan.elf failed with error -13
+[   15.206653] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/bdwlan.elf failed with error -13
+[   15.207369] ueventd: firmware: loading 'kiwi/bdwlan.elf' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!bdwlan.elf'
+[   15.207490] ueventd: found /vendor/firmware_mnt/image/kiwi/bdwlan.elf for /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!bdwlan.elf
+[   15.207556] ueventd: loading /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!bdwlan.elf took 0ms
+[   15.239300] cnss: Host BDF config: HW_XPA: 1 CalDB: 0
+[   15.241139] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/qdss_trace_config_perf_v2.cfg failed with error -13
+[   15.241141] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/qdss_trace_config_perf_v2.cfg failed with error -13
+[   15.241903] ueventd: firmware: loading 'kiwi/qdss_trace_config_perf_v2.cfg' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_perf_v2.cfg'
+[   15.242510] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/qdss_trace_config_v2.cfg failed with error -13
+[   15.242512] cnss2 b0000000.qcom,cnss-kiwi: loading /vendor/firmware_mnt/image/kiwi/kiwi/qdss_trace_config_v2.cfg failed with error -13
+[   15.243257] ueventd: firmware: loading 'kiwi/qdss_trace_config_v2.cfg' for '/devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_v2.cfg'
+[   15.243387] ueventd: found /vendor/firmware_mnt/image/kiwi/qdss_trace_config_v2.cfg for /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_v2.cfg
+[   15.243449] ueventd: loading /devices/platform/soc/b0000000.qcom,cnss-kiwi/firmware/kiwi!qdss_trace_config_v2.cfg took 0ms
+[   15.255035] (NULL device *): loading /vendor/firmware_mnt/image/wlan/qca_cld/kiwi_v2/WCNSS_qcom_cfg.ini failed with error -13
+[   15.255037] (NULL device *): loading /vendor/firmware_mnt/image/kiwi/wlan/qca_cld/kiwi_v2/WCNSS_qcom_cfg.ini failed with error -13
+[   15.324890] [kworke][0x1ce53944][17:19:08.203167] wlan: [767:I:WMA] wma_rx_service_ready_event: Firmware build version : 20047fff
+[   15.324893] [kworke][0x1ce53985][17:19:08.203170] wlan: [767:I:WMA] wma_rx_service_ready_event: Board id: 0, Board version: 8 0 0 0 1
+[   15.325275] [kworke][0x1ce55618][17:19:08.203551] wlan: [767:I:WMI] extract_hw_bdf_status: BDF VER is 0, FW and BDF ver check skipped
+[   15.428125] [kworke][0x1d0377f1][17:19:08.306403] wlan: [762:I:WMI] ready_extract_init_status_tlv: ready_extract_init_status_tlv:0
+[   15.453075] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -13
+[   15.453078] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -13
+[   15.453156] cnss_pci 0000:01:00.0: loading /vendor/firmware/wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -13
+[   15.453165] cnss_pci 0000:01:00.0: Direct firmware load for wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -2
+[   15.453167] cnss_pci 0000:01:00.0: Falling back to sysfs fallback for: wlan/qca_cld/kiwi_v2/wifimac.dat
+[   15.454565] ueventd: firmware: loading 'wlan/qca_cld/kiwi_v2/wifimac.dat' for '/devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/wlan!qca_cld!kiwi_v2!wifimac.dat'
+[   15.454671] ueventd: found /vendor/firmware/wlan/qca_cld/kiwi_v2/wifimac.dat for /devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/wlan!qca_cld!kiwi_v2!wifimac.dat
+[   15.455441] ueventd: loading /devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/wlan!qca_cld!kiwi_v2!wifimac.dat took 0ms
+
+=== vendor firmware files ===
+total 214016
+dr-xr-x--- 6 system system    32768 2011-07-06 01:30 .
+dr-xr-x--- 4 system system    16384 1970-01-01 08:00 ..
+-r--r----- 1 system system      568 2025-12-15 14:35 05B04A44-BF30-42DF-9E2F-B366B980ED19.b00
+-r--r----- 1 system system    48334 2025-12-15 14:35 05B04A44-BF30-42DF-9E2F-B366B980ED19.b01
+kiwi
+wlan
+/vendor/firmware/wlan/qca_cld/kiwi_v2
+/vendor/firmware_mnt/image/kiwi
+/vendor/firmware_mnt/image/kiwi/amss.bin
+/vendor/firmware_mnt/image/kiwi/amss20.bin
+/vendor/firmware_mnt/image/kiwi/bdwlan.e01
+/vendor/firmware_mnt/image/kiwi/bdwlan.e02
+/vendor/firmware_mnt/image/kiwi/bdwlan.e03
+/vendor/firmware_mnt/image/kiwi/bdwlan.e04
+/vendor/firmware_mnt/image/kiwi/bdwlan.e07
+/vendor/firmware_mnt/image/kiwi/bdwlan.e08
+/vendor/firmware_mnt/image/kiwi/bdwlan.e09
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0a
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0b
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0c
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0d
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0e
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0f
+/vendor/firmware_mnt/image/kiwi/bdwlan.e10
+/vendor/firmware_mnt/image/kiwi/bdwlan.e11
+/vendor/firmware_mnt/image/kiwi/bdwlan.e12
+/vendor/firmware_mnt/image/kiwi/bdwlan.e13
+/vendor/firmware_mnt/image/kiwi/bdwlan.e14
+/vendor/firmware_mnt/image/kiwi/bdwlan.e15
+/vendor/firmware_mnt/image/kiwi/bdwlan.e16
+/vendor/firmware_mnt/image/kiwi/bdwlan.e17
+/vendor/firmware_mnt/image/kiwi/bdwlan.e18
+/vendor/firmware_mnt/image/kiwi/bdwlan.e19
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1a
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1b
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1c
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1d
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1e
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1f
+/vendor/firmware_mnt/image/kiwi/bdwlan.e20
+/vendor/firmware_mnt/image/kiwi/bdwlan.e21
+/vendor/firmware_mnt/image/kiwi/bdwlan.e22
+/vendor/firmware_mnt/image/kiwi/bdwlan.e23
+/vendor/firmware_mnt/image/kiwi/bdwlan.e24
+/vendor/firmware_mnt/image/kiwi/bdwlan.e25
+/vendor/firmware_mnt/image/kiwi/bdwlan.e26
+/vendor/firmware_mnt/image/kiwi/bdwlan.e27
+/vendor/firmware_mnt/image/kiwi/bdwlan.e28
+
+=== uart14 / bt_kiwi ===
+total 0
+drwxr-xr-x   4 root      root      0 1970-01-01 09:51 .
+drwxr-xr-x 464 root      root      0 1970-01-01 09:51 ..
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 driver -> ../../../../bus/platform/drivers/bt_power
+-rw-r--r--   1 root      root   4096 2026-08-11 01:25 driver_override
+-rw-rw----   1 bluetooth net_bt 4096 1970-01-01 09:51 extldo
+-r--r--r--   1 root      root   4096 2026-08-11 01:25 modalias
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 of_node -> ../../../../firmware/devicetree/base/soc/bt_kiwi
+drwxr-xr-x   2 root      root      0 1970-01-01 09:51 power
+drwxr-xr-x   3 root      root      0 1970-01-01 09:51 rfkill
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 subsystem -> ../../../../bus/platform
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-ldob15 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldob15--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-ldoc3 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldoc3--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-ldok6 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldok6--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpc1 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc1--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpc3 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc3--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:17a00000.rsc:drv@2:rpmh-regulator-smpc6 -> ../../../virtual/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc6--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:f000000.pinctrl -> ../../../virtual/devlink/platform:f000000.pinctrl--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:platform:soc:qcom,qmp-aop -> ../../../virtual/devlink/platform:soc:qcom,qmp-aop--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:regulator:regulator.34 -> ../../../virtual/devlink/regulator:regulator.34--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:regulator:regulator.39 -> ../../../virtual/devlink/regulator:regulator.39--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:regulator:regulator.41 -> ../../../virtual/devlink/regulator:regulator.41--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:regulator:regulator.44 -> ../../../virtual/devlink/regulator:regulator.44--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:regulator:regulator.47 -> ../../../virtual/devlink/regulator:regulator.47--platform:soc:bt_kiwi
+lrwxrwxrwx   1 root      root      0 2026-08-11 01:25 supplier:regulator:regulator.70 -> ../../../virtual/devlink/regulator:regulator.70--platform:soc:bt_kiwi
+-rw-r--r--   1 root      root   4096 1970-01-01 09:51 uevent
+DRIVER=bt_power
+OF_NAME=bt_kiwi
+OF_FULLNAME=/soc/bt_kiwi
+OF_COMPATIBLE_0=qcom,kiwi
+OF_COMPATIBLE_N=1
+MODALIAS=of:Nbt_kiwiT(null)Cqcom,kiwi
+bt_power
+ufs_qcom_phy_qrbtc_sdm845
+
+=== wifi scan test ===
+Wifi is disabled
+Wifi scanning is only available when wifi is enabled
+No scan results
+
+=== modem ===
+ONLINE
+remoteproc0
+remoteproc1
+remoteproc2
+remoteproc3
+/sys/class/remoteproc/remoteproc0 188101c.remoteproc-spss offline
+/sys/class/remoteproc/remoteproc1 3000000.remoteproc-adsp running
+/sys/class/remoteproc/remoteproc2 4080000.remoteproc-mss running
+/sys/class/remoteproc/remoteproc3 32300000.remoteproc-cdsp running
+modem.b00
+modem.b01
+modem.b02
+modem.b03
+modem.b04
+modem.b05
+modem.b06
+modem.b07
+modem.b08
+modem.b09
+modem.b10
+modem.b11
+modem.b12
+modem.b13
+modem.b14
+modem.b15
+modem.b16
+modem.b17
+modem.b18
+modem.b19
+modem.b20
+modem.b21
+modem.b23
+modem.b24
+modem.b25
+modem.b26
+modem.b27
+modem.b28
+modem.b30
+modem.b31

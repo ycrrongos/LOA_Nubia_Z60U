@@ -1,0 +1,857 @@
+=== AOSP RF dump 2026-08-15T18:34:02+08:00 ===
+build: onlyaosp_cerro-userdebug 17 CP2A.260605.016 eng.rong test-keys
+
+=== props wifi/bt/modem ===
+[bluetooth.profile.a2dp.source.enabled]: [true]
+[bluetooth.profile.avrcp.controller.enabled]: [true]
+[bluetooth.profile.avrcp.target.enabled]: [true]
+[bluetooth.profile.gatt.enabled]: [true]
+[bluetooth.profile.hfp.ag.enabled]: [true]
+[bluetooth.profile.hid.device.enabled]: [true]
+[bluetooth.profile.hid.host.enabled]: [true]
+[bluetooth.profile.map.server.enabled]: [true]
+[bluetooth.profile.opp.enabled]: [true]
+[bluetooth.profile.pan.nap.enabled]: [true]
+[bluetooth.profile.pan.panu.enabled]: [true]
+[bluetooth.profile.pbap.server.enabled]: [true]
+[cache_key.bluetooth.bluetooth_adapter_get_connection_state]: [-8525209709763526744]
+[cache_key.bluetooth.bluetooth_adapter_get_profile_connection_state]: [-8525209709763526743]
+[cache_key.bluetooth.bluetooth_adapter_is_offloaded_filtering_supported]: [-8525209709763526745]
+[cache_key.bluetooth.bluetooth_device_get_bond_state]: [-8525209709763526748]
+[cache_key.bluetooth.bluetooth_map_get_connection_state]: [-8525209709763526742]
+[cache_key.bluetooth.bluetooth_sap_get_connection_state]: [-8525209709763526746]
+[gsm.current.phone-type]: [1,1]
+[gsm.network.type]: [EDGE,Unknown]
+[gsm.operator.alpha]: [,]
+[gsm.operator.iso-country]: [cn,]
+[gsm.operator.isroaming]: [false,false]
+[gsm.operator.numeric]: [,]
+[gsm.sim.state]: [ABSENT,ABSENT]
+[gsm.version.baseband]: [SS.DE.5.0.c3-00030-LANAI_GEN_PACK-1.46586.113,SS.DE.5.0.c3-00030-LANAI_GEN_PACK-1.46586.113]
+[init.svc.cnss-daemon]: [running]
+[init.svc.vendor.bluetooth-1-1-qti]: [running]
+[init.svc.vendor.qcrild2]: [running]
+[init.svc.vendor.qcrild]: [running]
+[init.svc.vendor.wifi_hal_legacy]: [running]
+[init.svc.wifidisplayhalservice]: [running]
+[init.svc_debug_pid.cnss-daemon]: [1891]
+[init.svc_debug_pid.vendor.bluetooth-1-1-qti]: [1376]
+[init.svc_debug_pid.vendor.qcrild2]: [2088]
+[init.svc_debug_pid.vendor.qcrild]: [1878]
+[init.svc_debug_pid.vendor.wifi_hal_legacy]: [1400]
+[init.svc_debug_pid.wifidisplayhalservice]: [1839]
+[net.bt.name]: [Android]
+[persist.bluetooth.a2dp_offload.disabled]: [false]
+[persist.bluetooth.leaudio_offload.disabled]: [true]
+[persist.radio.multisim.config]: [dsda]
+[persist.vendor.bt.aac_frm_ctl.enabled]: [true]
+[persist.vendor.bt.aac_vbr_frm_ctl.enabled]: [true]
+[persist.vendor.bt.nap.enable]: [true]
+[persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled]: [false]
+[persist.vendor.qcom.bluetooth.a2dp_offload_cap]: [sbc-aptx-aptxhd-aptxtws-aac-ldac-aptxadaptiver2]
+[persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled]: [true]
+[persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled]: [true]
+[persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support]: [true]
+[persist.vendor.qcom.bluetooth.aptxadaptiver2_2_support]: [true]
+[persist.vendor.qcom.bluetooth.dualmode_transport_support]: [true]
+[persist.vendor.qcom.bluetooth.enable.swb]: [true]
+[persist.vendor.qcom.bluetooth.enable.swbpm]: [true]
+[persist.vendor.qcom.bluetooth.lossless_aptx_adaptive_le.enabled]: [true]
+[persist.vendor.qcom.bluetooth.scram.enabled]: [false]
+[persist.vendor.qcom.bluetooth.soc]: [hamilton]
+[persist.vendor.qcom.bluetooth.twsp_state.enabled]: [false]
+[persist.vendor.radio.5g_icon_rule]: [D]
+[persist.vendor.radio.5g_mode_pref]: [0]
+[persist.vendor.radio.add_power_save]: [1]
+[persist.vendor.radio.apm_sim_not_pwdn]: [1]
+[persist.vendor.radio.atfwd.start]: [true]
+[persist.vendor.radio.custom_ecc]: [1]
+[persist.vendor.radio.enableadvancedscan]: [true]
+[persist.vendor.radio.nsa_cell_size]: [10]
+[persist.vendor.radio.procedure_bytes]: [SKIP]
+[persist.vendor.radio.redir_party_num]: [1]
+[persist.vendor.radio.sib16_support]: [1]
+[persist.vendor.radio.signalDelay]: [5]
+[persist.vendor.radio.stack_id_0]: [0]
+[persist.vendor.radio.stack_id_1]: [1]
+[persist.vendor.radio.testTimerA]: [30]
+[persist.vendor.radio.testTimerB]: [30]
+[persist.vendor.radio.voice_on_lte]: [1]
+[ril.ecclist1]: [*911,112,911,000,999,122,08,118,120,119,110,#911]
+[ril.ecclist]: [*911,112,911,000,999,122,08,118,120,119,110,#911]
+[ro.bluetooth.a2dp_offload.supported]: [true]
+[ro.bluetooth.leaudio_offload.supported]: [false]
+[ro.boottime.cnss-daemon]: [6402852496]
+[ro.boottime.vendor.bluetooth-1-1-qti]: [5884583070]
+[ro.boottime.vendor.qcrild2]: [6497593590]
+[ro.boottime.vendor.qcrild]: [6391356663]
+[ro.boottime.vendor.wifi_hal_legacy]: [5903359997]
+[ro.boottime.wifidisplayhalservice]: [6351496090]
+[ro.product.ab_ota_partitions]: [aop,aop_config,bluetooth,boot,cpucp,cpucp_dtb,devcfg,dsp,dtbo,featenabler,hyp,imagefv,init_boot,keymaster,modem,odm,product,pvmfw,qupfw,recovery,shrm,spuservice,system,system_dlkm,system_ext,tz,uefi,uefisecapp,vbmeta,vbmeta_system,vendor,vendor_boot,vendor_dlkm,xbl,xbl_config,xbl_ramdump]
+[ro.vendor.build.ab_ota_partitions]: [aop,aop_config,bluetooth,boot,cpucp,cpucp_dtb,devcfg,dsp,dtbo,featenabler,hyp,imagefv,init_boot,keymaster,modem,odm,product,pvmfw,qupfw,recovery,shrm,spuservice,system,system_dlkm,system_ext,tz,uefi,uefisecapp,vbmeta,vbmeta_system,vendor,vendor_boot,vendor_dlkm,xbl,xbl_config,xbl_ramdump]
+[ro.vendor.ril.mbn_copy_completed]: [1]
+[ro.vendor.ril.svdo]: [false]
+[ro.vendor.ril.svlte1x]: [false]
+[ro.wifi.channels]: []
+[sys.wifitracing.started]: [1]
+[vendor.ims.modem.multisub.cap]: [2]
+[vendor.peripheral.modem.state]: [ONLINE]
+[vendor.peripheral.shutdown_critical_list]: [modem ]
+[vendor.radio.db_state]: [3]
+[vendor.radio.qcril_pre_init_lock_held]: [0]
+[wifi.interface]: [wlan0]
+
+=== interfaces ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: dummy0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/ether b2:ed:ae:2f:c1:67 brd ff:ff:ff:ff:ff:ff
+3: ifb0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32
+    link/ether da:7e:5c:8d:d0:45 brd ff:ff:ff:ff:ff:ff
+4: ifb1: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32
+    link/ether 3a:b2:2a:68:3d:e4 brd ff:ff:ff:ff:ff:ff
+5: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+6: gre0@NONE: <NOARP> mtu 1476 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/gre 0.0.0.0 brd 0.0.0.0
+7: gretap0@NONE: <BROADCAST,MULTICAST> mtu 1462 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff
+8: erspan0@NONE: <BROADCAST,MULTICAST> mtu 1450 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff
+9: ip_vti0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+10: ip6_vti0@NONE: <NOARP> mtu 1364 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/tunnel6 :: brd ::
+11: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+12: ip6tnl0@NONE: <NOARP> mtu 1452 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/tunnel6 :: brd ::
+13: ip6gre0@NONE: <NOARP> mtu 1448 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/gre6 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00 brd 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+14: rmnet_ipa0: <UP,LOWER_UP> mtu 9216 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+16: rmnet_data0@rmnet_ipa0: <UP,LOWER_UP> mtu 9216 qdisc mq state UNKNOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+17: rmnet_data2@rmnet_ipa0: <> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+18: rmnet_data1@rmnet_ipa0: <> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+19: r_rmnet_data1@rmnet_ipa0: <> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+20: r_rmnet_data0@rmnet_ipa0: <> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+21: r_rmnet_data3@rmnet_ipa0: <> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+22: r_rmnet_data2@rmnet_ipa0: <> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+23: wlan0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 3000
+    link/ether 54:1f:8d:7c:de:1c brd ff:ff:ff:ff:ff:ff
+24: p2p0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 3000
+    link/ether 56:1f:8d:03:de:1c brd ff:ff:ff:ff:ff:ff
+---
+phy#0
+	Interface p2p0
+		ifindex 24
+		wdev 0x2
+		addr 56:1f:8d:03:de:1c
+		type P2P-device
+	Interface wlan0
+		ifindex 23
+		wdev 0x1
+		addr 54:1f:8d:7c:de:1c
+		type managed
+---
+dummy0
+erspan0
+gre0
+gretap0
+ifb0
+ifb1
+ip6_vti0
+ip6gre0
+ip6tnl0
+ip_vti0
+lo
+p2p0
+r_rmnet_data0
+r_rmnet_data1
+r_rmnet_data2
+r_rmnet_data3
+rmnet_data0
+rmnet_data1
+rmnet_data2
+rmnet_ipa0
+sit0
+tunl0
+wlan0
+
+=== modules / drivers ===
+qca_cld3_kiwi_v2    11743232  0 
+rmnet_shs             176128  0 
+rmnet_offload          32768  0 
+rmnet_aps              36864  0 
+rmnet_perf_tether      24576  0 
+rmnet_wlan             49152  0 
+rmnet_perf             28672  0 
+ipanetm                16384  0 
+rmnet_core            282624  7 rmnet_shs,rmnet_offload,rmnet_aps,rmnet_perf_tether,rmnet_wlan,rmnet_perf
+rmnet_ctl              20480  1 rmnet_core
+ipam                 4423680  20 qca_cld3_kiwi_v2,rmnet_core,ipanetm,rmnet_ctl
+mhi_dev_uci            28672  0 
+cnss2                 368640  1 qca_cld3_kiwi_v2
+qrtr_mhi               20480  0 
+mhi_dev_satellite      20480  0 
+usb_f_gsi              90112  9 ipam
+bt_fm_slim             28672  1 
+wlan_firmware_service    98304  1 cnss2,[permanent]
+mhi                   135168  4 mhi_dev_uci,cnss2,qrtr_mhi,mhi_dev_satellite
+btpower                69632  1 bt_fm_slim
+gsim                  270336  1 ipam
+pci_msm_drv           233472  2 cnss2,mhi
+rmnet_sch              20480  0 
+rmnet_mem              32768  2 rmnet_core,ipam
+slimbus                40960  2 bt_fm_slim,slim_qcom_ngd_ctrl
+qrtr_smd               16384  0 
+qcom_va_minidump       24576  6 qca_cld3_kiwi_v2,msm_drm,camera,ipam,msm_kgsl,gsim
+cfg80211              987136  2 qca_cld3_kiwi_v2,mac80211
+cnss_plat_ipc_qmi_svc    32768  1 cnss2
+cnss_prealloc          20480  2 qca_cld3_kiwi_v2,cnss2
+cnss_nl                24576  1 qca_cld3_kiwi_v2
+cnss_utils             28672  2 qca_cld3_kiwi_v2,cnss2
+qcom_ramdump           20480  3 cnss2,frpc_adsprpc,qcom_q6v5_pas
+qmi_helpers            32768  15 rmnet_core,ipam,cnss2,wlan_firmware_service,qti_qmi_sensor_v2,slim_qcom_ngd_ctrl,snd_usb_audio_qmi,msm_memshare,qti_qmi_cdev,health_monitor,heap_mem_ext_v01,coresight_remote_etm,cnss_plat_ipc_qmi_svc,qcom_sysmon,pdr_interface
+rproc_qcom_common      40960  17 ipam,spss_utils,slim_qcom_ngd_ctrl,pci_msm_drv,synx_driver,msm_memshare,qcom_spss,health_monitor,frpc_adsprpc,glink_probe,qsee_ipc_irq_bridge,pmic_glink,q6_notifier_dlkm,qcom_q6v5_pas,qcom_q6v5,qcom_sysmon,pdr_interface
+qcom_glink             53248  8 msm_memshare,qcom_spss,glink_pkt,qrtr_smd,glink_probe,qcom_glink_spss,rproc_qcom_common,qcom_glink_smem
+hci_uart               77824  0 
+btbcm                  24576  1 hci_uart
+btqca                  24576  1 hci_uart
+bluetooth             655360  6 hci_uart,rfcomm,hidp,btsdio,btbcm,btqca
+rfkill                 40960  4 btpower,cfg80211,nfc,bluetooth
+sdhci_msm              65536  0 
+clk_qcom              229376  20 camera,dwc3_msm,msm_video,msm_kgsl,pci_msm_drv,debugcc_pineapple,gpucc_cliffs,msm_mmrm,camcc_cliffs,camcc_pineapple,clk_dummy,clk_rpmh,dispcc_pineapple,gcc_cliffs,sdhci_msm,gcc_pineapple,gpucc_pineapple,ufs_qcom,videocc_pineapple,tcsrcc_pineapple
+qrtr_gunyah            20480  0 
+cqhci                  40960  1 sdhci_msm
+qrtr                   61440  535 qrtr_mhi,qrtr_smd,qrtr_gunyah
+gunyah_loader          90112  4 hvc_gunyah,gh_panic_notifier,gh_irq_lend,qrtr_gunyah
+memory_dump_v2         28672  1 cnss2
+qcom_aoss              28672  115 cnss2,msm_kgsl,sys_pm_vx,qcom_spss,qcom_stats,qcom_q6v5_pas,rproc_qcom_common,msm_qmp
+pinctrl_msm            45056  82 msm_drm,cnss2,i3c_master_msm_geni,pci_msm_drv,btpower,gh_tlmm_vm_mem_access,wcd_core_dlkm,sdhci_msm,pinctrl_cliffs,pinctrl_pineapple
+qcom_ipc_logging       40960  50 ipanetm,rmnet_ctl,msm_drm,ipam,mhi_dev_uci,cnss2,usb_f_qdss,mhi_dev_satellite,i2c_msm_geni,usb_f_gsi,dwc3_msm,i3c_master_msm_geni,mhi,spcom,qti_ocp_notifier,slim_qcom_ngd_ctrl,altmode_glink,snd_usb_audio_qmi,smp2p,gsim,charger_ulog_glink,pci_msm_drv,ucsi_glink,sps_drv,msm_geni_serial,bam_dma,health_monitor,msm_gpi,glink_pkt,f_fs_ipc_log,audio_pkt_dlkm,spi_msm_geni,glink_probe,qsee_ipc_irq_bridge,cnss_plat_ipc_qmi_svc,pmic_glink,qmi_helpers,qcom_glink,sdhci_msm,rpmh_regulator,ufs_qcom,qcom_tsens,qcom_rpmh,msm_qmp,crm,bcl_pmic5,qrtr,qcom_aoss,pmic_pon_log,qcom_pdc,[permanent]
+minidump             1138688  14 cnss2,dmesg_dumper,qcom_logbuf_boot_log,msm_kgsl,qcom_logbuf_vendor_hooks,qcom_dload_mode,qcom_va_minidump,frpc_adsprpc,ufs_qcom,qcom_wdt_core,dcc_v2,memory_dump_v2,thermal_minidump,qcom_ipc_logging
+qcom_iommu_util        77824  9 qca_cld3_kiwi_v2,msm_drm,camera,coresight_tmc,ipam,cnss2,msm_kgsl,qcom_iommu_debug,arm_smmu,[permanent]
+mdt_loader             20480  8 camera,ipam,msm_eva,msm_video,msm_kgsl,qcom_spss,qcom_q6v5_pas,gunyah_loader
+crypto_qti             28672  4 sdhci_msm,ufs_qcom,cqhci,ufshcd_crypto_qti
+qcom_scm              131072  43 msm_drm,camera,ipam,msm_eva,ubwcp,coresight_tmc_sec,msm_video,phy_msm_snps_eusb2,dmesg_dumper,msm_kgsl,msm_memshare,hdcp_qseecom_dlkm,qcom_spss,qseecom_dlkm,qcom_cpuss_sleep_stats,eud,msm_hw_fence,gh_panic_notifier,qcom_dload_mode,audpkt_ion_dlkm,msm_sharedmem,frpc_adsprpc,tz_log_dlkm,core_hang_detect,smcinvoke_dlkm,coresight_tpdm,qcom_q6v5_pas,sdhci_msm,ufs_qcom,qrtr_gunyah,arm_smmu,qcom_wdt_core,gunyah_loader,memory_dump_v2,pinctrl_msm,qcom_pdc,qcom_dma_heaps,gunyah_qcom,qcom_iommu_util,gh_cpusys_vm_mem_access,mdt_loader,crypto_qti,secure_buffer
+gh_rm_drv              98304  15 msm_drm,msm_eva,dmesg_dumper,gh_rm_booster,hvc_gunyah,msm_hw_fence,gh_tlmm_vm_mem_access,gh_panic_notifier,gh_irq_lend,qrtr_gunyah,gunyah_loader,mem_buf_dev,gh_mem_notifier,gh_cpusys_vm_mem_access,qcom_scm
+smem                   24576  16 ipam,cnss2,smp2p,sysmon_subsystem_stats,qcom_stats,rdbg,qcom_glink_spss,adsp_sleepmon,qcom_q6v5_pas,qcom_q6v5,rproc_qcom_common,qcom_smd,qcom_glink_smem,msm_qmp,minidump,socinfo
+sched_walt            397312  11 qca_cld3_kiwi_v2,rmnet_shs,machine_dlkm,qcom_lpm,msm_performance,ufs_qcom,thermal_pause,[permanent]
+cmd_db                 20480  7 cnss2,msm_kgsl,icc_rpmh,clk_rpmh,dcvs_fp,rpmh_regulator,qcom_rpmh,[permanent]
+gh_dbl                 24576  5 dmesg_dumper,msm_hw_fence,gh_panic_notifier,qrtr_gunyah,gh_rm_drv
+0000:00:00.0
+0000:01:00.0
+8250_pericom
+cn10k_rng
+cnss_pci
+dwc3-haps
+ehci-pci
+nvme
+pci-msm-rc
+serial
+ufshcd
+xhci_hcd
+== /sys/bus/pci/devices/0000:00:00.0
+0x17cb
+0x0113
+DRIVER=pci-msm-rc
+OF_NAME=pcie0_rp
+OF_FULLNAME=/soc/qcom,pcie@1c00000/pcie0_rp
+OF_COMPATIBLE_N=0
+PCI_CLASS=60400
+PCI_ID=17CB:0113
+PCI_SUBSYS_ID=0000:0000
+PCI_SLOT_NAME=0000:00:00.0
+MODALIAS=pci:v000017CBd00000113sv00000000sd00000000bc06sc04i00
+== /sys/bus/pci/devices/0000:01:00.0
+0x17cb
+0x1107
+DRIVER=cnss_pci
+OF_NAME=cnss_pci0
+OF_FULLNAME=/soc/qcom,pcie@1c00000/pcie0_rp/cnss_pci0
+OF_COMPATIBLE_N=0
+PCI_CLASS=28000
+PCI_ID=17CB:1107
+PCI_SUBSYS_ID=17CB:1107
+PCI_SLOT_NAME=0000:01:00.0
+MODALIAS=pci:v000017CBd00001107sv000017CBsd00001107bc02sc80i00
+
+=== platform devices ===
+16cd000.pcie_qtb
+17a00000.rsc:drv@2:rpmh-regulator-msslvl
+188101c.remoteproc-spss
+1c00000.qcom,pcie
+3000000.remoteproc-adsp
+32300000.remoteproc-cdsp
+32300000.remoteproc-cdsp:glink-edge:qcom,msm_cdsprm_rpmsg:qcom,msm_cdsp_rm
+3e00000.qcom,ipa
+3e00000.qcom,ipa:ipa_smmu_11ad
+3e00000.qcom,ipa:ipa_smmu_ap
+3e00000.qcom,ipa:ipa_smmu_uc
+3e00000.qcom,ipa:ipa_smmu_wlan
+3e00000.qcom,ipa:qcom,smp2p_map_ipa_1_in
+3e00000.qcom,ipa:qcom,smp2p_map_ipa_1_out
+4080000.remoteproc-mss
+898000.qcom,qup_uart
+b0000000.qcom,cnss-kiwi
+soc:bt_kiwi
+soc:modem2_etm0
+soc:modem_diag
+soc:modem_etm0
+soc:qcom,dma-heaps:qcom,secure_sp_modem
+soc:qcom,qrtr-mhi-cnss
+soc:qcom,rmnet-ipa
+soc:qcom,smp2p-modem
+soc:tmc_modem
+
+=== dmesg RF ===
+[   15.324890] [kworke][0x1ce53944][17:19:08.203167] wlan: [767:I:WMA] wma_rx_service_ready_event: Firmware build version : 20047fff
+[   15.324893] [kworke][0x1ce53985][17:19:08.203170] wlan: [767:I:WMA] wma_rx_service_ready_event: Board id: 0, Board version: 8 0 0 0 1
+[   15.325224] [kworke][0x1ce55257][17:19:08.203501] wlan: [767:E:WMA] wma_update_supported_bands: wrong supported band
+[   15.325225] [kworke][0x1ce55272][17:19:08.203503] wlan: [767:E:WMA] wma_update_supported_bands: wrong supported band
+[   15.325235] [kworke][0x1ce55330][17:19:08.203513] wlan: [767:I:POLICY_MGR] policy_mgr_modify_sbs_freq: Invalid SBS range with all 5Ghz shared
+[   15.325275] [kworke][0x1ce55618][17:19:08.203551] wlan: [767:I:WMI] extract_hw_bdf_status: BDF VER is 0, FW and BDF ver check skipped
+[   15.428125] [kworke][0x1d0377f1][17:19:08.306403] wlan: [762:I:WMI] ready_extract_init_status_tlv: ready_extract_init_status_tlv:0
+[   15.428145] [kworke][0x1d037963][17:19:08.306422] wlan: [762:E:QDF] __cds_get_context: Module ID 65 context is Null (via wma_set_tx_partition_base)
+[   15.428146] [kworke][0x1d03797a][17:19:08.306423] wlan: [762:F:DP] cdp_ipa_set_uc_tx_partition_base invalid instance
+[   15.428355] [kworke][0x1d03892a][17:19:08.306632] wlan: [762:E:REGULATORY] reg_set_keep_6ghz_sta_cli_connection: pdev reg component is NULL
+[   15.428418] [kworke][0x1d038ddb][17:19:08.306695] wlan: [762:E:REGULATORY] reg_send_scheduler_msg_nb: hlos not initialized
+[   15.428422] [kworke][0x1d038e2a][17:19:08.306699] wlan: [762:I:dfs] WLAN_DEBUG_DFS_ALWAYS : wlan_dfs_pdev_obj_create_notification: dfs_bangradar_320_support 0
+[   15.428424] [kworke][0x1d038e4d][17:19:08.306701] wlan: [762:I:dfs] WLAN_DEBUG_DFS_ALWAYS : dfs_set_nol_subchannel_marking: NOL subchannel marking is set 
+[   15.428428] [kworke][0x1d038ea3][17:19:08.306705] wlan: [762:I:SPECTRAL] null_get_capability: SPECTRAL : get_capability not registered
+[   15.428429] [kworke][0x1d038eb8][17:19:08.306706] wlan: [762:I:SPECTRAL] target_if_pdev_spectral_init: HAL_CAP_PHYDIAG : Capable
+[   15.428430] [kworke][0x1d038ece][17:19:08.306707] wlan: [762:I:SPECTRAL] null_get_capability: SPECTRAL : get_capability not registered
+[   15.428431] [kworke][0x1d038ee2][17:19:08.306709] wlan: [762:I:SPECTRAL] target_if_pdev_spectral_init: HAL_CAP_RADAR   : Capable
+[   15.428432] [kworke][0x1d038ef4][17:19:08.306709] wlan: [762:I:SPECTRAL] null_get_capability: SPECTRAL : get_capability not registered
+[   15.428433] [kworke][0x1d038f0b][17:19:08.306711] wlan: [762:I:SPECTRAL] target_if_pdev_spectral_init: HAL_CAP_SPECTRAL_SCAN : Capable
+[   15.428435] [kworke][0x1d038f23][17:19:08.306712] wlan: [762:I:SPECTRAL] null_get_tsf64: SPECTRAL : get_tsf64 not registered
+[   15.428440] [kworke][0x1d038f90][17:19:08.306718] wlan: [762:I:GREEN_AP] wlan_green_ap_pdev_obj_create_notification: Green AP creation successful, green ap ctx: 0000000000000000, pdev: 0000000000000000
+[   15.428599] [kworke][0x1d039b78][17:19:08.306876] wlan: [762:E:CFR] cfr_streamfs_init: Directory create failed
+[   15.428600] [kworke][0x1d039b92][17:19:08.306878] wlan: [762:E:CFR] wlan_cfr_pdev_open: cfr_streamfs_init failed with 16
+[   15.428611] [kworke][0x1d039c60][17:19:08.306888] wlan: [762:I:REGULATORY] reg_set_band: same band 7
+[   15.428613] [kworke][0x1d039c8a][17:19:08.306891] wlan: [762:I:HDD] hdd_intersect_igmp_offload_setting: fw cap to handle igmp 1 igmp_offload_enable ini 0
+[   15.428661] [kworke][0x1d03a025][17:19:08.306939] wlan: [762:I:GREEN_AP] target_if_green_ap_register_egap_event_handler: Set the Enhance Green AP event handler
+[   15.428682] [kworke][0x1d03a19f][17:19:08.306958] wlan: [88:I:WMA] wma_wait_for_ready_event: FW ready event received
+[   15.428886] [kworke][0x1d03b0fb][17:19:08.307163] wlan: [88:I:IPA] ipa_register_is_ipa_ready: IPA is ready, invoke callback
+[   15.428889] [kworke][0x1d03b131][17:19:08.307166] wlan: [88:I:IPA] ipa_register_ready_cb: IPA ready callback invoked: ipa_register_ready_cb
+[   15.428898] [kworke][0x1d03b1dd][17:19:08.307175] wlan: [88:I:IPA] wlan_ipa_wdi_init: ipa_over_gsi: 1, is_smmu_enabled: 1, handle: 0
+[   15.429681] ipahal ipareg_construct_endp_init_deaggr_n_v4_5:2126 mbim_or_ncm_flag is set to  0
+[   15.430716] [kworke][0x1d043a3f][17:19:08.308993] wlan: [88:I:IPA] wlan_ipa_uc_ol_init: TX buffers mapped to IPA
+[   15.430749] [kworke][0x1d043cae][17:19:08.309026] wlan: [88:I:IPA] ipa_register_is_ipa_ready: No. of instances added for IPA is 1
+[   15.430801] [kworke][0x1d0440a1][17:19:08.309078] wlan: [88:I:SYS] Creating periodic timer for OLBC UPDATE CACHE TIMEOUT
+[   15.431643] [kworke][0x1d047fb7][17:19:08.309920] wlan: [88:I:DIRECT_BUF_RX] target_if_direct_buf_rx_register_events: DBR Handler Context 1
+[   15.452666] [kworke][0x1d0aa87d][17:19:08.330943] wlan: [88:E:fwol] ucfg_fwol_send_get_thermal_stats_cmd: Command Disabled in Ini gThermalStatsTempOffset 5 or not enabled in FW 0
+[   15.452670] [kworke][0x1d0aa8c7][17:19:08.330947] wlan: [88:E:OSIF] os_if_fwol_get_thermal_stats_req: Failed to send get thermal stats cmd to FW, 4
+[   15.453054] cnss_utils: WLAN MAC address is not set, type 0
+[   15.453075] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -13
+[   15.453078] cnss_pci 0000:01:00.0: loading /vendor/firmware_mnt/image/kiwi/wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -13
+[   15.453156] cnss_pci 0000:01:00.0: loading /vendor/firmware/wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -13
+[   15.453165] cnss_pci 0000:01:00.0: Direct firmware load for wlan/qca_cld/kiwi_v2/wifimac.dat failed with error -2
+[   15.453167] cnss_pci 0000:01:00.0: Falling back to sysfs fallback for: wlan/qca_cld/kiwi_v2/wifimac.dat
+[   15.454565] ueventd: firmware: loading 'wlan/qca_cld/kiwi_v2/wifimac.dat' for '/devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/wlan!qca_cld!kiwi_v2!wifimac.dat'
+[   15.454671] ueventd: found /vendor/firmware/wlan/qca_cld/kiwi_v2/wifimac.dat for /devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/wlan!qca_cld!kiwi_v2!wifimac.dat
+[   15.455441] ueventd: loading /devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/firmware/wlan!qca_cld!kiwi_v2!wifimac.dat took 0ms
+[   15.455538] [kworke][0x1d0b7fe3][17:19:08.333815] wlan: [88:I:HDD] hdd_initialize_mac_address: using MAC address from wifimac.dat
+[   15.456904] cnss-daemon: no interop issues ap currently
+[   15.456973] cnss: Failed to get cooling device node
+[   15.457156] cnss: Failed to get cooling device node
+[   15.719426] [kworke][0x1d58cf5f][17:19:08.597702] wlan: [698:I:HDD] hdd_psoc_idle_timeout_callback: Psoc idle timeout elapsed; starting psoc shutdown
+[   15.719624] [kworke][0x1d58de50][17:19:08.597901] wlan: [88:E:WMI] wmi_unified_unregister_event_handler: event handler is not registered: evt id 0x1d01a
+[   15.719800] [schedu][0x1d58eb88][17:19:08.598077] wlan: [3639:E:SYS] Processing SYS MC STOP
+[   15.719818] [kworke][0x1d58ece1][17:19:08.598095] wlan: [88:I:IPA] wlan_ipa_uc_disable_pipes: IPA WDI Pipes are already deactivated
+[   15.719819] [kworke][0x1d58ecfb][17:19:08.598096] wlan: [88:I:IPA] wlan_ipa_uc_disable_pipes: pipes_down 1, pipes_down_in_progress 0
+[   15.722654] [kworke][0x1d59c197][17:19:08.600931] wlan: [88:I:IPA] wlan_ipa_uc_ol_deinit: TX buffers unmapped from IPA
+[   15.726195] ipa __ipa_stop_gsi_channel:12318 bad parm.
+[   15.750681] [kworke][0x1d61f798][17:19:08.628958] wlan: [88:I:WMI] WMI Stop
+[   15.750684] [kworke][0x1d61f7cc][17:19:08.628961] wlan: [88:I:HTC] htc_stop: endpoints cleanup
+[   15.750686] [kworke][0x1d61f7ff][17:19:08.628963] wlan: [88:I:HTC] htc_stop: stopping hif layer
+[   15.750963] [kworke][0x1d620cb6][17:19:08.629240] wlan: [88:I:HTC] htc_stop: flush endpoints Tx lookup queue
+[   15.750966] [kworke][0x1d620cee][17:19:08.629242] wlan: [88:I:HTC] htc_stop: resetting endpoints state
+[   15.754577] [kworke][0x1d631bcc][17:19:08.632854] wlan: [88:E:DP_INIT] dp_srng_deinit: 0000000000000000: Ring type: 27, num:0 not setup
+[   15.754580] [kworke][0x1d631c0f][17:19:08.632858] wlan: [88:E:DP_INIT] dp_srng_deinit: 0000000000000000: Ring type: 27, num:0 not setup
+[   15.754811] [kworke][0x1d632d4f][17:19:08.633088] wlan: [88:I:OSIF] os_if_spectral_free_skb: Socket buffer is null, msg_type= 0
+[   15.754812] [kworke][0x1d632d6d][17:19:08.633089] wlan: [88:I:OSIF] os_if_spectral_free_skb: Socket buffer is null, msg_type= 1
+[   15.754813] [kworke][0x1d632d80][17:19:08.633090] wlan: [88:I:OSIF] os_if_spectral_free_skb: Socket buffer is null, msg_type= 2
+[   15.755912] [kworke][0x1d637fd6][17:19:08.634188] wlan: [88:I:HTC] htc_cleanup: Non flow ctrl enabled endpoints nbuf map: 15, unamp: 15
+[   15.765115] [kworke][0x1d663224][17:19:08.643392] wlan: [88:I:SPECTRAL] target_if_spectral_detach: spectral detach
+[   15.765118] [kworke][0x1d66325d][17:19:08.643395] wlan: [88:I:GREEN_AP] wlan_green_ap_pdev_obj_destroy_notification: Deleting green ap pdev obj, green ap ctx: 0000000000000000, pdev: 0000000000000000
+[   15.765120] [kworke][0x1d663281][17:19:08.643397] wlan: [88:I:GREEN_AP] wlan_green_ap_pdev_obj_destroy_notification: green ap deletion successful
+[   15.765794] [kworke][0x1d66650b][17:19:08.644071] wlan: [88:I:IPA] ipa_component_config_free: Free the IPA config memory
+[   15.827478] msm_pcie_disable: PCIe: Assert the reset of endpoint of RC0.
+[   15.827480] msm_pcie_config_perst: PCIe: RC0: assert PERST
+[   15.830498] cnss: QMI WLFW service disconnected, state: 0x16fa6100
+[   18.615671] ipa_pm ipa_pm_handle_suspend:1280 Client IPA_CLIENT_APPS_WAN_CONS woke up the system
+[   21.785616] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Could not find android.hardware.bluetooth.IBluetoothHci/default in the VINTF manifest. No alternative instances declared in VINTF.
+[   21.790757] btpower_handle_client_request: Start of BT_CMD_PWR_CTRL cmd request to Power OFF.
+[   21.790782] bt_power_vote: Start Current state is ALL Client OFF and No SSR, Both client not in Retention state access NO_GRANT_FOR_ANY_SS pending NO_OTHER_CLIENT_WAITING_FOR_GRANT
+[   21.790790] bt_power_vote: Completed Current state is ALL Client OFF and No SSR, Both client not in Retention state access NO_GRANT_FOR_ANY_SS pending NO_OTHER_CLIENT_WAITING_FOR_GRANT
+[   21.790914] btpower_handle_client_request: Start of BT_CMD_PWR_CTRL cmd request to Power ON.
+[   21.790927] bt_power_vote: Start Current state is ALL Client OFF and No SSR, Both client not in Retention state access NO_GRANT_FOR_ANY_SS pending NO_OTHER_CLIENT_WAITING_FOR_GRANT
+[   21.790934] bt_regulators_pwr: vote on
+[   21.791593] BTON:Turn Bt OFF asserting BT_EN to low
+[   21.815324] servicemanager: Caller(pid=4141,uid=1001,sid=u:r:radio:s0) Found android.hardware.radio.modem.IRadioModem/slot1 in device VINTF manifest.
+[   21.817945] servicemanager: Caller(pid=4141,uid=1001,sid=u:r:radio:s0) Found android.hardware.radio.modem.IRadioModem/slot1 in device VINTF manifest.
+[   21.818133] servicemanager: Caller(pid=4141,uid=1001,sid=u:r:radio:s0) Found android.hardware.radio.modem.IRadioModem/slot1 in device VINTF manifest.
+[   21.826383] servicemanager: Caller(pid=4141,uid=1001,sid=u:r:radio:s0) Found android.hardware.radio.modem.IRadioModem/slot2 in device VINTF manifest.
+[   21.830159] servicemanager: Caller(pid=4141,uid=1001,sid=u:r:radio:s0) Found android.hardware.radio.modem.IRadioModem/slot2 in device VINTF manifest.
+[   21.830343] servicemanager: Caller(pid=4141,uid=1001,sid=u:r:radio:s0) Found android.hardware.radio.modem.IRadioModem/slot2 in device VINTF manifest.
+[   21.846492] ipa_pm ipa_pm_handle_suspend:1280 Client IPA_CLIENT_APPS_WAN_CONS woke up the system
+[   21.847505] BTON:Turn Bt OFF post asserting BT_EN to low
+[   21.847527] BTON: WLAN OFF waiting for 100ms delay
+[   21.928544] type=1400 audit(1786382354.803:51): avc:  denied  { read } for  comm="SystemUIBg-1" name="u:object_r:bluetooth_lea_prop:s0" dev="tmpfs" ino=115 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:bluetooth_lea_prop:s0 tclass=file permissive=0 app=com.android.systemui
+[   21.928749] type=1400 audit(1786382354.803:52): avc:  denied  { read } for  comm="SystemUIBg-4" name="u:object_r:bluetooth_lea_prop:s0" dev="tmpfs" ino=115 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:bluetooth_lea_prop:s0 tclass=file permissive=0 app=com.android.systemui
+[   21.951446] BTON: WLAN OFF Asserting BT_EN to high
+[   22.007477] bt_configure_gpios: bt_gpio= 318 on: 1
+[   22.007481] bt_power_vote: Completed Current state is BT powered ON and No SSR, Both client not in Retention state access NO_GRANT_FOR_ANY_SS pending NO_OTHER_CLIENT_WAITING_FOR_GRANT
+[   22.036026] bt_ioctl: unified Current SOC Version : 40170200
+[   22.252013] [cnd][0x24d2a779][17:19:15.130290] wlan: [4646:I:HDD] wlan_hdd_state_ctrl_param_write: is_driver_loaded 1 is_driver_recovering 0
+[   22.252019] [cnd][0x24d2a7f0][17:19:15.130296] wlan: [4646:E:HDD] wlan_hdd_state_ctrl_param_write: WiFi is already enabled
+[   23.146255] type=1400 audit(1786382356.019:57): avc:  denied  { read } for  comm="bluetooth@1.1-s" name="u:object_r:default_prop:s0" dev="tmpfs" ino=186 scontext=u:r:hal_bluetooth_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+[   23.146398] type=1400 audit(1786382356.019:58): avc:  denied  { read } for  comm="bluetooth@1.1-s" name="u:object_r:default_prop:s0" dev="tmpfs" ino=186 scontext=u:r:hal_bluetooth_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+[   23.545637] btpower_handle_client_request: Start of BT_CMD_PWR_CTRL cmd request to Power Retention.
+[   23.545717] bt_power_vote: Start Current state is BT powered ON and No SSR, Both client not in Retention state access NO_GRANT_FOR_ANY_SS pending NO_OTHER_CLIENT_WAITING_FOR_GRANT
+[   23.545732] bt_regulators_pwr: vote for retention
+[   23.545890] bt_power_vote: Completed Current state is BT powered ON and No SSR, BT in Retention state access NO_GRANT_FOR_ANY_SS pending NO_OTHER_CLIENT_WAITING_FOR_GRANT
+[   23.547926] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Could not find android.hardware.bluetooth.ranging.IBluetoothChannelSounding/default in the VINTF manifest. No alternative instances declared in VINTF.
+[   23.592993] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Could not find android.hardware.bluetooth.socket.IBluetoothSocket/lpp in the VINTF manifest. No alternative instances declared in VINTF.
+[   23.593681] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Could not find android.hardware.bluetooth.socket.IBluetoothSocket/default in the VINTF manifest. No alternative instances declared in VINTF.
+[   23.594442] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Could not find android.hardware.bluetooth.gatt.IBluetoothGatt/default in the VINTF manifest. No alternative instances declared in VINTF.
+[   23.670439] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Found android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default in device VINTF manifest.
+[   23.681047] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Found android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default in device VINTF manifest.
+[   23.681458] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Found android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default in device VINTF manifest.
+[   23.683150] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Found android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default in device VINTF manifest.
+[   23.725360] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Found android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default in device VINTF manifest.
+[   23.725715] servicemanager: Caller(pid=4069,uid=1002,sid=u:r:bluetooth:s0) Found android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default in device VINTF manifest.
+[   98.230116] rmt_storage:INFO:rmt_storage_rw_iovec_cb: Write iovec request (req_h 0x7 wr_count 1) received for /boot/modem_fs1
+[   98.230797] rmt_storage:INFO:rmt_storage_client_thread: for /boot/modem_fs1!
+[   98.261948] rmt_storage:INFO:rmt_storage_client_thread: Done Write (bytes = 4194304, req_h 0x7, wr_count 1) for /boot/modem_fs1!
+
+=== firmware paths ===
+total 68
+dr-xr-x---  4 system system 16384 1970-01-01 08:00 .
+drwxr-xr-x 17 root   root    4096 2026-08-11 01:17 ..
+dr-xr-x---  6 system system 32768 2011-07-06 01:30 image
+dr-xr-x---  2 system system 16384 2011-07-06 01:30 verinfo
+CAMERA_ICP.b00
+CAMERA_ICP.b01
+CAMERA_ICP.b02
+CAMERA_ICP.b03
+CAMERA_ICP.b04
+CAMERA_ICP.b05
+CAMERA_ICP.b06
+CAMERA_ICP.b07
+CAMERA_ICP.b08
+CAMERA_ICP.b09
+CAMERA_ICP.b10
+CAMERA_ICP.b11
+CAMERA_ICP.b12
+CAMERA_ICP.b13
+CAMERA_ICP.b14
+CAMERA_ICP.b15
+CAMERA_ICP.b16
+CAMERA_ICP.b17
+CAMERA_ICP.b18
+CAMERA_ICP.b19
+CAMERA_ICP.b20
+CAMERA_ICP.elf
+CAMERA_ICP.mbn
+CAMERA_ICP.mdt
+CAMERA_ICP_170.elf
+aw882xx_acf.bin
+aw_cali.bin
+evass.b00
+evass.b01
+evass.b02
+evass.b03
+evass.b04
+evass.b05
+evass.b06
+evass.b07
+evass.b08
+evass.b09
+evass.b10
+evass.b11
+evass.b12
+/vendor/firmware/wlan
+/vendor/firmware/wlan/qca_cld
+/vendor/firmware/wlan/qca_cld/kiwi_v2
+/vendor/firmware/wlan/qca_cld/kiwi_v2/wifimac.dat
+/vendor/firmware/wlan/qca_cld/kiwi_v2/WCNSS_qcom_cfg.ini
+/vendor/firmware_mnt/image/kiwi
+/vendor/firmware_mnt/image/kiwi/Data.msc
+/vendor/firmware_mnt/image/kiwi/Data20.msc
+/vendor/firmware_mnt/image/kiwi/amss.bin
+/vendor/firmware_mnt/image/kiwi/amss20.bin
+/vendor/firmware_mnt/image/kiwi/bdwlan.e01
+/vendor/firmware_mnt/image/kiwi/bdwlan.e02
+/vendor/firmware_mnt/image/kiwi/bdwlan.e03
+/vendor/firmware_mnt/image/kiwi/bdwlan.e04
+/vendor/firmware_mnt/image/kiwi/bdwlan.e07
+/vendor/firmware_mnt/image/kiwi/bdwlan.e08
+/vendor/firmware_mnt/image/kiwi/bdwlan.e09
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0a
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0b
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0c
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0d
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0e
+/vendor/firmware_mnt/image/kiwi/bdwlan.e0f
+/vendor/firmware_mnt/image/kiwi/bdwlan.e10
+/vendor/firmware_mnt/image/kiwi/bdwlan.e11
+/vendor/firmware_mnt/image/kiwi/bdwlan.e12
+/vendor/firmware_mnt/image/kiwi/bdwlan.e13
+/vendor/firmware_mnt/image/kiwi/bdwlan.e14
+/vendor/firmware_mnt/image/kiwi/bdwlan.e15
+/vendor/firmware_mnt/image/kiwi/bdwlan.e16
+/vendor/firmware_mnt/image/kiwi/bdwlan.e17
+/vendor/firmware_mnt/image/kiwi/bdwlan.e18
+/vendor/firmware_mnt/image/kiwi/bdwlan.e19
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1a
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1b
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1c
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1d
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1e
+/vendor/firmware_mnt/image/kiwi/bdwlan.e1f
+/vendor/firmware_mnt/image/kiwi/bdwlan.e20
+/vendor/firmware_mnt/image/kiwi/bdwlan.e21
+/vendor/firmware_mnt/image/kiwi/bdwlan.e22
+/vendor/firmware_mnt/image/kiwi/bdwlan.e23
+/vendor/firmware_mnt/image/kiwi/bdwlan.e24
+/vendor/firmware_mnt/image/kiwi/bdwlan.e25
+/vendor/firmware_mnt/image/kiwi/bdwlan.e26
+/vendor/firmware_mnt/image/kiwi/bdwlan.e27
+/vendor/firmware_mnt/image/kiwi/bdwlan.e28
+/vendor/firmware_mnt/image/kiwi/bdwlan.e29
+/vendor/firmware_mnt/image/kiwi/bdwlan.e2a
+/vendor/firmware_mnt/image/kiwi/bdwlan.e2b
+/vendor/firmware_mnt/image/kiwi/bdwlan.e2c
+/vendor/firmware_mnt/image/kiwi/bdwlan.e2d
+/vendor/firmware_mnt/image/kiwi/bdwlan.e2e
+/vendor/firmware_mnt/image/kiwi/bdwlan.e2f
+/vendor/firmware_mnt/image/kiwi/bdwlan.e30
+/vendor/firmware_mnt/image/kiwi/bdwlan.e31
+/vendor/firmware_mnt/image/kiwi/bdwlan.e32
+/vendor/firmware_mnt/image/kiwi/bdwlan.e33
+/vendor/firmware_mnt/image/kiwi/bdwlan.e34
+/vendor/firmware_mnt/image/kiwi/bdwlan.e35
+/vendor/firmware_mnt/image/kiwi/bdwlan.e36
+/vendor/firmware_mnt/image/kiwi/bdwlan.e36.xz
+/vendor/firmware_mnt/image/kiwi/bdwlan.e37
+/vendor/firmware_mnt/image/kiwi/bdwlan.e39
+/vendor/firmware_mnt/image/kiwi/bdwlan.e3a
+/vendor/firmware_mnt/image/kiwi/bdwlan.e3b
+/vendor/firmware_mnt/image/kiwi/bdwlan.e3b.xz
+/vendor/firmware_mnt/image/kiwi/bdwlan.e3c
+/vendor/firmware_mnt/image/kiwi/bdwlan.e3d
+/vendor/firmware_mnt/image/kiwi/bdwlan.e3e
+/vendor/firmware_mnt/image/kiwi/bdwlan.e41
+/vendor/firmware_mnt/image/kiwi/bdwlan.elf
+/vendor/firmware_mnt/image/kiwi/bdwlan.elf.xz
+/vendor/firmware_mnt/image/kiwi/regdb.bin
+/vendor/firmware_mnt/image/kiwi/phy_ucode.elf
+/vendor/firmware_mnt/image/kiwi/phy_ucode20.elf
+/vendor/firmware_mnt/image/kiwi/qdss_trace_config_v1.cfg
+/vendor/firmware_mnt/image/kiwi/qdss_trace_config_v2.cfg
+/vendor_dlkm/lib/modules/bt_fm_slim.ko
+
+=== wifi sysfs ===
+btqca
+cnss2
+cnss_nl
+cnss_plat_ipc_qmi_svc
+cnss_prealloc
+cnss_utils
+qca_cld3_kiwi_v2
+rmnet_wlan
+wlan_firmware_service
+/sys/kernel/btf/cnss_prealloc
+/sys/kernel/btf/cnss_plat_ipc_qmi_svc
+/sys/kernel/btf/cnss_utils
+/sys/kernel/btf/cnss_nl
+/sys/kernel/btf/cnss2
+/sys/kernel/slab/cnss-pool-32k
+/sys/kernel/slab/cnss-pool-64k
+/sys/kernel/slab/cnss-pool-128k
+/sys/kernel/slab/cnss-pool-16k
+/sys/kernel/slab/cnss-pool-8k
+/sys/kernel/cnss
+/sys/class/devlink/regulator:regulator.40--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc1--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:f000000.pinctrl--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldok6--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldob15--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.47--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.44--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.41--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.39--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:16c0000.interconnect--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc2--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.56--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:24100000.interconnect--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldoc3--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpi4--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:soc:interconnect@1--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.34--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.70--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc6--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc3--platform:b0000000.qcom,cnss-kiwi
+/sys/class/rdbg/rdbg_wcnss
+/sys/devices/platform/soc/24100000.interconnect/consumer:platform:b0000000.qcom,cnss-kiwi
+/sys/devices/platform/soc/f000000.pinctrl/consumer:platform:b0000000.qcom,cnss-kiwi
+/sys/devices/platform/soc/soc:qcom,qrtr-mhi-cnss
+/sys/devices/platform/soc/b0000000.qcom,cnss-kiwi
+/sys/devices/platform/soc/17a00000.rsc/17a00000.rsc:drv2/17a00000.rsc:drv@2:rpmh-regulator-smpc2/regulator/regulator.40/consumer:platform:b0000000.qcom,cnss-kiwi
+/sys/devices/platform/soc/17a00000.rsc/17a00000.rsc:drv2/17a00000.rsc:drv@2:rpmh-regulator-smpc2/regulator/regulator.40/b0000000.qcom,cnss-kiwi-vdd-wlan-aon
+/sys/devices/platform/soc/17a00000.rsc/17a00000.rsc:drv2/17a00000.rsc:drv@2:rpmh-regulator-smpc2/consumer:platform:b0000000.qcom,cnss-kiwi
+/sys/devices/platform/soc/17a00000.rsc/17a00000.rsc:drv2/17a00000.rsc:drv@2:rpmh-regulator-ldoc3/regulator/regulator.47/b0000000.qcom,cnss-kiwi-vdd-wlan-io12
+/sys/kernel/btf/qca_cld3_kiwi_v2
+/sys/class/devlink/regulator:regulator.40--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:f000000.pinctrl--platform:soc:bt_kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldoc3--platform:soc:bt_kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc1--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.47--platform:soc:bt_kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldok6--platform:soc:bt_kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc6--platform:soc:bt_kiwi
+/sys/class/devlink/platform:f000000.pinctrl--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldok6--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.70--platform:soc:bt_kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-ldob15--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.44--platform:soc:bt_kiwi
+/sys/class/devlink/platform:17a00000.rsc:drv@2:rpmh-regulator-smpc3--platform:soc:bt_kiwi
+/sys/class/devlink/regulator:regulator.47--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.44--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/regulator:regulator.41--platform:soc:bt_kiwi
+/sys/class/devlink/regulator:regulator.41--platform:b0000000.qcom,cnss-kiwi
+/sys/class/devlink/platform:soc:qcom,qmp-aop--platform:soc:bt_kiwi
+/sys/class/devlink/regulator:regulator.39--platform:b0000000.qcom,cnss-kiwi
+
+=== bluetooth ===
+Bluetooth Status:
+  State:         ON
+  Address:       XX:XX:XX:XX:6D:DD
+  Name:          nubia Z60 Ultra
+  Inner app:     com.android.bluetooth
+  Uptime:        5m 51.369975s
+
+Enable log:
+  TIMESTAMP          ACTION     REASON               PACKAGE
+  ------------------ ---------- -------------------- -------
+  08-10 17:19:14.356 Enable     SYSTEM_BOOT          android
+
+Bluetooth crashed 0 times
+
+Ble app registered: {}
+
+BluetoothManagerService:
+  mEnable:true
+  mQuietEnable:false
+  mEnableExternal:true
+  mQuietEnableExternal:false
+
+
+BluetoothAdapterProperties
+  Name: nubia Z60 Ultra
+  Address: XX:XX:XX:XX:6D:DD
+  ConnectionState: STATE_DISCONNECTED
+  MaxConnectedAudioDevices: 5
+  A2dpOffloadEnabled: true
+  Discovering: false
+  DiscoveryEndMs: 0
+
+BluetoothRemoteDevices
+  Bonded devices: 0
+
+  Other devices: 0
+
+BluetoothActiveDeviceManager
+  Audio mode: 0
+  Dual mode audio: false
+  Broadcasting: false
+  Pending active device: NULL
+  Pending classic active device: NULL
+  Classic device to be activated: NULL
+  Classic device not to be activated: NULL
+  A2DP:
+    Connected count: 0
+    Active: NULL
+    Fallback: NULL
+    Most recent: NULL
+  HFP:
+    Connected count: 0
+    Active: NULL
+    Fallback: NULL
+    Most recent: NULL
+  HA:
+    Connected count: 0
+    Active: 0
+    Most recent: NULL
+  LE Audio:
+    Connected count: 0
+    Active: NULL
+    Most recent: NULL
+  LE HA:
+    Connected count: 0
+    Active: NULL
+    Most recent: NULL
+
+
+BluetoothActiveDeviceManager event log:
+
+
+ScanMode: SCAN_MODE_CONNECTABLE
+Scan Mode Changes:
+  08-10 17:19:16.640 processProfileServiceStateChanged: SCAN_MODE_CONNECTABLE
+
+Enabled Profile Services:
+  GATT
+  A2DP
+  AVRCP
+[bluetooth.profile.a2dp.source.enabled]: [true]
+[bluetooth.profile.avrcp.controller.enabled]: [true]
+[bluetooth.profile.avrcp.target.enabled]: [true]
+[bluetooth.profile.gatt.enabled]: [true]
+[bluetooth.profile.hfp.ag.enabled]: [true]
+[bluetooth.profile.hid.device.enabled]: [true]
+[bluetooth.profile.hid.host.enabled]: [true]
+[bluetooth.profile.map.server.enabled]: [true]
+[bluetooth.profile.opp.enabled]: [true]
+[bluetooth.profile.pan.nap.enabled]: [true]
+[bluetooth.profile.pan.panu.enabled]: [true]
+[bluetooth.profile.pbap.server.enabled]: [true]
+[cache_key.bluetooth.bluetooth_adapter_get_connection_state]: [-8525209709763526744]
+[cache_key.bluetooth.bluetooth_adapter_get_profile_connection_state]: [-8525209709763526743]
+[cache_key.bluetooth.bluetooth_adapter_is_offloaded_filtering_supported]: [-8525209709763526745]
+[cache_key.bluetooth.bluetooth_device_get_bond_state]: [-8525209709763526748]
+[cache_key.bluetooth.bluetooth_map_get_connection_state]: [-8525209709763526742]
+[cache_key.bluetooth.bluetooth_sap_get_connection_state]: [-8525209709763526746]
+[init.svc.vendor.bluetooth-1-1-qti]: [running]
+[init.svc_debug_pid.vendor.bluetooth-1-1-qti]: [1376]
+[persist.bluetooth.a2dp_offload.disabled]: [false]
+[persist.bluetooth.leaudio_offload.disabled]: [true]
+[persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled]: [false]
+[persist.vendor.qcom.bluetooth.a2dp_offload_cap]: [sbc-aptx-aptxhd-aptxtws-aac-ldac-aptxadaptiver2]
+[persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled]: [true]
+[persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled]: [true]
+[persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support]: [true]
+[persist.vendor.qcom.bluetooth.aptxadaptiver2_2_support]: [true]
+[persist.vendor.qcom.bluetooth.dualmode_transport_support]: [true]
+[persist.vendor.qcom.bluetooth.enable.swb]: [true]
+[persist.vendor.qcom.bluetooth.enable.swbpm]: [true]
+[persist.vendor.qcom.bluetooth.lossless_aptx_adaptive_le.enabled]: [true]
+[persist.vendor.qcom.bluetooth.scram.enabled]: [false]
+[persist.vendor.qcom.bluetooth.soc]: [hamilton]
+[persist.vendor.qcom.bluetooth.twsp_state.enabled]: [false]
+[ro.bluetooth.a2dp_offload.supported]: [true]
+[ro.bluetooth.leaudio_offload.supported]: [false]
+[ro.boottime.vendor.bluetooth-1-1-qti]: [5884583070]
+[ro.product.ab_ota_partitions]: [aop,aop_config,bluetooth,boot,cpucp,cpucp_dtb,devcfg,dsp,dtbo,featenabler,hyp,imagefv,init_boot,keymaster,modem,odm,product,pvmfw,qupfw,recovery,shrm,spuservice,system,system_dlkm,system_ext,tz,uefi,uefisecapp,vbmeta,vbmeta_system,vendor,vendor_boot,vendor_dlkm,xbl,xbl_config,xbl_ramdump]
+[ro.vendor.build.ab_ota_partitions]: [aop,aop_config,bluetooth,boot,cpucp,cpucp_dtb,devcfg,dsp,dtbo,featenabler,hyp,imagefv,init_boot,keymaster,modem,odm,product,pvmfw,qupfw,recovery,shrm,spuservice,system,system_dlkm,system_ext,tz,uefi,uefisecapp,vbmeta,vbmeta_system,vendor,vendor_boot,vendor_dlkm,xbl,xbl_config,xbl_ramdump]
+
+=== wifi dumpsys ===
+Verbose logging is on
+mVerboseLoggingLevel 0
+Stay-awake conditions: 0
+mInIdleMode false
+mScanPending false
+SupportedFeatures: [WIFI_FEATURE_CONNECTED_RAND_MAC, WIFI_FEATURE_AP_RAND_MAC, WIFI_FEATURE_WEP, WIFI_FEATURE_WPA_PERSONAL]
+SettingsStore:
+WifiState 0
+AirplaneModeOn false
+ScanAlwaysAvailable false
+WifiScoringState true
+WifiPasspointState true
+WifiMultiInternetMode 0
+WifiStateApm false
+WifiStateBt false
+WifiStateUser 0
+AirplaneModeEnhancementEnabled true
+SatelliteModeOn false
+Dump of WifiDeviceStateChangeManager
+WifiDeviceStateChangeManager - Log Begin ----
+mLastActiveScreenStateQuery: 
+mLastScreenOn: true
+WifiDeviceStateChangeManager - Log End ----
+Dump of WifiActiveModeWarden
+Current wifi mode: DisabledState
+Wi-Fi is disabled
+NumActiveModeManagers: 0
+mIsMultiplePrimaryBugreportTaken: false
+WifiController:
+ total records=4
+  rec[0]: time=08-11 01:19:15.498 processed=DefaultState org=DisabledState dest=<null> what=CMD_UPDATE_AP_CAPABILITY 1 0 num ClientModeManagers:0 num SoftApManagers:0 SupportedFeatures=1279 MaximumSupportedClientNumber=10 SupportedChannelListIn24g[] SupportedChannelListIn5g[] SupportedChannelListIn6g[] SupportedChannelListIn60g[] mCountryCodeFromDrivernull
+  rec[1]: time=08-11 01:19:15.515 processed=DefaultState org=DisabledState dest=<null> what=CMD_UPDATE_AP_CAPABILITY 1 0 num ClientModeManagers:0 num SoftApManagers:0 SupportedFeatures=1279 MaximumSupportedClientNumber=10 SupportedChannelListIn24g[] SupportedChannelListIn5g[] SupportedChannelListIn6g[] SupportedChannelListIn60g[] mCountryCodeFromDrivernull
+  rec[2]: time=08-11 01:19:15.836 processed=DefaultState org=DisabledState dest=<null> what=CMD_UPDATE_AP_CAPABILITY 1 0 num ClientModeManagers:0 num SoftApManagers:0 SupportedFeatures=1279 MaximumSupportedClientNumber=10 SupportedChannelListIn24g[] SupportedChannelListIn5g[] SupportedChannelListIn6g[] SupportedChannelListIn60g[] mCountryCodeFromDrivernull
+  rec[3]: time=08-11 01:19:15.836 processed=DefaultState org=DisabledState dest=<null> what=CMD_UPDATE_AP_CAPABILITY 1 0 num ClientModeManagers:0 num SoftApManagers:0 SupportedFeatures=1279 MaximumSupportedClientNumber=10 SupportedChannelListIn24g[] SupportedChannelListIn5g[] SupportedChannelListIn6g[] SupportedChannelListIn60g[] mCountryCodeFromDrivernull
+ curState=DisabledState
+Dump of ActiveModeWarden.Graveyard
+Stopped ClientModeManagers: 0 total
+Stopped SoftApManagers: 0 total
+
+STA + STA Concurrency Supported: false
+STA + AP Concurrency Supported: false
+Dump of HalDeviceManager:
+  mManagerStatusListeners: [com.android.server.wifi.HalDeviceManager$ManagerStatusListenerProxy@615f127]
+  mInterfaceInfoCache: {}
+  mDebugChipsInfo: null
+Wifi handler thread overruns
+Dump of MakeBeforeBreakManager
+mMakeBeforeBreakInfo=null
+mInternalState MBB_STATE_NONE
+
+dump of InterfaceConflictManager:
+  mUserApprovalNeeded=false
+  mUserApprovalNeededOverride=false
+  mUserApprovalNeededOverrideValue=false
+  mUserApprovalPending=false
+  mUserApprovalPendingTag=null
+  mUserJustApproved=false
+  mUserApprovalNotRequireForDisconnectedP2p=false
+
+mTxPkts 0
+mRxPkts 0
+mLastActivity -1
+mRegisteredCallbacks 1
+
+Locks held:
+Dump of WifiLockManager
+Locks acquired: 0 full high perf, 0 full low latency
+Locks released: 0 full high perf, 0 full low latency
+Connection state: STA=false, P2P=false, Aware=false
+Screen state: true
+Current operation mode: 0
+
+Locks held:
+
+Low-latency uid watchlist:
+
+mMulticastEnabled 0
+mMulticastDisabled 0
+Active lock owners: {}
+Inactive lock owners: {}
+Multicast Locks held:
+
+WifiScoreCard:
+
+WifiMetrics:
+mConnectionEvents:
+mWifiLogProto.numSavedNetworks=0
+mWifiLogProto.numSavedNetworksWithMacRandomization=0
+mWifiLogProto.numOpenNetworks=0
+mWifiLogProto.numLegacyPersonalNetworks=0
+mWifiLogProto.numLegacyEnterpriseNetworks=0
+mWifiLogProto.numEnhancedOpenNetworks=0
+mWifiLogProto.numWpa3PersonalNetworks=0
+mWifiLogProto.numWpa3EnterpriseNetworks=0
+mWifiLogProto.numWapiPersonalNetworks=0
+mWifiLogProto.numWapiEnterpriseNetworks=0
+mWifiLogProto.numHiddenNetworks=0
+mWifiLogProto.numPasspointNetworks=0
+mWifiLogProto.isLocationEnabled=false
+mWifiLogProto.isScanningAlwaysEnabled=false

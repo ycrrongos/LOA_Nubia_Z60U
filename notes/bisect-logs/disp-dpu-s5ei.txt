@@ -1,0 +1,69 @@
+---
+pid: 1970498
+cwd: "/mnt/data/LOA_Nubia_Z60U/build/linux"
+command: "kill $(cat /tmp/cerro-bg-terminal.pid) 2>/dev/null || true\nsleep 1\npython3 /tmp/cerro-s5eh-acm-diag.py 2>&1 | sed 's/s5eh/s5ei/g' | tee /tmp/cerro-s5ei-acm-out.txt | tail -60\n# Actually the script hardcodes s5eh diag filters - rewrite quick\npython3 - <<'PY'\nimport serial,time,glob\nser=serial.Serial(glob.glob('/dev/serial/by-id/usb-nubia*')[0],115200,timeout=0.4)\ndef rd(s=2):\n  t=time.time()+s;b=b''\n  while time.time()<t:\n    c=ser.read(8192)\n    if c:b+=c\n  return b.decode('utf-8','replace')\ndef send(x,w=2):\n  ser.write((x+'\\r\\n').encode()); ser.flush(); return rd(w)\nsend('\\x03',0.3); send('',1)\no=rd(1)\nfor _ in range(4):\n  if 'login:' in o.lower():\n    send('user',1); o=send('user',2.5)\n  if 'nubia-cerro:~' in o or '~$' in o:\n    break\n  o+=send('',1)\nprint('logged', 'nubia-cerro:~' in o)\ncmd=r\"\"\"printf 'user\\n' | sudo -S -p '' sh -c 'echo MARK_CMDLINE; grep cerro_dtb /proc/cmdline; echo MARK_DMESG; dmesg | grep -iE \"pcie_sm|PARF_LTSSM|Device not found|raised sw-ctrl|17cb|1107\" | tail -30; echo MARK_GPIO; mount -t debugfs none /sys/kernel/debug 2>/dev/null; grep -E \"gpio1[6-9] \" /sys/kernel/debug/gpio; echo MARK_PCI; for d in /sys/bus/pci/devices/*; do echo $d $(cat $d/vendor) $(cat $d/device); done; echo MARK_LTSSM; python3 -c \"import mmap,os,struct;fd=os.open(\\\"/dev/mem\\\",os.O_RDONLY);mm=mmap.mmap(fd,0x1000,mmap.MAP_SHARED,mmap.PROT_READ,offset=0x1c00000);print(\\\"LTSSM\\\",hex(struct.unpack_from(\\\"<I\\\",mm,0x1b0)[0]));mm.close();mm=mmap.mmap(fd,0x4000,mmap.MAP_SHARED,mmap.PROT_READ,offset=0x1d07000);print(\\\"SM\\\",hex(struct.unpack_from(\\\"<I\\\",mm,0x1040)[0]),hex(struct.unpack_from(\\\"<I\\\",mm,0x1048)[0]),hex(struct.unpack_from(\\\"<I\\\",mm,0x3000)[0]));mm.close();os.close(fd)\"; echo MARK_WLAN; ip link show wlan0 2>&1|head -2; echo MARK_END'\"\"\"\nprint(send(cmd,16)[-4500:])\nprint(rd(4)[-2000:])\nser.close()\nPY\n"
+title: "Login and diagnose s5ei RF / pcie_sm"
+status: succeeded
+started_at: 2026-08-15T14:53:55.054Z
+running_for_ms: 62912    
+---
+===BANNER===
+ 
+Login incorrect
+
+logged= False
+user
+Password: 
+
+Login incorrect
+
+nubia-cerro login: 
+
+SAVED /tmp/cerro-s5ei-diag.txt
+logged True
+printf 'user\n' | sudo -S -p '' sh -c 'echo MARK_CMDLINE; grep ce
+rro_dtb /proc/cmdline; echo MARK_DMESG; dmesg | grep -iE "pcie_sm|PARF_LTSSM|Dev
+ice not found|raised sw-ctrl|17cb|1107" | tail -30; echo MARK_GPIO; mount -t deb
+ugfs none /sys/kernel/debug 2>/dev/null; grep -E "gpio1[6-9] " /sys/kernel/debug
+/gpio; echo MARK_PCI; for d in /sys/bus/pci/devices/*; do echo $d $(cat $d/vendo
+r) $(cat $d/device); done; echo MARK_LTSSM; python3 -c "import mmap,os,struct;fd
+=os.open(\"/dev/mem\",os.O_RDONLY);mm=mmap.mmap(fd,0x1000,mmap.MAP_SHARED,mmap.P
+ROT_READ,offset=0x1c00000);print(\"LTSSM\",hex(struct.unpack_from(\"<I\",mm,0x1b
+0)[0]));mm.close();mm=mmap.mmap(fd,0x4000,mmap.MAP_SHARED,mmap.PROT_READ,offset=
+0x1d07000);print(\"SM\",hex(struct.unpack_from(\"<I\",mm,0x1040)[0]),hex(struct.
+unpack_from(\"<I\",mm,0x1048)[0]),hex(struct.unpack_from(\"<I\",mm,0x3000)[0]));
+mm.close();os.close(fd)"; echo MARK_WLAN; ip link show wlan0 2>&1|head -2; echo 
+MARK_END'
+
+
+MARK_CMDLINE
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5ei
+MARK_DMESG
+[    0.000000] sched_clock: 56 bits at 19MHz, resolution 52ns, wraps every 4398046511078ns
+[    0.227753] cerro: wlan_enable raised sw-ctrl
+[    0.863499] qcom-pcie 1c00000.pcie: cerro: pcie_sm 0x1040=0x2 0x1048=0x2 0x3000=0x0
+[    1.440498] qcom-pcie 1c00000.pcie: cerro: pcie_sm 0x1040=0x2 0x1048=0x2 0x3000=0x0
+[    1.441223] qcom-pcie 1c00000.pcie: cerro: PARF_LTSSM=0x101 after LTSSM_EN
+[    2.399859] qcom-pcie 1c00000.pcie: Device not found
+[    2.402697] pci 0000:00:00.0: [17cb:0113] type 01 class 0x060400 PCIe Root Port
+MARK_GPIO
+ gpio16  : out high func0 8mA pull down
+ gpio17  : out low  func0 16mA no pull
+ gpio18  : out high func0 8mA no pull
+ gpio19  : out high func0 8mA no pull
+MARK_PCI
+/sys/bus/pci/devices/0000:00:00.0 0x17cb 0x0113
+MARK_LTSSM
+LTSSM 0x101
+SM 0x2 0x2 0x0
+MARK_WLAN
+Device "wlan0" does not exist.
+MARK_END
+nubia-cerro:~$ [6n
+
+
+---
+exit_code: 0
+elapsed_ms: 62912
+ended_at: 2026-08-15T14:54:57.966Z
+---

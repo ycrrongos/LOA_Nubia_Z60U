@@ -1,0 +1,31 @@
+AOSP linked PCIe gold (2026-08-16) — onlyaosp_cerro, RC0 + kiwi 17cb:1107
+Full: notes/bisect-logs/aosp-parf-gold-linked-20260816.txt
+(Suspend-time partial/SM-only: aosp-parf-gold-20260816.txt — RC was off; then MemoryDump)
+
+Method: remount debugfs; EP+RP power/control=on; msm_pcie case12/14
+Status: enumerated, link enabled, RC on, CESTA supported, Gen1 x1, PERST=1 WAKE=1
+
+PARF compare (AOSP linked vs Linux s5eh DNF):
+  offset   AOSP      Linux s5eh   note
+  +0x000   0x365e    0x361c       SYS_CTRL (bit diff)
+  +0x010   0x73      0x73
+  +0x014   0x10000   0x10000
+  +0x018   0x10000   0x10000
+  +0x01c   0x101010  0x101010
+  +0x028   0x2c93f   0x4802       large (link live?)
+  +0x040   0x900     0x900
+  +0x04c   0x1019    0x10019      << REFCLK-ish; AOSP lacks bit16 vs Linux force
+  +0x1b0   0x114     0x101        LTSSM: linked vs DETECT.ACT
+  +0x1b4   0xf20     0xf20
+  +0x358   0x0       0x0          NOT the REFCLK poke target that mattered
+  +0x64c   0x2000    0x2000
+
+PHY head matches Linux (0x93,0x1,0x28,0x2,0x16,0x36,...)
+
+PCIe SM microcode present (SEQ0=0x1c018081 …); START(+0x1090)=1
+  PWR inst0 +0x1040/1048 = 0/0 ; inst1 +0x4040/4048 = 1/1
+
+Pits:
+- Dump while user_suspend / RC power off → MemoryDump 19d2:0112
+- PARF case14 → ipc pcie0-dump (PCIE_DUMP), not dmesg; use case12 for keys
+- Must mount debugfs; keep EP runtime active before peek

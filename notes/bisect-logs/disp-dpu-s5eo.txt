@@ -1,0 +1,36 @@
+2026-08-16T02:00:57+08:00 boot2#1 Bus 003 Device 028: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget
+using IFACE=enp0s20f0u5i2
+OK: enp0s20f0u5i2 192.168.68.1/24  NAT via wlan0
+On phone: ping -c1 192.168.68.1 ; ping -c1 1.1.1.1 ; apk update
+enp0s20f0u5i2    UP             172.16.42.2/24 192.168.68.1/24 fe80::4c0e:2744:2337:623e/64 
+BANNER ^[[!p^[]104^[\^[a40efa5a48a0anubia-cerro login
+
+### grep cerro_dtb /proc/cmdline
+grep cerro_dtb /proc/cmdline
+
+### dmesg | grep -iE "CRM |phy-seq|CESTA_CLKREQ|PARF_LTSSM|PARF_PHY_REFCLK|Device not found|17cb" | tail -50
+dmesg | grep -iE "CRM |phy-seq|CESTA_CLKREQ|PARF_LTSSM|PARF_PHY_REFCLK|Device not found|17cb" | tail -50
+
+
+### lspci -nn 2>/dev/null | head -12
+lspci -nn 2>/dev/null | head -12
+
+
+### ip link show wlan0 2>&1 | head -3
+ip link show wlan0 2>&1 | head -3
+
+[!p]104\[0m[?7h[1G[0J7[32766;32766H[6n8]3008;end=6daab6437a0248b79d546bf607a8b1ad\[!p]104\[0m[?7h[1G[0J7[32766;32766H[6n8[!p]104\[0m[?7h[1G[0J7[32766;32766H[6n8]3008;start=a8ca6a56700e48e8b7165cb34c288063;user=root;hostname=nubia-cerro;machineid=3cdefda6a2684ce5ab713cd3153f1ebe;bootid=f5a2a40efa5a48a0a8b7205d2f6e670f;pid=1301;pidfdid=20606;comm=(agetty);servicename=serial-getty@ttyGS0.service;invocationid=0dab0f79e41f450283b919c2b8fdee21;type=service\P+q6E616D65\
+nubia-cerro login: 
+### echo ENDMARK
+echo ENDMARK
+Password: 
+HIT_KIWI
+OUTCOME PASS_S5EO_KIWI
+
+=== ACM verify 2026-08-16 02:10 ===
+cerro_dtb=s5eo
+CRM en=0x1 curr_perf_ol[0]=0x5
+PCIe Gen.2 x2 link up
+pci 0000:01:00.0 [17cb:1107]
+ath12k_pci: Module not found (no wlan0 yet)
+

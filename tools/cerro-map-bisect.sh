@@ -16,6 +16,8 @@
 # Usage:
 #   SKIP_UNLOCK=1 ./tools/cerro-map-bisect.sh 2723 2724
 #   ./tools/cerro-map-bisect.sh --dry-run 268
+#   BANK_SIZE=0x20000000 SKIP_UNLOCK=1 ./tools/cerro-map-bisect.sh 3
+#   Encoded bank@step3: 30000+MiB → e.g. 30256=256MiB, 39600=9600MiB (0x260000000)
 #
 set -euo pipefail
 
@@ -148,19 +150,66 @@ wait_flashable() {
   return "$rc"
 }
 
+set_bank_size() {
+  local hex="$1"
+  hex="${hex%ULL}"
+  [[ "$hex" == 0x* || "$hex" == 0X* ]] || hex="0x${hex}"
+  if ! grep -qE '#define CERRO_FALLBACK_MEM_SIZE' "$SETUP"; then
+    echo "CERRO_FALLBACK_MEM_SIZE not found in $SETUP"
+    exit 1
+  fi
+  if ! grep -qE '#define CERRO_SAFE_MAP_SIZE' "$MMU"; then
+    echo "CERRO_SAFE_MAP_SIZE not found in $MMU"
+    exit 1
+  fi
+  sed -i -E "s/(#define CERRO_FALLBACK_MEM_SIZE[[:space:]]+)0x[0-9A-Fa-f]+ULL/\1${hex}ULL/" "$SETUP"
+  sed -i -E "s/(#define CERRO_SAFE_MAP_SIZE[[:space:]]+)0x[0-9A-Fa-f]+ULL/\1${hex}ULL/" "$MMU"
+  echo "set bank FALLBACK=SAFE_MAP=${hex} (LOW_ALLOC unchanged)"
+}
+
 set_step() {
   local step="$1"
+  local map_step="$step"
   if ! grep -q '#define CERRO_MAP_MEM_STEP' "$MMU"; then
     echo "CERRO_MAP_MEM_STEP not found in $MMU"
     exit 1
   fi
-  sed -i -E "s/#define CERRO_MAP_MEM_STEP [0-9]+/#define CERRO_MAP_MEM_STEP ${step}/" "$MMU"
+  # 30000+MiB → MAP_MEM_STEP=3 + bank size MiB (pt alloc window stays low 256MiB)
+  if (( step >= 30000 && step < 40000 )); then
+    local mib=$((step - 30000))
+    local hex
+    hex=$(printf '0x%x' $((mib * 1024 * 1024)))
+    set_bank_size "$hex"
+    map_step=3
+  elif [[ -n "${BANK_SIZE:-}" ]]; then
+    set_bank_size "$BANK_SIZE"
+  fi
+  sed -i -E "s/#define CERRO_MAP_MEM_STEP [0-9]+/#define CERRO_MAP_MEM_STEP ${map_step}/" "$MMU"
   if grep -q '#define CERRO_PROBE_SIGNAL' "$SETUP"; then
     sed -i -E 's/#define CERRO_PROBE_SIGNAL [0-9]+/#define CERRO_PROBE_SIGNAL 0/' "$SETUP"
   fi
+  if [[ -n "${PROBE_STAGE:-}" ]] && grep -q '#define CERRO_PROBE_STAGE' "$SETUP"; then
+    sed -i -E "s/#define CERRO_PROBE_STAGE [0-9]+/#define CERRO_PROBE_STAGE ${PROBE_STAGE}/" "$SETUP"
+    echo "set CERRO_PROBE_STAGE=${PROBE_STAGE}"
+  fi
+  if [[ -n "${IDMAP_STEP:-}" ]]; then
+    if grep -qE '#define CERRO_IDMAP_STEP' "$MMU"; then
+      sed -i -E "s/#define CERRO_IDMAP_STEP [0-9]+/#define CERRO_IDMAP_STEP ${IDMAP_STEP}/" "$MMU"
+    else
+      # insert override before the ifndef default in create_idmap path
+      sed -i -E "s/#ifndef CERRO_IDMAP_STEP/#define CERRO_IDMAP_STEP ${IDMAP_STEP}\n#ifndef CERRO_IDMAP_STEP/" "$MMU"
+    fi
+    echo "set CERRO_IDMAP_STEP=${IDMAP_STEP}"
+  fi
+  if [[ -n "${SKIP_UNFLATTEN:-}" ]]; then
+    if grep -qE '#define CERRO_SKIP_UNFLATTEN' "$SETUP"; then
+      sed -i -E "s/#define CERRO_SKIP_UNFLATTEN [0-9]+/#define CERRO_SKIP_UNFLATTEN ${SKIP_UNFLATTEN}/" "$SETUP"
+    fi
+    echo "set CERRO_SKIP_UNFLATTEN=${SKIP_UNFLATTEN}"
+  fi
   local got
   got=$(grep -E '#define CERRO_MAP_MEM_STEP' "$MMU" | head -1)
-  echo "set $got (PROBE_SIGNAL=0 PSCI)"
+  echo "set $got (PROBE_SIGNAL=0 PSCI) record_step=$step"
 }
 
 build_image() {
@@ -498,7 +547,7 @@ run_one() {
         DETAIL="dump_after_false_quiet_pass"
         record "$step"
         echo "REVOKED step $step → dump (quiet auto-pass was wrong)"
-        wait_flashable "dump 后继续" || true
+        wait_flashable "dump 后请手动进 9008" || true
       fi
       ;;
     early_fastboot)
@@ -506,10 +555,10 @@ run_one() {
       ;;
     dump)
       beep_msg "STEP $step DUMP — 下一轮前需手动进 9008"
-      wait_flashable "dump 后继续" || true
+      wait_flashable "dump 后请手动进 9008" || true
       ;;
     hang)
-      beep_msg "STEP $step HANG — 强制进 9008 后继续"
+      beep_msg "STEP $step HANG — 请手动强制关机后音量+/−进 9008（崩hang不会自动进）"
       wait_flashable "hang 后继续" || true
       ;;
     *)

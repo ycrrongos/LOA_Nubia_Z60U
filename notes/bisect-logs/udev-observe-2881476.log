@@ -1,0 +1,6 @@
+UDEV  [33378.939932] add      /devices/pci0000:00/0000:00:14.0/usb4/4-2 (usb)
+UDEV  [33378.945657] add      /devices/pci0000:00/0000:00:14.0/usb4/4-2/4-2:1.0 (usb)
+UDEV  [33404.237539] remove   /devices/pci0000:00/0000:00:14.0/usb4/4-2/4-2:1.0 (usb)
+UDEV  [33404.239257] remove   /devices/pci0000:00/0000:00:14.0/usb4/4-2 (usb)
+UDEV  [33522.049985] add      /devices/pci0000:00/0000:00:14.0/usb4/4-2 (usb)
+UDEV  [33522.052043] add      /devices/pci0000:00/0000:00:14.0/usb4/4-2/4-2:1.0 (usb)

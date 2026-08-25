@@ -1,0 +1,13 @@
+---
+description: Cerro bring-up hard rules — always read agent.md first
+alwaysApply: true
+---
+
+# 每次对话必读
+
+1. **先读并遵守**仓库根目录 [`agent.md`](../../agent.md)（用户长期要求的硬约定汇总）。
+2. 动手前再读 `notes/cerro-linux-bringup.md` 的「当前状态」与相关章节。
+3. 踩坑 / 探针结论 / 误判纠正：**立刻追加**到 `notes/cerro-linux-bringup.md`；改代码前先查该文件。
+4. 进 9008/fastboot/Dump 后先观察 USB，再下结论；刷完继续盯，不要停。
+5. 无人值守用 **Cursor 后台终端** + `tools/edl-tools/auto-flash-watch.sh --daemon`，禁止用烧 token 的子 agent 空盯。
+6. 双槽刷机；GitHub/国外资源走 FlClash；默认中文简报。

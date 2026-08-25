@@ -1,0 +1,38 @@
+==== cerro-map-bisect Thu 06 Aug 2026 21:25:54 AWST pid=2996803 ====
+steps: 3
+judge: sticky fastboot early(<PASS_MIN) = FAIL; late(>=PASS_MIN after quiet) = PASS
+timing: SKIP_UNLOCK=1 UNLOCK_WAIT=0s CYCLE=6s PASS_MIN=12s OBSERVE=18s EXTEND=70s
+NOTE: 你跳过解锁时不算解锁时长；请在橙屏时跳过，脚本只看 fastboot 早晚
+log: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect-20260806-212554.log
+tsv: /mnt/data/LOA_Nubia_Z60U/notes/bisect-logs/map-bisect.tsv
+
+################ STEP 3 ################
+set bank FALLBACK=SAFE_MAP=0x10000000 (LOW_ALLOC unchanged)
+set CERRO_PROBE_STAGE=4
+set CERRO_IDMAP_STEP=3
+set CERRO_SKIP_UNFLATTEN=0
+set #define CERRO_MAP_MEM_STEP 3 (PROBE_SIGNAL=0 PSCI) record_step=3
+==== build Image (jobs=20) ====
+make: 进入目录“/mnt/data/LOA_Nubia_Z60U/build/linux”
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/setup.o
+arch/arm64/kernel/setup.c:325:13: warning: no previous prototype for function 'cerro_stage_probe' [-Wmissing-prototypes]
+  325 | void __init cerro_stage_probe(int stage)
+      |             ^
+arch/arm64/kernel/setup.c:325:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  325 | void __init cerro_stage_probe(int stage)
+      | ^
+      | static 
+arch/arm64/kernel/setup.c:562:9: error: use of undeclared identifier 'ARM64_MEMSTART_ALIGN'
+  562 |                                            ARM64_MEMSTART_ALIGN);
+      |                                            ^~~~~~~~~~~~~~~~~~~~
+1 warning and 1 error generated.
+make[4]: *** [scripts/Makefile.build:289：arch/arm64/kernel/setup.o] 错误 1
+make[3]: *** [scripts/Makefile.build:549：arch/arm64/kernel] 错误 2
+make[3]: *** 正在等待未完成的任务....
+  AR      arch/arm64/mm/built-in.a
+make[2]: *** [scripts/Makefile.build:549：arch/arm64] 错误 2
+make[2]: *** 正在等待未完成的任务....
+make[1]: *** [/mnt/data/LOA_Nubia_Z60U/build/linux/Makefile:2189：.] 错误 2
+make: *** [Makefile:248：__sub-make] 错误 2
+make: 离开目录“/mnt/data/LOA_Nubia_Z60U/build/linux”

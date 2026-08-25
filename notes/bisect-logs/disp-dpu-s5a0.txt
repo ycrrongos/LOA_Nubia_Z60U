@@ -1,0 +1,923 @@
+==== CERRO USB DIAG uptime=4.18 32.38 ====
+cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=off deferred_probe_timeout=60
+Linux (none) 7.2.0-rc5-dirty #220 SMP PREEMPT Sat Aug  8 11:02:36 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+ae01000.display-controller
+driver
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+subsystem
+supplier:platform:15000000.iommu
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3da0000.iommu/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3d90000.clock-controller/waiting_for_supplier': No such file or directory
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae00000.display-subsystem -> ../../../../devices/platform/soc@0/ae00000.display-subsystem
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ae00000.display-subsystem
+bind
+module
+uevent
+unbind
+15000000.iommu
+module
+uevent
+a90000.spi	geni_spi: Failed to get tx DMA ch
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+--- apps_smmu/dispcc/mdss sysfs ---
+## 15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/15000000.iommu/driver -> ../../../../bus/platform/drivers/arm-smmu
+cat: can't open '/sys/devices/platform/soc@0/15000000.iommu/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/15000000.iommu/supplier:*: No such file or directory
+/sys/devices/platform/soc@0/15000000.iommu/consumer:platform:1d84000.ufshc:
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+
+## af00000.clock-controller
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/af00000.clock-controller/driver -> ../../../../bus/platform/drivers/disp_cc-sm8550
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/consumer:*: No such file or directory
+## ae00000.display-subsystem
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/driver -> ../../../../bus/platform/drivers/msm-mdss
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/consumer:*: No such file or directory
+## ae94000.dsi
+ls: /sys/devices/platform/soc@0/ae94000.dsi/driver: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae94000.dsi/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/ae94000.dsi/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/ae94000.dsi/consumer:*: No such file or directory
+## ae95000.phy
+ls: /sys/devices/platform/soc@0/ae95000.phy/driver: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae95000.phy/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/ae95000.phy/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/ae95000.phy/consumer:*: No such file or directory
+--- dmesg dispcc/mdss/smmu/scm ---
+[    0.038875] iommu: Default domain type: Translated
+[    0.038880] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.039688] scmi_core: SCMI protocol bus registered
+[    0.153754] qcom_scm: convention: smc arm 64
+[    0.155880] qcom_scm firmware:scm: qseecom: found qseecom with version 0x1402000
+[    0.155902] qcom_scm firmware:scm: qseecom: untested machine, skipping
+[    0.171364] arm-smmu 15000000.iommu: probing hardware configuration...
+[    0.171375] arm-smmu 15000000.iommu: SMMUv2 with:
+[    0.171403] arm-smmu 15000000.iommu: 	stage 1 translation
+[    0.171410] arm-smmu 15000000.iommu: 	coherent table walk
+[    0.171419] arm-smmu 15000000.iommu: 	stream matching with 107 register groups
+[    0.171434] arm-smmu 15000000.iommu: 	71 context banks (0 stage-2 only)
+[    0.172061] arm-smmu 15000000.iommu: 	Supported page sizes: 0x61311000
+[    0.172069] arm-smmu 15000000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+[    0.172131] arm-smmu 15000000.iommu: 	preserved 0 boot mappings
+[    0.173722] platform ac0000.geniqup: Adding to iommu group 0
+[    0.173818] platform 1d84000.ufshc: Adding to iommu group 1
+[    0.173916] platform 1dc4000.dma-controller: Adding to iommu group 2
+[    0.173998] platform 1dfa000.crypto: Adding to iommu group 2
+[    0.174191] platform a600000.usb: Adding to iommu group 3
+[    0.174293] platform ae00000.display-subsystem: Adding to iommu group 4
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+ls: /dev/dri: No such file or directory
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+ls: /dev/fb*: No such file or directory
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.039186] usbcore: registered new interface driver usbfs
+[    0.039195] usbcore: registered new interface driver hub
+[    0.039202] usbcore: registered new device driver usb
+[    0.069916] msm_serial: driver initialized
+[    0.088125] usbcore: registered new interface driver usb-storage
+[    0.103877] usbcore: registered new interface driver usbhid
+[    0.103884] usbhid: USB HID core driver
+[    0.158450] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+[    0.174191] platform a600000.usb: Adding to iommu group 3
+[    0.199336] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.199399] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.199425] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.199521] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.199539] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.199547] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.199556] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=0)
+[    0.199565] msm_dpu ae01000.display-controller: cerro: msm stop at entry
+--- last dmesg ---
+[    0.464982] sd 0:0:0:0: [sda] Write Protect is off
+[    0.465000] sd 0:0:0:0: [sda] Mode Sense: 00 32 00 10
+[    0.465629] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.465664] scsi 0:0:0:2: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.465742] sd 0:0:0:1: [sdb] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.465837] sd 0:0:0:1: [sdb] Write Protect is off
+[    0.465853] sd 0:0:0:1: [sdb] Mode Sense: 00 32 00 10
+[    0.465939] sd 0:0:0:0: [sda] Preferred minimum I/O size 524288 bytes
+[    0.465959] sd 0:0:0:0: [sda] Optimal transfer size 524288 bytes
+[    0.465984] sd 0:0:0:1: [sdb] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.466083] sd 0:0:0:1: [sdb] Preferred minimum I/O size 524288 bytes
+[    0.466094] sd 0:0:0:1: [sdb] Optimal transfer size 524288 bytes
+[    0.467129] sd 0:0:0:2: [sdc] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.467185] sd 0:0:0:2: [sdc] Write Protect is off
+[    0.467187] sd 0:0:0:2: [sdc] Mode Sense: 00 32 00 10
+[    0.467278] sd 0:0:0:2: [sdc] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.467340] sd 0:0:0:2: [sdc] Preferred minimum I/O size 524288 bytes
+[    0.467341] sd 0:0:0:2: [sdc] Optimal transfer size 524288 bytes
+[    0.467478] scsi 0:0:0:3: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.469116] sd 0:0:0:3: [sdd] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.469178] sd 0:0:0:3: [sdd] Write Protect is off
+[    0.469180] sd 0:0:0:3: [sdd] Mode Sense: 00 32 00 10
+[    0.469269] sd 0:0:0:3: [sdd] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.469312] sd 0:0:0:3: [sdd] Preferred minimum I/O size 524288 bytes
+[    0.469314] sd 0:0:0:3: [sdd] Optimal transfer size 524288 bytes
+[    0.469542] scsi 0:0:0:4: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.471300] sd 0:0:0:4: [sde] 917504 4096-byte logical blocks: (3.76 GB/3.50 GiB)
+[    0.471356] sd 0:0:0:4: [sde] Write Protect is off
+[    0.471358] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.471410] scsi 0:0:0:5: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.471478] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.471535] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.471537] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.473320] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.473432] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.473444] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.473615] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.473707] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.473719] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.496526]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.499366] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.520221]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.520296]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.521733]  sdd: sdd1 sdd2 sdd3
+[    0.521795]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.522084]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.523323] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.524340] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.524654] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.525355] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.528034] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.528861] Freeing unused kernel memory: 16512K
+[    0.528929] Run /init as init process
+[    0.528931]   with arguments:
+[    0.528933]     /init
+[    0.528934]   with environment:
+[    0.528936]     HOME=/
+[    0.528937]     TERM=linux
+[    4.079757] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.080828] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+==== CERRO USB DIAG uptime=12.26 96.93 ====
+cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=off deferred_probe_timeout=60
+Linux (none) 7.2.0-rc5-dirty #220 SMP PREEMPT Sat Aug  8 11:02:36 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+ae01000.display-controller
+driver
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+subsystem
+supplier:platform:15000000.iommu
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3da0000.iommu/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3d90000.clock-controller/waiting_for_supplier': No such file or directory
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae00000.display-subsystem -> ../../../../devices/platform/soc@0/ae00000.display-subsystem
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ae00000.display-subsystem
+bind
+module
+uevent
+unbind
+15000000.iommu
+module
+uevent
+a90000.spi	geni_spi: Failed to get tx DMA ch
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+--- apps_smmu/dispcc/mdss sysfs ---
+## 15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/15000000.iommu/driver -> ../../../../bus/platform/drivers/arm-smmu
+cat: can't open '/sys/devices/platform/soc@0/15000000.iommu/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/15000000.iommu/supplier:*: No such file or directory
+/sys/devices/platform/soc@0/15000000.iommu/consumer:platform:1d84000.ufshc:
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+
+## af00000.clock-controller
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/af00000.clock-controller/driver -> ../../../../bus/platform/drivers/disp_cc-sm8550
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/consumer:*: No such file or directory
+## ae00000.display-subsystem
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/driver -> ../../../../bus/platform/drivers/msm-mdss
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/consumer:*: No such file or directory
+## ae94000.dsi
+ls: /sys/devices/platform/soc@0/ae94000.dsi/driver: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae94000.dsi/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/ae94000.dsi/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/ae94000.dsi/consumer:*: No such file or directory
+## ae95000.phy
+ls: /sys/devices/platform/soc@0/ae95000.phy/driver: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae95000.phy/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/ae95000.phy/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/ae95000.phy/consumer:*: No such file or directory
+--- dmesg dispcc/mdss/smmu/scm ---
+[    0.038875] iommu: Default domain type: Translated
+[    0.038880] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.039688] scmi_core: SCMI protocol bus registered
+[    0.153754] qcom_scm: convention: smc arm 64
+[    0.155880] qcom_scm firmware:scm: qseecom: found qseecom with version 0x1402000
+[    0.155902] qcom_scm firmware:scm: qseecom: untested machine, skipping
+[    0.171364] arm-smmu 15000000.iommu: probing hardware configuration...
+[    0.171375] arm-smmu 15000000.iommu: SMMUv2 with:
+[    0.171403] arm-smmu 15000000.iommu: 	stage 1 translation
+[    0.171410] arm-smmu 15000000.iommu: 	coherent table walk
+[    0.171419] arm-smmu 15000000.iommu: 	stream matching with 107 register groups
+[    0.171434] arm-smmu 15000000.iommu: 	71 context banks (0 stage-2 only)
+[    0.172061] arm-smmu 15000000.iommu: 	Supported page sizes: 0x61311000
+[    0.172069] arm-smmu 15000000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+[    0.172131] arm-smmu 15000000.iommu: 	preserved 0 boot mappings
+[    0.173722] platform ac0000.geniqup: Adding to iommu group 0
+[    0.173818] platform 1d84000.ufshc: Adding to iommu group 1
+[    0.173916] platform 1dc4000.dma-controller: Adding to iommu group 2
+[    0.173998] platform 1dfa000.crypto: Adding to iommu group 2
+[    0.174191] platform a600000.usb: Adding to iommu group 3
+[    0.174293] platform ae00000.display-subsystem: Adding to iommu group 4
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+ls: /dev/dri: No such file or directory
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+ls: /dev/fb*: No such file or directory
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.039186] usbcore: registered new interface driver usbfs
+[    0.039195] usbcore: registered new interface driver hub
+[    0.039202] usbcore: registered new device driver usb
+[    0.069916] msm_serial: driver initialized
+[    0.088125] usbcore: registered new interface driver usb-storage
+[    0.103877] usbcore: registered new interface driver usbhid
+[    0.103884] usbhid: USB HID core driver
+[    0.158450] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+[    0.174191] platform a600000.usb: Adding to iommu group 3
+[    0.199336] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.199399] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.199425] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.199521] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.199539] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.199547] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.199556] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=0)
+[    0.199565] msm_dpu ae01000.display-controller: cerro: msm stop at entry
+--- last dmesg ---
+[    0.464982] sd 0:0:0:0: [sda] Write Protect is off
+[    0.465000] sd 0:0:0:0: [sda] Mode Sense: 00 32 00 10
+[    0.465629] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.465664] scsi 0:0:0:2: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.465742] sd 0:0:0:1: [sdb] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.465837] sd 0:0:0:1: [sdb] Write Protect is off
+[    0.465853] sd 0:0:0:1: [sdb] Mode Sense: 00 32 00 10
+[    0.465939] sd 0:0:0:0: [sda] Preferred minimum I/O size 524288 bytes
+[    0.465959] sd 0:0:0:0: [sda] Optimal transfer size 524288 bytes
+[    0.465984] sd 0:0:0:1: [sdb] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.466083] sd 0:0:0:1: [sdb] Preferred minimum I/O size 524288 bytes
+[    0.466094] sd 0:0:0:1: [sdb] Optimal transfer size 524288 bytes
+[    0.467129] sd 0:0:0:2: [sdc] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.467185] sd 0:0:0:2: [sdc] Write Protect is off
+[    0.467187] sd 0:0:0:2: [sdc] Mode Sense: 00 32 00 10
+[    0.467278] sd 0:0:0:2: [sdc] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.467340] sd 0:0:0:2: [sdc] Preferred minimum I/O size 524288 bytes
+[    0.467341] sd 0:0:0:2: [sdc] Optimal transfer size 524288 bytes
+[    0.467478] scsi 0:0:0:3: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.469116] sd 0:0:0:3: [sdd] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.469178] sd 0:0:0:3: [sdd] Write Protect is off
+[    0.469180] sd 0:0:0:3: [sdd] Mode Sense: 00 32 00 10
+[    0.469269] sd 0:0:0:3: [sdd] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.469312] sd 0:0:0:3: [sdd] Preferred minimum I/O size 524288 bytes
+[    0.469314] sd 0:0:0:3: [sdd] Optimal transfer size 524288 bytes
+[    0.469542] scsi 0:0:0:4: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.471300] sd 0:0:0:4: [sde] 917504 4096-byte logical blocks: (3.76 GB/3.50 GiB)
+[    0.471356] sd 0:0:0:4: [sde] Write Protect is off
+[    0.471358] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.471410] scsi 0:0:0:5: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.471478] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.471535] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.471537] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.473320] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.473432] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.473444] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.473615] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.473707] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.473719] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.496526]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.499366] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.520221]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.520296]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.521733]  sdd: sdd1 sdd2 sdd3
+[    0.521795]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.522084]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.523323] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.524340] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.524654] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.525355] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.528034] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.528861] Freeing unused kernel memory: 16512K
+[    0.528929] Run /init as init process
+[    0.528931]   with arguments:
+[    0.528933]     /init
+[    0.528934]   with environment:
+[    0.528936]     HOME=/
+[    0.528937]     TERM=linux
+[    4.079757] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.080828] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0
+[cerro-usb] host cmd ignored: ==== cerro usb deawst 2ot0.usste  0000.iommu/consuck-controller/ o/soc@0/ae95000.phith:
+==== CERRO USB DIAG uptime=20.34 161.50 ====
+cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=off deferred_probe_timeout=60
+Linux (none) 7.2.0-rc5-dirty #220 SMP PREEMPT Sat Aug  8 11:02:36 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+ae01000.display-controller
+driver
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+subsystem
+supplier:platform:15000000.iommu
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3da0000.iommu/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/3d90000.clock-controller/waiting_for_supplier': No such file or directory
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 ae00000.display-subsystem -> ../../../../devices/platform/soc@0/ae00000.display-subsystem
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1136 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ae00000.display-subsystem
+bind
+module
+uevent
+unbind
+15000000.iommu
+module
+uevent
+a90000.spi	geni_spi: Failed to get tx DMA ch
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+--- apps_smmu/dispcc/mdss sysfs ---
+## 15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/15000000.iommu/driver -> ../../../../bus/platform/drivers/arm-smmu
+cat: can't open '/sys/devices/platform/soc@0/15000000.iommu/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/15000000.iommu/supplier:*: No such file or directory
+/sys/devices/platform/soc@0/15000000.iommu/consumer:platform:1d84000.ufshc:
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+
+## af00000.clock-controller
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/af00000.clock-controller/driver -> ../../../../bus/platform/drivers/disp_cc-sm8550
+cat: can't open '/sys/devices/platform/soc@0/af00000.clock-controller/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/af00000.clock-controller/consumer:*: No such file or directory
+## ae00000.display-subsystem
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 /sys/devices/platform/soc@0/ae00000.display-subsystem/driver -> ../../../../bus/platform/drivers/msm-mdss
+cat: can't open '/sys/devices/platform/soc@0/ae00000.display-subsystem/waiting_for_supplier': No such file or directory
+auto_remove_on
+consumer
+runtime_pm
+status
+subsystem
+supplier
+sync_state_only
+uevent
+ls: /sys/devices/platform/soc@0/ae00000.display-subsystem/consumer:*: No such file or directory
+## ae94000.dsi
+ls: /sys/devices/platform/soc@0/ae94000.dsi/driver: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae94000.dsi/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/ae94000.dsi/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/ae94000.dsi/consumer:*: No such file or directory
+## ae95000.phy
+ls: /sys/devices/platform/soc@0/ae95000.phy/driver: No such file or directory
+cat: can't open '/sys/devices/platform/soc@0/ae95000.phy/waiting_for_supplier': No such file or directory
+ls: /sys/devices/platform/soc@0/ae95000.phy/supplier:*: No such file or directory
+ls: /sys/devices/platform/soc@0/ae95000.phy/consumer:*: No such file or directory
+--- dmesg dispcc/mdss/smmu/scm ---
+[    0.038875] iommu: Default domain type: Translated
+[    0.038880] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.039688] scmi_core: SCMI protocol bus registered
+[    0.153754] qcom_scm: convention: smc arm 64
+[    0.155880] qcom_scm firmware:scm: qseecom: found qseecom with version 0x1402000
+[    0.155902] qcom_scm firmware:scm: qseecom: untested machine, skipping
+[    0.171364] arm-smmu 15000000.iommu: probing hardware configuration...
+[    0.171375] arm-smmu 15000000.iommu: SMMUv2 with:
+[    0.171403] arm-smmu 15000000.iommu: 	stage 1 translation
+[    0.171410] arm-smmu 15000000.iommu: 	coherent table walk
+[    0.171419] arm-smmu 15000000.iommu: 	stream matching with 107 register groups
+[    0.171434] arm-smmu 15000000.iommu: 	71 context banks (0 stage-2 only)
+[    0.172061] arm-smmu 15000000.iommu: 	Supported page sizes: 0x61311000
+[    0.172069] arm-smmu 15000000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+[    0.172131] arm-smmu 15000000.iommu: 	preserved 0 boot mappings
+[    0.173722] platform ac0000.geniqup: Adding to iommu group 0
+[    0.173818] platform 1d84000.ufshc: Adding to iommu group 1
+[    0.173916] platform 1dc4000.dma-controller: Adding to iommu group 2
+[    0.173998] platform 1dfa000.crypto: Adding to iommu group 2
+[    0.174191] platform a600000.usb: Adding to iommu group 3
+[    0.174293] platform ae00000.display-subsystem: Adding to iommu group 4
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+ls: /dev/dri: No such file or directory
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+ls: /dev/fb*: No such file or directory
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.039186] usbcore: registered new interface driver usbfs
+[    0.039195] usbcore: registered new interface driver hub
+[    0.039202] usbcore: registered new device driver usb
+[    0.069916] msm_serial: driver initialized
+[    0.088125] usbcore: registered new interface driver usb-storage
+[    0.103877] usbcore: registered new interface driver usbhid
+[    0.103884] usbhid: USB HID core driver
+[    0.158450] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+[    0.174191] platform a600000.usb: Adding to iommu group 3
+[    0.199336] msm_dpu ae01000.display-controller: cerro: dpu probe enter (stop_after=5)
+[    0.199399] msm_dpu ae01000.display-controller: cerro: dpu opp ok (ret=-19)
+[    0.199425] msm_dpu ae01000.display-controller: cerro: dpu got 5 clocks
+[    0.199521] msm_dpu ae01000.display-controller: cerro: dpu mmap ok
+[    0.199539] msm_dpu ae01000.display-controller: cerro: dpu icc ok
+[    0.199547] msm_dpu ae01000.display-controller: cerro: dpu calling msm_drv_probe
+[    0.199556] msm_dpu ae01000.display-controller: cerro: msm_drv_probe enter (stop_after=0)
+[    0.199565] msm_dpu ae01000.display-controller: cerro: msm stop at entry
+--- last dmesg ---
+[    0.464982] sd 0:0:0:0: [sda] Write Protect is off
+[    0.465000] sd 0:0:0:0: [sda] Mode Sense: 00 32 00 10
+[    0.465629] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.465664] scsi 0:0:0:2: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.465742] sd 0:0:0:1: [sdb] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.465837] sd 0:0:0:1: [sdb] Write Protect is off
+[    0.465853] sd 0:0:0:1: [sdb] Mode Sense: 00 32 00 10
+[    0.465939] sd 0:0:0:0: [sda] Preferred minimum I/O size 524288 bytes
+[    0.465959] sd 0:0:0:0: [sda] Optimal transfer size 524288 bytes
+[    0.465984] sd 0:0:0:1: [sdb] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.466083] sd 0:0:0:1: [sdb] Preferred minimum I/O size 524288 bytes
+[    0.466094] sd 0:0:0:1: [sdb] Optimal transfer size 524288 bytes
+[    0.467129] sd 0:0:0:2: [sdc] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.467185] sd 0:0:0:2: [sdc] Write Protect is off
+[    0.467187] sd 0:0:0:2: [sdc] Mode Sense: 00 32 00 10
+[    0.467278] sd 0:0:0:2: [sdc] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.467340] sd 0:0:0:2: [sdc] Preferred minimum I/O size 524288 bytes
+[    0.467341] sd 0:0:0:2: [sdc] Optimal transfer size 524288 bytes
+[    0.467478] scsi 0:0:0:3: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.469116] sd 0:0:0:3: [sdd] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.469178] sd 0:0:0:3: [sdd] Write Protect is off
+[    0.469180] sd 0:0:0:3: [sdd] Mode Sense: 00 32 00 10
+[    0.469269] sd 0:0:0:3: [sdd] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.469312] sd 0:0:0:3: [sdd] Preferred minimum I/O size 524288 bytes
+[    0.469314] sd 0:0:0:3: [sdd] Optimal transfer size 524288 bytes
+[    0.469542] scsi 0:0:0:4: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.471300] sd 0:0:0:4: [sde] 917504 4096-byte logical blocks: (3.76 GB/3.50 GiB)
+[    0.471356] sd 0:0:0:4: [sde] Write Protect is off
+[    0.471358] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.471410] scsi 0:0:0:5: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.471478] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.471535] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.471537] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.473320] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.473432] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.473444] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.473615] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.473707] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.473719] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.496526]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.499366] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.520221]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.520296]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.521733]  sdd: sdd1 sdd2 sdd3
+[    0.521795]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.522084]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.523323] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.524340] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.524654] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.525355] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.528034] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.528861] Freeing unused kernel memory: 16512K
+[    0.528929] Run /init as init process
+[    0.528931]   with arguments:
+[    0.528933]     /init
+[    0.528934]   with environment:
+[    0.528936]     HOME=/
+[    0.528937]     TERM=linux
+[    4.079757] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.080828] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0
+[cerro-usb] host cmd ignored: ==== cerro usb deawst 2ot0.usste  0000.iommu/consuck-controller/ o/soc@0/ae95000.phith:
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0
+[cerro-usb] host cmd ignored: 29] sd 0:0:0:2:  58] sd 0:0:0:4:rro-usb] start p.usb/udc/a600000.us
+[cerro-usb] host cmd ignored: :  policy: stric000le walk
+[cerro-usb] host cmd ignored: sbatform/soc@0/1   logical block minimum i/o size 5 0.469178] sd 0sd 0:0:0:4: [s0: 0.473615] sd 0:0:0tes

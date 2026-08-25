@@ -1,0 +1,17 @@
+8f77d11b106f8a1f406db153aac38208d8437fb6858c3b0ee7bd1d37199a01e1  /mnt/data/aosp/out/target/product/cerro/boot.img
+c76ae26ac70a71ef8bd052e5b15314ef1db2b313f210a0375b9e86f5df04a873  /mnt/data/aosp/out/target/product/cerro/init_boot.img
+2ce38d69cb1fd49656724b3fd9f3b44ac7d50cd2e391b379b8d87d5739ec7dd3  /mnt/data/aosp/out/target/product/cerro/dtbo.img
+23b5868c4e1e43b50e5cc7f9dc531b2d90ba3b054d692b785a00161d55913c2f  /mnt/data/aosp/out/target/product/cerro/recovery.img
+67b24389c691c1f6473b5a341132cf6eaf4352713fb590ca4ff0712a54222723  /mnt/data/aosp/out/target/product/cerro/pvmfw.img
+33b3088324aafd97384a7e66c49148e07760b4bd6f406e68278f1a47626b116d  /mnt/data/aosp/out/target/product/cerro/vendor_boot.img
+bf97250299e2a8e0d9afc591e636b0c4df933a3d467ba75638f2099da7e05b80  /mnt/data/aosp/out/target/product/cerro/vbmeta.img
+67f868f3ecf4456c0c7f94ad36b207d0355077492b517ca99620b5bcd2de205c  /mnt/data/aosp/out/target/product/cerro/vbmeta_system.img
+b53a3d1bbbff2c15108edccb1f7f818fcba3ffcee8a5c72e55607300871e85a7  /mnt/data/aosp/out/target/product/cerro/odm.img
+85b4ce0ecff985fcbf509dbecca0014658302d955a47c7fc040e6d15a8c3f4de  /mnt/data/aosp/out/target/product/cerro/product.img
+d7de0807576fac1ebc9971443a16af195449e5873ec40489a34f1f45aa9e5a12  /mnt/data/aosp/out/target/product/cerro/system.img
+074386e4fb9a4df1b6aa9531dea320339b58529aff75248ab3abd9a8337ef0f9  /mnt/data/aosp/out/target/product/cerro/system_dlkm.img
+53231b696230a25961a4219750deef91158df812f974daef6153ab4ad2db591e  /mnt/data/aosp/out/target/product/cerro/system_ext.img
+6f1404a6886e351c34901f7805eae9f87d56f1bc017e65ced47f7717acf34360  /mnt/data/aosp/out/target/product/cerro/vendor.img
+38f65808b2a210b5687e275947507a11e28de1b53d473902d0614dcf61760637  /mnt/data/aosp/out/target/product/cerro/vendor_dlkm.img
+aa81129610effcac466b4792d1fedb55ad9554846a8fa0bb5895ac3d01e8a757  /mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5gb-debian-cellular-c2.img
+39fc86f0a367d58be1e64b99ca5810b6b42f6367af0735b3926ce73915352b1a  /mnt/data/LOA_Nubia_Z60U/tools/edl-tools/pmos-flash/backup-20260806-020517/vendor_boot_a.img

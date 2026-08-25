@@ -1,0 +1,168 @@
+=== Linux s5fq WSA baseline 2026-08-17T00:09:40.252950 ===
+
+date; tr " " "\n" </proc/cmdline | grep cerro_dtb; uname -a; echo
+ B1
+Sun Aug 16 20:14:56 CST 2026
+cerro_dtb=s5fq
+Linux nubia-cerro 7.2.0-rc5-dirty #426 SMP PREEMPT Mon Aug 17 00:00:32 AWST 2026 aarch64 Linux
+B1
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+echo user | sudo -S sh -c 'echo ===status===; for d in /sys/bus/s
+oundwire/devices/sdw:*; do echo $d $(cat $d/status); done; echo ===WSA nonzero==
+=; grep -v ": 0x00$" /sys/kernel/debug/soundwire/master-1-0/qualcomm-sdw/qualcom
+m-registers | head -100; echo ===enum===; grep -E "^0x(500|530|534|538|53c|540|5
+44|014|018|100|104|4000|5040|5060|5064):" /sys/kernel/debug/soundwire/master-1-0
+/qualcomm-sdw/qualcomm-registers; echo ===WCD enum===; grep -E "^0x(500|530|534|
+538|53c):" /sys/kernel/debug/soundwire/master-2-0/qualcomm-sdw/qualcomm-register
+s'; echo B2
+
+===status===
+/sys/bus/soundwire/devices/sdw:1:0:0217:0204:00:0 UNATTACHED
+/sys/bus/soundwire/devices/sdw:1:0:0217:0204:00:1 UNATTACHED
+/sys/bus/soundwire/devices/sdw:2:0:0217:010e:00:4 Attached
+/sys/bus/soundwire/devices/sdw:3:0:0217:010e:00:3 Attached
+===WSA nonzero===
+0x000: 0x2010000
+0x004: 0x03
+0x010: 0x40e
+0x014: 0x101841
+0x018: 0x01
+0x100: 0x1684089
+0x104: 0x01
+0x120: 0x10
+0x314: 0x80000007
+0x500: 0x01
+0x710: 0xfffff
+0x101c: 0x0f
+0x1048: 0x3bfff00
+0x105c: 0x0f
+0x1124: 0xff0107
+0x1160: 0x01
+0x1164: 0xff0107
+0x1180: 0x01
+0x1184: 0x01
+0x1224: 0x7031f
+0x1238: 0x01
+0x1260: 0x01
+0x1264: 0x7031f
+0x1278: 0x01
+0x1280: 0x01
+0x1284: 0x01
+0x1324: 0x1f053f
+0x1338: 0x01
+0x1360: 0x01
+0x1364: 0x1f053f
+0x1378: 0x01
+0x1380: 0x01
+0x1384: 0x01
+0x1424: 0xff0207
+0x1460: 0x01
+0x1464: 0xff0207
+0x1480: 0x01
+0x1484: 0x01
+0x1524: 0x7041f
+0x1538: 0x01
+0x1560: 0x01
+0x1564: 0x7041f
+0x1578: 0x01
+0x1580: 0x01
+0x1584: 0x01
+0x1624: 0x1f153f
+0x1638: 0x01
+0x1660: 0x01
+0x1664: 0x1f153f
+0x1678: 0x01
+0x1680: 0x01
+0x1684: 0x01
+0x1724: 0xff008f
+0x172c: 0x08
+0x1734: 0x88
+0x173c: 0x01
+0x1760: 0x01
+0x1764: 0xff008f
+0x1774: 0x88
+0x177c: 0x01
+0x1780: 0x01
+0x1784: 0x01
+0x1860: 0x01
+0x1880: 0x01
+0x1884: 0x01
+0x1960: 0x01
+0x1980: 0x01
+0x1984: 0x01
+0x1a80: 0x01
+0x1a84: 0x01
+0x1b80: 0x01
+0x1b84: 0x01
+0x1c80: 0x01
+0x1c84: 0x01
+0x1d80: 0x01
+0x1d84: 0x01
+0x4000: 0x20020
+0x4050: 0x4000000f
+0x4064: 0x2081
+0x5004: 0x1ffff
+0x5040: 0x400
+0x5050: 0x4000000f
+0x5054: 0x7fff7fff
+0x5060: 0x01
+0x5064: 0x2081
+===enum===
+0x014: 0x101841
+0x018: 0x01
+0x100: 0x1684089
+0x104: 0x01
+0x500: 0x01
+0x530: 0x00
+0x534: 0x00
+0x538: 0x00
+0x53c: 0x00
+0x540: 0x00
+0x544: 0x00
+0x4000: 0x20020
+0x5040: 0x400
+0x5060: 0x01
+0x5064: 0x2081
+===WCD enum===
+0x500: 0x01
+0x530: 0x00
+0x534: 0x00
+0x538: 0x1170224
+0x53c: 0x0e
+B2
+nubia-cerro:~$ [6n
+echo user | sudo -S sh -c 'echo ===pinctrl===; cat /sys/kernel/de
+bug/pinctrl/6e80000.pinctrl/pinmux-pins | grep -E "gpio(10|11|15|16|21)"; cat /s
+ys/kernel/debug/pinctrl/f100000.pinctrl/pinmux-pins | grep -E "GPIO_77|gpio77"; 
+echo ===macro===; head -12 /sys/kernel/debug/regmap/6b00000.codec-wsa_macro/regi
+sters; echo ===clk===; cat /sys/kernel/debug/clk/clk_summary | grep -iE "WSA_COR
+E|wsa-mclk|swr" | head -30'; echo B3
+
+===pinctrl===
+pin 10 (gpio10): 6b10000.soundwire (GPIO UNCLAIMED) function wsa_swr_clk group gpio10
+pin 11 (gpio11): 6b10000.soundwire (GPIO UNCLAIMED) function wsa_swr_data group gpio11
+pin 15 (gpio15): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 16 (gpio16): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 21 (gpio21): sdw:1:0:0217:0204:00:0 6e80000.pinctrl:784 function gpio group gpio21
+pin 77 (GPIO_77): device sdw:1:0:0217:0204:00:1 function gpio group gpio77
+===macro===
+000: 00000001
+004: 00000001
+008: 00000001
+00c: 00000000
+010: 00000000
+014: 00000000
+018: 00000000
+01c: 00000000
+020: 00000000
+024: 00000000
+028: 00000000
+02c: 00000000
+===clk===
+ LPASS_CLK_ID_WSA_CORE_TX_2X_MCLK    0       0        0        19200000    0          0     50000      Y   deviceless                      no_connection_id         
+ LPASS_CLK_ID_WSA_CORE_TX_MCLK       3       3        0        19200000    0          0     50000      Y   6b00000.codec                   mclk                     
+ LPASS_CLK_ID_WSA_CORE_NPL_MCLK      0       0        0        19200000    0          0     50000      Y   deviceless                      no_connection_id         
+ LPASS_CLK_ID_WSA_CORE_MCLK          0       0        0        19200000    0          0     50000      Y   deviceless                      no_connection_id         
+B3
+nubia-cerro:~$ [6n

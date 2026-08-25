@@ -1,0 +1,27 @@
+MODULE_FILES
+/vendor/lib/modules/msm_memshare.ko 48464
+d412a6e9cba7ccc41f8e2c222b5ffce49cd10cf588d5f38287f849eade761d84  /vendor/lib/modules/msm_memshare.ko
+filename:       /vendor/lib/modules/msm_memshare.ko
+license:        GPL
+description:    Mem Share QMI Service Driver
+depends:        rproc_qcom_common,qmi_helpers,qcom-scm,qcom_glink,heap_mem_ext_v01
+vermagic:       6.1.173 SMP preempt mod_unload modversions aarch64
+/vendor/lib/modules/heap_mem_ext_v01.ko 14048
+eab3a1fe83ff0e25008a1d4bcbc1f7d2efc83595f7c51b4c6a25e867a02ab40f  /vendor/lib/modules/heap_mem_ext_v01.ko
+filename:       /vendor/lib/modules/heap_mem_ext_v01.ko
+license:        GPL
+depends:        qmi_helpers
+vermagic:       6.1.173 SMP preempt mod_unload modversions aarch64
+/vendor_dlkm/lib/modules/msm_memshare.ko 48464
+d412a6e9cba7ccc41f8e2c222b5ffce49cd10cf588d5f38287f849eade761d84  /vendor_dlkm/lib/modules/msm_memshare.ko
+filename:       /vendor_dlkm/lib/modules/msm_memshare.ko
+license:        GPL
+description:    Mem Share QMI Service Driver
+depends:        rproc_qcom_common,qmi_helpers,qcom-scm,qcom_glink,heap_mem_ext_v01
+vermagic:       6.1.173 SMP preempt mod_unload modversions aarch64
+/vendor_dlkm/lib/modules/heap_mem_ext_v01.ko 14048
+eab3a1fe83ff0e25008a1d4bcbc1f7d2efc83595f7c51b4c6a25e867a02ab40f  /vendor_dlkm/lib/modules/heap_mem_ext_v01.ko
+filename:       /vendor_dlkm/lib/modules/heap_mem_ext_v01.ko
+license:        GPL
+depends:        qmi_helpers
+vermagic:       6.1.173 SMP preempt mod_unload modversions aarch64

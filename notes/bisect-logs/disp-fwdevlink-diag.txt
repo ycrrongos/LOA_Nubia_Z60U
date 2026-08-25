@@ -1,0 +1,819 @@
+==== CERRO USB DIAG uptime=4.15 32.16 ====
+cmdline: 
+Linux (none) 7.2.0-rc5-dirty #198 SMP PREEMPT Fri Aug  7 23:10:38 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+subsystem
+supplier:platform:100000.clock-controller
+supplier:platform:15000000.iommu
+supplier:platform:1600000.interconnect
+0
+0
+0
+0
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1134 0        0                0 Jan  1 00:00 ..
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1134 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ls: /sys/bus/platform/devices/*.display-subsystem/driver: No such file or directory
+15000000.iommu
+module
+uevent
+ae00000.display-subsystem	
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+a90000.spi	geni_spi: Failed to get tx DMA ch
+3da0000.iommu	platform: supplier 3d90000.clock-controller not ready
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+ls: /dev/dri: No such file or directory
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+ls: /dev/fb*: No such file or directory
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.038816] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.038828] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.038905] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.038921] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.038929] /soc@0/ufshc@1d84000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.038992] /soc@0/phy@88e3000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039005] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.039025] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039042] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/interconnect@16e0000
+[    0.039048] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.039056] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e3000
+[    0.039062] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039166] /soc@0/display-subsystem@ae00000/display-controller@ae01000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.039228] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0
+[    0.039278] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/display-controller@ae01000
+[    0.039457] /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.039485] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.039509] /soc@0/clock-controller@af00000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/phy@ae95000
+[    0.039717] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.039724] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.040640] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.040661] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.040667] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.040742] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.040758] /soc@0/ufshc@1d84000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.042267] /soc@0/phy@88e3000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042366] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.042389] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.042396] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042470] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.042499] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/interconnect@16e0000
+[    0.042513] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.042528] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e3000
+[    0.042547] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042937] /soc@0/display-subsystem@ae00000/display-controller@ae01000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.043007] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0
+[    0.043075] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/display-controller@ae01000
+[    0.043317] /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.043341] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.043416] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.043524] /soc@0/clock-controller@af00000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/phy@ae95000
+[    0.052517] usbcore: registered new interface driver usbfs
+[    0.052527] usbcore: registered new interface driver hub
+[    0.052537] usbcore: registered new device driver usb
+[    0.082189] msm_serial: driver initialized
+[    0.100333] usbcore: registered new interface driver usb-storage
+[    0.118070] usbcore: registered new interface driver usbhid
+[    0.118076] usbhid: USB HID core driver
+[    0.164759] platform a600000.usb: Adding to iommu group 3
+[    0.199647] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+--- last dmesg ---
+[    0.318546] sd 0:0:0:0: [sda] Write Protect is off
+[    0.318561] sd 0:0:0:0: [sda] Mode Sense: 00 32 00 10
+[    0.318695] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.318790] sd 0:0:0:0: [sda] Preferred minimum I/O size 524288 bytes
+[    0.318801] sd 0:0:0:0: [sda] Optimal transfer size 524288 bytes
+[    0.320267] sd 0:0:0:1: [sdb] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.320375] sd 0:0:0:1: [sdb] Write Protect is off
+[    0.320387] sd 0:0:0:1: [sdb] Mode Sense: 00 32 00 10
+[    0.320481] sd 0:0:0:1: [sdb] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.320487] scsi 0:0:0:2: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.320555] sd 0:0:0:1: [sdb] Preferred minimum I/O size 524288 bytes
+[    0.320583] sd 0:0:0:1: [sdb] Optimal transfer size 524288 bytes
+[    0.322618] scsi 0:0:0:3: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.323071] sd 0:0:0:2: [sdc] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.323164] sd 0:0:0:2: [sdc] Write Protect is off
+[    0.323175] sd 0:0:0:2: [sdc] Mode Sense: 00 32 00 10
+[    0.323334] sd 0:0:0:2: [sdc] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.323436] sd 0:0:0:2: [sdc] Preferred minimum I/O size 524288 bytes
+[    0.323447] sd 0:0:0:2: [sdc] Optimal transfer size 524288 bytes
+[    0.324935] scsi 0:0:0:4: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.325075] sd 0:0:0:3: [sdd] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.325183] sd 0:0:0:3: [sdd] Write Protect is off
+[    0.325195] sd 0:0:0:3: [sdd] Mode Sense: 00 32 00 10
+[    0.325327] sd 0:0:0:3: [sdd] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.325405] sd 0:0:0:3: [sdd] Preferred minimum I/O size 524288 bytes
+[    0.325416] sd 0:0:0:3: [sdd] Optimal transfer size 524288 bytes
+[    0.327007] scsi 0:0:0:5: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.327239] sd 0:0:0:4: [sde] 917504 4096-byte logical blocks: (3.76 GB/3.50 GiB)
+[    0.327327] sd 0:0:0:4: [sde] Write Protect is off
+[    0.327338] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.327494] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.327596] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.327606] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.329377] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.329498] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.329510] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.329671] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.329759] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.329770] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.341673]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.343445] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.356322]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.356753] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.357328]  sdd: sdd1 sdd2 sdd3
+[    0.357378]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.358002] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.358207]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.360228] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.360264] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.362518]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.378799] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.379781] Freeing unused kernel memory: 16512K
+[    0.379839] Run /init as init process
+[    0.379842]   with arguments:
+[    0.379843]     /init
+[    0.379843]   with environment:
+[    0.379844]     HOME=/
+[    0.379845]     TERM=linux
+[    4.086871] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.088163] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+==== CERRO USB DIAG uptime=12.20 96.50 ====
+cmdline: 
+Linux (none) 7.2.0-rc5-dirty #198 SMP PREEMPT Fri Aug  7 23:10:38 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+subsystem
+supplier:platform:100000.clock-controller
+supplier:platform:15000000.iommu
+supplier:platform:1600000.interconnect
+0
+0
+0
+0
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1134 0        0                0 Jan  1 00:00 ..
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1134 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ls: /sys/bus/platform/devices/*.display-subsystem/driver: No such file or directory
+15000000.iommu
+module
+uevent
+ae00000.display-subsystem	
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+a90000.spi	geni_spi: Failed to get tx DMA ch
+3da0000.iommu	platform: supplier 3d90000.clock-controller not ready
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+ls: /dev/dri: No such file or directory
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+ls: /dev/fb*: No such file or directory
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.038816] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.038828] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.038905] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.038921] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.038929] /soc@0/ufshc@1d84000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.038992] /soc@0/phy@88e3000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039005] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.039025] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039042] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/interconnect@16e0000
+[    0.039048] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.039056] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e3000
+[    0.039062] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039166] /soc@0/display-subsystem@ae00000/display-controller@ae01000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.039228] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0
+[    0.039278] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/display-controller@ae01000
+[    0.039457] /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.039485] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.039509] /soc@0/clock-controller@af00000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/phy@ae95000
+[    0.039717] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.039724] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.040640] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.040661] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.040667] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.040742] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.040758] /soc@0/ufshc@1d84000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.042267] /soc@0/phy@88e3000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042366] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.042389] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.042396] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042470] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.042499] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/interconnect@16e0000
+[    0.042513] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.042528] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e3000
+[    0.042547] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042937] /soc@0/display-subsystem@ae00000/display-controller@ae01000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.043007] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0
+[    0.043075] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/display-controller@ae01000
+[    0.043317] /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.043341] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.043416] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.043524] /soc@0/clock-controller@af00000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/phy@ae95000
+[    0.052517] usbcore: registered new interface driver usbfs
+[    0.052527] usbcore: registered new interface driver hub
+[    0.052537] usbcore: registered new device driver usb
+[    0.082189] msm_serial: driver initialized
+[    0.100333] usbcore: registered new interface driver usb-storage
+[    0.118070] usbcore: registered new interface driver usbhid
+[    0.118076] usbhid: USB HID core driver
+[    0.164759] platform a600000.usb: Adding to iommu group 3
+[    0.199647] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+--- last dmesg ---
+[    0.318546] sd 0:0:0:0: [sda] Write Protect is off
+[    0.318561] sd 0:0:0:0: [sda] Mode Sense: 00 32 00 10
+[    0.318695] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.318790] sd 0:0:0:0: [sda] Preferred minimum I/O size 524288 bytes
+[    0.318801] sd 0:0:0:0: [sda] Optimal transfer size 524288 bytes
+[    0.320267] sd 0:0:0:1: [sdb] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.320375] sd 0:0:0:1: [sdb] Write Protect is off
+[    0.320387] sd 0:0:0:1: [sdb] Mode Sense: 00 32 00 10
+[    0.320481] sd 0:0:0:1: [sdb] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.320487] scsi 0:0:0:2: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.320555] sd 0:0:0:1: [sdb] Preferred minimum I/O size 524288 bytes
+[    0.320583] sd 0:0:0:1: [sdb] Optimal transfer size 524288 bytes
+[    0.322618] scsi 0:0:0:3: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.323071] sd 0:0:0:2: [sdc] 5120 4096-byte logical blocks: (21.0 MB/20.0 MiB)
+[    0.323164] sd 0:0:0:2: [sdc] Write Protect is off
+[    0.323175] sd 0:0:0:2: [sdc] Mode Sense: 00 32 00 10
+[    0.323334] sd 0:0:0:2: [sdc] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.323436] sd 0:0:0:2: [sdc] Preferred minimum I/O size 524288 bytes
+[    0.323447] sd 0:0:0:2: [sdc] Optimal transfer size 524288 bytes
+[    0.324935] scsi 0:0:0:4: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.325075] sd 0:0:0:3: [sdd] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.325183] sd 0:0:0:3: [sdd] Write Protect is off
+[    0.325195] sd 0:0:0:3: [sdd] Mode Sense: 00 32 00 10
+[    0.325327] sd 0:0:0:3: [sdd] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.325405] sd 0:0:0:3: [sdd] Preferred minimum I/O size 524288 bytes
+[    0.325416] sd 0:0:0:3: [sdd] Optimal transfer size 524288 bytes
+[    0.327007] scsi 0:0:0:5: Direct-Access     SAMSUNG  KLUFG8RHHD-B0G1  1801 PQ: 0 ANSI: 6
+[    0.327239] sd 0:0:0:4: [sde] 917504 4096-byte logical blocks: (3.76 GB/3.50 GiB)
+[    0.327327] sd 0:0:0:4: [sde] Write Protect is off
+[    0.327338] sd 0:0:0:4: [sde] Mode Sense: 00 32 00 10
+[    0.327494] sd 0:0:0:4: [sde] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.327596] sd 0:0:0:4: [sde] Preferred minimum I/O size 524288 bytes
+[    0.327606] sd 0:0:0:4: [sde] Optimal transfer size 524288 bytes
+[    0.329377] sd 0:0:0:5: [sdf] 8192 4096-byte logical blocks: (33.6 MB/32.0 MiB)
+[    0.329498] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.329510] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.329671] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.329759] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.329770] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.341673]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.343445] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.356322]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.356753] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.357328]  sdd: sdd1 sdd2 sdd3
+[    0.357378]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.358002] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.358207]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.360228] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.360264] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.362518]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.378799] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.379781] Freeing unused kernel memory: 16512K
+[    0.379839] Run /init as init process
+[    0.379842]   with arguments:
+[    0.379843]     /init
+[    0.379843]   with environment:
+[    0.379844]     HOME=/
+[    0.379845]     TERM=linux
+[    4.086871] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.088163] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0
+==== CERRO USB DIAG uptime=20.28 161.05 ====
+cmdline: 
+Linux (none) 7.2.0-rc5-dirty #198 SMP PREEMPT Fri Aug  7 23:10:38 AWST 2026 aarch64 Linux
+--- udc ---
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../devices/platform/soc@0/a600000.usb/udc/a600000.usb
+--- deferred/supplier ---
+driver_override
+iommu
+iommu_group
+modalias
+of_node
+power
+subsystem
+supplier:platform:100000.clock-controller
+supplier:platform:15000000.iommu
+supplier:platform:1600000.interconnect
+0
+0
+0
+0
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1134 0        0                0 Jan  1 00:00 ..
+--w-------    1 0        0             4096 Jan  1 00:00 bind
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/msm
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+--w-------    1 0        0             4096 Jan  1 00:00 unbind
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x 1134 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 15000000.iommu -> ../../../../devices/platform/soc@0/15000000.iommu
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 module -> ../../../../module/arm_smmu
+--w-------    1 0        0             4096 Jan  1 00:00 uevent
+ls: /sys/bus/platform/devices/*.display-subsystem/driver: No such file or directory
+15000000.iommu
+module
+uevent
+17d91000.cpufreq	qcom-cpufreq-hw: Failed to find icc paths
+a90000.spi	geni_spi: Failed to get tx DMA ch
+--- phy ---
+bcm-ns2-usbphy
+brcm-sata-phy
+brcmstb-usb-phy
+chipidea-usb2
+combphy
+cros-usbpd-notify
+cros-usbpd-notify-acpi
+dwc2
+dwc3
+dwc3-am62
+dwc3-apple
+dwc3-generic-plat
+dwc3-meson-g12a
+dwc3-of-simple
+dwc3-qcom
+dwc3-qcom-legacy
+dwc3-xilinx
+extcon-usb-gpio
+extcon-usbc-cros-ec
+exynos-dp-video-phy
+exynos-dwc3
+exynos-mipi-video-phy
+hi6220-usb-phy
+hisi-inno-phy
+imx-dwc3
+imx8-pcie-phy
+imx8mp-dwc3
+imx_usb
+keystone-dwc3
+msm_dsi_phy
+msm_hdmi_phy
+msm_hsusb
+mtk-tphy
+musb-hdrc
+musb-sunxi
+mvebu-a3700-comphy
+mvebu-a3700-utmi-phy
+mvebu-comphy
+phy-axg-mipi-pcie-analog
+phy-axg-pcie
+phy-bcm-sr-usb
+phy-g12a-usb3-pcie
+phy-meson-axg-mipi-dphy
+phy-meson-g12a-mipi-dphy-analog
+phy-meson-g12a-usb2
+phy-meson-gxl-usb2
+phy-meson-usb2
+phy_rcar_gen3_pcie
+phy_rcar_gen3_usb2
+physmap-flash
+qcom-eusb2-repeater
+qcom-qmp-combo-phy
+qcom-qmp-pcie-phy
+qcom-qmp-ufs-phy
+qcom-qmp-usb-phy
+qcom-qmp-usbc-phy
+qcom-qusb2-phy
+qcom-snps-hs-femto-v2-phy
+rcar-usb2-clock-sel
+rockchip-emmc-phy
+rockchip-snps-pcie3-phy
+rockchip-typec-phy
+rockchip-usb2phy
+rtk-dwc3
+rzg2l-usb-vbus-regulator
+rzg2l_usbphy_ctrl
+rzv2m-usb3drd
+samsung-ufs-phy
+samsung-usb2-phy
+sdhci-dwcmshc
+snps-eusb2-hsphy
+sr-pcie-phy
+sun4i-usb-phy
+tegra-phy
+tegra-usb
+tegra-xusb
+tegra-xusb-padctl
+ufs_mtk_phy
+uniphier-ahci-phy
+uniphier-usb2-phy
+uniphier-usb3-hsphy
+uniphier-usb3-ssphy
+usb-conn-gpio
+usb3503
+usb_phy_generic
+usbmisc_imx
+xgene-phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 1d80000.phy -> ../../../devices/platform/soc@0/1d80000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e3000.phy -> ../../../devices/platform/soc@0/88e3000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 88e8000.phy -> ../../../devices/platform/soc@0/88e8000.phy
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 a600000.usb -> ../../../devices/platform/soc@0/a600000.usb
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 c400000.spmi:pmic@7:phy@fd00 -> ../../../devices/platform/soc@0/c400000.spmi/spmi-0/0-07/c400000.spmi:pmic@7:phy@fd00
+--- drm ---
+ls: /dev/dri: No such file or directory
+/sys/class/drm:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+-r--r--r--    1 0        0             4096 Jan  1 00:00 version
+--- fb ---
+ls: /dev/fb*: No such file or directory
+/sys/class/graphics:
+total 0
+drwxr-xr-x    2 0        0                0 Jan  1 00:00 .
+drwxr-xr-x   75 0        0                0 Jan  1 00:00 ..
+lrwxrwxrwx    1 0        0                0 Jan  1 00:00 fbcon -> ../../devices/virtual/graphics/fbcon
+--- dmesg usb/drm/panel ---
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd801]
+[    0.038816] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.038828] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.038905] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.038921] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.038929] /soc@0/ufshc@1d84000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.038992] /soc@0/phy@88e3000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039005] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.039025] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039042] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/interconnect@16e0000
+[    0.039048] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.039056] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e3000
+[    0.039062] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.039166] /soc@0/display-subsystem@ae00000/display-controller@ae01000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.039228] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0
+[    0.039278] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/display-controller@ae01000
+[    0.039457] /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.039485] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.039509] /soc@0/clock-controller@af00000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/phy@ae95000
+[    0.039717] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.039724] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.040640] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.040661] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.040667] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.040742] /soc@0/phy@1d80000: Fixed dependency cycle(s) with /soc@0/ufshc@1d84000
+[    0.040758] /soc@0/ufshc@1d84000: Fixed dependency cycle(s) with /soc@0/phy@1d80000
+[    0.042267] /soc@0/phy@88e3000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042366] /soc@0/clock-controller@100000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.042389] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.042396] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042470] /soc@0/phy@88e8000: Fixed dependency cycle(s) with /soc@0/usb@a600000
+[    0.042499] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/interconnect@16e0000
+[    0.042513] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e8000
+[    0.042528] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/phy@88e3000
+[    0.042547] /soc@0/usb@a600000: Fixed dependency cycle(s) with /soc@0/clock-controller@100000
+[    0.042937] /soc@0/display-subsystem@ae00000/display-controller@ae01000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.043007] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0
+[    0.043075] /soc@0/display-subsystem@ae00000/dsi@ae94000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/display-controller@ae01000
+[    0.043317] /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/dsi@ae94000
+[    0.043341] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.043416] /soc@0/display-subsystem@ae00000/phy@ae95000: Fixed dependency cycle(s) with /soc@0/clock-controller@af00000
+[    0.043524] /soc@0/clock-controller@af00000: Fixed dependency cycle(s) with /soc@0/display-subsystem@ae00000/phy@ae95000
+[    0.052517] usbcore: registered new interface driver usbfs
+[    0.052527] usbcore: registered new interface driver hub
+[    0.052537] usbcore: registered new device driver usb
+[    0.082189] msm_serial: driver initialized
+[    0.100333] usbcore: registered new interface driver usb-storage
+[    0.118070] usbcore: registered new interface driver usbhid
+[    0.118076] usbhid: USB HID core driver
+[    0.164759] platform a600000.usb: Adding to iommu group 3
+[    0.199647] aux_bridge.aux_bridge aux_bridge.aux_bridge.0: error -ENODEV: failed to acquire drm_bridge
+[   13.539671] msm-mdss ae00000.display-subsystem: deferred probe timeout, ignoring dependency
+[   13.539683] msm-mdss ae00000.display-subsystem: probe with driver msm-mdss failed with error -110
+[   13.550723] arm-smmu 3da0000.iommu: probe with driver arm-smmu failed with error -110
+[   13.552293] platform 17d91000.cpufreq: deferred probe pending: qcom-cpufreq-hw: Failed to find icc paths
+[   13.552318] platform a90000.spi: deferred probe pending: geni_spi: Failed to get tx DMA ch
+--- last dmesg ---
+[    0.329498] sd 0:0:0:5: [sdf] Write Protect is off
+[    0.329510] sd 0:0:0:5: [sdf] Mode Sense: 00 32 00 10
+[    0.329671] sd 0:0:0:5: [sdf] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[    0.329759] sd 0:0:0:5: [sdf] Preferred minimum I/O size 524288 bytes
+[    0.329770] sd 0:0:0:5: [sdf] Optimal transfer size 524288 bytes
+[    0.341673]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12
+[    0.343445] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.356322]  sdf: sdf1 sdf2 sdf3 sdf4 sdf5 sdf6
+[    0.356753] sd 0:0:0:5: [sdf] Attached SCSI disk
+[    0.357328]  sdd: sdd1 sdd2 sdd3
+[    0.357378]  sdb: sdb1 sdb2 sdb3 sdb4 sdb5
+[    0.358002] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    0.358207]  sdc: sdc1 sdc2 sdc3 sdc4 sdc5
+[    0.360228] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.360264] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.362518]  sde: sde1 sde2 sde3 sde4 sde5 sde6 sde7 sde8 sde9 sde10 sde11 sde12 sde13 sde14 sde15 sde16 sde17 sde18 sde19 sde20 sde21 sde22 sde23 sde24 sde25 sde26 sde27 sde28 sde29 sde30 sde31 sde32 sde33 sde34 sde35 sde36 sde37 sde38 sde39 sde40 sde41 sde42 sde43 sde44 sde45 sde46 sde47 sde48 sde49 sde50 sde51 sde52 sde53 sde54 sde55 sde56 sde57 sde58 sde59 sde60 sde61 sde62 sde63 sde64 sde65 sde66 sde67 sde68 sde69 sde70 sde71 sde72 sde73 sde74 sde75 sde76
+[    0.378799] sd 0:0:0:4: [sde] Attached SCSI disk
+[    0.379781] Freeing unused kernel memory: 16512K
+[    0.379839] Run /init as init process
+[    0.379842]   with arguments:
+[    0.379843]     /init
+[    0.379843]   with environment:
+[    0.379844]     HOME=/
+[    0.379845]     TERM=linux
+[    4.086871] EXT4-fs (sde65): warning: mounting unchecked fs, running e2fsck is recommended
+[    4.088163] EXT4-fs (sde65): mounted filesystem 0ad60230-638c-49c0-9c95-ab8938f81eaf r/w without journal. Quota mode: none.
+[   13.539671] msm-mdss ae00000.display-subsystem: deferred probe timeout, ignoring dependency
+[   13.539683] msm-mdss ae00000.display-subsystem: probe with driver msm-mdss failed with error -110
+[   13.550720] arm-smmu 3da0000.iommu: deferred probe timeout, ignoring dependency
+[   13.550723] arm-smmu 3da0000.iommu: probe with driver arm-smmu failed with error -110
+[   13.552293] platform 17d91000.cpufreq: deferred probe pending: qcom-cpufreq-hw: Failed to find icc paths
+[   13.552318] platform a90000.spi: deferred probe pending: geni_spi: Failed to get tx DMA ch
+[   13.552351] qnoc-sm8650 interconnect-1: sync_state() pending due to 1dfa000.crypto
+[   13.552363] qnoc-sm8650 1700000.interconnect: sync_state() pending due to 1dfa000.crypto
+[   13.552376] gcc-sm8650 100000.clock-controller: sync_state() pending due to 3d6a000.gmu
+[   13.552388] gcc-sm8650 100000.clock-controller: sync_state() pending due to 3d90000.clock-controller
+[   13.552397] gcc-sm8650 100000.clock-controller: sync_state() pending due to 3da0000.iommu
+[   13.552411] gcc-sm8650 100000.clock-controller: sync_state() pending due to aaf0000.clock-controller
+[   13.552421] gcc-sm8650 100000.clock-controller: sync_state() pending due to ade0000.clock-controller
+[   13.552431] qnoc-sm8650 1600000.interconnect: sync_state() pending due to ae00000.display-subsystem
+[   13.552440] qnoc-sm8650 interconnect-1: sync_state() pending due to ae00000.display-subsystem
+[   13.552450] qnoc-sm8650 1780000.interconnect: sync_state() pending due to ae00000.display-subsystem
+[   13.552460] gcc-sm8650 100000.clock-controller: sync_state() pending due to ae00000.display-subsystem
+[   13.552470] gcc-sm8650 100000.clock-controller: sync_state() pending due to af00000.clock-controller
+[   13.552495] qcom-rpmhpd 17a00000.rsc:power-controller: sync_state() pending due to af00000.clock-controller
+[   13.552504] qcom-rpmhpd 17a00000.rsc:power-controller: sync_state() pending due to ae00000.display-subsystem
+[   13.552514] qcom-rpmhpd 17a00000.rsc:power-controller: sync_state() pending due to ade0000.clock-controller
+[   13.552524] qcom-rpmhpd 17a00000.rsc:power-controller: sync_state() pending due to aaf0000.clock-controller
+[   13.552534] gcc-sm8650 100000.clock-controller: sync_state() pending due to 17d90000.interconnect
+[   13.552542] gcc-sm8650 100000.clock-controller: sync_state() pending due to 17d91000.cpufreq
+[   13.552552] qnoc-sm8650 interconnect-1: sync_state() pending due to 24091000.pmu
+[   13.552562] qnoc-sm8650 24100000.interconnect: sync_state() pending due to 240b7400.pmu
+[   13.552571] qnoc-sm8650 24100000.interconnect: sync_state() pending due to ae00000.display-subsystem
+[   13.552603] qcom-rpmhpd 17a00000.rsc:power-controller: sync_state() pending due to a90000.spi
+[   13.552611] qnoc-sm8650 interconnect-1: sync_state() pending due to a90000.spi
+[   13.552621] qnoc-sm8650 16e0000.interconnect: sync_state() pending due to a90000.spi
+[   13.552629] qnoc-sm8650 1600000.interconnect: sync_state() pending due to a90000.spi
+[   13.552638] qnoc-sm8650 24100000.interconnect: sync_state() pending due to a90000.spi
+[   13.552648] qnoc-sm8650 interconnect-0: sync_state() pending due to a90000.spi
+[   13.552656] gcc-sm8650 100000.clock-controller: sync_state() pending due to a90000.spi
+==== END ====
+[cerro-usb] start phy/udc probe wait
+[cerro-usb] UDC=a600000.usb
+[cerro-usb] ACM bound
+[cerro-usb] ttyGS0 ready
+[cerro-usb] mounted boot /dev/sde65
+[cerro-usb] wrote diag to /mnt/boot
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0
+[cerro-usb] heartbeat udc=a600000.usb gs=/dev/ttyGS0

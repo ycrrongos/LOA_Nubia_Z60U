@@ -1,0 +1,50 @@
+=== AOSP AW882xx deep gold (completed) 2026-08-17T00:27:01+08:00 ===
+serial=320243913409 onlyaosp_cerro-userdebug
+
+== Identity ==
+chipid=0x2113 (= mainline AW88261_CHIP_ID)
+compatible(AOSP)=awinic,aw882xx_smartpa
+compatible(mainline)=awinic,aw88261
+driver AOSP=aw882xx_dlkm v1.11.0
+
+== I2C ==
+bus=i2c_hub_3 / i2c@98c000 (qcom,geni-i2c-master-hub)
+parent_se=qcom,geni-se-qup@9c0000
+stock symbol=qupv3_hub_i2c3 (dtbo_1 fragment@159)
+addrs: 0x34 sound-channel=1 ; 0x35 sound-channel=0
+pins: TLMM gpio70=SDA gpio71=SCL function=i2chub0_se3 (mainline hub_i2c3_data_clk)
+irq=GIC_SPI 467; clocks se+core; no reset-gpio in DT
+
+== Power / supplies ==
+AOSP DT: no *-supply on aw882 nodes (always-on rails)
+mainline aw88261 requires dvdd-supply (use vreg_l15b_1p8 as 1.8V IO candidate)
+
+== Firmware ==
+vendor: /vendor/firmware/aw882xx_acf.bin (2016B, contains Awinic/aw88261 profiles A1901)
+cali: /vendor/firmware/aw_cali.bin + /mnt/vendor/persist/smartpa_cali_data/aw_cali.bin
+archived: notes/firmware-aw882xx/
+mainline prop: firmware-name = "aw882xx_acf.bin"
+AOSP ACF_BIN_NAME hardcoded aw882xx_acf.bin
+runtime cali re @0x34: pri_l=6414 mOhms pri_r=7581 mOhms
+
+== SPF / audio data path (AOSP) ==
+aw-rx-port-id=0x1006 aw-tx-port-id=0x1007
+aw-rx-topo-id=0x1000ff01 aw-tx-topo-id=0x1000ff00
+PCM path is SPF/ADSP graph, not Linux SoundWire WSA
+pri_mi2s_pinctrl status=okay; quat/quin/tert/sen/sep = disabled
+pri_mi2s TLMM pins (vb_04 aux0_pcm / i2s0):
+  gpio126 i2s0_sck
+  gpio129 i2s0_ws
+  gpio127 i2s0_data0
+  gpio128 i2s0_data1
+AOSP pcm includes MI2S-LPAIF-RX-PRIMARY multicodec
+
+== WSA (disabled on this SKU) ==
+wsa-macro/wsa2-macro status=disabled (stock dtbo_1 + AOSP runtime)
+LPASS gpio10/11/15/16/21 UNCLAIMED
+
+== Mainline bring-up checklist ==
+1) &i2c_hub_3 okay + aw88261@34/@35
+2) CONFIG_SND_SOC_AW88261=m + stage snd-soc-aw88261.ko + acf
+3) drop WSA dai-link / &swr0 speakers
+4) later: MI2S/I2S0 dai-link + pinctrl gpio126-129 for audible path

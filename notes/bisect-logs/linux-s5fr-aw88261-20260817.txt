@@ -1,0 +1,35 @@
+echo CERRO_S5FR_MARK
+CERRO_S5FR_MARK
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+tr " " "\n" </proc/cmdline | grep cerro_dtb
+cerro_dtb=s5fr
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+dmesg | grep -iE "aw88261|awinic|chip id" | head -40
+[  138.229635] [cerro-s5ca] modprobe aw88261 attempted
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+ls /sys/bus/i2c/devices/
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+lsmod | grep -iE "aw882|aw883" || true
+snd_soc_aw88261        20480  0
+snd_soc_core          241664  13 snd_soc_sc8280xp,snd_soc_aw88261,snd_soc_qcom_common,snd_soc_lpass_wsa_macro,snd_soc_wsa884x,snd_soc_qcom_sdw,snd_soc_wcd939x,snd_soc_lpass_va_macro,snd_soc_wcd_mbhc,snd_soc_lpass_rx_macro,soundwire_qcom,snd_soc_lpass_tx_macro,snd_soc_wcd_classh
+snd_pcm               143360  4 snd_soc_aw88261,snd_compress,snd_soc_core,snd_soc_lpass_rx_macro
+snd_soc_aw88395_lib    36864  1 snd_soc_aw88261
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+ls /lib/firmware/aw* 2>/dev/null || true
+[0;0m/lib/firmware/aw882xx_acf.bin[m  [0;0m/lib/firmware/aw_cali.bin[m
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+for d in /sys/bus/i2c/devices/*-0034 /sys/bus/i2c/devices/*-0035;
+ do [ -e $d ]||continue; echo ==$d==; cat $d/name; cat $d/uevent; readlink -f $d
+/driver; done
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+echo DONE_S5FR
+DONE_S5FR
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n

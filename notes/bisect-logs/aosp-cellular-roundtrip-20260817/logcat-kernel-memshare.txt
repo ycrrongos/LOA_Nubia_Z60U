@@ -1,0 +1,10 @@
+01-03 16:05:08.835   519   519 I memshare soc: qcom,memshare:qcom,client_1: memshare: Continuing with allocation from CMA
+01-03 16:05:08.836   519   519 I memshare soc: qcom,memshare:qcom,client_2: memshare: Continuing with allocation from CMA
+01-03 16:05:08.836   519   519 I memshare soc: qcom,memshare:qcom,client_3: memshare: Continuing with allocation from CMA
+01-03 16:05:08.836   519   519 I memshare soc: qcom,memshare:qcom,client_4: assigned reserved memory node qmc_dma_region
+01-03 16:05:08.836   519   519 I memshare soc: qcom,memshare:qcom,client_4: memshare: Memory allocation from shared DMA pool
+01-03 16:05:08.837   519   519 I memshare soc: qcom,memshare:qcom,client_5: memshare: Continuing with allocation from CMA
+01-03 16:05:14.921  1482  1482 I memshare soc: qcom,memshare: memshare_query: client_id : 1, query_resp.size :5242880, query_resp.resp.result :0
+01-03 16:05:14.921  1482  1482 I memshare soc: qcom,memshare: memshare_alloc: memory alloc request received for client id: 1, proc_id: 0, request size: 5242880
+01-03 16:05:14.921  1482  1482 I memshare soc: qcom,memshare: memshare_alloc: found client with client_id: 1, index: 2
+01-03 16:05:14.926  1482  1482 I memshare soc: qcom,memshare: memshare_alloc: client_id: 1, alloc_resp.num_bytes: 5242880, alloc_resp.resp.result: 0

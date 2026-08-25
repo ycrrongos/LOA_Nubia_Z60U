@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Phone Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main class="stage">
+    <header class="brand">
+      <p class="brand-mark">Agent Phone Tool</p>
+      <p class="brand-sub">串口舵机按键台 · FireBeetle 丝印 A2 / A1 / A0</p>
+    </header>
+
+    <section class="phone" aria-label="按键控制">
+      <button class="key key-vol" data-btn="volup" type="button">
+        <span class="key-label">音量 +</span>
+        <span class="key-pin">A2</span>
+      </button>
+      <button class="key key-vol" data-btn="voldown" type="button">
+        <span class="key-label">音量 −</span>
+        <span class="key-pin">A1</span>
+      </button>
+      <button class="key key-power" data-btn="power" type="button">
+        <span class="key-label">电源</span>
+        <span class="key-pin">A0</span>
+      </button>
+    </section>
+
+    <section class="toolbar">
+      <button class="ghost" data-btn="reset" type="button">复位全部舵机</button>
+      <div class="status" id="status">
+        <span class="dot" id="dot"></span>
+        <span id="statusText">连接中…</span>
+      </div>
+    </section>
+
+    <section class="debug" aria-label="舵机角度调试">
+      <div class="debug-head">
+        <h2>角度调试</h2>
+        <button class="ghost" id="refreshAngles" type="button">从设备读取</button>
+      </div>
+
+      <div class="slider-grid" id="liveAngles">
+        <label class="slider-row">
+          <span class="slider-name">音量 + <small>A2</small></span>
+          <input type="range" min="0" max="180" value="90" data-servo="volup" />
+          <input type="number" min="0" max="180" value="90" data-servo-num="volup" />
+        </label>
+        <label class="slider-row">
+          <span class="slider-name">音量 − <small>A1</small></span>
+          <input type="range" min="0" max="180" value="90" data-servo="voldown" />
+          <input type="number" min="0" max="180" value="90" data-servo-num="voldown" />
+        </label>
+        <label class="slider-row">
+          <span class="slider-name">电源 <small>A0</small></span>
+          <input type="range" min="0" max="180" value="90" data-servo="power" />
+          <input type="number" min="0" max="180" value="90" data-servo-num="power" />
+        </label>
+      </div>
+
+      <details class="calib">
+        <summary>点按参数（休息角 / 按下角）</summary>
+        <div class="calib-grid">
+          <label>休息 · 音量+ <input type="number" min="0" max="180" value="90" data-cfg="rest_volup" /></label>
+          <label>按下 · 音量+ <input type="number" min="0" max="180" value="60" data-cfg="press_volup" /></label>
+          <label>休息 · 音量− <input type="number" min="0" max="180" value="90" data-cfg="rest_voldown" /></label>
+          <label>按下 · 音量− <input type="number" min="0" max="180" value="120" data-cfg="press_voldown" /></label>
+          <label>休息 · 电源 <input type="number" min="0" max="180" value="90" data-cfg="rest_power" /></label>
+          <label>按下 · 电源 <input type="number" min="0" max="180" value="120" data-cfg="press_power" /></label>
+        </div>
+        <button class="ghost" id="applyCalib" type="button">写入点按参数</button>
+      </details>
+    </section>
+
+    <p class="log" id="log">等待指令</p>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

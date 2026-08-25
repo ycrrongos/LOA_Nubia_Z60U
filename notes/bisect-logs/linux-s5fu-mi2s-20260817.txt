@@ -1,0 +1,22 @@
+echo S5FU_VERIFY
+S5FU_VERIFY
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+tr ' ' '\n' </proc/cmdline | grep cerro_dtb
+cerro_dtb=s5fu
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+cat /proc/asound/cards; aplay -l
+ 0 [SM8650CERRO    ]: sm8650 - SM8650-CERRO
+                      SM8650-CERRO
+**** List of PLAYBACK Hardware Devices ****
+card 0: SM8650CERRO [SM8650-CERRO], device 0: MultiMedia1 Playback (*) []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+echo user | sudo -S amixer -c0 | grep PRIMARY_MI2S
+Simple mixer control 'PRIMARY_MI2S_RX Audio Mixer MultiMedia1',0
+Simple mixer control 'PRIMARY_MI2S_RX Audio Mixer MultiMedia3',0
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n

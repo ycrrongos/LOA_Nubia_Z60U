@@ -1,0 +1,342 @@
+=== AOSP WSA / SoundWire gold dump 2026-08-17T00:14:34+08:00 ===
+serial=320243913409
+onlyaosp_cerro-userdebug 17 CP2A.260605.016 eng.rong test-keys
+onlyaosp_cerro
+cerro
+_a
+Linux localhost 6.1.173 #1 SMP PREEMPT Mon Aug 10 19:53:33 AWST 2026 aarch64 Toybox
+
+=== audio service / cards ===
+Start begin: 01-02 15:37:59.592
+Start end:   01-02 15:38:01.321
+Now:         08-11 01:19:24.266
+Notification Clients:
+   pid    uid  name
+  1548   1041  audioserver
+  2373   1000  android.uid.system
+  3822  10102  android.uid.qtiphone
+Global session refs:
+  session  cnt     pid    uid  name
+Hardware status: 0
+Vibrator infos(size=1):
+  - AudioVibratorInfo{id: 0, resonantFrequency: nan, qFactor: nan, maxAmplitude: nan}
+Bluetooth latency modes are enabled
+
+ ## BEGIN thread dump 
+
+Output thread 0xb400007585cdc790, name AudioOut_D, tid 2408, type 0 (MIXER):
+  I/O handle: 13
+  Standby: yes
+  Sample rate: 48000 Hz
+  HAL frame count: 192
+  HAL format: 0x1 (AUDIO_FORMAT_PCM_16_BIT)
+  HAL buffer size: 768 bytes
+  Channel count: 2
+  Channel mask: 0x00000003 (front-left, front-right)
+  Processing format: 0x5 (AUDIO_FORMAT_PCM_FLOAT)
+  Processing frame size: 8 bytes
+  Pending config events: none
+  Output devices: 0x2 (AUDIO_DEVICE_OUT_SPEAKER)
+  Input device: 0 (AUDIO_DEVICE_NONE)
+  Audio source: 0 (AUDIO_SOURCE_DEFAULT)
+  Timestamp stats: n=0 disc=0 cold=0 nRdy=0 err=1 jitterMs(unavail) localSR(nan, nan) correctedJitterMs(unavail)
+  Timestamp corrected: no
+  Master volume: 1.000000
+  Master mute: off
+  Mixer channel Mask: 0x3 (front-left, front-right)
+  Normal frame count: 960
+  Total writes: 0
+  Delayed writes: 0
+---
+card0
+cards
+devices
+hwdep
+pcm
+pineapplemtpsnd
+timers
+version
+ 0 [pineapplemtpsnd]: pineapple-mtp-s - pineapple-mtp-snd-card
+                      pineapple-mtp-snd-card
+---
+1548
+
+=== platform / soundwire-ish devices ===
+7b3000.lpass_qtb
+lpass-cdc-clk-rsc-mngr
+rx_swr_ctrl
+soc:lpass_stm
+soc:spf_core_platform:lpass-cdc
+soc:spf_core_platform:rx_swr_clk_data_pinctrl
+soc:spf_core_platform:sound
+soc:spf_core_platform:tx_swr_clk_data_pinctrl
+soc:spf_core_platform:wsa2_swr_clk_data_pinctrl
+soc:spf_core_platform:wsa_swr_clk_data_pinctrl
+soc:vote_lpass_audio_hw
+soc:vote_lpass_core_hw
+soc:wsa2_core_clk
+soc:wsa2_core_tx_clk
+soc:wsa_core_clk
+soc:wsa_core_tx_clk
+va_swr_ctrl
+swr1
+swr2
+wcd939x-slave.e01170223
+wcd939x-slave.e01170224
+
+=== debugfs mount + pinctrl LPASS gpio10/11/15/16/21 ===
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pm8550@1:pinctrl@8800
+pin 9 (gpio10): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 10 (gpio11): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pm8550b@7:pinctrl@8800
+pin 9 (gpio10): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 10 (gpio11): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pm8550ve@8:pinctrl@8800
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pm8550vs@2:pinctrl@8800
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pm8550vs@3:pinctrl@8800
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pm8550vs@4:pinctrl@8800
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pm8550vs@6:pinctrl@8800
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pmk8550@0:pinctrl@b800
+DIR=/sys/kernel/debug/pinctrl/c42d000.qcom,spmi:qcom,pmr735d@a:pinctrl@8800
+DIR=/sys/kernel/debug/pinctrl/f000000.pinctrl
+pin 10 (GPIO_10): 888000.spi (GPIO UNCLAIMED) function gpio group gpio10
+pin 11 (GPIO_11): 888000.spi (GPIO UNCLAIMED) function gpio group gpio11
+pin 16 (GPIO_16): b0000000.qcom,cnss-kiwi (GPIO UNCLAIMED) function gpio group gpio16
+pin 77 (GPIO_77): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 107 (GPIO_107): soc:msm_cdc_pinctrl@32 (GPIO UNCLAIMED) function gpio group gpio107
+pin 113 (GPIO_113): ac15000.qcom,cci0 (GPIO UNCLAIMED) function cci_i2c_sda0 group gpio113
+pin 114 (GPIO_114): ac15000.qcom,cci0 (GPIO UNCLAIMED) function cci_i2c_scl0 group gpio114
+pin 117 (GPIO_117): ac16000.qcom,cci1 (GPIO UNCLAIMED) function cci_i2c_sda2 group gpio117
+pin 118 (GPIO_118): ac16000.qcom,cci1 (GPIO UNCLAIMED) function cci_i2c_scl2 group gpio118
+DIR=/sys/kernel/debug/pinctrl/soc:spf_core_platform:lpi_pinctrl@6E80000
+pin 10 (gpio10): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 11 (gpio11): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 15 (gpio15): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 16 (gpio16): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 21 (gpio21): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+
+=== clk / regulator (WSA-ish) ===
+ audio_lpass_mclk                    0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          va_core_clk              
+ audio_lpass_mclk2                   0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          wsa_core_clk             
+ audio_lpass_mclk9                   0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          wsa2_core_clk            
+ audio_lpass_mclk4                   0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          rx_core_clk              
+ audio_lpass_mclk10                  0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          rx_tx_core_clk           
+ audio_lpass_mclk6                   0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          tx_core_clk              
+ audio_lpass_mclk11                  0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          wsa_tx_core_clk          
+ audio_lpass_mclk12                  0       0        0        0           0          0     50000      Y   lpass-cdc-clk-rsc-mngr          wsa2_tx_core_clk         
+ audio_lpass_mclk13                  0       0        0        0           0          0     50000      Y   rx-macro                        rx_mclk2_2x_clk          
+ lpass_hw_vote_clk                   0       0        0        0           0          0     50000      Y   va_swr_ctrl                     lpass_core_hw_vote       
+                                                                                                           rx_swr_ctrl                     lpass_core_hw_vote       
+                                                                                                           soc:spf_core_platform:lpi_pinctrl@6E80000  lpass_core_hw_vote       
+                                                                                                           soc:spf_core_platform:lpass-cdc  lpass_core_hw_vote       
+ lpass_audio_hw_vote_clk             0       0        0        0           0          0     50000      Y   soc:spf_core_platform:sound     lpass_audio_hw_vote      
+                                                                                                           soc:spf_core_platform:sound     lpass_audio_hw_vote      
+                                                                                                           va_swr_ctrl                     lpass_audio_hw_vote      
+                                                                                                           rx_swr_ctrl                     lpass_audio_hw_vote      
+                                                                                                           va-macro                        lpass_audio_hw_vote      
+                                                                                                           soc:spf_core_platform:lpi_pinctrl@6E80000  lpass_audio_hw_vote      
+                                                                                                           soc:spf_core_platform:lpass-cdc  lpass_audio_hw_vote      
+---
+
+=== regmap heads (if any) ===
+0-00
+0-01
+0-02
+0-03
+0-04
+0-06
+0-07
+0-08
+0-0a
+0-0c
+1-07
+100000.clock-controller
+139004.qcom,gdsc
+1500000.interconnect
+150018.qcom,gdsc
+1600000.interconnect
+1680000.interconnect
+16b004.qcom,gdsc
+16c000.qcom,gdsc
+16c0000.interconnect
+16e0000.interconnect
+1700000.interconnect
+177004.qcom,gdsc
+1780000.interconnect
+17891000.qcom,gdsc
+18d004.qcom,gdsc
+18e000.qcom,gdsc
+19e000.qcom,gdsc
+1f40000.clock-controller
+24100000.interconnect
+25000000.cache-controller-llcc_base
+25000000.cache-controller-llcc_broadcast_base
+320c0000.interconnect
+3d90000.clock-controller
+3d9905c.qcom,gdsc
+3d99108.qcom,gdsc
+4-000e
+6-003b
+6-0068
+6-0069
+
+=== MMIO WSA_SWR0 @ 0x06b10000 ===
+(no /dev/mem — skip raw MMIO)
+=== MMIO WSA_MACRO @ 0x06b00000 ===
+(no /dev/mem — skip raw MMIO)
+=== MMIO WSA2_SWR3 @ 0x06ab0000 ===
+(no /dev/mem — skip raw MMIO)
+=== MMIO WSA2_MACRO @ 0x06aa0000 ===
+(no /dev/mem — skip raw MMIO)
+=== MMIO RX_SWR1 @ 0x06ad0000 ===
+(no /dev/mem — skip raw MMIO)
+
+=== dmesg audio/swr/wsa (tail) ===
+[    0.059124] OF: /soc/spf_core_platform/lpass-cdc/va-macro@6D44000: could not get #gpio-cells for /soc/interrupt-controller@17100000
+[    0.070836] /soc/lpass_stm: Fixed dependency cycle(s) with /soc/funnel@10b50000
+[    0.070889] /soc/funnel@10b50000: Fixed dependency cycle(s) with /soc/lpass_stm
+[    0.084506] /soc/lpass_stm: Fixed dependency cycle(s) with /soc/funnel@10b50000
+[    0.084568] /soc/lpass_stm: Fixed dependency cycle(s) with /soc/funnel@10b50000
+[    0.084694] /soc/funnel@10b50000: Fixed dependency cycle(s) with /soc/lpass_stm
+[    0.145617] usbcore: registered new interface driver snd-usb-audio
+[    0.464667] qsmmuv500-tbu 7b3000.lpass_qtb: Unable to get the transactiontracker-base
+[    1.087864] modprobe: Loading module /vendor_dlkm/lib/modules/snd_event_dlkm.ko with args ''
+[    1.088207] modprobe: Loaded kernel module /vendor_dlkm/lib/modules/snd_event_dlkm.ko
+[    1.088864] modprobe: Loading module /vendor_dlkm/lib/modules/spf_core_dlkm.ko with args ''
+[    1.089333] spf_core_platform_driver_probe
+[    1.090444] modprobe: Loaded kernel module /vendor_dlkm/lib/modules/spf_core_dlkm.ko
+[    1.191417] coresight-dummy soc:lpass_stm: Dummy device initialized
+[    1.227408] coresight coresight-cti-lpass_dl_cti: CTI initialized
+[    1.482149] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+[    1.482176] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+[    1.482182] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+[    1.482185] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+[    1.482200] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+[    1.482204] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+[    1.483739] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_core_hw
+[    1.483754] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_core_hw
+[    1.483766] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_core_hw
+[    1.483773] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_core_hw
+[    1.484398] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:rx_mclk2_2x_clk
+[    1.484624] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:wsa2_core_tx_clk
+[    1.484834] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:wsa_core_tx_clk
+[    1.485014] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:tx_core_clk
+[    1.575196] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:rx_core_tx_clk
+[    1.575331] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:rx_core_clk
+[    1.575484] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:wsa2_core_clk
+[    1.575597] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:wsa_core_clk
+[    1.575713] spf-core-platform soc:spf_core_platform: Failed to create device link (0x180) with soc:va_core_clk
+[    1.579713] adsprpc: fastrpc_device_init: SSR notifier registered for lpass
+[    5.723679] adsprpc: fastrpc_restart_notifier_cb: subsystem lpass is about to start
+[    6.295211] adsprpc: fastrpc_restart_notifier_cb: lpass subsystem is up
+[    6.305902] Info: adsprpc (99): kworker/0:2H: fastrpc_rpmsg_probe: opened rpmsg channel for lpass
+[    6.313477] qcom,gpr 3000000.remoteproc-adsp:glink-edge.adsp_apps.-1.-1: Adding GPR dev: gprsvc:spf_core:2:3
+[    6.313548] spf_core_probe
+[    6.314440] spf_core_add_child_devices:enumarate machine driver
+[    6.314446] spf-core-platform soc:spf_core_platform: __spf_core_is_apm_ready: send_command ret
+[    6.321365] adsprpc: fastrpc_pdr_cb: msm/adsp/audio_pd (audio_pdr_adsprpc) is up for PDR on lpass
+[    6.350261] adsprpc: fastrpc_pdr_cb: msm/adsp/sensor_pd (sensors_pdr_adsprpc) is up for PDR on lpass
+[    6.364642] spf-core-platform soc:spf_core_platform: __spf_core_is_apm_ready: send_command ret
+[    6.364773] qcom-spf_core gprsvc:spf_core:2:3: spf_core_callback: Payload 2001007
+[    6.364777] qcom-spf_core gprsvc:spf_core:2:3: spf_core_callback: sucess response received
+[    6.365008] spf-core-platform soc:spf_core_platform: spf_core_add_child_devices: apm is up
+[    6.374033] msm-audio-ion soc:spf_core_platform:qcom,msm-audio-ion-cma: msm_audio_ion_probe: msm_audio_ion_probe
+[    6.374501] msm-audio-ion soc:spf_core_platform:qcom,msm-audio-ion: Adding to iommu group 55
+[    6.374957] lpass_cdc_rx_macro rx-macro: lpass_cdc_rx_macro_probe: va-macro not registered yet, defer
+[    6.375455] lpass_cdc_tx_macro tx-macro: lpass_cdc_tx_macro_probe: va-macro not registered yet, defer
+[    6.376241] lpass_cdc_va_macro va-macro: lpass_cdc_va_macro_probe: failed to get swr pin state
+[    6.383594] msm-audio-ion soc:spf_core_platform:qcom,msm-audio-ion: msm_audio_ion_probe: msm_audio_ion_probe
+[    6.383804] lpass_cdc_rx_macro rx-macro: lpass_cdc_rx_macro_probe: va-macro not registered yet, defer
+[    6.384595] lpass_cdc_tx_macro tx-macro: lpass_cdc_tx_macro_probe: va-macro not registered yet, defer
+[    6.384773] lpass_cdc_va_macro va-macro: lpass_cdc_va_macro_probe: failed to get swr pin state
+[    6.384871] lpass_cdc_rx_macro rx-macro: lpass_cdc_rx_macro_probe: va-macro not registered yet, defer
+[    6.390680] lpass_cdc_tx_macro tx-macro: lpass_cdc_tx_macro_probe: va-macro not registered yet, defer
+[    6.391036] lpass_cdc_va_macro va-macro: lpass_cdc_register_macro: register macro successful:3
+[    6.391771] lpass_cdc_rx_macro rx-macro: lpass_cdc_register_macro: register macro successful:1
+[    6.392142] spf-core-platform soc:spf_core_platform: __spf_core_is_apm_ready: send_command ret
+[    6.392333] qcom-spf_core gprsvc:spf_core:2:3: spf_core_callback: Payload 2001007
+[    6.392339] qcom-spf_core gprsvc:spf_core:2:3: spf_core_callback: sucess response received
+[    6.394630] lpass_cdc_tx_macro tx-macro: lpass_cdc_register_macro: register macro successful:0
+[    6.405484] swr-mgr rx_swr_ctrl: swrm_get_logical_dev_num: devnum 1 assigned for dev e01170224
+[    6.405634] swr-mgr va_swr_ctrl: swrm_get_logical_dev_num: devnum 1 assigned for dev e01170223
+[    6.486527] msm_int_wsa881x_init: WSA is not enabled
+[    6.486567] msm_int_wsa881x_init: WSA is not enabled
+[    6.486770] pineapple-asoc-snd soc:spf_core_platform:sound: ASoC: driver name too long 'pineapple-mtp-snd-card' -> 'pineapple-mtp-s'
+[    6.490864] input: pineapple-mtp-snd-card Headset Jack as /devices/platform/soc/soc:spf_core_platform/soc:spf_core_platform:sound/sound/card0/input31
+[    6.490896] input: pineapple-mtp-snd-card Button Jack as /devices/platform/soc/soc:spf_core_platform/soc:spf_core_platform:sound/sound/card0/input32
+[    6.490965] pineapple-asoc-snd soc:spf_core_platform:sound: msm_asoc_machine_probe: Sound card pineapple-mtp-snd-card registered
+[    6.491301] pineapple-asoc-snd soc:spf_core_platform:sound: num_links 38 
+
+=== logcat audio (brief) ===
+01-02 15:37:55.721   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+01-02 15:37:55.721   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+01-02 15:37:55.721   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+01-02 15:37:55.721   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+01-02 15:37:55.721   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+01-02 15:37:55.721   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:vote_lpass_audio_hw
+01-02 15:37:55.724   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:wsa2_core_tx_clk
+01-02 15:37:55.724   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:wsa_core_tx_clk
+01-02 15:37:55.815   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:wsa2_core_clk
+01-02 15:37:55.815   695   695 E spf-core-platform soc: spf_core_platform: Failed to create device link (0x180) with soc:wsa_core_clk
+01-02 15:38:00.615     6     6 E lpass_cdc_va_macro va-macro: lpass_cdc_va_macro_probe: failed to get swr pin state
+01-02 15:38:00.624   176   176 E lpass_cdc_va_macro va-macro: lpass_cdc_va_macro_probe: failed to get swr pin state
+01-02 15:38:00.645   134   134 I swr-mgr rx_swr_ctrl: swrm_get_logical_dev_num: devnum 1 assigned for dev e01170224
+01-02 15:38:00.645   134   134 I swr-mgr va_swr_ctrl: swrm_get_logical_dev_num: devnum 1 assigned for dev e01170223
+01-02 15:38:00.726    88    88 I msm_int_wsa881x_init: WSA is not enabled
+01-02 15:38:00.726    88    88 I msm_int_wsa881x_init: WSA is not enabled
+08-11 01:19:04.550  3882  3882 D RcsStats: UceStatsWriterCallback created.
+08-11 01:19:15.391  1387  3586 I PAL: ResourceManager: setParameter: 10826: Screen State:0
+08-11 01:19:23.077  1387  3586 I PAL: ResourceManager: setParameter: 10826: Screen State:1
+08-11 01:19:24.390  2188  2188 I adbd    : ls /sys/bus/platform/devices | grep -iE "wsa|swr|lpass|sound" | head -40
+08-11 01:19:24.390  2188  2188 I adbd    : ls /sys/bus/soundwire/devices 2>/dev/null | head
+08-11 01:19:24.779  2188  2188 I adbd    : cat /sys/kernel/debug/clk/clk_summary 2>/dev/null | grep -iE "wsa|swr|lpass" | head -40
+08-11 01:19:24.779  2188  2188 I adbd    :   echo "$n" | grep -qiE "l15b|l3c|wsa|spkr|audio" || continue
+08-11 01:19:29.228  2188  2188 I adbd    : for d in /sys/kernel/debug/regmap/*wsa* /sys/kernel/debug/regmap/*6b00000* /sys/kernel/debug/regmap/*6b10000*; do
+08-11 01:19:29.663  2188  2188 I adbd    : adbd service requested 'shell,v2,TERM=dumb,raw:dmesg 2>/dev/null | grep -iE "swr|soundwire|wsa|spf|lpass|snd" | tail -80'
+08-11 01:19:29.905  2188  2188 I adbd    : adbd service requested 'shell,v2,TERM=dumb,raw:logcat -d -b all 2>/dev/null | grep -iE "WSA|SWR|soundwire|audio_hw|PAL:|AGM:" | tail -60'
+
+=== DONE ===
+
+=== FOLLOW-UP 2026-08-17T00:16:58+0800: root cause of empty WSA ===
+wsa-macro@6B00000 status=disabled
+wsa2-macro@6AA0000 status=disabled
+msm_int_wsa881x_init: WSA is not enabled (dmesg)
+
+=== Cerro speaker path = Awinic AW882xx (NOT WSA884x) ===
+i2c: 0-0034 / 0-0035 on i2c@98c000 (qcom,i2c-geni)
+compatible: awinic,aw882xx_smartpa
+[    1.459343] [Awinic][0-0034]aw882xx_read_chipid: aw882xx 2113 detected
+[    1.467961] [Awinic][0-0034]aw882xx_dai_drv_append_suffix: pstream_name name [Speaker_Playback-0-34]
+[    1.469349] [Awinic][0-0035]aw882xx_read_chipid: aw882xx 2113 detected
+[    1.495030] [Awinic][0-0035]aw882xx_dai_drv_append_suffix: pstream_name name [Speaker_Playback-0-35]
+DT sound-channel: @34=1 @35=0
+SPF ports: rx-port=0x1006 tx-port=0x1007 topo rx=0x1000ff01 tx=0x1000ff00
+0-0034
+0-0035
+bind
+module
+uevent
+unbind
+#address-cells
+#size-cells
+aw882xx_smartpa@34
+aw882xx_smartpa@35
+clock-names
+clocks
+compatible
+interconnect-names
+interconnects
+interrupts
+name
+phandle
+pinctrl-0
+pinctrl-1
+pinctrl-names
+qcom,i2c-hub
+reg
+status
+
+=== CONTRAST vs Linux s5fq ===
+Linux: enabled WSA macro + 2x wsa884x on swr0 (QRD map) → enum empty (no slaves on bus)
+AOSP: wsa-macro status=disabled; speakers = 2x AW2113 via I2C+SPF; LPASS gpio10/11/15/16/21 UNCLAIMED
+Implication: chasing WSA SoundWire enum on Cerro is wrong SKU path; need AW882xx bring-up

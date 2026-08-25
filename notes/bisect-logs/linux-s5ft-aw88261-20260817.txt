@@ -1,0 +1,36 @@
+echo CERRO_S5FT_MARK
+CERRO_S5FT_MARK
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+tr " " "\n" </proc/cmdline | grep cerro_dtb
+cerro_dtb=s5ft
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+ls /sys/class/i2c-adapter/; echo ---; ls /sys/bus/i2c/devices/
+ls: /sys/class/i2c-adapter/: No such file or directory
+---
+[1;36m0-0034[m  [1;36m0-0035[m  [1;36mi2c-0[m
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+dmesg | grep -iE "aw88261|chip id|98c000|geni-i2c|i2c-qcom-geni" 
+| head -60
+[    0.169982] geni_i2c 98c000.i2c: Bus frequency not specified, default to 100kHz.
+[   33.536279] aw88261 0-0034: chip id = 2113
+[   33.537025] aw88261 0-0035: chip id = 2113
+[   33.538758] [cerro-s5ca] modprobe aw88261 attempted
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+for d in /sys/bus/i2c/devices/*-0034 /sys/bus/i2c/devices/*-0035;
+ do [ -e $d ]||continue; echo ==$d==; cat $d/name; readlink -f $d/driver; done
+==/sys/bus/i2c/devices/0-0034==
+aw88261
+/sys/bus/i2c/drivers/aw88261
+==/sys/bus/i2c/devices/0-0035==
+aw88261
+/sys/bus/i2c/drivers/aw88261
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n
+echo DONE_S5FT
+DONE_S5FT
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n

@@ -1,0 +1,11 @@
+cellular-modempr-c1 build audit
+stock modem image sha256: 94a504e81b8bdb5fb28622fbdf9fa14be5efa1d392fe67957fee624a73160f4c
+stock modem_pr files: 196
+stock modem_pr bytes: 10851893
+stock modem_pr tree sha256: c22817b43b4ba6eb965d49d1d091d615330eba905fa7f0c10161b1c317c06f4b
+manifest sha256: ccb291aad4935daa21d096507ef1a53833451eeaddc484137f86d91d3afe7b01
+4e58dfb109999ab1d4b588b902b4695247c130b1950bf6d3dc293756774a47ad  cerro-modempr-c1
+88747dbd5ffa1e2ea1cb4426d7c304c2698e8fd21801717df887a2437f42e5b1  cerro-modempr-c1.service
+cc99206dd095bec7420aea4c463b7577628c6828a4b72a1cca6c3edbd1c8b468  cerro-modempr-order.conf
+86fc432c7574e88e8dfb6a409796ac78396185b7b73e6903e5e24b40c30be215  install-cellular-modempr-c1.sh
+f7839e39945f0a707961c5af921c29b155eb49a689515831d933cfeb97fca6aa  rollback-cellular-modempr-c1.sh

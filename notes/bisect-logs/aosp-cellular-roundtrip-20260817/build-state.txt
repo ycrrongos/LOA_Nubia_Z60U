@@ -1,0 +1,14 @@
+fingerprint=nubia/onlyaosp_cerro/cerro:17/CP2A.260605.016/eng.rong:userdebug/test-keys
+slot=_a
+boot_completed=1
+sim_state=LOADED,ABSENT
+network_type=NR_SA,Unknown
+modules=msm_memshare,heap_mem_ext_v01,
+remoteproc0 188101c.remoteproc-spss
+offline
+remoteproc1 3000000.remoteproc-adsp
+running
+remoteproc2 4080000.remoteproc-mss
+running
+remoteproc3 32300000.remoteproc-cdsp
+running

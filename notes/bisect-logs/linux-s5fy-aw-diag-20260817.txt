@@ -1,0 +1,94 @@
+=== Linux s5fy AW88261 diagnostic 2026-08-17 ===
+
+Host image:
+  build/boot_repack/boot-v2-disp-dpu-s5fy.img
+  size=87199744
+  Image sha256=877ea4277f1be9050c03b52cb63ddb79f26145aba7b9753a548268bca128ad6d
+
+Flash evidence (/tmp/cerro-auto-flash.log):
+  boot_a/boot_b written with s5fy
+  vendor_boot_a/vendor_boot_b restored from stock
+  dtbo_a/dtbo_b erased
+  EDL dual-slot flash done
+
+Boot identity / ALSA:
+  USB=1d6b:0104
+  ACM by-id=usb-nubia_Z60U_USB_console+net_cerro-debug-if00 -> ttyACM2
+  /proc/cmdline: ... cerro_dtb=s5fy
+  card 0: SM8650-CERRO
+  playback hw:0,0: MultiMedia1 Playback
+  capture  hw:0,1: MultiMedia2 Capture
+
+Command:
+  amixer -c0 sset 'PRIMARY_MI2S_RX Audio Mixer MultiMedia1' on
+  timeout 8 speaker-test -D hw:0,0 -c 2 -r 48000 -t sine -f 440 -l 1
+
+Result:
+  PLAY_EXIT:0
+  Rate set to 48000Hz (requested 48000Hz)
+  period_size=12000 buffer_size=48000
+  Front Left / Front Right both completed
+
+AW88261 dmesg after test:
+  aw88261 0-0034: check pll lock ok, reg_val:0x0011
+  aw88261 0-0035: check pll lock ok, reg_val:0x0011
+  aw88261 0-0034: check sysst ok, reg_val=0x0311
+  aw88261 0-0035: check sysst ok, reg_val=0x0311
+  aw88261 0-0034: start success
+  aw88261 0-0035: start success
+
+Active register snapshot (during 440 Hz):
+                    0-0034  0-0035
+  SYSST       0x01   0311    0311
+  SYSCTRL     0x04   3240    3240
+  SYSCTRL2    0x05   00e4    00e4
+  I2SCTRL1    0x06   3808    3408
+  I2SCTRL2    0x07   0010    0010
+  I2SCTRL3    0x08   0037    0036
+  DACST       0x20   91af    91af
+  I2SINT      0x26   0005    0005
+
+Idle snapshot after playback stopped:
+                    0-0034  0-0035
+  SYSST       0x01   0000    0000
+  SYSCTRL     0x04   7343    7343
+  SYSCTRL2    0x05   03c0    03c0
+  DACST       0x20   9300    9300
+  I2SINT      0x26   0001    0001
+
+Interpretation:
+  - Active SYSCTRL clears PWDN, AMPPD, HMUTE and ULS_HMUTE; the PA is not muted.
+  - SYSST 0x0311 satisfies PLL + BSTS/SWS checks on both amplifiers.
+  - SYSCTRL2 0x00e4 is the default ALSA value 270 = -22.5 dB attenuation.
+  - A second 7 s test temporarily set both PCM controls to 330 (-7.5 dB),
+    completed with exit 0, then restored both controls to 270.
+
+Zero PCM versus 440 Hz, same active clock/PA state (0-0034):
+                      zero PCM  440 Hz
+  SYSST       0x01      0311      0311
+  SYSCTRL     0x04      3240      3240
+  DACST       0x20      91af      91af
+  ISNDAT      0x24      0000      0003
+  I2SINT      0x26      0005      0005
+
+  The earlier simultaneous 440 Hz snapshot had ISNDAT=0x0002 on 0-0034 and
+  ISNDAT=0xfffd on 0-0035. This was initially interpreted as output current,
+  but repeated 1 kHz sampling later disproved that interpretation:
+
+                    ISNDAT range  VSNDAT range
+    0-0034             -14…12          0…0
+    0-0035              -10…9          0…0
+
+  These small ISNDAT values are sensor noise and VSNDAT is identically zero.
+  Thus s5fy proves PCM/clock/PA start but does not prove that SD0 carries the
+  speaker samples; there is no speaker-terminal output on either PA.
+
+Physical result (user, immediately after both 440 Hz tests):
+  CONFIRMED SILENT — no audible output, including the temporary -7.5 dB test.
+  Therefore s5fy is not an end-to-end speaker PASS. Continue with slot/channel,
+  gain and ACF profile investigation.
+
+Host-side observation correction:
+  auto-observe-boot.sh previously assumed /dev/ttyACM0. On this bench ACM0 is
+  the Espressif servo and the phone is ACM2. The two PASS_ACM TSV rows prove
+  only that USB 1d6b:0104 appeared; they did not capture the phone console.

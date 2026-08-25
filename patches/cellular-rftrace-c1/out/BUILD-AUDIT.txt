@@ -1,0 +1,139 @@
+cellular-rftrace-c1 build audit
+Debian rmtfs orig sha256: 3d9d37cd573a44acf9c10897b59a3f9a359c0bcf2f02d9e2b4605f6cdf4ed5c5
+Debian rmtfs delta sha256: d1d66cda57cd5e39c3f8cc29c8305b8dfcd33508db1e99033127ce108d1905e2
+Debian tqftpserv orig sha256: a7ebf03aa19e5deabcb499836ccf7378a0cd65452232f87406790a5509421527
+Debian tqftpserv delta sha256: 7d2ca318eb8851770917413b7aa19824e5bfda6856dddba1a150fecc7443d27a
+cd1960aa72cc07871a75afae39166ca1409d59437e7432b4e5b1202c60b6ab0f  /mnt/data/LOA_Nubia_Z60U/patches/cellular-rftrace-c1/rmtfs-rftrace.patch
+0532badec73b612aaa65fc3edf86fccf244211d014aa94258f38b5655d29ef9a  /mnt/data/LOA_Nubia_Z60U/patches/cellular-rftrace-c1/tqftpserv-rftrace.patch
+32c6fd7e26eaa70086d4af6fa3011ec227e130659125f813ffc51ac833deca1f  /mnt/data/aosp/device/linaro/dragonboard/shared/utils/qrtr/lib/libqrtr.h
+d7f59c8a0b50be01384b7cf0d5891e2014d2f630d7558f3436d4ecfda1f7e4bf  /mnt/data/aosp/device/linaro/dragonboard/shared/utils/qrtr/lib/qrtr.c
+78a964f985ceaff022ec7328a2c83f5537424c2029ec65aa325492c6e6cd520e  /mnt/data/aosp/device/linaro/dragonboard/shared/utils/qrtr/lib/qmi.c
+a40eb62226579806fd258f0ecd454892f986877f6c3d9acf6ace5c1de5c4f005  /mnt/data/aosp/device/linaro/dragonboard/shared/utils/qrtr/lib/logging.c
+2d5be650fa9881bddfbaa9c116f4454f10921b9db28ec34ea52b44f4932ff274  /mnt/data/aosp/device/linaro/dragonboard/shared/utils/qrtr/lib/logging.h
+4c8045f90d3131bf21a78cce14f9cac21983bca7f31925b2640bdd8aee3712a7  /mnt/data/aosp/device/linaro/dragonboard/shared/utils/qrtr/src/ns.h
+ce4a4c445f3a4a11d5f509567d0ebbd3dec393dc272adf36c7892e7cbd3ccdf6  /mnt/data/aosp/external/zstd/lib/Makefile
+d4dd36a428b41793f565c4f4754bc31c9085506d95f50ea3e93ef9688b7b5868  /mnt/data/aosp/external/zstd/lib/libzstd.mk
+9b4bc8245565c98ccfc61c07749928b57e7c0f6fddb0530c4f6aa1971893d88b  /mnt/data/aosp/external/zstd/lib/zstd.h
+b50deb7c48633d03c02b15b6508d79768027e80422265d7a4a7f2f13d2f01d97  /mnt/data/aosp/prebuilts/clang/host/linux-x86/clang-r596125/bin/clang
+dd1f02d8cc96d3c15cad47bb3c43033c702d7058c35cea168e317d1659d60713  /mnt/data/aosp/prebuilts/clang/host/linux-x86/clang-r596125/bin/llvm-ar
+1a3eebcf76846e0631e091df2685ed394a0e4f0d119f6c228a804ac8da5365dc  /mnt/data/aosp/prebuilts/build-tools/sysroots/aarch64-unknown-linux-musl/lib/libc.a
+/mnt/data/LOA_Nubia_Z60U/patches/cellular-rftrace-c1/out/cerro-rmtfs-rftrace-c1:     ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, BuildID[sha1]=1143a14cb15bd48a8060268049b40f78cf573ac3, with debug_info, not stripped
+/mnt/data/LOA_Nubia_Z60U/patches/cellular-rftrace-c1/out/cerro-tqftpserv-rftrace-c1: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, BuildID[sha1]=ad1a340129d1aa4ac1e7ad499cca1d18a6a3865b, with debug_info, not stripped
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           AArch64
+  Version:                           0x1
+  Entry point address:               0x212db0
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          460776 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         9
+  Size of section headers:           64 (bytes)
+  Number of section headers:         31
+  Section header string table index: 29
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000200040 0x0000000000200040
+                 0x00000000000001f8 0x00000000000001f8  R      0x8
+  LOAD           0x0000000000000000 0x0000000000200000 0x0000000000200000
+                 0x0000000000002dac 0x0000000000002dac  R      0x10000
+  LOAD           0x0000000000002db0 0x0000000000212db0 0x0000000000212db0
+                 0x0000000000011314 0x0000000000011314  R E    0x10000
+  LOAD           0x00000000000140c8 0x00000000002340c8 0x00000000002340c8
+                 0x0000000000000270 0x0000000000000f38  RW     0x10000
+  LOAD           0x0000000000014338 0x0000000000244338 0x0000000000244338
+                 0x0000000000000918 0x00000000000016d7  RW     0x10000
+  GNU_RELRO      0x00000000000140c8 0x00000000002340c8 0x00000000002340c8
+                 0x0000000000000270 0x0000000000000f38  R      0x1
+  GNU_EH_FRAME   0x0000000000002108 0x0000000000202108 0x0000000000202108
+                 0x00000000000001fc 0x00000000000001fc  R      0x4
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x0
+  NOTE           0x0000000000000238 0x0000000000200238 0x0000000000200238
+                 0x0000000000000024 0x0000000000000024  R      0x4
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .note.gnu.build-id .rodata .eh_frame_hdr .eh_frame 
+   02     .text .init .fini 
+   03     .init_array .fini_array .data.rel.ro .got .relro_padding 
+   04     .data .bss 
+   05     .init_array .fini_array .data.rel.ro .got .relro_padding 
+   06     .eh_frame_hdr 
+   07     
+   08     .note.gnu.build-id 
+
+There is no dynamic section in this file.
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           AArch64
+  Version:                           0x1
+  Entry point address:               0x2151c0
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          509040 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         9
+  Size of section headers:           64 (bytes)
+  Number of section headers:         31
+  Section header string table index: 29
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000200040 0x0000000000200040
+                 0x00000000000001f8 0x00000000000001f8  R      0x8
+  LOAD           0x0000000000000000 0x0000000000200000 0x0000000000200000
+                 0x00000000000051bc 0x00000000000051bc  R      0x10000
+  LOAD           0x00000000000051c0 0x00000000002151c0 0x00000000002151c0
+                 0x0000000000020f00 0x0000000000020f00  R E    0x10000
+  LOAD           0x00000000000260c0 0x00000000002460c0 0x00000000002460c0
+                 0x0000000000000148 0x0000000000000f40  RW     0x10000
+  LOAD           0x0000000000026208 0x0000000000256208 0x0000000000256208
+                 0x0000000000000248 0x0000000000000daf  RW     0x10000
+  GNU_RELRO      0x00000000000260c0 0x00000000002460c0 0x00000000002460c0
+                 0x0000000000000148 0x0000000000000f40  R      0x1
+  GNU_EH_FRAME   0x0000000000002dcc 0x0000000000202dcc 0x0000000000202dcc
+                 0x00000000000005f4 0x00000000000005f4  R      0x4
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x0
+  NOTE           0x0000000000000238 0x0000000000200238 0x0000000000200238
+                 0x0000000000000024 0x0000000000000024  R      0x4
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .note.gnu.build-id .rodata .eh_frame_hdr .eh_frame 
+   02     .text .init .fini 
+   03     .init_array .fini_array .data.rel.ro .got .relro_padding 
+   04     .data .bss 
+   05     .init_array .fini_array .data.rel.ro .got .relro_padding 
+   06     .eh_frame_hdr 
+   07     
+   08     .note.gnu.build-id 
+
+There is no dynamic section in this file.
+7728dc5c0ec05b480f0e9711fdcefc8061a5684dd8b87be133bf9e6219ac8414  cerro-rmtfs-rftrace-c1
+5801b8572c36709a4f485453bc6a7ce4eaab43335cb47747547654aa12232f84  cerro-tqftpserv-rftrace-c1
+332cc9278ceda496ed4ec5ee295030e3c5c8e2f2aef0ea012f188acdf180f2b7  rmtfs-rftrace.conf
+1d2eeb7f8f80aec9a8fd249f7f239f50531655710b28c2c17c0c067671b60241  tqftpserv-rftrace.conf
+2e2ceee92d8111b8fe0daef9ef581dc8d1374d5ead811a2e57358d81656c1f03  install-cellular-rftrace-c1.sh
+4074279e05c22c7a67904f7d3b4a73dee99372dfcae168d6af2cbd2ed22faf5c  rollback-cellular-rftrace-c1.sh

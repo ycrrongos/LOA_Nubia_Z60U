@@ -1,0 +1,1 @@
+savedcmd_qcom-memshare.ko := ld.lld -r -EL  -maarch64elf -z norelro -z noexecstack --build-id=sha1  -T /mnt/data/LOA_Nubia_Z60U/build/linux/scripts/module.lds -o qcom-memshare.ko qcom-memshare.o qcom-memshare.mod.o .module-common.o

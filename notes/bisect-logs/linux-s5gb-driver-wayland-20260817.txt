@@ -1,0 +1,65 @@
+# Cerro s5gb final driver / Wayland regression — 2026-08-17
+
+## Artifact and flash
+
+- boot: `build/boot_repack/boot-v2-disp-dpu-s5gb.img`
+- boot size: 76,918,784 bytes (fits 100,663,296-byte boot partition)
+- boot SHA256: `fb801668c5fea848ec5ac53e37a334b9d2a669336f14ec2ecd9ce67654729a5b`
+- Image SHA256: `9536309ba96f7c24df657a01174efe8b1d0c39175d136c40149269e1d5e2079f`
+- built-in DTB SHA256: `bf351152b71373cd005011f6c50e94e0f7448f366c00fe55bc88a4e734a5b4cb`
+- embedded initramfs SHA256: `c435b1fbbf5be7a4de92a517e138bd0ae45ead34367392e82eea24a87eef13cd`
+- audio topology SHA256: `866b22ffd144639732e50a0a2b8940f9340c73d0ac2cab1d71b2b8af1809737c`
+- true `05c6:9008` EDL: boot_a/b + vendor_boot_a/b written, dtbo_a/b erased, `FLASH_OK`.
+- cold boot: `cerro_dtb=s5gb`, Linux `7.2.0-rc5-dirty #442`.
+
+## Root storage
+
+- `/dev/sda12` GPT size was already about 494 GB; only the ext4 filesystem was about 11.7 GiB.
+- `resize2fs /dev/sda12` online resize succeeded without changing GPT or formatting.
+- final `df`: 453.1 GiB total, about 427.4 GiB available, 2% used.
+
+## GPU and desktop
+
+- `/etc/plasmalogin.conf`: `DisplayServer=wayland`, autologin session `plasma.desktop`.
+- login session c1: `Type=wayland`, active.
+- `plasma-kwin_wayland.service` and `plasma-plasmashell.service`: active.
+- no `QT_QUICK_BACKEND`, `LIBGL_ALWAYS_SOFTWARE`, `GALLIUM_DRIVER`, or `MESA_LOADER_DRIVER_OVERRIDE` in the user-manager environment.
+- KWin: `Attempting to load the OpenGL scene`; `OpenGL compositing has been successfully initialized`.
+- surfaceless EGL: driver `msm`; OpenGL core/compatibility/ES renderer `FD750`.
+- prior X11 fallback root cause: both Xorg config files forced `AccelMethod "none"`; changed to `glamor` and retained `.pre-glamor` backups, although final desktop is Wayland.
+
+## Touch
+
+- packages: `libinput`, `libinput-tools`, `xf86-input-libinput`.
+- device: `Goodix Berlin Capacitive TouchScreen`, `/dev/input/event2`, capability `touch`.
+- config: `/etc/X11/xorg.conf.d/90-cerro-touch-libinput.conf` (XWayland/X11 fallback); KDE gesture validation is on the final Plasma Wayland session.
+- raw MT-B visualizer restarted as `cerro-touch-dot.service`: fullscreen GTK Wayland window 496x1102; ABS_MT X `0..17855`, Y `0..39679`; source SHA256 `38120045a7949a742b062771f7ab011d00de8228affb980720932894071af8f3`.
+- native application multitouch PASS: the user confirmed Firefox two-finger pinch zoom works again. Firefox is a native `wayland-0` client and receives the Goodix protocol-B contacts; Plasma desktop icons using only the primary contact is not a single-touch driver failure. KWin's `gestureSupport=false` describes libinput touchpad gestures, while the same device is correctly `touch=true` / `ID_INPUT_TOUCHSCREEN=1`.
+
+## WiFi / Bluetooth
+
+- exact-kernel modules loaded: ath12k_wifi7, ath12k, mac80211, cfg80211, qmi_helpers.
+- device: WCN7850 hw2.0, board_id `0xff`, firmware `WLAN.HMT.1.1.c7-00108-QCAHMTSWPL_V1.0_V2.0_SILICONZ_UPSTREAM-3`.
+- WiFi: scan PASS, autoconnect PASS, wlan0 `192.168.0.254/24`, AP gateway ping PASS, DNS PASS, Alpine CDN HTTPS PASS.
+- routing: WiFi DHCP default metric 600; USB ECM fallback metric 2000.
+- Bluetooth: hci0 UART `UP RUNNING`; Bluetooth 5.4; Qualcomm manufacturer; powered and pairable; name `Nubia Z60 Ultra`.
+
+## Audio preservation
+
+- card: `SM8650-CERRO`; PulseAudio default sink: `cerro_speaker`.
+- working SD1 topology hash is unchanged (see artifact section).
+- KDE Ocean `alarm-clock-elapsed.oga` played via `paplay` with rc=0 after the final s5gb reboot.
+- earlier user physical confirmation remains the end-to-end result: normal desktop sound, both logical channels audible, and both isolated AW88261 paths audible.
+
+## Operational corrections
+
+- Plasma Keyboard 6.7.4 and Qt Virtual Keyboard were already installed. `kwinrc [Wayland] InputMethod` now selects `/usr/share/applications/org.kde.plasma.keyboard.desktop`; after a clean user-session rebuild, `plasma-keyboard` is running and KWin reports it available. A Firefox input test reports text-input support; a real touchscreen tap is required to satisfy KWin's touch-triggered show policy.
+- a direct KWin service restart made the new compositor temporarily lose logind access to `/dev/input/event2`. A full `loginctl terminate-user user` immediately corrected this: the replacement KWin logs Goodix as a touch device, Plasma services and OpenGL composition are active, and the virtual keyboard remains available.
+- Firefox 153.0.4-r0 was installed from Alpine edge and launched with `MOZ_ENABLE_WAYLAND=1` in `wayland-0`; its main/content processes and transient user unit remained active. A startup shader-extension capability probe logged `GL_EXT_shader_texture_lod` unsupported without terminating the browser.
+- for the user's current test boot, sleep/idle is blocked by a `cerro-test` systemd inhibitor and sleep targets are runtime-masked; this is intentionally non-persistent across reboot.
+- KDE multitouch regression must be validated under Wayland. An intermediate X11/libinput-only restoration was corrected after the user pointed this out.
+- the display manager is `plasmalogin.service`, not `sddm.service`.
+- disabling the old SIGILL software-render files was insufficient while the user manager retained inherited variables; terminating/recreating the user session cleared them.
+- USB ECM initially installed a higher-priority default route than WiFi; init now assigns the USB route metric 2000.
+- ttyGS0 may retain a stale `Password:` transaction. `tools/cerro-acm-run.py --reset-login` aborts it before a fresh login.
+- immediately after reboot, ACM can re-enumerate once and pyserial can report `returned no data`; retry only after the nubia by-id port stabilizes.

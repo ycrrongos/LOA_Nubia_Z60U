@@ -1,0 +1,117 @@
+#!/bin/sh
+# Expose the verified stock modem_pr tree to Debian tqftp before MPSS starts.
+set -eu
+
+SOURCE_DEVICE=/dev/disk/by-partlabel/modem_a
+MOUNT_DIR=/run/cerro-modempr-c1
+SOURCE_TREE=$MOUNT_DIR/image/modem_pr
+LINK_PATH=/lib/firmware/qcom/sm8650/modem_pr
+EXPECTED_FILES=196
+EXPECTED_TREE_SHA256=c22817b43b4ba6eb965d49d1d091d615330eba905fa7f0c10161b1c317c06f4b
+
+stop_mount() {
+	if mountpoint -q "$MOUNT_DIR"; then
+		umount "$MOUNT_DIR"
+	fi
+	rmdir "$MOUNT_DIR" 2>/dev/null || true
+}
+
+case "${1:-}" in
+stop)
+	stop_mount
+	echo "cerro-modempr-c1: read-only modem_a mount removed"
+	exit 0
+	;;
+start)
+	;;
+*)
+	echo "usage: $0 start|stop" >&2
+	exit 2
+	;;
+esac
+
+i=0
+while [ ! -b "$SOURCE_DEVICE" ] && [ "$i" -lt 50 ]; do
+	sleep 0.2
+	i=$((i + 1))
+done
+if [ ! -b "$SOURCE_DEVICE" ]; then
+	echo "cerro-modempr-c1: missing $SOURCE_DEVICE" >&2
+	exit 1
+fi
+
+if [ ! -L "$LINK_PATH" ] || [ "$(readlink "$LINK_PATH")" != "$SOURCE_TREE" ]; then
+	echo "cerro-modempr-c1: refusing unexpected link at $LINK_PATH" >&2
+	exit 1
+fi
+
+mkdir -p -m 0700 "$MOUNT_DIR"
+chmod 0700 "$MOUNT_DIR"
+if mountpoint -q "$MOUNT_DIR"; then
+	echo "cerro-modempr-c1: refusing pre-existing mount at $MOUNT_DIR" >&2
+	exit 1
+fi
+
+file_list=/run/.cerro-modempr-c1-files.$$
+sorted_list=/run/.cerro-modempr-c1-sorted.$$
+hash_list=/run/.cerro-modempr-c1-hashes.$$
+mounted=0
+cleanup_failure() {
+	rm -f -- "$file_list" "$sorted_list" "$hash_list"
+	if [ "$mounted" = 1 ]; then
+		umount "$MOUNT_DIR" 2>/dev/null || true
+	fi
+	rmdir "$MOUNT_DIR" 2>/dev/null || true
+}
+trap cleanup_failure EXIT HUP INT TERM
+
+mount -t vfat -o ro,nosuid,nodev,noexec,uid=0,gid=0,umask=0077 \
+	"$SOURCE_DEVICE" "$MOUNT_DIR"
+mounted=1
+
+mount_options=$(findmnt -n -o OPTIONS --target "$MOUNT_DIR")
+for required_option in ro nosuid nodev noexec; do
+	case ",$mount_options," in
+	*,"$required_option",*) ;;
+	*)
+		echo "cerro-modempr-c1: missing mount option $required_option" >&2
+		exit 1
+		;;
+	esac
+done
+
+if [ ! -d "$SOURCE_TREE" ]; then
+	echo "cerro-modempr-c1: missing stock tree $SOURCE_TREE" >&2
+	exit 1
+fi
+
+(
+	cd "$SOURCE_TREE"
+	find . -type f -print0
+) >"$file_list"
+LC_ALL=C sort -z "$file_list" >"$sorted_list"
+(
+	cd "$SOURCE_TREE"
+	xargs -0 sha256sum <"$sorted_list"
+) >"$hash_list"
+
+file_count=$(wc -l <"$hash_list" | tr -d ' ')
+tree_hash=$(sha256sum "$hash_list" | awk '{print $1}')
+if [ "$file_count" != "$EXPECTED_FILES" ]; then
+	echo "cerro-modempr-c1: file count mismatch: $file_count" >&2
+	exit 1
+fi
+if [ "$tree_hash" != "$EXPECTED_TREE_SHA256" ]; then
+	echo "cerro-modempr-c1: tree hash mismatch: $tree_hash" >&2
+	exit 1
+fi
+if [ ! -r "$LINK_PATH/so/1006_0_7.mbn" ] || \
+	[ ! -r "$LINK_PATH/mcfg/configs/mcfg_sw/mbn_sw.dig" ]; then
+	echo "cerro-modempr-c1: tqftp-visible sentinel check failed" >&2
+	exit 1
+fi
+
+rm -f -- "$file_list" "$sorted_list" "$hash_list"
+trap - EXIT HUP INT TERM
+echo "cerro-modempr-c1: verified read-only modem_pr tree ($file_count files, $tree_hash)"
+

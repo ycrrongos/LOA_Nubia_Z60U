@@ -1,0 +1,35 @@
+PRE ''
+WHO whoami; id -u; echo SHELL_OK
+
+Login incorrect
+
+nubia-cerro login: 
+
+==== grep -o 'cerro_dtb=[^ ]*' /proc/cmdline
+grep -o 'cerro_dtb=[^ ]*' /proc/cmdline; echo MARK1
+
+Password: 
+
+==== dmesg | grep -E 'cerro: (CRM|phy-seq|PARF_CESTA|PARF_LTSSM|P
+
+Login incorrect
+
+nubia-cerro login: 
+
+==== lspci -nn
+lspci -nn; echo MARK3
+
+Password: 
+
+==== ip -br link
+
+
+Login incorrect
+
+
+==== ls /sys/bus/pci/devices
+ls /sys/bus/pci/devices; echo MARK5
+
+
+
+VERDICT s5eo= False 1107= False wlan0= None

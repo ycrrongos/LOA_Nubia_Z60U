@@ -1,0 +1,34 @@
+logged True
+printf 'user\n' | sudo -S -p '' sh -c 'echo MARK_CMDLINE; grep ce
+rro_dtb /proc/cmdline; echo MARK_DMESG; dmesg | grep -iE "pcie_sm seq|PARF_LTSSM
+|Device not found|17cb|1107" | tail -20; echo MARK_PCI; for d in /sys/bus/pci/de
+vices/*; do echo $d $(cat $d/vendor) $(cat $d/device); done; echo MARK_MEM; pyth
+on3 -c "import mmap,os,struct;fd=os.open(\"/dev/mem\",os.O_RDONLY);mm=mmap.mmap(
+fd,0x1000,mmap.MAP_SHARED,mmap.PROT_READ,offset=0x1c00000);print(\"LTSSM\",hex(s
+truct.unpack_from(\"<I\",mm,0x1b0)[0]));mm.close();mm=mmap.mmap(fd,0x7000,mmap.M
+AP_SHARED,mmap.PROT_READ,offset=0x1d07000);print(\"START\",hex(struct.unpack_fro
+m(\"<I\",mm,0x1090)[0]));print(\"SEQ0\",hex(struct.unpack_from(\"<I\",mm,0)[0]))
+;mm.close();os.close(fd)"; echo MARK_WLAN; ip link show wlan0 2>&1 | head -2; ec
+ho MARK_END'
+
+
+MARK_CMDLINE
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5ek
+MARK_DMESG
+[    0.000000] sched_clock: 56 bits at 19MHz, resolution 52ns, wraps every 4398046511078ns
+[    0.832152] qcom-pcie 1c00000.pcie: cerro: pcie_sm seq loaded start=0x1 i0ctrl=0x0 i0mask=0x0
+[    1.410593] qcom-pcie 1c00000.pcie: cerro: pcie_sm seq loaded start=0x1 i0ctrl=0x0 i0mask=0x0
+[    1.411661] qcom-pcie 1c00000.pcie: cerro: PARF_LTSSM=0x101 after LTSSM_EN
+[    2.372070] qcom-pcie 1c00000.pcie: Device not found
+[    2.376221] pci 0000:00:00.0: [17cb:0113] type 01 class 0x060400 PCIe Root Port
+MARK_PCI
+/sys/bus/pci/devices/0000:00:00.0 0x17cb 0x0113
+MARK_MEM
+LTSSM 0x101
+START 0x1
+SEQ0 0x1c018081
+MARK_WLAN
+Device "wlan0" does not exist.
+MARK_END
+nubia-cerro:~$ [6n
+

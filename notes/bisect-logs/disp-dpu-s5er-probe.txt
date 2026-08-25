@@ -1,0 +1,71 @@
+echo MARK
+MARK
+nubia-cerro:~$ grep cerro_dtb /proc/cmdline
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5er
+nubia-cerro:~$ echo ---DEVICES---
+---DEVICES---
+nubia-cerro:~$ cat /proc/bus/input/devices
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_pwrkey"
+P: Phys=pmic_pwrkey/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="pmic_resin"
+P: Phys=pmic_resin/input0
+S: Sysfs=/devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000000000000 0
+
+I: Bus=001c Vendor=0000 Product=0000 Version=0000
+N: Name="Goodix Berlin Capacitive TouchScreen"
+P: Phys=input/ts
+S: Sysfs=/devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+U: Uniq=
+H: Handlers=event2 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=261800000000003
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=8000000000000 0
+
+nubia-cerro:~$ echo ---PROP---
+---PROP---
+nubia-cerro:~$ cat /sys/class/input/input0/properties 2>/dev/null || true
+0
+nubia-cerro:~$ echo ---DMESG---
+---DMESG---
+nubia-cerro:~$ dmesg | grep -iE "gpio-keys|pwrkey|resin|qcom-pon|pm8941|Goodix|P
+ROP|Berlin" | tail -40
+[    0.000000] GICv3: using LPI property table @0x00000008800b0000
+[    0.111616] input: pmic_pwrkey as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:pwrkey/input/input0
+[    0.112124] input: pmic_resin as /devices/platform/soc@0/c400000.spmi/spmi-0/0-00/c400000.spmi:pmic@0:pon@1300/c400000.spmi:pmic@0:pon@1300:resin/input/input1
+[    0.201282] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    0.249880]  goodix_berlin_power_on+0x28/0x178
+[    0.249891]  goodix_berlin_probe+0x154/0x260
+[    0.249900]  goodix_berlin_spi_probe+0xe4/0x130
+[    0.383620] input: Goodix Berlin Capacitive TouchScreen as /devices/platform/soc@0/ac0000.geniqup/a90000.spi/spi_master/spi0/spi0.0/input/input2
+[    0.461642] ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+[    1.162317] input: gpio-keys as /devices/platform/gpio-keys/input/input3
+nubia-cerro:~$ echo ENDMARK
+ENDMARK
+nubia-cerro:~$ [6n
+rm -f /tmp/mtprobe_phone.py.b64 /tmp/mtprobe_phone.py
+nubia-cerro:~$ [6n

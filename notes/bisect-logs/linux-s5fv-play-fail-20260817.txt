@@ -1,0 +1,22 @@
+# s5fv play attempt 2026-08-17
+
+## Command
+aplay -D hw:0,0 -f S16_LE -c 2 -r 48000 /tmp/cerro-tone.wav
+(also speaker-test / plughw; rates 8k–48k; S16/S24/S32; mono/stereo)
+
+## Result
+FAIL — aplay: Unable to install hw params / audio open error: Invalid argument
+
+## Kernel
+qcom-apm gprsvc:service:2:1: Error (1) Processing 0x01001006 cmd
+qcom-apm gprsvc:service:2:1: DSP returned error[1001006] 1
+q6apm-lpass-dais ... bedais: Failed to set media format -22
+q6apm-lpass-dais ... ASoC error (-22): at snd_soc_dai_prepare() on PRI_MI2S_RX
+
+## Clock
+LPASS_CLK_ID_PRI_MI2S_IBIT: enable_count=0 prepare_count=0 (never voted)
+sc8280xp only set_fmt(BP_FP); no set_sysclk(PRI_MI2S_IBIT) like sm8250
+q6apm-lpass-dais q6i2s_ops has no set_sysclk
+
+## Card still OK
+cerro_dtb=s5fv; SM8650-CERRO; MultiMedia1; ADSP running; AW chip id 2113

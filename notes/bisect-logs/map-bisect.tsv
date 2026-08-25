@@ -52,3 +52,508 @@ timestamp	step	outcome	detail	boot_img
 2026-08-06T20:10:47+08:00	2	pass	late_fastboot@68.068s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
 2026-08-06T20:11:00+08:00	meta	note	fallback_SAFE_MAP_shrink_to_256MiB_before_step3	-
 2026-08-06T20:13:53+08:00	3	pass	late_fastboot@83.247s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:20:57+08:00	meta	note	start_bank_bisect_256_to_9728MiB_then_probe32	-
+2026-08-06T20:22:40+08:00	39728	pass	late_fastboot@74.081s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:22:40+08:00	meta	bank_bisect	9728MiB_pass	late_fastboot@74.081s(extend)_PASS_MIN=12_CYCLE=6
+2026-08-06T20:22:40+08:00	meta	bank_bisect	ceiling_pass_9728MiB	map_mem_tolerates_oversized_bank
+2026-08-06T20:26:20+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:27:18+08:00	meta	revoke_ambiguous	step3_hang_was_PROBE_STAGE32_bank9728MiB	retest_probe32_bank256
+2026-08-06T20:27:18+08:00	p32b9728	hang	quiet_18+70s_PROBE32_full_bank	-
+2026-08-06T20:31:59+08:00	meta	probe_retest	p32_b256_stage32_bank0x10000000	see_prev_step3_row
+2026-08-06T20:32:13+08:00	meta	probe_retest	p311_b256_stage311_bank0x10000000	see_prev_step3_row
+2026-08-06T20:32:58+08:00	meta	revoked	p32_p311_hang_invalid_edl_venv_missing_no_flash	-
+2026-08-06T20:35:10+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:35:32+08:00	p32b256	hang	quiet_18+70s_PROBE32_bank256_real_edl_ok	-
+2026-08-06T20:37:30+08:00	3	pass	late_fastboot@32.469s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:37:30+08:00	p311b256	pass	PROBE311_bank256_real	-
+2026-08-06T20:38:54+08:00	meta	note	p311_pass_create_idmap_next_probe312	-
+2026-08-06T20:40:43+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:41:53+08:00	p312b256	hang	after_first_pi_map_range	-
+2026-08-06T20:44:39+08:00	meta	note	user_cerro_crash_never_auto_9008_manual_only	-
+2026-08-06T20:47:12+08:00	3	pass	late_fastboot@82.841s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:47:12+08:00	p312id0	pass	IDMAP_STEP0_skip_pi_map	-
+2026-08-06T20:49:28+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:53:16+08:00	p312id1	hang	IDMAP_STEP1_one_page_cursor_crash_black_manual_9008	-
+2026-08-06T20:53:16+08:00	meta	note	resume_after_cursor_crash_phone_9008	-
+2026-08-06T20:58:03+08:00	3	pass	late_fastboot@82.513s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T20:58:04+08:00	p312id4	pass	IDMAP_STEP4_kimg_va_offset_1page	-
+2026-08-06T20:59:01+08:00	meta	note	idmap_lm_va_offset_broken_use_kimg	-
+2026-08-06T21:01:59+08:00	3	pass	late_fastboot@82.74s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:01:59+08:00	p32id2kimg	pass	IDMAP_STEP2_kimg_full_text_probe32	-
+2026-08-06T21:03:52+08:00	3	pass	late_fastboot@54.297s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:03:52+08:00	p33id3kimg	pass	IDMAP_STEP3_kimg_full_kpti_probe33	-
+2026-08-06T21:05:48+08:00	3	pass	late_fastboot@36.809s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:05:49+08:00	setup_p3	pass	after_paging_init_IDMAP3_kimg	-
+2026-08-06T21:08:13+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:08:45+08:00	setup_p4	hang	PROBE_STAGE4_IDMAP3_kimg	-
+2026-08-06T21:09:36+08:00	meta	note	setup_p4_hang_user_manual_9008_bisect_35_36	-
+2026-08-06T21:11:00+08:00	3	pass	late_fastboot@41.572s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:11:01+08:00	setup_p35	pass	PROBE_STAGE35	-
+2026-08-06T21:12:19+08:00	3	pass	late_fastboot@55.711s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:12:19+08:00	setup_p36	pass	PROBE_STAGE36	-
+2026-08-06T21:14:14+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:14:42+08:00	setup_p4	hang	PROBE_STAGE4	-
+2026-08-06T21:20:25+08:00	meta	note	user_in_9008_test_SKIP_UNFLATTEN_probe4	-
+2026-08-06T21:22:31+08:00	3	pass	late_fastboot@82.661s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:22:32+08:00	setup_p4_skip_uf	pass	SKIP_UNFLATTEN1_probe4	-
+2026-08-06T21:26:02+08:00	setup_p4_memstart_fix	pass	VA52_memstart_adj_unflatten_on	-
+2026-08-06T21:26:28+08:00	meta	revoked	setup_p4_memstart_fix_false_pass_build_failed	-
+2026-08-06T21:28:31+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:28:49+08:00	setup_p4_memstart_fix	hang	VA52_memstart_adj_unflatten_on	-
+2026-08-06T21:29:22+08:00	meta	note	memstart_adj_unflatten_still_hang_test_idmap_lm	-
+2026-08-06T21:31:36+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:31:36+08:00	p312id1_after_memstart_fix	hang	IDMAP_STEP1_lm_retest	-
+2026-08-06T21:35:14+08:00	meta	note	map_mem_clobbered_memstart_no_VA52_adj_rootcause	-
+2026-08-06T21:35:14+08:00	p312id1_after_memstart_fix	hang	IDMAP_STEP1_lm_retest_confirmed_user_manual_9008	-
+2026-08-06T21:35:38+08:00	meta	note	fix_map_mem_VA52_memstart_adj_test_idmap_lm	-
+2026-08-06T21:37:03+08:00	3	pass	late_fastboot@35.15s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:37:03+08:00	p312id1_map_mem_memstart_fix	pass	IDMAP_STEP1_lm_after_map_mem_VA52_adj	-
+2026-08-06T21:37:28+08:00	meta	note	lm_PASS_now_test_unflatten_probe4	-
+2026-08-06T21:38:45+08:00	3	pass	late_fastboot@30.309s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:38:45+08:00	setup_p4_unflatten_after_map_mem_fix	pass	PROBE4_unflatten_map_mem_VA52_adj	-
+2026-08-06T21:39:12+08:00	setup_p4_unflatten_after_map_mem_fix	pass	PROBE4_unflatten_map_mem_VA52_adj	-
+2026-08-06T21:41:20+08:00	3	pass	late_fastboot@83.05s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:41:21+08:00	setup_p5	pass	PROBE_STAGE5_after_lm_fix	-
+2026-08-06T21:43:24+08:00	3	pass	late_fastboot@83.106s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:43:24+08:00	setup_p6	pass	PROBE_STAGE6_after_lm_fix	-
+2026-08-06T21:44:23+08:00	meta	note	setup_arch_probe6_PASS_try_no_probe_start_kernel	-
+2026-08-06T21:46:39+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:48:16+08:00	no_probe_sk	hang	PROBE999_past_setup_arch	-
+2026-08-06T21:48:34+08:00	no_probe_sk	hang	PROBE999_past_setup_arch_user_manual_9008	-
+2026-08-06T21:51:28+08:00	meta	note	start_kernel_probes_70_78_coarse_bisect	-
+2026-08-06T21:53:36+08:00	3	pass	late_fastboot@55.612s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:53:37+08:00	sk_p70	pass	after_setup_arch	-
+2026-08-06T21:56:11+08:00	3	pass	late_fastboot@82.733s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:56:11+08:00	sk_p74	pass	after_sched_init	-
+2026-08-06T21:58:15+08:00	3	pass	late_fastboot@83.255s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T21:58:16+08:00	sk_p76	pass	after_time_init	-
+2026-08-06T22:00:22+08:00	3	pass	late_fastboot@85.675s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:00:22+08:00	sk_p78	pass	before_rest_init	-
+2026-08-06T22:01:44+08:00	meta	note	rest_init_kernel_init_probes_80_85	-
+2026-08-06T22:01:44+08:00	sk_p78	pass	before_rest_init	-
+2026-08-06T22:03:54+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:04:09+08:00	sk_p80	hang	enter_rest_init	-
+2026-08-06T22:05:29+08:00	meta	note	probe80_hang_fix_probe_to_ref_retest	-
+2026-08-06T22:05:29+08:00	sk_p80	hang	enter_rest_init_first_try	-
+2026-08-06T22:07:49+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:08:02+08:00	sk_p80_ref	hang	enter_rest_init_after_ref_fix	-
+2026-08-06T22:08:47+08:00	meta	note	isolate_rest_init_80_in_sk_then_801	-
+2026-08-06T22:10:42+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:10:57+08:00	sk_p80	hang	in_start_kernel_before_rest_init	-
+2026-08-06T22:11:24+08:00	meta	note	retest_p78_after_ref_changes	-
+2026-08-06T22:13:19+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:13:34+08:00	sk_p78_retest	hang	before_rest_init_retest	-
+2026-08-06T22:14:21+08:00	meta	note	revert_ref_retest_p78	-
+2026-08-06T22:14:21+08:00	sk_p78_retest	hang	before_rest_init_retest_after_ref_regression	-
+2026-08-06T22:16:18+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:16:32+08:00	sk_p78_after_revert	hang	before_rest_init	-
+2026-08-06T22:17:20+08:00	meta	note	strip_rest_init_probes_retest_p78	-
+2026-08-06T22:19:16+08:00	3	hang	quiet_18+70s_no_sticky_fb_PASS_MIN=12	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:19:28+08:00	sk_p78_stripped	hang	before_rest_init_no_ri_probes	-
+2026-08-06T22:19:57+08:00	meta	note	recheck_76_then_77_78_after_strip	-
+2026-08-06T22:21:48+08:00	3	pass	late_fastboot@83.541s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:21:49+08:00	sk_p76_re	pass	after_time_init	-
+2026-08-06T22:23:39+08:00	3	pass	late_fastboot@83.554s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:23:39+08:00	sk_p77_re	pass	after_console_init	-
+2026-08-06T22:25:12+08:00	3	pass	late_fastboot@66.577s(extend)_PASS_MIN=12_CYCLE=6	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:25:13+08:00	sk_p78_re	pass	before_rest_init	-
+2026-08-06T22:26:17+08:00	meta	note	cerro_late_probe_for_rest_init_bisect	-
+2026-08-06T22:27:53+08:00	meta	note	user_notes_black_reboot_longer_more_code_before_probe	-
+2026-08-06T22:29:59+08:00	meta	note	retest_p80_NO_SKIP_UNLOCK_user_will_not_skip	-
+2026-08-06T22:32:09+08:00	3	pass	late_fastboot@103.251s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:32:09+08:00	sk_p80_late_noskip	pass	enter_rest_init_late_probe_full_unlock	-
+2026-08-06T22:32:35+08:00	sk_p80_late_noskip	pass	enter_rest_init_late_probe_full_unlock	-
+2026-08-06T22:34:45+08:00	3	pass	late_fastboot@103.21s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:34:45+08:00	sk_p801	pass	after_rcu_scheduler	-
+2026-08-06T22:36:55+08:00	3	pass	late_fastboot@103.176s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:36:55+08:00	sk_p802	pass	after_user_mode_thread	-
+2026-08-06T22:39:05+08:00	3	pass	late_fastboot@103.215s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:39:05+08:00	sk_p81	pass	before_complete	-
+2026-08-06T22:41:15+08:00	3	pass	late_fastboot@103.246s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:41:15+08:00	sk_p82	pass	kernel_init_after_wait	-
+2026-08-06T22:43:25+08:00	3	pass	late_fastboot@103.272s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:43:26+08:00	sk_p83	pass	after_smp_init	-
+2026-08-06T22:48:09+08:00	3	hang	quiet_69+184s_no_sticky_fb_PASS_MIN=46	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:54:28+08:00	sk_p84	hang	after_freeable	-
+2026-08-06T22:55:22+08:00	sk_p84	hang	after_freeable_user_manual_9008	-
+2026-08-06T22:55:22+08:00	meta	note	md_catchup_sk_to_p84_hang	-
+2026-08-06T22:55:38+08:00	meta	note	bisect_83_to_84_via_831_837_from_9008	-
+2026-08-06T22:58:01+08:00	3	pass	late_fastboot@100.009s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T22:58:01+08:00	sk_p831	pass	after_wq_topology	-
+2026-08-06T23:00:06+08:00	3	pass	late_fastboot@97.905s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:00:06+08:00	sk_p832	pass	after_async_init	-
+2026-08-06T23:02:16+08:00	3	pass	late_fastboot@103.206s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:02:16+08:00	sk_p833	pass	before_do_basic_setup	-
+2026-08-06T23:04:23+08:00	3	pass	late_fastboot@105.325s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:04:24+08:00	sk_p834	pass	after_do_basic_setup	-
+2026-08-06T23:06:30+08:00	3	pass	late_fastboot@99.984s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:06:31+08:00	sk_p835	pass	after_kunit	-
+2026-08-06T23:08:43+08:00	3	pass	late_fastboot@105.394s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:08:43+08:00	sk_p836	pass	after_initramfs	-
+2026-08-06T23:10:55+08:00	3	pass	late_fastboot@105.31s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:10:55+08:00	sk_p837	pass	after_console_on_rootfs	-
+2026-08-06T23:11:20+08:00	meta	note	837_PASS_hang_after_console_on_rootfs	-
+2026-08-06T23:13:30+08:00	3	pass	late_fastboot@102.734s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:13:30+08:00	sk_p838	pass	after_init_eaccess	-
+2026-08-06T23:18:02+08:00	sk_p839	hang	after_prepare_namespace_user_black_manual_9008	-
+2026-08-06T23:18:02+08:00	meta	note	hang_in_prepare_namespace_838_pass_839_hang	-
+2026-08-06T23:19:50+08:00	meta	note	bisect_prepare_namespace_841_849_from_9008	-
+2026-08-06T23:22:14+08:00	3	pass	late_fastboot@101.6s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:22:15+08:00	sk_p841	pass	enter_prepare_ns	-
+2026-08-06T23:24:19+08:00	3	pass	late_fastboot@98.469s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:24:20+08:00	sk_p842	pass	after_wait_for_device_probe	-
+2026-08-06T23:26:21+08:00	3	pass	late_fastboot@94.175s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:26:21+08:00	sk_p843	pass	after_md_run_setup	-
+2026-08-06T23:28:33+08:00	3	pass	late_fastboot@105.403s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:28:33+08:00	sk_p845	pass	after_initrd_load	-
+2026-08-06T23:30:45+08:00	3	pass	late_fastboot@105.458s(extend)_PASS_MIN=46_CYCLE=23	/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-builtin-dtb.img
+2026-08-06T23:30:46+08:00	sk_p846	pass	after_wait_for_root	-
+2026-08-06T23:33:34+08:00	sk_p847	hang	after_mount_root_user_black_manual_9008	-
+2026-08-06T23:33:34+08:00	meta	note	846_pass_hang_in_mount_root	-
+2026-08-06T23:38:32+08:00	meta	note	847_hang_was_mount_root_because_no_initramfs	-
+2026-08-06T23:38:32+08:00	meta	note	fix_embed_initramfs+BL_initrd_harvest_probe840	-
+2026-08-06T23:38:32+08:00	sk_p840	pending	after_freeable_if_rdinit_ok_skip_prepare_ns	-
+2026-08-07T00:08:40+08:00	sk_p840	hang	prev_with_BL_initrd_apply_user_9008	-
+2026-08-07T00:08:40+08:00	meta	note	reflash_embed_only_no_BL_initrd_probe840_moved_before_integrity	-
+2026-08-07T00:13:20+08:00	sk_p840	pass	embed_initramfs_rdinit_ok_sticky_fastboot	-
+2026-08-07T00:13:20+08:00	meta	note	840_PASS_skip_prepare_ns_/init_found	-
+2026-08-07T00:16:35+08:00	sk_p850	hang	after_integrity_or_crash_late_fb_~120s	-
+2026-08-07T00:16:35+08:00	meta	note	skip_integrity_load_keys_probe850	-
+2026-08-07T00:19:53+08:00	sk_p850	pass	skip_integrity_sticky_fb@128s	-
+2026-08-07T00:22:30+08:00	sk_p85	pass	before_run_init_sticky_fb@127s	-
+2026-08-07T00:25:52+08:00	sk_p86	unknown	run_init_path_ended_9008@121s_not_sticky_fb	-
+2026-08-07T00:25:52+08:00	meta	note	85_PASS_then_run_init_attempt_auto_9008	-
+2026-08-07T08:52:32+08:00	meta	note	mini_init_exit1_embed_probe86	-
+2026-08-07T08:56:08+08:00	sk_p86	hang	mini_init_timeout	-
+2026-08-07T08:57:18+08:00	sk_p86	hang	mini_exit1_black_user_9008	-
+2026-08-07T08:57:18+08:00	meta	note	PID1_exit_never_returns_to_probe86_try_reboot_f	-
+2026-08-07T08:59:59+08:00	mini_reboot_f	pass	sticky_fb@72s	-
+2026-08-07T09:00:13+08:00	mini_reboot_f	pass	sticky_fb@72s_userspace_exec_ok	-
+2026-08-07T09:00:42+08:00	meta	note	PHY_QCOM_QMP_UFS=y_restore_full_pmos_init	-
+2026-08-07T09:05:17+08:00	pmos_ufsphy	hang	long_black_no_usb	-
+2026-08-07T09:10:14+08:00	meta	note	diag_init_sd_timing_probe_built	-
+2026-08-07T09:13:49+08:00	diag_sd	pass_disk	sticky_first@154s	-
+2026-08-07T09:14:14+08:00	diag_sd	weak	sticky@154s_ambiguous	-
+2026-08-07T09:18:12+08:00	diag_sd2	has_disk_or_hang	black_150s	-
+2026-08-07T09:22:25+08:00	diag_sd3	no_disk_or_hang	-
+2026-08-07T09:30:11+08:00	meta	note	probe90_flash_wait_timeout_NEED_9008	-
+2026-08-07T09:34:51+08:00	sk_p90	pass	has_sd_sticky@130s	-
+2026-08-07T09:35:05+08:00	meta	note	p90_PASS_ufs_sd_present_restore_full_pmos	-
+2026-08-07T09:39:46+08:00	pmos_full	edl	@222s	-
+2026-08-07T09:40:47+08:00	pmos_full	edl	auto_9008@222s_after_hang	-
+2026-08-07T09:47:17+08:00	uuid_probe	no_uuid	black	-
+2026-08-07T09:59:52+08:00	meta	note	uuid_probe_NO_FS_UUID_will_flash_logdump+userdata	-
+2026-08-07T10:02:36+08:00	meta	note	flashed_logdump_boot+userdata_root+full_pmos_kernel	-
+2026-08-07T10:35:54+08:00	blkid_diag_bootimg	hang	long_black_no_usb_after_flash_may_need_embed	-
+2026-08-07T10:35:54+08:00	meta	note	user_black_after_logdump_userdata_flash_blkid_diag_pending_embed	-
+2026-08-07T10:50:59+08:00	always_reboot_bootimg	hang	long_black_boot_rd_override_ineffective	-
+2026-08-07T10:50:59+08:00	meta	note	must_embed_init_ABL_rd_likely_ignored_with_builtin_DTB	-
+2026-08-07T11:12:04+08:00	embed_always_reboot	hang	long_black	-
+2026-08-07T11:14:26+08:00	embed_always_reboot	hang	long_black_after_flash_sysrq_retry_pending	-
+2026-08-07T11:18:29+08:00	embed_always_reboot_sysrq	edl	@62s	-
+2026-08-07T11:22:29+08:00	meta	note	EDL62s_was_USER_manual_not_auto_still_LONG_BLACK_on_embed_reboot	-
+2026-08-07T11:22:29+08:00	embed_always_reboot_sysrq	hang	long_black_user_manual_9008	-
+2026-08-07T17:03:07+08:00	sk_p85_retest	pass	sticky@6s	-
+2026-08-07T17:03:31+08:00	meta	note	sk_p85_sticky6s_TOO_EARLY_likely_early_fb_FAIL_retest	-
+2026-08-07T17:03:50+08:00	sk_p85_retest	fail	early_sticky@5s	-
+2026-08-07T17:08:00+08:00	restore_always_reboot	pass	late_sticky@125s	-
+2026-08-07T17:11:39+08:00	blkid_embed	pass	both_likely_sticky@86s	-
+2026-08-07T17:12:08+08:00	blkid_embed	pass	both_uuid_sticky@86s	-
+2026-08-07T17:17:27+08:00	pmos_nofb	hang	long_black_after_uuid_ok	-
+2026-08-07T17:23:52+08:00	pmos_nomod	hang	long_black_user_manual_9008_not_modules	-
+2026-08-07T17:25:00+08:00	pmos_nomod	hang	long_black	-
+2026-08-07T17:25:55+08:00	mount_boot	pass	sticky@61s	-
+2026-08-07T17:26:28+08:00	mount_boot	pass	sticky@61s	-
+2026-08-07T17:31:14+08:00	extract_extra	hang	long_black	-
+2026-08-07T17:33:06+08:00	meta	note	hang_in_init_2nd_jump_skips_stage1_no_initramfs-extra_on_boot	-
+2026-08-07T17:33:06+08:00	extract_extra	hang	long_black_possibly_wrong_test_file_absent	-
+2026-08-07T17:37:35+08:00	stage2_root	hang	long_black	-
+2026-08-07T17:38:14+08:00	stage2_root	hang	long_black_likely_mount_subpartitions	-
+2026-08-07T18:13:21+08:00	mount_root	hang	long_black	-
+2026-08-07T18:14:40+08:00	mount_root	hang	long_black_after_flash	suspect_ext4_mount_or_stage1
+2026-08-07T18:30:55+08:00	read_root	pass	sticky@79s	-
+2026-08-07T18:34:52+08:00	mount_noload	pass	sticky@119s	-
+2026-08-07T18:37:42+08:00	mount_ro_standalone	pass	sticky@119s	-
+2026-08-07T18:41:57+08:00	mount_rw_standalone	pass	sticky@120s	-
+2026-08-07T19:22:22+08:00	switch_root	pass	sticky@107s	-
+2026-08-07T19:27:57+08:00	systemd_reboot_target	hang	long_black	-
+2026-08-07T20:59:27+08:00	systemd_noply	hang	long_black	-
+2026-08-07T21:37:59+08:00	systemd_ver	pass	sticky@69s	-
+2026-08-07T21:43:33+08:00	systemd_prep	pass	sticky@188s	-
+2026-08-07T21:54:22+08:00	multiuser_probe	pass	sticky@119s	-
+2026-08-07T21:56:39+08:00	realboot	flashed	await_user_screen	-
+2026-08-07T21:58:11+08:00	realboot	running	no_sticky_90s_expect_userspace	-
+2026-08-07T22:20:25+08:00	display_enable	flashed	mdss_okay_drm_builtin	-
+2026-08-07T22:22:28+08:00	display_enable	running	no_sticky_120s	-
+2026-08-07T22:33:47+08:00	usbserial	flashing	start	-
+2026-08-07T22:34:43+08:00	usbserial	flashed	boot-v2-usbserial.img	-
+2026-08-07T22:45:08+08:00	usbserial	built	eusb_phy_builtin_ufs_diag	-
+2026-08-07T23:03:50+08:00	usbserial2	flashing	eusb_builtin	-
+2026-08-07T23:04:22+08:00	usbserial2	flashed	boot-v2-usbserial.img	-
+2026-08-07T23:04:51+08:00	usbserial2	result	gadget_1d6b:0104_seen	/dev/ttyACM0 
+2026-08-07T23:11:25+08:00	disp_fwdevlink	built	gpu_off+fw_devlink=permissive	-
+2026-08-07T23:21:13+08:00	disp_fwdevlink	flashing	gpu_off+fw_devlink	-
+2026-08-07T23:21:42+08:00	disp_fwdevlink	flashed	boot-v2-disp-fwdevlink.img	-
+2026-08-07T23:24:27+08:00	disp_bootargs	built	dts_bootargs+adreno_smmu_off	-
+2026-08-07T23:33:49+08:00	disp_bootargs	flashing	dts_bootargs	-
+2026-08-07T23:34:24+08:00	disp_bootargs	flashed	boot-v2-disp-bootargs.img	-
+2026-08-07T23:36:21+08:00	disp_bootargs	result	cmdline_ok_still_no_dri	-
+2026-08-07T23:38:19+08:00	disp_fwoff	built	fw_devlink=off	-
+2026-08-08T00:00:51+08:00	disp_fwoff	flashing	fw_devlink=off	-
+2026-08-08T00:01:32+08:00	disp_fwoff	flashed	boot-v2-disp-fwoff.img	-
+2026-08-08T00:03:23+08:00	disp_fwoff	result	cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=off deferred_probe_timeout=60;ls: /dev/dri: No such file or directory;cmdline: ignore_loglevel pd_ignore_unused clk_ignore_unused	-
+2026-08-08T00:04:08+08:00	disp_iommu_pt	built	iommu.passthrough=1	-
+2026-08-08T00:07:06+08:00	disp_iommu_pt	flashed	boot-v2-disp-iommu-pt.img	-
+2026-08-08T00:08:54+08:00	disp_iommu_pt	FAIL	early_sticky_18d1:d00d_passthrough_regresses	-
+2026-08-08T00:08:54+08:00	disp_iommu_pt	observe	Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub Bus 004 Device 050: ID 18d1:d00d Google Inc. Xiaomi Mi/Redmi 2 (fastboot) 	-
+2026-08-08T00:10:02+08:00	disp_fwoff	rebuild	restore_after_passthrough_fail	-
+2026-08-08T00:12:07+08:00	disp_fwoff	flashed	via_flash-boot-any_9008_or_fb	-
+2026-08-08T00:14:47+08:00	disp_noiommu	built	mdss_delete_iommus	-
+2026-08-08T00:18:48+08:00	disp_noiommu	result	mdss_still_fail	-
+2026-08-08T00:20:17+08:00	disp_dispcc	built	SM_DISPCC_8550=y	-
+2026-08-08T00:25:05+08:00	disp_dispcc	FAIL_hang	user_forced_9008_restore_fwoff	-
+2026-08-08T00:27:48+08:00	disp_dispcc_nomdss	built	DISPCC=y_mdss_disabled	-
+2026-08-08T00:32:05+08:00	disp_dispcc_nomdss	PASS_acm	dispcc_bound	-
+2026-08-08T00:32:05+08:00	disp_mdss_only	built	mdss_no_dsi	-
+2026-08-08T00:34:03+08:00	disp_mdss_only	FAIL_hang	no_usb	-
+2026-08-08T00:44:15+08:00	disp_dispcc_nomdss	flashed	restore_after_mdss_hang	-
+2026-08-08T00:45:08+08:00	disp_dispcc_nomdss	wait_timeout	need_user_9008_again	-
+2026-08-08T00:56:33+08:00	disp_dispcc_nomdss	wait_timeout2	still_need_9008	-
+2026-08-08T01:07:11+08:00	disp_dispcc_nomdss	wait_timeout3	need_9008	-
+2026-08-08T02:30:44+08:00	disp_dispcc_nomdss	wait_timeout_60m	still_hung_need_9008	-
+2026-08-08T03:31:52+08:00	disp_dispcc_nomdss	wait_timeout_60m_x2	paused_need_user	-
+2026-08-08T07:30:31+08:00	disp_dispcc_nomdss	flashed	user_said_9008	-
+2026-08-08T07:31:22+08:00	disp_dispcc_nomdss	PASS	ACM+dispcc_bound_mdss_disabled	restored_after_mdss_only_hang
+2026-08-08T08:26:25+08:00	disp_dispcc_nomdss	flashed	after_host_reboot_reseated	-
+2026-08-08T08:27:59+08:00	disp_dispcc_nomdss	FAIL_early_sticky	d00d_after_reboot	
+2026-08-08T08:29:31+08:00	disp_dispcc_nomdss	PASS	set_active_a_cdc_acm	slot_b_was_unbootable
+2026-08-08T08:35:10+08:00	disp_mdss_shell	built	mdss_ok_mdp_dsi_off	waiting_flash
+2026-08-08T08:37:53+08:00	disp_mdss_shell	flashed	via_flash-boot-any	-
+2026-08-08T08:39:17+08:00	disp_mdss_shell	PASS	msm-mdss+dispcc_bound_mdp_off	hang_was_dpu
+2026-08-08T08:42:29+08:00	disp_mdss_dpu	built	mdp_ok_dsi_off	waiting_flash
+2026-08-08T08:43:44+08:00	disp_mdss_dpu_nopd	built	mdp_ok_no_power_domains	standby
+2026-08-08T08:46:11+08:00	disp_mdss_dpu	flashed	via_flash-boot-any	-
+2026-08-08T08:46:57+08:00	disp_mdss_dpu	FAIL_hang?	no_ACM_45s	need_9008_restore_shell
+2026-08-08T08:49:30+08:00	disp_mdss_dpu_nopd	flashed	after_dpu_hang	-
+2026-08-08T08:50:21+08:00	disp_mdss_dpu_nopd	FAIL_hang	no_ACM	need_9008_shell
+2026-08-08T08:56:44+08:00	disp_mdss_shell	restored	after_nopd_hang	-
+2026-08-08T09:08:53+08:00	disp_mdss_shell	PASS	ACM_after_restore	nopd_also_hung
+2026-08-08T09:09:24+08:00	disp_mdss_dpu_noopp	built	no_pd_no_opp	waiting_flash
+2026-08-08T09:14:45+08:00	disp_mdss_dpu_noopp	flashed	-	-
+2026-08-08T09:15:35+08:00	disp_mdss_dpu_noopp	FAIL_hang	no_ACM	-
+2026-08-08T09:23:06+08:00	disp_mdss_shell	restored	after_noopp	-
+2026-08-08T09:23:38+08:00	disp_mdss_shell	PASS	ACM_after_noopp_restore	noopp_hung
+2026-08-08T09:24:44+08:00	disp_dpu_s1	built	stop_after_clks	waiting_flash
+2026-08-08T09:54:22+08:00	disp_dpu_s1	flashed	stop_after_clks	late_9008
+2026-08-08T09:54:26+08:00	disp_dpu_s1	FAIL_hang	no_ACM	-
+2026-08-08T09:54:30+08:00	disp_mdss_shell	restored	after_s1	-
+2026-08-08T09:55:30+08:00	disp_dpu_s0	built	stop_at_entry	waiting_flash
+2026-08-08T10:07:01+08:00	disp_dpu_s0	built	stop_at_entry	waiting_flash
+2026-08-08T10:08:57+08:00	disp_dpu_s0	flashed	stop_at_entry	no_sudo_chmod
+2026-08-08T10:09:31+08:00	disp_dpu_s0	PASS	stop_at_entry_seen	-
+2026-08-08T10:10:16+08:00	disp_dpu_s1b	built	stop_after_opp	waiting_flash
+2026-08-08T10:18:03+08:00	disp_dpu_s1b	flashed	stop_after_opp	-
+2026-08-08T10:18:43+08:00	disp_dpu_s1b	PASS	stop_after_opp_seen	-
+2026-08-08T10:21:26+08:00	disp_dpu_s2_noasgn	built	stop_after_clks_no_assigned	waiting_flash
+2026-08-08T10:22:48+08:00	disp_dpu_s2_noasgn	flashed	stop_after_clks_no_assigned	-
+2026-08-08T10:23:28+08:00	disp_dpu_s2_noasgn	PASS	stop_after_clks_seen	-
+2026-08-08T10:24:21+08:00	disp_dpu_s3	built	stop_after_mmap	waiting_flash
+2026-08-08T10:26:06+08:00	disp_dpu_s3	flashed	stop_after_mmap	-
+2026-08-08T10:26:46+08:00	disp_dpu_s3	PASS	stop_after_mmap_seen	-
+2026-08-08T10:27:24+08:00	disp_dpu_s4	built	stop_after_icc	waiting_flash
+2026-08-08T10:28:28+08:00	disp_dpu_s4	flashed	stop_after_icc	-
+2026-08-08T10:29:00+08:00	disp_dpu_s4	PASS	stop_after_icc_seen	-
+2026-08-08T10:29:36+08:00	disp_dpu_s5	built	full_msm_drv_probe	waiting_flash
+2026-08-08T10:31:06+08:00	disp_dpu_s5	flashed	full_msm_drv_probe	-
+2026-08-08T10:32:02+08:00	disp_dpu_s5	FAIL_hang	no_ACM	-
+2026-08-08T10:37:08+08:00	disp_dpu_s4	restored	after_s5	-
+2026-08-08T10:38:13+08:00	disp_dpu_s5a	built	stop_before_component_master	waiting_flash
+2026-08-08T10:38:40+08:00	disp_dpu_s5a	flashed	stop_before_component_master	-
+2026-08-08T10:39:36+08:00	disp_dpu_s5a	FAIL_hang	no_ACM	-
+2026-08-08T11:01:41+08:00	disp_dpu_s4	PASS	restored_after_s5a	-
+2026-08-08T11:02:45+08:00	disp_dpu_s5a0	built	msm_stop_at_entry	waiting_flash
+2026-08-08T11:26:26+08:00	disp_dpu_s5a0	flashed	msm_stop_at_entry	fb_alive	-
+2026-08-08T11:27:06+08:00	disp_dpu_s5a0	PASS	msm_stop_at_entry_seen	-
+2026-08-08T11:27:46+08:00	disp_dpu_s5b	built	stop_after_add_mdp	waiting_flash
+2026-08-08T13:14:20+08:00	disp_dpu_s5b	flashed	stop_after_add_mdp	fb	-
+2026-08-08T13:14:34+08:00	disp_dpu_s5b	PASS?	ACM	-
+2026-08-08T13:15:20+08:00	disp_dpu_s5b	PASS	stop_after_add_mdp_seen	-
+2026-08-08T13:15:37+08:00	disp_dpu_s5c	built	stop_after_add_gpu	waiting_flash
+2026-08-08T17:28:57+08:00	disp_dpu_s5c	flashed	stop_after_add_gpu	edl	-
+2026-08-08T17:29:39+08:00	disp_dpu_s5c	PASS	stop_after_add_gpu_seen	-
+2026-08-08T17:30:09+08:00	disp_dpu_s5d	built	stop_after_dma	waiting_flash
+2026-08-08T17:51:23+08:00	disp_dpu_s5d	flashed	stop_after_dma	waiting_boot
+2026-08-08T17:51:46+08:00	disp_dpu_s5d	PASS	dma_ok_stop_before_master	acm_up
+2026-08-08T17:52:02+08:00	disp_dpu_s5e	built	full_master_add	waiting_flash
+2026-08-08T17:59:17+08:00	disp_dpu_s5e	flashed	full_master_add	waiting_boot
+2026-08-08T18:00:05+08:00	disp_dpu_s5e	FAIL_NO_USB	full_master_add	auto
+2026-08-08T18:01:26+08:00	disp_dpu_s5e	FAIL	no_usb_after_master_add	confirmed
+2026-08-08T18:01:26+08:00	disp_dpu_s5f	built	bind_stop0_entry	waiting_flash
+2026-08-08T18:19:05+08:00	disp_dpu_s5f	flashed	bind_stop0	waiting_boot
+2026-08-08T18:20:25+08:00	disp_dpu_s5f	UNKNOWN	bind_stop0	auto
+2026-08-08T18:21:27+08:00	disp_dpu_s5f	FAIL_NO_USB	bind_stop0_fb_reflash	auto
+2026-08-08T18:22:57+08:00	disp_dpu_s5f	FAIL	no_usb_bind_never_ran	null_match_suspect
+2026-08-08T18:22:57+08:00	disp_dpu_s5g	built	null_match_bind_direct_stop0	waiting_flash
+2026-08-08T18:27:34+08:00	disp_dpu_s5g	flashed	null_match_bind_direct	waiting_boot
+2026-08-08T18:27:52+08:00	disp_dpu_s5g	PASS_NULL_MATCH_BIND_STOP	null_match_bind_direct	auto
+2026-08-08T18:28:15+08:00	disp_dpu_s5g	PASS	null_match_bind_stop0	confirmed
+2026-08-08T18:28:15+08:00	disp_dpu_s5h	built	bind_stop1_after_drm_alloc	waiting_flash
+2026-08-08T18:39:32+08:00	disp_dpu_s5h	flashed	bind_stop1	waiting_boot
+2026-08-08T18:39:47+08:00	disp_dpu_s5h	PASS_AFTER_DRM_ALLOC	bind_stop1	auto
+2026-08-08T18:40:13+08:00	disp_dpu_s5h	PASS	stop_after_drm_dev_alloc	confirmed
+2026-08-08T18:40:13+08:00	disp_dpu_s5i	built	bind_stop3_after_shrinker	waiting_flash
+2026-08-08T18:44:31+08:00	disp_dpu_s5i	flashed	bind_stop3	waiting_boot
+2026-08-08T18:44:43+08:00	disp_dpu_s5i	PASS_ACM	bind_stop3	auto
+2026-08-08T18:45:28+08:00	disp_dpu_s5j	built	skip_bind_all_stop_after_shrinker	waiting_flash
+2026-08-08T20:16:53+08:00	disp_dpu_s5j	flashed	skip_bind_all_stop3	waiting_boot
+2026-08-08T20:17:42+08:00	disp_dpu_s5j	FAIL_NO_USB	skip_bind_all_stop3	auto
+2026-08-08T20:18:07+08:00	disp_dpu_s5j	FAIL	no_usb_after_skip_bind_all	likely_shrinker
+2026-08-08T20:18:07+08:00	disp_dpu_s5k	built	bind_stop2_before_shrinker	waiting_flash
+2026-08-08T20:22:46+08:00	disp_dpu_s5k	flashed	via_wait_flash_boot	waiting_boot
+2026-08-08T20:23:34+08:00	disp_dpu_s5k	FAIL_NO_USB	bind_stop2	auto
+2026-08-08T20:24:07+08:00	disp_dpu_s5k	FAIL	no_usb_stop_after_bind_via_uninit	confirmed
+2026-08-08T20:24:07+08:00	disp_dpu_s5l	built	stop_bind_all_err_put_dev	waiting_flash
+2026-08-08T20:39:36+08:00	disp_dpu_s5l	PASS_AFTER_BIND_ALL	auto_observe	ok img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5l.img ts=2026-08-08T20:39:28+08:00
+2026-08-08T20:39:43+08:00	disp_dpu_s5l	flashed	via_answering_fastboot	waiting_boot
+2026-08-08T20:39:49+08:00	disp_dpu_s5l	PASS_AFTER_BIND_ALL	err_put_dev_stop_bind	auto
+2026-08-08T20:40:15+08:00	disp_dpu_s5l	PASS	err_put_dev_after_bind_all	confirmed
+2026-08-08T20:40:15+08:00	disp_dpu_s5m	built	bind_stop3_err_put_dev	waiting_flash
+2026-08-08T20:40:24+08:00	disp_dpu_s5l	PASS	match_null_skip_bind_stop_after_bind_all	agent_watch img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5l.img note=fb_was_answering_then_race_autoflash; observe_0104_acm_ok
+2026-08-08T21:34:59+08:00	disp_dpu_s5m	flashed	via_answering_fastboot	waiting_boot
+2026-08-08T21:35:11+08:00	disp_dpu_s5m	PASS_AFTER_SHRINKER	auto_observe	ok img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5m.img ts=2026-08-08T21:34:59+08:00
+2026-08-08T21:35:11+08:00	disp_dpu_s5m	PASS_ACM	bind_stop3_err_put_dev	auto
+2026-08-08T21:35:52+08:00	disp_dpu_s5m	PASS	shrinker_ok_stop_after_shrinker	confirmed
+2026-08-08T21:35:52+08:00	disp_dpu_s5n	built	bind_stop4_after_kms	waiting_flash
+2026-08-08T21:38:33+08:00	disp_dpu_s5n	PASS_SKIP_BIND	auto_observe	waiting img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5n.img
+2026-08-08T22:00:42+08:00	disp_dpu_s5n	PASS_AFTER_KMS	bind_stop4	bg_terminal
+2026-08-08T22:09:11+08:00	disp_dpu_s5n	flashed	via_9008_manual_catch	waiting_boot
+2026-08-08T22:09:17+08:00	disp_dpu_s5n	PASS_AFTER_KMS	bind_stop4	bg_terminal
+2026-08-08T22:09:17+08:00	disp_dpu_s5n	PASS_ACM	bind_stop4	caught_9008
+2026-08-08T22:09:54+08:00	disp_dpu_s5n	PASS	kms_init_ok_stop_after_kms	confirmed
+2026-08-08T22:09:54+08:00	disp_dpu_s5o	built	bind_stop5_full_register	waiting_flash
+2026-08-08T22:12:12+08:00	disp_dpu_s5o	PASS_KMS_OK	bg_terminal	auto
+2026-08-08T22:20:20+08:00	disp_dpu_s5o	PASS	msm_drm_init_full_ok_bind_direct_0	confirmed
+2026-08-08T22:20:20+08:00	disp_dpu_s5p	built	dsi0_phy_okay_no_panel	waiting_flash
+2026-08-08T22:21:17+08:00	s5p	PASS_SKIP_BIND	auto_observe	ok img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5p.img ts=2026-08-08T22:21:11+08:00
+2026-08-08T22:21:40+08:00	disp_dpu_s5p	PASS	dsi_okay_but_no_driver_match_null_card0	auto-flash-watch
+2026-08-08T23:05:06+08:00	disp_dpu_s5q	built	dsi_peel_pd_opp_asgn	waiting_flash
+2026-08-08T23:05:50+08:00	s5q	PASS_SKIP_BIND	auto_observe	ok img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5q.img ts=2026-08-08T23:05:32+08:00
+2026-08-08T23:07:53+08:00	disp_dpu_s5q	PASS	peel_no_driver_still	auto-flash-watch
+2026-08-08T23:07:53+08:00	disp_dpu_s5q2	built	dsi_phy_probe_debug	waiting_9008
+2026-08-08T23:09:02+08:00	s5q2	FAIL_STICKY_FB	auto_observe	ok img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5q2.img ts=2026-08-08T23:08:39+08:00
+2026-08-08T23:09:04+08:00	disp_dpu_s5q2	done outcome=FAIL_STICKY_FB label=s5q2 ts=2026-08-08T23:09:02+08:00	probe_debug	bg_terminal
+2026-08-08T23:09:13+08:00	disp_dpu_s5q2	FAIL_STICKY_FB	probe_debug_hang	no_acm
+2026-08-08T23:12:24+08:00	s5q-restore	FAIL_STICKY_FB	auto_observe	ok img=/mnt/data/LOA_Nubia_Z60U/build/boot_repack/boot-v2-disp-dpu-s5q.img ts=2026-08-08T23:12:01+08:00
+2026-08-08T23:12:24+08:00	disp_dpu_s5q-restore	done outcome=FAIL_STICKY_FB label=s5q-restore ts=2026-08-08T23:12:24+08:00	persistent_bg	auto
+2026-08-08T23:13:44+08:00	disp_dpu_s5q_restore	PASS_FULL	cursor_bg_terminal	fastboot
+2026-08-08T23:37:13+08:00	disp_dpu_s5r	built	init_dsi_bind_diag	NEED_9008
+2026-08-08T23:38:53+08:00	disp_dpu_s5r	PASS_FULL	cursor_bg_terminal	9008
+2026-08-08T23:41:07+08:00	disp_dpu_s5r	PASS_ACM	one_shot_bg	auto
+2026-08-08T23:43:15+08:00	disp_dpu_s5r	PASS_ACM	no_dsi_phy_platform_device_msm_dsi_reg_ok	one_shot
+2026-08-08T23:44:28+08:00	disp_dpu_s5s	built	livetree_mdss_children	NEED_9008
+2026-08-08T23:46:22+08:00	disp_dpu_s5s	PASS_DIAG	one_shot_bg	auto
+2026-08-08T23:51:41+08:00	disp_dpu_s5t	FAIL_STICKY_FB	one_shot_bg	auto
+2026-08-08T23:56:52+08:00	disp_dpu_s5u	PASS_DSI_EARLYSTOP	direct_fb	auto
+2026-08-09T00:06:04+08:00	disp_dpu_s5v	PASS_PHY_FULL	reflash_9008	auto
+2026-08-09T00:21:01+08:00	disp_dpu_s5w	PASS_HOST_INIT	one_shot_bg	auto
+2026-08-09T00:24:29+08:00	disp_dpu_s5x	PASS_GET_PHY	one_shot_bg	auto
+2026-08-09T00:29:04+08:00	disp_dpu_s5y	PASS_DSI_FULL	dual_slot	auto
+2026-08-09T00:32:43+08:00	disp_dpu_s5z	UNKNOWN	dual_slot	auto
+2026-08-09T00:34:05+08:00	disp_dpu_s5z	FAIL_NO_ACM_HANG	panel_of_graph	auto
+2026-08-09T00:34:05+08:00	disp_dpu_s5y-restore	FAIL_STICKY_FB	dual_slot_rollback	auto
+2026-08-09T01:16:00+08:00	disp_dpu_s5z2	PASS_PANEL_EARLYSTOP	dual_slot	auto
+2026-08-09T01:22:33+08:00	disp_dpu_s5z3	PASS_PANEL_RES	dual_slot	auto
+2026-08-09T01:24:29+08:00	disp_dpu_s5z4	PASS_PANEL_ADD	dual_slot	auto
+2026-08-09T01:29:12+08:00	disp_dpu_s5z5	PASS_PANEL_FULL_DRI	dual_slot	auto
+2026-08-09T01:39:42+08:00	restore_aosp_bootchain	RESTORED	dual_slot_fastboot	ArtistAOSP-20260717
+2026-08-11T22:01:45+08:00	disp_dpu_s5aa	FAIL_STICKY_FB	dual_slot	auto
+2026-08-11T22:02:01+08:00	disp_dpu_s5aa	FAIL_STICKY_FB_rollback_aosp	dual_slot	auto
+2026-08-11T22:50:47+08:00	disp_dpu_s5ab	PASS_RM692H0_EARLY	dual_slot	auto
+2026-08-11T23:04:30+08:00	disp_dpu_s5ac	PASS_RM692H0_RES	dual_slot	auto
+2026-08-11T23:08:47+08:00	disp_dpu_s5ad	PASS_RM692H0_ON_ERR_DRI	dual_slot	auto
+2026-08-11T23:11:48+08:00	disp_dpu_s5ae	PASS_RM692H0_ON_DRI	dual_slot	auto
+2026-08-11T23:12:33+0800	s5ae	PASS_RM692H0_ON_DRI	DSI assigned-clocks restored; on-cmd accum_err=0 card0
+2026-08-12T01:28:11+08:00	disp_dpu_s5af	PASS_RM692H0_ON_DRI_S5AF	dual_slot	auto
+2026-08-12T01:34:17+08:00	disp_dpu_s5ag	PASS_S5AG_WHITEFB	dual_slot	fbdev_white
+2026-08-12T01:38:41+08:00	disp_dpu_s5ah	PASS_S5AH_VIRTFB	dual_slot	virtfb_clflush
+2026-08-12T01:57:53+08:00	disp_dpu_s5aj	PASS_S5AJ_REPUSH_TIMER0	dual_slot	timer0_delayed_dirty
+2026-08-12T02:04:14+08:00	disp_dpu_s5ak	PASS_S5AK_SPP2	dual_slot	slice_per_pkt2
+2026-08-12T02:10:04+08:00	disp_dpu_s5al	PASS_ACM_RESET_OK_binary file matches (found " " byte around offset 11518)	dual_slot	reset_deassert
+2026-08-12T02:30:18+08:00	disp_dpu_s5am	FAIL_STICKY_FB	dual_slot	enable_rekick_cam
+2026-08-12T02:43:49+08:00	disp_dpu_s5an	PASS_S5AN_ENPM0x00	dual_slot	dcs_write_vs_generic
+2026-08-12T02:50:10+08:00	disp_dpu_s5ao	PASS_S5AO_ENPM0xff	dual_slot	dcs_long_0x39
+2026-08-12T02:53:30+08:00	disp_dpu_s5ap	PASS_S5AP_PM0x00,0x00,0x00,0x00	dual_slot	fix_transfer_ret0
+2026-08-12T02:57:58+08:00	disp_dpu_s5aq	PASS_S5AQ_PM0x00	dual_slot	vendor_exact_dtype
+2026-08-12T03:02:02+08:00	disp_dpu_s5ar	PASS_S5AR_PM0x9c	dual_slot	minimal_sleep_out
+2026-08-12T03:05:25+08:00	disp_dpu_s5as	PASS_S5AS_PM0x00	dual_slot	fe_plus_rekick
+2026-08-12T03:10:56+08:00	disp_dpu_s5at	PASS_S5AT_FB_PM0x00	fastboot_recover	wake_then_fe
+2026-08-12T03:14:57+08:00	disp_dpu_s5au	PASS_S5AU_PM0x00	auto	fe20_bisect
+2026-08-12T03:17:59+08:00	disp_dpu_s5av	PASS_S5AV_PM0x9c	auto	fe2_bisect
+2026-08-12T03:21:24+08:00	disp_dpu_s5aw	PASS_S5AW_PM0x9c	auto	fe10_bisect
+2026-08-12T03:25:38+08:00	disp_dpu_s5ax	FAIL_S5AX_PM0x00	dual_slot	fe15_bisect
+2026-08-12T03:28:47+08:00	disp_dpu_s5ay	PASS_S5AY_PM0x9c	dual_slot	fe12_bisect
+2026-08-12T03:32:29+08:00	disp_dpu_s5az	PASS_S5AZ_PM0x9c	dual_slot	fea1_bisect
+2026-08-12T03:41:40+08:00	disp_dpu_s5ba	FAIL_S5BA_PM0x00	dual_slot	b37f_poison
+2026-08-12T10:28:03+08:00	disp_dpu_s5bb	PASS_S5BB_PM0x9c	manual_9008	skip_b37f
+2026-08-12T10:26:00+08:00	disp_dpu_s5bb	PASS_S5BB_PM0x9c	auto_flash_manual9008	skip_b37f
+2026-08-12T10:32:33+08:00	disp_dpu_s5bc	PASS_S5BC_PM0x9c	dual_slot	fe34_early
+2026-08-12T10:33:48+08:00	disp_dpu_s5bc	PASS_S5BC_PM0x9c	dual_slot	fe34_early
+2026-08-12T11:06:29+08:00	disp_dpu_s5bd	PASS_S5BD_PM0x9c	edl_resume	fe34_gamma
+2026-08-14T18:11:51+08:00	restore-android-backup	TIMEOUT_BOOT
+2026-08-14T18:41:32+08:00	s5be	TIMEOUT_BOOT
+2026-08-14T18:42:09+08:00	s5be	TIMEOUT_BOOT	early_sticky_fb_loop	no_acm_after_flash
+2026-08-14T18:50:22+08:00	s5bd	EARLY_FASTBOOT	wipe_userdata_erase_init_boot	first_fb=14
+2026-08-14T18:52:39+08:00	s5bd_verity_smoke	PASS_S5BD_PM0x9c	first_fb=none
+2026-08-14T18:55:04+08:00	s5be	PASS_S5BE_PM0x9c	verity_off_kept
+2026-08-14T19:00:43+08:00	s5bf	PASS_S5BF_PM0x9c	fed2_first_chunk
+2026-08-14T19:03:55+08:00	s5bg	PASS_S5BG_PM0x9c	fed2_through_6f
+2026-08-14T19:07:03+08:00	s5bh	PASS_S5BH_PM0x9c	fed2_through_83
+2026-08-14T19:10:15+08:00	s5bi	PASS_S5BI_PM0x9c	fed2_through_a0
+2026-08-14T19:13:21+08:00	s5bj	PASS_S5BJ_PM0x9c	st_swire_fe40
+2026-08-14T19:16:36+08:00	s5bk	PASS_S5BK_PM0x9c	pvgh_fe40_fe42
+2026-08-14T19:19:46+08:00	s5bl	PASS_S5BL_PM0x9c	init_fe60
+2026-08-14T19:39:18+08:00	s5bm	PASS_S5BM_DIRTYFB_ARMED	restore_then_dirty
+2026-08-14T19:54:16+08:00	s5bn	PASS_S5BN_GPIO_TE	gpio_te_retry
+2026-08-14T20:09:06+08:00	s5bo	PASS_S5BO_TE_GPIO	builtin_dtb_mdp_vsync_p
+2026-08-14T20:17:34+08:00	s5bp	PASS_S5BP_DSC_ON	dpu_dsc_pps_diag
+2026-08-14T20:46:52+08:00	s5bq	PASS_S5BQ_PPS_OK	setup_rc_params_PRE_SCR
+2026-08-14T20:51:19+08:00	s5br	PASS_S5BR_SPP1	dsc_slice_per_pkt=1
+2026-08-14T22:00:06+08:00	s5bt	PASS_S5BT_WHITE	panel_dcs=3515 white+logs cam_full
+2026-08-14T23:07:25+08:00	s5bv	TIMEOUT_BOOT	switch_root_pmOS_ui_console
+2026-08-14T23:37:27+08:00	s5bw	PASS_S5BW_ACM	TER16x32_ACM_switch_root
+2026-08-14T23:48:51+08:00	s5bw	PASS_S5BW_LOGIN	user_photo_login_prompt
+2026-08-15T00:30:07+08:00	s5bx	PASS_S5BX_LOGIN_ACM	acm_serial_getty
+2026-08-15T01:14:34+08:00	s5by	PASS_S5BY_LOGIN	qbootctl_mark_successful
+2026-08-15T01:21:09+08:00	s5bz	PASS_S5BZ_USBNET	acm_ecm_usbnet
+2026-08-15T02:57:41+08:00	30512	pass	s5ce_BANK_MEM_437916kB_512MiB_bank	boot-v2-disp-dpu-s5ce.img
+2026-08-15T02:57:41+08:00	31024	hang	s5cc_1GiB_quiet_no_usb	boot-v2-disp-dpu-s5cc.img
+2026-08-15T02:57:41+08:00	meta	bank_bisect	window_PASS_le_512_FAIL_ge_1024_next_768	pt_alloc_low256
+2026-08-15T03:06:01+08:00	30768	pass	s5cf_BANK_MEM_694680kB_768MiB	boot-v2-disp-dpu-s5cf.img
+2026-08-15T03:06:01+08:00	30896	pass	s5cg_BANK_MEM_820520kB_896MiB	boot-v2-disp-dpu-s5cg.img
+2026-08-15T03:06:01+08:00	30960	hang	s5ch_960MiB_quiet_80splus	boot-v2-disp-dpu-s5ch.img
+2026-08-15T03:06:01+08:00	meta	bank_bisect	last_pass_896MiB_first_fail_960MiB	pt_alloc_low256
+2026-08-15T22:07:14+08:00	s5ed	PASS_S5ED_BOOT	l6k_ant_share
+2026-08-15T22:14:56+08:00	s5ee	PASS_S5EE_BOOT	swctrl_perst_repulse
+2026-08-15T22:19:16+08:00	s5ef	PASS_S5EF_BOOT	refclk_ssp_en
+2026-08-15T22:24:38+08:00	s5eg	PASS_S5EG_BOOT	early_refclk
+2026-08-15T22:43:29+08:00	s5eh	PASS_BOOT_WIFI_DNF	pwrseq_sw_ctrl_gpio19_high_still_DNF
+2026-08-15T22:53:33+08:00	s5ei	TIMEOUT_BOOT	pcie_sm_init_before_ltssm
+2026-08-15T22:55:18+08:00	s5ei	PASS_BOOT_WIFI_DNF	pcie_sm_1040_1048_ok_3000_stuck_DNF
+2026-08-15T23:36:15+08:00	s5ej	PASS_BOOT_WIFI_DNF	pcie_sm_PWR_0x1_correct_still_DNF
+2026-08-15T23:44:33+08:00	s5ek	PASS_BOOT_WIFI_DNF	pcie_sm_seq_loaded_still_DNF
+2026-08-16T02:10:00+08:00	s5eo	PASS_BOOT_KIWI_ENUM	crm_d0_phy_seq_gen2x2_1107_no_ath12k_mod
+2026-08-16T02:49:54+08:00	s5eq	PASS_S5EQ_BT	hci0_UP_RUNNING_hamilton
+2026-08-16T12:31:25+08:00	s5er	PASS_S5ER_KEYS_ONLY	keys_pon_y_touch_direct
+2026-08-16T15:35:39+08:00	s5ew	PASS_USER	multi_rate_60_90_120 kde ok
+2026-08-16T16:11:27+08:00	s5ey	BOOTED	audio_modules_adsp_disabled
+2026-08-17T13:54:39+08:00	s5fy_aw_diag	PASS_ACM	auto_observe	stopped
+2026-08-17T13:54:40+08:00	s5fy_aw_diag	PASS_ACM	auto_observe	stopped
+2026-08-17T14:08:27+08:00	s5fy_aw_diag	PASS_AUDIO_STACK_AW_START	manual_phone_by_id	PCM_exit_0_PLL_0011_SYSST_0311_SYSCTRL_active_3240_physical_audibility_pending; prior_PASS_ACM_rows_only_proved_USB_0104_due_ttyACM0_servo_bug
+2026-08-17T14:10:00+08:00	s5fy_aw_diag	PASS_MI2S_SDATA_PA_CURRENT	manual_zero_vs_tone	zero_ISNDAT_0000_tone_left_0002_0003_right_fffd_physical_audibility_pending
+2026-08-17T14:12:00+08:00	s5fy_aw_diag	FAIL_PHYSICAL_SILENT	user_listen	no_audible_output_at_default_minus22.5dB_or_temporary_minus7.5dB; continue_slot_gain_acf
+2026-08-17T14:29:19+08:00	s5fz_sd1	PASS_FLASH_DUAL_SLOT	real_05c6_9008	boot_ab_s5fz_vendor_boot_ab_stock_dtbo_ab_erased
+2026-08-17T14:31:00+08:00	s5fz_sd1	PASS_PHYSICAL_AUDIBLE	user_listen	tplg_SD_LINE_IDX_2_SD1_1kHz_audible_PA34_IV_active_PA35_VS_zero
+2026-08-17T14:33:36+08:00	s5fz_sd1	PASS_LOGICAL_LR_AUDIBLE	user_listen	700Hz_left_then_1200Hz_right_both_segments_audible_physical_second_speaker_pending
+2026-08-17T14:41:43+08:00	s5fz_sd1	PASS_DUAL_PA_AUDIBLE	user_listen	PA34_only_800Hz_and_PA35_only_1400Hz_both_audible_VSNDAT35_zero_is_feedback_anomaly
+2026-08-17T14:41:43+08:00	s5fz_sd1	PASS_KDE_OCEAN_PLAYBACK_SOFTWARE	paplay_cerro_speaker	login_information_success_warning_all_rc0_sink70pct_unmuted_user_listen_pending
+2026-08-17T14:43:00+08:00	s5fz_sd1	PASS_KDE_OCEAN_PHYSICAL	user_listen	KDE_PulseAudio_cerro_speaker_Ocean_sounds_normal_left_right_PA270_sink70pct_unmuted

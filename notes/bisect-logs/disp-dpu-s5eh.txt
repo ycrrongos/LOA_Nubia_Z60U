@@ -1,0 +1,57 @@
+===BANNER===
+ 
+logged= True
+user;sessionid=c2;type=session\Welcome to postmarketOS! o/
+
+This distribution is based on Alpine Linux.
+First time using postmarketOS? Make sure to read the cheatsheet in the wiki:
+
+-> https://postmarketos.org/cheatsheet
+
+You may change this message by editing /etc/motd.
+nubia-cerro:~$ [6n
+printf 'user\n' | sudo -S -p '' sh -c 'echo MARK_CMDLINE; grep ce
+rro_dtb /proc/cmdline; mount -t debugfs none /sys/kernel/debug 2>/dev/null || tr
+ue; echo MARK_DMESG; dmesg | grep -iE "raised sw-ctrl|raised wlan-sw|wlan_enable
+ also|PHY_REFCLK|PARF_LTSSM|Device not found|17cb|1107|pwrseq" | tail -40; echo 
+MARK_GPIO; grep -E "gpio1[6-9] |gpio94 " /sys/kernel/debug/gpio; echo MARK_PCI; 
+for d in /sys/bus/pci/devices/*; do echo $d $(cat $d/vendor) $(cat $d/device); d
+one; echo MARK_LTSSM; python3 -c "import mmap,os,struct;fd=os.open(\"/dev/mem\",
+os.O_RDONLY);mm=mmap.mmap(fd,0x1000,mmap.MAP_SHARED,mmap.PROT_READ,offset=0x1c00
+000);print(\"LTSSM\",hex(struct.unpack_from(\"<I\",mm,0x1b0)[0]));print(\"REFCLK
+\",hex(struct.unpack_from(\"<I\",mm,0x4c)[0]));mm.close();os.close(fd)"; echo MA
+RK_WLAN; ip link show wlan0 2>&1 | head -2; echo MARK_END'
+
+
+MARK_CMDLINE
+ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=s5eh
+MARK_DMESG
+[    0.000000] sched_clock: 56 bits at 19MHz, resolution 52ns, wraps every 4398046511078ns
+[    0.191396] qcom-pcie 1c00000.pcie: cerro: early PARF_PHY_REFCLK=0x10019
+[    0.201497] cerro: wlan_enable also raised BT_EN
+[    0.201504] cerro: wlan_enable raised sw-ctrl
+[    0.201506] cerro: wlan_enable raised wlan-sw-ctrl
+[    0.404906] pci-pwrctrl-pwrseq 1c00000.pcie:pcie@0:wifi@0: cerro: pwrseq target 'wlan' powered on
+[    0.832894] qcom-pcie 1c00000.pcie: cerro: PARF_PHY_REFCLK=0x10019 (SSP_EN, !USE_PAD)
+[    0.992882] qcom-pcie 1c00000.pcie: cerro: PERST deasserted after pwrseq settle
+[    1.411306] qcom-pcie 1c00000.pcie: cerro: PARF_LTSSM=0x101 after LTSSM_EN
+[    2.368883] qcom-pcie 1c00000.pcie: Device not found
+[    2.372890] pci 0000:00:00.0: [17cb:0113] type 01 class 0x060400 PCIe Root Port
+[   27.513968] pwrseq_qcom_wcn: module is already loaded
+MARK_GPIO
+ gpio16  : out high func0 8mA pull down
+ gpio17  : out low  func0 16mA no pull
+ gpio18  : out high func0 8mA no pull
+ gpio19  : out high func0 8mA no pull
+ gpio94  : out high func0 2mA pull down
+MARK_PCI
+/sys/bus/pci/devices/0000:00:00.0 0x17cb 0x0113
+MARK_LTSSM
+LTSSM 0x101
+REFCLK 0x10019
+MARK_WLAN
+Device "wlan0" does not exist.
+MARK_END
+nubia-cerro:~$ [6n
+
+SAVED /tmp/cerro-s5eh-diag.txt

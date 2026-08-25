@@ -1,0 +1,36 @@
+grep -o cerro_dtb=s5fv /proc/cmdline
+cerro_dtb=s5fv
+nubia-cerro:~$ cat /proc/asound/cards
+ 0 [SM8650CERRO    ]: sm8650 - SM8650-CERRO
+                      SM8650-CERRO
+nubia-cerro:~$ aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: SM8650CERRO [SM8650-CERRO], device 0: MultiMedia1 Playback (*) []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+nubia-cerro:~$ lsmod | grep -E 'qmi_helpers|snd_q6apm|^apr '
+snd_q6apm              49152  4 q6apm_dai,q6prm,q6apm_lpass_dais
+apr                    20480  2 snd_q6apm,q6prm
+qmi_helpers            20480  4 qcom_sysmon,qcom_pdr_msg,slim_qcom_ngd_ctrl,pdr_interface
+snd_soc_core          241664  16 snd_q6apm,q6apm_dai,snd_soc_sc8280xp,snd_soc_aw88261,snd_soc_qcom_common,q6apm_lpass_dais,snd_soc_lpass_wsa_macro,snd_soc_wsa884x,snd_soc_qcom_sdw,snd_soc_wcd939x,snd_soc_lpass_va_macro,snd_soc_wcd_mbhc,snd_soc_lpass_rx_macro,soundwire_qcom,snd_soc_lpass_tx_macro,snd_soc_wcd_classh
+nubia-cerro:~$ cat /sys/class/remoteproc/remoteproc0/state
+running
+nubia-cerro:~$ dmesg | grep cerro-audio | grep -E 'qmi_helpers|card ready|PRIMAR
+Y_MI2S|starting'
+[   44.326000] cerro-audio: loaded qmi_helpers
+[   44.367944] cerro-audio: starting adsp (fw ready)
+[   51.030602] cerro-audio: card ready after 1s
+[   51.059216] cerro-audio: PRIMARY_MI2S MultiMedia1 speaker route applied
+nubia-cerro:~$ dmesg | grep 'chip id'
+[   39.421228] aw88261 0-0034: chip id = 2113
+[   39.421905] aw88261 0-0035: chip id = 2113
+nubia-cerro:~$ amixer -c0 sget 'PRIMARY_MI2S_RX Audio Mixer MultiMedia1'
+Simple mixer control 'PRIMARY_MI2S_RX Audio Mixer MultiMedia1',0
+  Capabilities: pswitch
+  Playback channels: Front Left - Front Right
+  Mono:
+  Front Left: Playback [on]
+  Front Right: Playback [off]
+nubia-cerro:~$ 
+nubia-cerro:~$ 
+nubia-cerro:~$ [6n

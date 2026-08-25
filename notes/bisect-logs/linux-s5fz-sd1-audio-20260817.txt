@@ -1,0 +1,121 @@
+=== Linux s5fz PRIMARY_MI2S SD1 audible result 2026-08-17 ===
+
+Purpose:
+  Cold-test PRIMARY_MI2S SD1 after s5fy/SD0 completed PCM and AW88261 startup
+  successfully but remained physically silent.
+
+Single topology delta:
+  AR_TKN_U32_MODULE_SD_LINE_IDX: 1 / I2S_SD0 -> 2 / I2S_SD1
+  File byte offset 6056: 0x01 -> 0x02
+  All other topology bytes, the audio graph, AW88261 driver and ACF are unchanged.
+
+Artifacts:
+  patches/audio-s5fz/SM8650-CERRO-tplg-sd1.bin
+    sha256 866b22ffd144639732e50a0a2b8940f9340c73d0ac2cab1d71b2b8af1809737c
+  build/linux/arch/arm64/boot/Image
+    sha256 7bea3be11edc40b51973bc518e4b78383dbdc6646f393170b69a9bbfb5de48be
+  build/linux/arch/arm64/kernel/sm8650-nubia-cerro.dtb
+    sha256 4373ab8b47d142ae2bfa5927f04f2f269b4012c60cdc6109a254832ce2b6a11d
+  build/boot_repack/boot-v2-disp-dpu-s5fz.img
+    size 87199744
+    sha256 378b4bdc768061e4dcf3613a40e89094cc6448f324a8bdd3b157fc4b9ce4ea4c
+
+Pre-flash verification:
+  - unpacked boot kernel and DTB hashes exactly matched the built Image and DTB;
+  - the embedded cpio matched build/linux/usr/cerro-initramfs.cpio.gz at Image
+    offset 37811712;
+  - Image contained cerro_dtb=s5fz;
+  - the staged topology decoded to token/value tuple (256, 2).
+
+Packaging correction:
+  The first candidate accidentally reused an old padded-Image-plus-appended-DTB
+  pattern and was about 963 KiB larger than verified s5fy. It was rejected
+  before flashing. The final image uses raw Image plus a separate boot-header
+  DTB and matches the verified s5fy layout and size.
+
+Flash:
+  2026-08-17T14:29:19+08:00
+  boot_a written at sector 112006
+  boot_b written at sector 462810
+  stock vendor_boot_a written at sector 281670
+  stock vendor_boot_b written at sector 632474
+  dtbo_a and dtbo_b erased
+  EDL dual-slot flash done
+  The reset USB I/O error occurred only after the device disappeared and is
+  expected; watcher outcome was ok.
+
+Boot verification:
+  USB gadget appeared as Linux 1d6b:0104.
+  KDE/systemd sleep later hid the ACM gadget; a servo short power tap restored
+  it, as expected for this bench.
+  /proc/cmdline contained cerro_dtb=s5fz.
+  ALSA card 0 was SM8650-CERRO.
+  Runtime topology SHA256 matched the SD1 artifact above.
+
+Audible test 1:
+  Both PA mixer volumes were temporarily set to 360 / 0 dB.
+  1 kHz, stereo, 48 kHz, 6 seconds; speaker-test exit 0.
+  Both AW88261 devices reported PLL 0x0011, SYSST 0x0311 and start success.
+  The user immediately confirmed: "ok响了".
+  Both PA volumes were restored to the default 270 / -22.5 dB.
+
+Repeated IV sampling during 1 kHz at default volume:
+  0-0034: ISNDAT -20…47, VSNDAT -28…69
+  0-0035: ISNDAT -12…12, VSNDAT 0…0
+  This is the first real voltage/current response and directly distinguishes
+  SD1 from the silent SD0 result. PA 0x34 is producing output; PA 0x35 is not
+  proven active.
+
+Logical channel test:
+  Both PA mixer volumes were temporarily set to 330 / -7.5 dB.
+  700 Hz logical left only, pause 1 second, then 1200 Hz logical right only.
+  Both commands completed and the user confirmed: "都在响".
+  Both PA volumes were restored to 270 / -22.5 dB.
+
+Physical-PA isolation test:
+  Segment A: PA mixer numid 1 / 0x34 = 330, numid 3 / 0x35 = 0;
+             stereo 800 Hz for one speaker-test iteration.
+  Pause:     2 seconds.
+  Segment B: PA mixer numid 1 / 0x34 = 0, numid 3 / 0x35 = 330;
+             stereo 1400 Hz for one speaker-test iteration.
+  Both segments completed and both mixer values were restored to 270.
+  The user confirmed: "有声音。两断都响。" Therefore both 0x34 and 0x35
+  physical amplifier paths are audible. The earlier zero VSNDAT reading from
+  0x35 is a feedback telemetry anomaly and must not be used to label it silent.
+
+  The first host invocation accidentally used the unsupported option
+  --timeout; argparse rejected it before opening ACM, so nothing reached the
+  phone. It was corrected to --command-timeout. In this tool sandbox the
+  existing ttyACM0/2 nodes were hidden even though sysfs showed both devices
+  active and bound to cdc_acm; the authorized exact ports were then used to
+  short-tap power via the servo and run the test.
+
+Conclusion:
+  PASS_PHYSICAL_AUDIBLE and PASS_DUAL_PA_AUDIBLE. The s5fy silence was caused by topology selecting SD0.
+  Working speaker playback is on SD1, corresponding to the stock gpio128/data1
+  pin. Both logical channels and both isolated physical PA paths are audible.
+
+KDE/Plasma desktop-path test:
+  Current user: uid 10000 / user.
+  PulseAudio server: unix:/run/user/10000/pulse/native, version 17.0.
+  Default sink: cerro_speaker / module-alsa-sink.c / s16le 2ch 48000 Hz.
+  Sink volume: 70% / -9.29 dB on both channels; mute=no.
+  The following Plasma Ocean theme sounds were played through the explicit
+  cerro_speaker sink, each with paplay rc=0:
+    desktop-login.oga
+    dialog-information.oga
+    completion-success.oga
+    dialog-warning.oga
+  The user confirmed: "声音正常". Therefore the complete KDE -> PulseAudio ->
+  ALSA/Audioreach -> SD1 -> AW88261 -> physical speaker path is PASS.
+
+Final state readback:
+  numid 1 = SpkrLeft PCM Playback Volume  = 270 / -22.5 dB
+  numid 3 = SpkrRight PCM Playback Volume = 270 / -22.5 dB
+  cerro_speaker = 70% left/right, balance 0.00, mute=no
+
+Rejected hot test:
+  A topology file replacement followed by machine-driver unbind/rebind failed
+  because Audioreach retained the old graph (CMD timeout, PCM buffer allocation
+  -22, sound card disappeared). Restoring SD0 and rebooting recovered the card.
+  SD-line changes must therefore be evaluated from a cold boot.
