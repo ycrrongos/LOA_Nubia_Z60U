@@ -6,7 +6,7 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-17（重启后音频 profile=off 竞态已修；voice-bridge PASS；accel=SSC 未通）
+最后更新：2026-10-17（听筒/扬声器 PASS；voice 路由 PASS/PCM 缺口；accel=fastrpc-adsp 已起、缺 SSC 用户态）
 
 ### 蜂窝 / 短信（2026-10-15→16）
 
@@ -48,6 +48,10 @@
   4. `callaudiod` + `cerro-mm-voice-watch` 用户服务已 enable；有 MM Call 时自动 `voice-bridge on`。
   5. **10-17 22:20 补强**：`cerro-audio-route` 切 PW profile（Earpiece↔Speaker）+ AW；`CERRO_SKIP_PW=1` 留给 voice-bridge；`cerro-voice-bridge on` → `VoiceCall (Earpiece, Mic)`+Receiver+callaudiod AudioMode=1；`speakerphone` → VoiceCall Speaker；`off` → HiFi Speaker。symlink `/usr/local/bin`。
   6. **Modem 语音 PCM 仍缺口**：QCOM 通话音频在 ADSP↔modem 内，主线尚无 Voice graph/AGM 对等物。现网能切听筒麦克风路由，**不等于**对方能听到/听筒有远端声；那一步要另开 ADSP voice 拓扑。
+- **10-17 22:52 任务进度核对 / 续推**：
+  1. **听筒+扬声器 Android 式切换**：已完成（UCM/PW/AW Receiver↔Music）。
+  2. **通话 voice 桥接**：AP 侧路由完成（MM→callaudiod→VoiceCall Earpiece）；`voice-bridge` 另加本地 sidetone loopback。**远端/上行 modem PCM 仍缺**（tplg 仅 MM1/MM2，无 Voice Call SID=3 图）。
+  3. **加速度计**：纠偏——传感器 FastRPC skel 在 `dsp_a/adsp/`（`libsns_*`），不是独立 SLPI 分区。已编装 `fastrpc.ko` → **`/dev/fastrpc-adsp` PASS**；`modules-load.d/cerro-fastrpc.conf`。仍无 SSC 用户态/registry → IIO 仍空，自动旋转未通。dmesg：`no reserved DMA memory for FASTRPC`。
 - **10-17 22:26 重启后音频竞态**：冷启 WirePlumber 早于 ADSP → ACP `Profiles` 空、`Active Profile: off`、只有 Dummy/`Cerro_Speakers`。UCM 文件在；`systemctl --user restart pipewire wireplumber` 后 HiFi Speaker 恢复。已加 `cerro-audio-bootfix.service`（等 ADSP+PCM 再踢 PW）；并删 WP0.5 无效的 `main.lua.d/99-cerro-alsa-ucm.lua`。
 - **10-17 22:16 加速度计（自动旋转）卡点**：Aurora `lanai_lsm6dso_0.json` → **LSM6DSO** 挂在 **SSC**（`bus_type=1`），不是 AP I2C。Debian 无 SLPI/CDSP fw、无 `sscrpcd`、IIO 空；`remoteproc` 仅 modem+adsp（无 slpi）。`bus_type=1`/`bus_instance=3` 确认走 SSC。下一步需 SSC/SLPI remoteproc + sns 客户端，本轮无法做横竖屏旋转。
 

@@ -111,3 +111,5 @@ SM8650 标准配套:pmk8550 / pm8550 / **pm8550b**(L11B/L12B/L13B/L14B 来自此
 
 - 加速度/陀螺：Aurora SSC 配置 `lanai_lsm6dso_0.json` → **ST LSM6DSO**（accel+gyro），`bus_type=1`（SSC），非 AP I2C。
 - Linux 主线目前无 SSC/SLPI 用户态通路；`/sys/bus/iio` 空。自动旋转依赖此传感器。
+
+- 2026-10-17：装 `fastrpc.ko` 后出现 `/dev/fastrpc-adsp`；ADSP 上有 `libsns_*` skel。自动旋转仍缺 SSC 用户态。

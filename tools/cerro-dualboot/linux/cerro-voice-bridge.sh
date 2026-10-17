@@ -26,6 +26,17 @@ set_profile() {
   as_user pactl set-card-profile "$CARD" "$profile" 2>/dev/null || true
 }
 
+sidetone_on() {
+  # Local mic→earpiece loop for call presence; does NOT carry remote/modem PCM.
+  as_user pactl unload-module module-loopback 2>/dev/null || true
+  as_user pactl load-module module-loopback latency_msec=20     source=alsa_input.platform-sound.VoiceCall__Mic__source     sink=alsa_output.platform-sound.VoiceCall__Earpiece__sink 2>/dev/null     || as_user pactl load-module module-loopback latency_msec=20 2>/dev/null || true
+}
+
+sidetone_off() {
+  as_user pactl unload-module module-loopback 2>/dev/null || true
+}
+
+
 # Apply AW mixer without letting audio-route clobber the PW profile we want.
 aw_route() {
   local mode=$1
@@ -47,7 +58,8 @@ enable_voice() {
     as_user busctl --user call org.mobian_project.CallAudio /org/mobian_project/CallAudio \
       org.mobian_project.CallAudio EnableSpeaker b false >/dev/null 2>&1 || true
   fi
-  echo "voice-bridge: on (VoiceCall earpiece)"
+  sidetone_on
+  echo "voice-bridge: on (VoiceCall earpiece + local sidetone)"
 }
 
 disable_voice() {
@@ -56,6 +68,7 @@ disable_voice() {
     :
   fi
   aw_route speaker
+  sidetone_off
   set_profile "$PROFILE_SPEAKER"
   echo "voice-bridge: off (HiFi speaker)"
 }
