@@ -106,3 +106,8 @@ SM8650 标准配套:pmk8550 / pm8550 / **pm8550b**(L11B/L12B/L13B/L14B 来自此
 | 音频 | WCD 主线有；**扬声器是 AW882xx 非 WSA** | 中-高（需 Awinic + 路由） |
 | Modem 蜂窝 | Works(参考机) | 中-高(rmtfs/固件) |
 | 指纹/相机 | 无/弱 | 高(基本放弃) |
+
+## 传感器（2026-10-17）
+
+- 加速度/陀螺：Aurora SSC 配置 `lanai_lsm6dso_0.json` → **ST LSM6DSO**（accel+gyro），`bus_type=1`（SSC），非 AP I2C。
+- Linux 主线目前无 SSC/SLPI 用户态通路；`/sys/bus/iio` 空。自动旋转依赖此传感器。

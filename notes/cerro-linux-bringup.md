@@ -6,7 +6,76 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-08-24（CLO Agent 刷机工具包 `packs/clo-agent-kit-20260824.zip`）
+最后更新：2026-10-17（听筒/扬声器/voice-bridge PASS；ADSP voice PCM 缺口；accel=SSC 未通）
+
+### 蜂窝 / 短信（2026-10-15→16）
+
+- **目标**：插卡 4G/5G 上网（系统路由可用）+ 短信；操作中 60Hz / 低亮度 / 做完熄屏。
+- **基线（10-15 夜，旧 rootfs `user@`）**：`cerro_dtb=s5gb`，MM 有 modem0 但 DMS `offline`、`mmcli --enable` → `InvalidTransition`。journal：`cerro-cellular-meta` 跑了 DMS `0x69`，`init_state=3 fail_reason=1`；`tqftpserv` 缺 `modem_pr`。与 08-18 PASS 路径一致：**缺 modempr + 需 nometa**。
+- **显示**：曾确认 `1116x2480@60*`；亮度压到 0–50/3515。Wayland 会话从 ACM 难控 KWin DPMS（无 `wayland-0` / KWin 名），熄屏靠 backlight=0；未稳定。
+- **10-15 夜**：USB ECM 传包装 `cellular-modempr-c1` + `nometa-c1`；冷启后硬复位环。`stability-ipa-imem-c1/out/` **仅剩 MANIFEST**（boot 已删）。
+- **10-16 续（现 rootfs 用户 `rong`）**：旧增量丢失后重装；下午继续做到数据面根因。
+  - **boot PASS**：`patches/stability-ipa-imem-c1/out/boot-v2-s5gb-ipa-imem-memshare.img`（SHA `0c68298e…`）= linux-debug + IPA IMEM `0x8000→0x3000` + 削 3×CCI 腾空塞入 `qcom,memshare` 五客户端/`qmc-dma-region`；Linux 内 `dd` 双槽 `boot_{a,b}`、擦 `dtbo`。`translation fault`=0。
+  - **rootfs PASS**：`modempr`/`nometa`/`rftrace`；`cerro-memshare.service`+`qcom-memshare.ko`；`cerro-cell-connect.service`（`apn=3gnet` + 静态配 `qmapmux0.0`）；polkit 用户 `rong`。
+  - **控制面 PASS**：memshare 5 client 注册；MM `connected`；CHN-UNICOM **46001** LTE；bearer+IPv4/IPv6。
+  - **数据面 FAIL（根因）**：`qmapmux0.0` TX>0 **RX=0**。`dmesg`：`ipa: GSI command 2 for channel 1 timed out, state 4`（连串）→ `error -11 suspending channel 1` → modem `ipa_hal.c:8962:IPA Assert … GSI_STATUS_SUCCESS failed` → `remoteproc0=crashed`。不是 APN/路由问题。
+  - **下一步**：修 IPA GSI channel1（DT `ipa-gsi`/固件/主线驱动补丁）；需完整 `build/linux` 树。勿盲重启 MM（易 `unknown-capabilities`）。
+  - **10-16 下午补证**：`GSI command 2`=**STOP**（非 START），state 4=`STOP_IN_PROC`；失败通道是 **AP_MODEM_RX = GSI ch1 / EP23**（`ipa_data_v5_5`）。伴随 `channel 0 global error … code 0x2`=`GSI_OUT_OF_BUFFERS`。IPA `power/runtime_status` 曾卡在 `suspending`。`echo on > …/ipa/power/control` 可避免 runtime suspend 路径，但 **disconnect/停通道仍会 STOP hang → modem `ipa_hal` assert**。冻住 PM 后 bearer 仍 **TX>0 RX=0**（`rmnet_ipa0` 也是），说明不是 QMAP demux/路由问题，是 IPA→AP 收包路径本身。已加候选 `patches/cellular-ipa-nosuspend-c1`。完整内核树曾在 `build/linux`（现只剩 DTS），正在重拉 `build/linux-7.2`（v7.2-rc5）以便改 `ipa_endpoint`/`gsi` STOP+aggregation。ACM 密码现为 `artistycr`。
+  - **10-16 15:10 续（用户重启后）**：主机 ECM `enp0s20f0u5i2` 需手配 `192.168.68.1/24` 才能拉文件；已拉 `/proc/config.gz`（`MODVERSIONS=n`）。`build/linux-7.2` + `cellular-ipa-gsi-stop-c1` 已就绪；LLVM 交叉编出诊断 `ipa.ko`（关 `AP_MODEM_RX` aggregation，buffer 2048；vermagic `7.2.0-rc5-dirty`；SHA `68040677003b…`）→ `patches/cellular-ipa-rx-noaggr-c1/`。已替换手机 `/lib/modules/…/ipa.ko`（stock bak 同目录 `ipa.ko.stock-bak`）。**禁止 live `rmmod ipa`/stop MPSS**：15:12 尝试 → USB gadget 仍在但 ping/ACM 全死（SoC hang）；舵机 Espressif 当时未接。
+  - **10-16 15:24 冷启验收**：用户重启后先落 **fastboot**（`slot-unbootable:b=yes`，`continue`→`Load Error`）。`fastboot set_active b` 清 unbootable 后 `continue` → Linux ACM PASS。`qbootctl -m` 已标 `_b` successful。noaggr `ipa.ko` SHA 匹配已加载；MM connected / `qmapmux0.0` 有 IPv4/v6；**仍 TX>0 RX=0**（ping 100% loss）。**结论：关 aggregation 不能修 RX=0**。
+  - **10-16 15:45 第二枪**：恢复 aggregation + `aggr_time_limit=100` + 每 20ms `AGGR_FORCE_CLOSE` kick（`ipa.ko` SHA `fe42bda0…`）。安全 `systemctl reboot`（勿再 live rmmod）。连上后仍 **RX=0/TX>0**。**结论：不是「aggr 帧打不开」**——modem→AP 根本没进 GSI RX（或硬件未投递）。下一步：对照 pineapple 下游 IPA mem/INIT_DRIVER/路由默认口，或抓 modem 侧 DL 计数。
+  - **10-16 15:53–16:18**：周期性 `AGGR_FORCE_CLOSE` kick → ~81s modem `ipa_hal` assert。随后「仅 gsi-stop + force_close-before-STOP」的 `ipa-safe.ko`（`9ea6d82e…`）在 ~85s **同样** `ipa_hal` assert → **结论：对 AP_MODEM_RX 做 AGGR_FORCE_CLOSE 会直接崩 MPSS**，gsi-stop-c1 补丁不可用。已 `cp ipa.ko.stock-bak → ipa.ko`（SHA `294cb557…`）并 `systemctl reboot`；树内已 `-R` 撤 gsi-stop。reboot 后 ACM 无 login（疑 hang）。**请用户再长按电源**；起来后应是 stock IPA + nosuspend，再查 RX=0（勿再 force_close）。
+- **操作备忘**：连数 `mmcli -m 0 --simple-connect="apn=3gnet,ip-type=ipv4v6"`；读短信 `mmcli -s 0`；联通 APN=`3gnet`。冷启若进 fastboot：先看 `slot-unbootable:b`，`set_active b` 再 `continue`。改 `ipa.ko` 后优先 **长按电源硬重启**（软 `systemctl reboot` 易卡黑屏）；禁止 `rmmod ipa`/stop MPSS/`AGGR_FORCE_CLOSE`。
+- **软重启卡黑屏（用户 16:23 确认；10-17 14:14 已解除）**：曾经常 `systemctl reboot` / 关机黑屏死机（IPA 对 AP_MODEM_RX STOP 卡住）。**用户 10-17 下午确认：系统内点重启已正常**，并授权 agent 自行软重启。仍勿 `rmmod ipa` / 对 RX `AGGR_FORCE_CLOSE`。
+- **10-16 18:33 候选**：主线 `ipa_qmi.c` INIT_DRIVER 把 `hw_stats_quota_size` / `hw_stats_drop_size` 写成 `mem_offset + size`（同文件 `modem_mem_info.size` 只用 `size`）——疑 copy-paste bug。已打 `patches/cellular-ipa-init-stats-size-c1/`，装盘 SHA `4586528c…`。
+- **10-16 18:47 验收 FAIL**：冷启后 KO SHA 匹配、connected/attached、无 crash；`-I qmapmux0.0` ping **仍 100% loss、IPA/QMAP RX=0**。裸 `ping 8.8.8.8` 曾通是因为 **WiFi `wlp1s0` metric 600 < 蜂窝 700**，勿误判。stats-size 单修**不能**恢复 DL。Sony pdx245 树仅有旧 mainline IPA（无 v5.5），对照价值低。
+- **10-16 20:17 主机侧**：FlClash `127.0.0.1:7890` 开着；系统 DNS 经 Clash 回 **fake-ip `198.18.0.0/16`**，curl/git **不经代理直连会超时**。正确：`http(s)_proxy=http://127.0.0.1:7890` 或 `ALL_PROXY=socks5h://127.0.0.1:7890`（注意 `h`）。用户称已重启手机后，主机 `lsusb` **两分钟无** `1d6b:0104`/9008/fastboot/Dump——线未通或未进 Linux。
+- **10-16 20:52 冷启再验（用户又硬重启）**：ACM 已回。KO 仍 `4586528c…`。先 `nmcli radio wifi off`。约 2min 后 MM `connected`、46001、LTE+5GNR、信号 100%；`qmapmux0.0`=`10.115.52.232/28`。`ping -I qmapmux0.0 8.8.8.8` **100% loss**；`rmnet_ipa0`/`qmapmux0.0` **RX 保持 0、TX 7→13**。Bearer 统计只有 `bytes tx=1448`，无 RX。MPSS `running`，无 `ipa_hal`。`qmicli -d qrtr://0 --wds-get-packet-statistics` → `InvalidOperation`（WDS 在 node0 port72，但 MM 已占数据会话，qrtr://0 默认 client 不是这条 call）。**结论不变：stats-size 未修下行。** 测完已把 WiFi 打开。下一步仍是对照下游 IPA 默认路由/exception，勿 force_close。
+- **10-16 21:27 对照 Aurora `ipa_utils.c` IPA_5_5**：`APPS_WAN_CONS` = **EP 24 / GSI ch 1**（这才是 modem→AP 数据口）；EP 23 是 `APPS_WAN_COAL_CONS` / ch 4。主线 `ipa_data-v5.5.c` 把 v5.0 的 EP 23/ch 1 原样抄过来（v5.0 的 WAN_CONS 确实是 23）。UL `APPS_WAN_PROD` EP 2/ch 11 与主线一致，所以 TX 通、RX 不进我们听的口。`Q6_WAN_CONS` 也从 v5.0 的 EP 21 变成 v5.5 的 EP 22（主线 `MODEM_AP_RX`）。补丁 `patches/cellular-ipa-wan-ep-c1/`，ko SHA `d338aa88…` 已写入手机 `ipa.ko`（stock-bak 未覆盖）。禁止软重启 / rmmod / force_close。
+- **10-16 22:20 通话**：用户确认能接电话、收短信，打电话/发短信估计也行；**双向都没有声音**。媒体扬声器（AW88261）和通话语音是两条路，通话静音不等于扬声器坏了。机身麦是 LPASS **DMIC gpio6–9**（stock `dmic01`/`dmic23`），`va_macro` 已绑定但 **没有 pinctrl**，时钟脚没复用。现有 `MultiMedia2` 只接到拓扑里的 `TERTIARY_MI2S_TX`，不是这组麦。通话听筒同样还没接到 voice 通路。
+- **10-17 14:09 VA DMIC 候选已刷**：`patches/audio-va-dmic-c1/`。对照 X13s 把 capture BE 改名 `VA_CODEC_DMA_TX_0`（初版 SHA `75ed15ff…`）+ early DTB `VA Capture`/`dmic01/23` pinctrl；boot `81dec7e8…` 双槽。UCM Mic→VA mixer。
+- **10-17 14:20–14:35 VA 验收 / 纠偏**：
+  1. 初版 tplg **只改名+MODULE/HW_IF，漏改 `AR_TKN_DAI_INDEX`**（仍 21=TERTIARY）→ `No graph found with id 110`。补丁脚本已加 21→110；新 SHA `19c5a448…`。
+  2. 软重启 PASS；ACM 账号现为 **`rong` / `artistycr`**（勿再用 `user/user`）。
+  3. graph 110 通后：`arecord -c2` 可开，但须 `VA_AIF1_CAP Mixer DEC0`；RMS≈0（数字静音）。gpio6–9 已 mux dmic，非缺 pinctrl。
+  4. **Aurora 对照纠偏（关键）**：`mixer_paths_pineapple_mtp.xml` 里 `handset-mic` → **`amic1`（TX macro + SWR）**，不是 VA DMIC。`va-mic-*` 是另一路。DTS 已有 `wcd-capture-dai-link`=`TX_CODEC_DMA_TX_3`(120)。
+  5. 新候选 `patches/audio-tx-amic-c1/`：Tertiary→`TX_CODEC_DMA_TX_3`（DAI 120，HW_IF_TYPE=1 IDX=4）；tplg SHA `67a093d0…`。
+  6. **TX/AMIC 手麦 PASS（软重启后）**：mixer 按 Aurora amic1（`TX_AIF1_CAP Mixer DEC0` + `TX SMIC MUX0=SWR_MIC4` + `ADC1` unmute + `TX_DEC0`）；`arecord -c2` **rms≈5654 peak=32768**（满增益削波=真麦）。UCM Mic 已改走 TX。听筒/modem voice 桥接仍下一步。缺 `AMIC1_MIXER`/`ChMap` 控件时 ADC1_MIXER+ADC1 足够。
+- **10-17 22:15 听筒/扬声器 + voice 路由 PASS**：
+  1. Aurora：`speaker`=双 AW88261 Music；`handset`=Left `Receiver`、Right 关。Linux 控件 `SpkrLeft/Right Profile Set` + `SpkrLeft/Right PCM`。
+  2. UCM `HiFi`/`VoiceCall`：`notes/alsa-ucm-sm8650-cerro/`；装机脚本 `tools/cerro-dualboot/linux/install-audio-voice.sh`。去掉错误 `Headphones`+`JackControl` 后 PipeWire ACP 出现 `HiFi (Mic, Speaker)` / `HiFi (Earpiece, Mic)` / `VoiceCall (...)`。
+  3. `cerro-audio-route speaker|earpiece` + `cerro-voice-bridge on|off`：切换 PW profile 且 AW 进 Receiver/Music。验收：`Active Profile` VoiceCall↔HiFi Speaker，Profile Set Receiver↔Music。
+  4. `callaudiod` + `cerro-mm-voice-watch` 用户服务已 enable；有 MM Call 时自动 `voice-bridge on`。
+  6. **10-17 22:20 补强**：`cerro-audio-route` 切 PW profile（Earpiece↔Speaker）+ AW；`CERRO_SKIP_PW=1` 留给 voice-bridge；`cerro-voice-bridge on` → `VoiceCall (Earpiece, Mic)`+Receiver+callaudiod AudioMode=1；`speakerphone` → VoiceCall Speaker；`off` → HiFi Speaker。symlink `/usr/local/bin`。
+  5. **Modem 语音 PCM 仍缺口**：QCOM 通话音频在 ADSP↔modem 内，主线尚无 Voice graph/AGM 对等物。现网能切听筒麦克风路由，**不等于**对方能听到/听筒有远端声；那一步要另开 ADSP voice 拓扑。
+- **10-17 22:16 加速度计（自动旋转）卡点**：Aurora `lanai_lsm6dso_0.json` → **LSM6DSO** 挂在 **SSC**（`bus_type=1`），不是 AP I2C。Debian 无 SLPI/CDSP fw、无 `sscrpcd`、IIO 空；`remoteproc` 仅 modem+adsp（无 slpi）。`bus_type=1`/`bus_instance=3` 确认走 SSC。下一步需 SSC/SLPI remoteproc + sns 客户端，本轮无法做横竖屏旋转。
+
+- **10-16 21:36 冷启验收 PASS**：KO SHA 匹配 `d338aa88…`。WiFi 关掉后 MM `connected`、46001、**lte+5gnr**、信号 97%；`qmapmux0.0`=`10.36.183.64/25`。`ping -I qmapmux0.0 8.8.8.8` **4/4，0% loss**，RTT ~227–271ms。`rmnet_ipa0`/`qmapmux0.0` **RX 0→4**。默认路由就是 `qmapmux0.0` metric 700。`curl -4 --interface qmapmux0.0 https://www.baidu.com` **HTTP 200**（约 2.5s），之后 QMAP RX=147。`gstatic.com/generate_204` 超时（国内链路，不作为 FAIL）。MPSS `running`，无 `ipa_hal`。测完已 `nmcli radio wifi on`；WiFi 连上后 metric 600 仍会压过蜂窝 700，验蜂窝必须看 `-I qmapmux0.0` 或先关 WiFi。
+
+### 双系统 / OrangeFox（2026-10-15）
+
+- **方案**：见 `notes/cerro-dualboot.md`。Android userdata **F2FS+FBE** 缩至 ~200GiB，新建 `cerro_linux` ext4 放 Debian；A=Android / B=Linux。
+- **进度（14:06）**：分区+Debian **PASS**。`linux-daily-nestedfix.img` 已经 fastbootd 刷入 `boot_b`（14:02）并 `set-active=b`；重启后却进 **slot `_a` Android**（`18d1:4e11`，指纹 stock `PQ83A01`，非 Aurora），无 Linux ACM——B 未站住（回滚或 active 未持久）。`tools/cerro-init/init` 已改 nested/flat；Aurora A 备份仍在 `backups/aurora-slot-a-20261015/`。主线树仍缺。
+- **Android 基线（2026-10-15）**：fastbootd 全刷 Aurora + `-w` → `CP2A.260605.016`，slot `_a`；userdata 现 **≈200G F2FS**；**尚无 KernelSU**。
+- **OrangeFox**：`recovery/orangefox/`；源码 `/mnt/data/orangefox-cerro`；lunch `twrp_cerro-ap2a-eng`。
+- **同步**：`orangefox_sync.sh --branch 14.1 --path /mnt/data/orangefox-cerro`（nebrassy `twrp-14`，**不要** `gitlab Manifest fox_14.1`）。全并发易 **429** → sync 用 `-j2`。
+- **踩坑（必读）**：
+  1. 勿用 gitlab `fox_14.1`；用 nebrassy `twrp-14`；googlesource 429 → `-j2`；需完整 `prebuilts/rust`；lunch 带 `ap2a`。
+  2. recovery **必须 kernel-less**（`BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE`）；内嵌 kernel → 立刻回 fastboot。
+  3. **`BOARD_INCLUDE_DTB_IN_BOOTIMG := false` 无效**：AOSP 用 `ifdef`，必须**不定义**该变量，否则强依赖 `dtb.img`。
+  4. **`OF_MAINTAINER` 禁止空格/引号**：`"Cerro DualBoot"` → `#define OF_MAINTAINER ""Cerro DualBoot""` → clang 失败 → **`system/bin/recovery` 从未进 ramdisk**；`mka recoveryimage` 仍会“成功”打出空壳包。刷后表现为 `ro.bootmode=recovery` 却进完整 Android（无 OFOX UI）。改用 `Cerro_DualBoot`。
+  5. 验收：**拆包确认** `system/bin/recovery` 存在且 `kernel_size=0`，再双槽刷。
+  6. 纯 OFOX（补 recovery/AVB/linker64）仍 **回 fastboot**；Artist recovery **可进**；OFOX recovery 二进制塞进 Artist 底 → **hang 无 USB**。
+  7. 旁路：`recovery/orangefox/out/artist-recovery-root-sgdisk.img`（Artist + adb root props + sgdisk）。出现 fastboot 时脚本会自动刷（`/tmp/cerro-wait-flash-artist-rec.log`）。
+- **分区数字**：`do-repartition.sh` 对齐 `partition-plan.sh`（userdata end `55730984`，linux `55730986–124002298`）。
+- **切换脚本**：`tools/cerro-dualboot/android/` + `linux/`（无 bootctrl HAL → dd / abctl）。
+- **阻塞**：手机 hybrid OFOX 试验后 **hang 无 USB**（舵机未接，需长按电源硬重启或 Vol-+电源进 fastboot）。无人值守流水线已挂起等 USB：`tools/cerro-dualboot/host/unattended-pipeline.sh --daemon`（sideload Aurora → wipe → 分区 → Debian）。ipa-imem boot 本地已删；Debian：`backups/debian-native-20260817`。
+- **[消息｜ZCode 转达用户 2026-10-15 11:56]** 用户指示：**不再折腾 Android 侧，直接分区装 Linux**。现状：流水线 10:23 `cannot repartition without root`（`repartition-need-root`），10:32 起 `waiting-fastboot-repart`；11:55 主机实测 USB 全空（手机需重新插/救）。建议路径：刷 `recovery/orangefox/out/artist-recovery-root-sgdisk.img`（root props + sgdisk）→ `adb root` → `do-repartition.sh`（userdata 缩 ~200G + 建 `cerro_linux` ext4）→ 展开 `backups/debian-native-20260817/debian-root.tar.zst` → 刷 Linux `boot_b` + stock `vendor_boot_b`、擦 `dtbo_b`、`set_active b`。另注意：上一轮 Cursor agent 被 provider 内容过滤 block（cyber content，见截图 "Request blocked"）——重试时把刷机/分区命令拆成小步分次执行，避免整段 shell 被拦。
+续
+- **[消息｜ZCode 转达用户 2026-10-15 15:06]** 用户**刚刚又重启了手机**，让它**继续**。补充实测：adb 在线且已授权（`320243913409 device`，Android slot_a）——可直接 `adb reboot bootloader` 进 fastboot，不必等按键组合；上次 14:02 刷 `boot_b` + `set-active=b` 后重启回落到 slot_a，这次刷完请**校验 active 位 / `qbootctl`/`miscta` 回滚原因**再重启。
+- **[消息｜ZCode 转达用户 2026-10-15 12:14/12:16]** 用一加 12 **PBRP** 做分区 recovery。镜像已就位：`/mnt/data/下载/PBRP-OP12-20260203.img` → 仓库 `recovery/ref/PBRP-OP12-20260203.img`（header v4，**kernel_size=0**，与 stock/ABL 路径一致）。脚本：`tools/cerro-dualboot/host/boot-pbrp-repart.sh`（等 fastboot → **`fastboot boot` 临时启动**，**不刷** `recovery_{a,b}` → `adb root` → `do-repartition.sh`）。当前主机若无 USB，需用户进 fastboot 后脚本自动接管。
+- **[消息｜ZCode 转达用户 2026-10-15 09:56]** 手机现在**卡在第一屏**（目视开机 logo 不动）。主机 09:56 实测 USB **仍全空**：无 `05c6:9008` / `18d1:d00d` / `19d2:0112`，无 adb、无 `ttyACM*`。即：卡 logo 且无 USB gadget ≈ 内核早期挂死。流水线 PID 448163 仍 `waiting-phone` 空转（08:45 曾短暂见 adb，`adb reboot bootloader` 时设备掉线）。→ 需手动干预：**长按电源 20–30s 强制重启**，或 **Vol− + 电源进 fastboot**；设备一出现流水线会自动接管。08:45–08:46 那次 adb 掉线细节见 `/tmp/cerro-wait-flash-artist-rec.log`。
+- **Aurora 包**：`voltage-6.1-cerro-20261011-1148-UNOFFICIAL.zip`（payload.bin OTA）。
 
 ### CLO / 类原生 Agent 工具包（2026-08-24）
 
