@@ -33,6 +33,26 @@ tools/edl-tools/nubia_sm8650_eng/
 # Patch build outputs (run build.sh locally)
 patches/**/out/*.img
 patches/**/out/*.dtb
+patches/**/out/*.sha256
+
+# Recovery / dualboot flash & build junk (keep recipes / scripts / small configs)
+recovery/**/out/
+recovery/**/prebuilt/Image
+recovery/**/prebuilt/dtb
+recovery/**/prebuilt/*.lz4
+recovery/**/device/**/prebuilt/Image
+recovery/**/device/**/prebuilt/dtb.bin
+recovery/ref/*.img
+tools/cerro-dualboot/**/bin/
+tools/cerro-dualboot/**/obj/
+tools/cerro-dualboot/**/gen/
+tools/cerro-dualboot/**/out/
+tools/cerro-dualboot/**/*.apk
+tools/cerro-dualboot/**/*.apk.idsig
+tools/cerro-dualboot/host/*.zip
+
+# Local one-offs
+uninstall_qoder.sh
 
 # Downstream unpack blobs (keep dts/dtb/dtbo text+small)
 downstream-dt/boot_unpack/kernel

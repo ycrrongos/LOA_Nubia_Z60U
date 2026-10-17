@@ -44,7 +44,28 @@
 ## 5. 网络与 Git
 
 - 拉 GitHub / 国外资源：**走 FlClash 代理**（本机 FlClash；给 shell/`git`/`curl` 设代理后再拉）。
-- 远程：`https://github.com/ycrrongos/LOA_Nubia_Z60U`。未明确要求不要乱 push；要求 push 时记得代理。
+- 远程：`https://github.com/ycrrongos/LOA_Nubia_Z60U`（`origin`）。未明确要求不要乱 push；要求 push 时记得代理。
+- **仓库已是 git**；日常只提交 notes / tools / patches / DTS / recovery 配方，**不要**把 `build/`、`backups/`、大镜像、固件 blob、`recovery/**/out/*.img`、apk 编译中间物塞进 commit（见 `.gitignore`）。
+- **提交纪律（bringup 型项目：做一步、交一步，方便回滚）**：
+  1. **每完成一个可叙述的小步就本地 commit**（例：IPA WAN EP PASS、手麦 TX tplg PASS、UCM 改听筒）。不要攒一大包脏树；回滚靠 `git revert` / `git checkout <commit> -- path`。
+  2. **一次 commit 只绑一个意图**（不要同时塞蜂窝 + 音频 + greeter）。相关 bringup 笔记与代码/补丁同一步一起交。
+  3. **push 仍要显式**：没说 push 就不要 push；要 push 时走 FlClash 代理。本地多 commit、远端少推，很正常。
+  4. 改桌面/电源/显示/SDDM 前：先在 `notes/cerro-linux-bringup.md` 记「打算改什么」；改完立刻记 PASS/FAIL 证据，再 commit。
+  5. **禁止把「试坏的现场」当默认**：已知好的 rootfs 锚点是 `backups/debian-native-20260817/debian-root.tar.zst`；已知好的 dualboot boot 锚点是 `build/dualboot/linux-debug.img`。弄崩优先整盘还原锚点，不要在坏树上叠补丁。
+  6. 提交前 `git status` + `git diff` 自查：有没有误加 `.img` / journal / `/tmp` / apk `obj/` 产物；说明写 **为什么**，不要只列文件名。
+  7. 试错中途也可 commit，标题标明 `WIP` / `FAIL`；修好后再交 `PASS` 步，别靠「先不交、回头再想」。
+
+## 5.1 桌面 UX / 电源键（2026-10-15/16 血泪，曾反复被骂）
+
+根因不是「电源键本身」，是 **v2 之后又叠了一堆试验**（`cerro-dpms`、`DisplayServer=wayland` greeter、KWin `brightness=0`）把面板/会话干崩。
+
+硬规则：
+
+1. 电源键只用 **v2**：`tools/cerro-dualboot/linux/cerro-powerkey.py` → PowerDevil `Turn Off Screen` / `wakeup`；`kscreenlockerrc` **Autolock=false**（熄屏不锁屏，触摸/双击可亮）。
+2. **禁止**安装或调用 `/usr/local/sbin/cerro-dpms`（曾 SIGSEGV）。
+3. **禁止**为 greeter 写 `DisplayServer=wayland`（缺 weston；autologin 可另说）。
+4. **禁止**改 `kwinoutputconfig.json` 的 `brightness` / 对面板 sysfs 刷亮度做熄屏。
+5. 安装脚本：`tools/cerro-dualboot/linux/install-desktop-ux.sh`（已含上述禁令）。改 UX 只改这一条链路，验收：ACM 连续 ≥2min + 用户确认熄屏/亮屏。
 
 ## 6. 工程边界
 
@@ -55,6 +76,7 @@
 - 改 `/init` / 嵌入 cpio 必须重编镜像（BL initrd 故意未 apply）。
 - **内置 DTB**：`prefer_builtin_dtb` 吃的是 `arch/arm64/kernel/sm8650-nubia-cerro.dtb(.o)`，不是 `boot/dts/` 那份。改 DTS 后必须 `dtc` → `cp` 到 `kernel/` → 删 `.dtb.o` 再 `make Image`，否则 cmdline 标签假更新（s5ez 教训）。
 - 用户说「先刷回 AOSP / 暂不刷 Linux」时：可继续改代码，**不要擅自刷 Linux**。
+- **Aurora 优先（蜂窝等原厂行为）**：IPA、modem、rmnet 以及其它「安卓上是好的、主线对不上」的地方，先对照本机 Aurora 树 `/mnt/data/ArtistAOSP`（设备树 `source/device/nubia/cerro`，下游 IPA 在 `source/kernel/nubia/sm8650-modules/qcom/opensource/dataipa`）。主线表经常从旧 IPA 版本抄过来（v5.5 下行口 EP23/EP24 就是这样）。需要实机对照时可以重启进 Android 抓环境；切槽前先告诉用户。不要为了抓 log 去刷掉 Linux。
 
 ## 7. 沟通与工作方式
 
