@@ -6,7 +6,7 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-17（听筒/扬声器/voice-bridge PASS；ADSP voice PCM 缺口；accel=SSC 未通）
+最后更新：2026-10-17（重启后音频 profile=off 竞态已修；voice-bridge PASS；accel=SSC 未通）
 
 ### 蜂窝 / 短信（2026-10-15→16）
 
@@ -48,6 +48,7 @@
   4. `callaudiod` + `cerro-mm-voice-watch` 用户服务已 enable；有 MM Call 时自动 `voice-bridge on`。
   5. **10-17 22:20 补强**：`cerro-audio-route` 切 PW profile（Earpiece↔Speaker）+ AW；`CERRO_SKIP_PW=1` 留给 voice-bridge；`cerro-voice-bridge on` → `VoiceCall (Earpiece, Mic)`+Receiver+callaudiod AudioMode=1；`speakerphone` → VoiceCall Speaker；`off` → HiFi Speaker。symlink `/usr/local/bin`。
   6. **Modem 语音 PCM 仍缺口**：QCOM 通话音频在 ADSP↔modem 内，主线尚无 Voice graph/AGM 对等物。现网能切听筒麦克风路由，**不等于**对方能听到/听筒有远端声；那一步要另开 ADSP voice 拓扑。
+- **10-17 22:26 重启后音频竞态**：冷启 WirePlumber 早于 ADSP → ACP `Profiles` 空、`Active Profile: off`、只有 Dummy/`Cerro_Speakers`。UCM 文件在；`systemctl --user restart pipewire wireplumber` 后 HiFi Speaker 恢复。已加 `cerro-audio-bootfix.service`（等 ADSP+PCM 再踢 PW）；并删 WP0.5 无效的 `main.lua.d/99-cerro-alsa-ucm.lua`。
 - **10-17 22:16 加速度计（自动旋转）卡点**：Aurora `lanai_lsm6dso_0.json` → **LSM6DSO** 挂在 **SSC**（`bus_type=1`），不是 AP I2C。Debian 无 SLPI/CDSP fw、无 `sscrpcd`、IIO 空；`remoteproc` 仅 modem+adsp（无 slpi）。`bus_type=1`/`bus_instance=3` 确认走 SSC。下一步需 SSC/SLPI remoteproc + sns 客户端，本轮无法做横竖屏旋转。
 
 - **10-16 21:36 冷启验收 PASS**：KO SHA 匹配 `d338aa88…`。WiFi 关掉后 MM `connected`、46001、**lte+5gnr**、信号 97%；`qmapmux0.0`=`10.36.183.64/25`。`ping -I qmapmux0.0 8.8.8.8` **4/4，0% loss**，RTT ~227–271ms。`rmnet_ipa0`/`qmapmux0.0` **RX 0→4**。默认路由就是 `qmapmux0.0` metric 700。`curl -4 --interface qmapmux0.0 https://www.baidu.com` **HTTP 200**（约 2.5s），之后 QMAP RX=147。`gstatic.com/generate_204` 超时（国内链路，不作为 FAIL）。MPSS `running`，无 `ipa_hal`。测完已 `nmcli radio wifi on`；WiFi 连上后 metric 600 仍会压过蜂窝 700，验蜂窝必须看 `-I qmapmux0.0` 或先关 WiFi。

@@ -27,12 +27,18 @@ install -m 0644 "$STAGE/SM8650-CERRO.conf" "$ALT_UCM/SM8650-CERRO.conf"
 install -m 0755 "$STAGE/cerro-audio-route.sh" "$BIN/cerro-audio-route"
 install -m 0755 "$STAGE/cerro-voice-bridge.sh" "$BIN/cerro-voice-bridge"
 install -m 0755 "$STAGE/cerro-mm-voice-watch.sh" "$BIN/cerro-mm-voice-watch" 2>/dev/null || true
+if [[ -f "$STAGE/cerro-audio-bootfix.sh" ]]; then
+  install -m 0755 "$STAGE/cerro-audio-bootfix.sh" "$BIN/cerro-audio-bootfix"
+fi
 
 # User PATH usually has /usr/local/bin but not sbin
 install -d "${ROOT}/usr/local/bin"
-for b in cerro-audio-route cerro-voice-bridge cerro-mm-voice-watch; do
+for b in cerro-audio-route cerro-voice-bridge cerro-mm-voice-watch cerro-audio-bootfix; do
+  [[ -e "$BIN/$b" ]] || continue
   ln -sfn "/usr/local/sbin/$b" "${ROOT}/usr/local/bin/$b"
 done
+# WP 0.5 ignores main.lua.d; drop obsolete fragment if present
+rm -f "${ROOT}/etc/wireplumber/main.lua.d/99-cerro-alsa-ucm.lua"
 
 USER_UNIT_DIR="${ROOT}/etc/systemd/user"
 install -d "$USER_UNIT_DIR"
@@ -41,6 +47,9 @@ if [[ -f "$STAGE/callaudiod.service" ]]; then
 fi
 if [[ -f "$STAGE/cerro-mm-voice-watch.service" ]]; then
   install -m 0644 "$STAGE/cerro-mm-voice-watch.service" "$USER_UNIT_DIR/cerro-mm-voice-watch.service"
+fi
+if [[ -f "$STAGE/cerro-audio-bootfix.service" ]]; then
+  install -m 0644 "$STAGE/cerro-audio-bootfix.service" "$USER_UNIT_DIR/cerro-audio-bootfix.service"
 fi
 
 if id rong >/dev/null 2>&1; then
