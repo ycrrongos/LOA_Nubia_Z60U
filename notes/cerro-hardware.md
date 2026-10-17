@@ -113,3 +113,4 @@ SM8650 标准配套:pmk8550 / pm8550 / **pm8550b**(L11B/L12B/L13B/L14B 来自此
 - Linux 主线目前无 SSC/SLPI 用户态通路；`/sys/bus/iio` 空。自动旋转依赖此传感器。
 
 - 2026-10-17：装 `fastrpc.ko` 后出现 `/dev/fastrpc-adsp`；ADSP 上有 `libsns_*` skel。自动旋转仍缺 SSC 用户态。
+- 2026-10-17 registry：Android `persist` 含完整 `lsm6dso` HexagonFS registry（299 项）；`hexagonrpcd -s` 可起。QRTR 无 SNS；SEE 需 FastRPC 客户端，非 sensh/QRTR。

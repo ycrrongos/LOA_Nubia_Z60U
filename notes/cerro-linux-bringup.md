@@ -6,7 +6,7 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-17（听筒/扬声器 PASS；voice 路由 PASS/PCM 缺口；accel=fastrpc-adsp 已起、缺 SSC 用户态）
+最后更新：2026-10-17（传感器 registry+hexagonrpcd PASS；SEE≠QRTR sensh；IIO/旋转仍缺；屏已 Off）
 
 ### 蜂窝 / 短信（2026-10-15→16）
 
@@ -48,6 +48,16 @@
   4. `callaudiod` + `cerro-mm-voice-watch` 用户服务已 enable；有 MM Call 时自动 `voice-bridge on`。
   5. **10-17 22:20 补强**：`cerro-audio-route` 切 PW profile（Earpiece↔Speaker）+ AW；`CERRO_SKIP_PW=1` 留给 voice-bridge；`cerro-voice-bridge on` → `VoiceCall (Earpiece, Mic)`+Receiver+callaudiod AudioMode=1；`speakerphone` → VoiceCall Speaker；`off` → HiFi Speaker。symlink `/usr/local/bin`。
   6. **Modem 语音 PCM 仍缺口**：QCOM 通话音频在 ADSP↔modem 内，主线尚无 Voice graph/AGM 对等物。现网能切听筒麦克风路由，**不等于**对方能听到/听筒有远端声；那一步要另开 ADSP voice 拓扑。
+- **10-17 24:05 传感器 registry / sensh 结案（本轮）**：
+  1. 挂上 Android `persist`（`/dev/disk/by-partlabel/persist` → `/mnt/vendor/persist`），`rsync` 299 项 registry（含 33× `lsm6dso`）进 HexagonFS `/usr/share/qcom/sensors/registry/`。systemd：`mnt-vendor-persist.mount` + `cerro-sensors-registry.service`。`DIR` 日志是 DSP mkdir 哨兵，工作机 registry 里也有同名项。
+  2. 编装 `sensh` 2.1.1 → `/usr/local/bin/sensh`；`lookup accel` **超时无输出**。QRTR **无 SNS client 服务**（仅 thermal）——SM8650 走 **SEE/FastRPC**，旧 Pixel 系 QRTR+QMI sensh **不对路**。IIO 仍空，自动旋转未通。下一步需 FastRPC/libssc 客户端或上游 qcom SEE→IIO，不是再调 registry。
+  3. 副作用：`droid-juicer` postinst 曾卡死 apt；已 neuter+`apt-mark hold`。
+  4. 任务对照：听筒/扬声器/UCM **PASS**；通话 AP 路由+callaudiod **PASS**、远端 CVD PCM（tplg SID=3）**仍缺口**；accel 基建 **PASS**、用户态 IIO **缺口**。屏：`card0-DSI-1/dpms=Off`（greeter，无 PowerDevil）。
+- **10-17 23:47 传感器续推**：
+  1. 装 Debian `hexagonrpcd`/`libhexagonrpc`；`INIT_ATTACH_SNS` 到 `/dev/fastrpc-adsp` **PASS**（`-s`）。
+  2. 按 `hexagonrpcd(1)` 映射铺 `/usr/share/qcom/{sensors,socinfo,dsp}`（`sns_reg.conf`←Aurora `sns_reg_config`，config JSON，假 socinfo `soc_id=557`/`MTP`；ADSP libs 自 `dsp_a`）。本机无 `/sys/devices/soc0`。
+  3. journal 不再报缺 `sns_reg_config`；仍有 `Tried to open .../registry/DIR for writing`（疑 DSP 建目录哨兵）。**IIO 仍空**——缺 SSC→IIO 用户态客户端（非 `iio-sensor-proxy` 单独能补）。
+  4. Voice：现网/ MTP/QRD tplg **均无 SCENARIO_ID=3 (VOICE_CALL)**，仅 playback/record。远端通话 PCM 仍要另做 voice 图/CVD。
 - **10-17 22:52 任务进度核对 / 续推**：
   1. **听筒+扬声器 Android 式切换**：已完成（UCM/PW/AW Receiver↔Music）。
   2. **通话 voice 桥接**：AP 侧路由完成（MM→callaudiod→VoiceCall Earpiece）；`voice-bridge` 另加本地 sidetone loopback。**远端/上行 modem PCM 仍缺**（tplg 仅 MM1/MM2，无 Voice Call SID=3 图）。

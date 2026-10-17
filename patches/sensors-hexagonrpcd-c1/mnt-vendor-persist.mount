@@ -1,0 +1,10 @@
+[Unit]
+Description=Mount Android persist at /mnt/vendor/persist
+Before=hexagonrpcd.service cerro-sensors-registry.service
+[Mount]
+What=/dev/disk/by-partlabel/persist
+Where=/mnt/vendor/persist
+Type=ext4
+Options=rw,nosuid,nodev,noatime
+[Install]
+WantedBy=multi-user.target
