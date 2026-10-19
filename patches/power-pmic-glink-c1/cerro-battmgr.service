@@ -1,0 +1,17 @@
+[Unit]
+Description=Cerro battery manager (pmic-glink overlay + qcom_battmgr)
+After=local-fs.target remote-fs.target
+Before=upower.service
+ConditionPathExists=!/sys/class/power_supply/qcom-battmgr-bat
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/modprobe cerro-pmic-glink-overlay
+ExecStart=/bin/sleep 1
+ExecStart=/usr/sbin/modprobe qcom_battmgr
+ExecStart=/usr/sbin/modprobe typec_ucsi
+ExecStart=/usr/sbin/modprobe ucsi_glink
+
+[Install]
+WantedBy=multi-user.target

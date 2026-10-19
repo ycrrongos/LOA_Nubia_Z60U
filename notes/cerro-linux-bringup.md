@@ -6,8 +6,23 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-17（传感器 registry+hexagonrpcd PASS；SEE≠QRTR sensh；IIO/旋转仍缺；屏已 Off）
+最后更新：2026-10-19（电源 PASS：no-PDR battmgr + UCSI；`charge_type=Fast` / PD_PPS）
 
+### 搁置（2026-10-18，切电源优先）
+
+- **通话远端 PCM**：AP 路由/听筒 PASS；tplg **无 SID=3 VOICE_CALL**，ADSP↔modem CVD 未通。回访点：`patches/audio-tx-amic-c1` + UCM VoiceCall。
+- **自动旋转**：`hexagonrpcd -s`+persist registry PASS；IIO 空（SEE≠QRTR sensh）。回访点：`patches/sensors-hexagonrpcd-c1`。
+
+### 电源 / 电池（2026-10-18→19）**PASS**
+
+- **根因**：builtin DTB **无 `pmic-glink`** → `qcom_battmgr` 永不 probe → `/sys/class/power_supply` 空，无电量/充电态。
+- **候选**：`patches/power-pmic-glink-c1/`（runtime overlay ko + no-PDR `pmic_glink`/`qcom_battmgr`/`typec_ucsi`/`ucsi_glink` + `battmgr.jsn`；DTS 已永久加 MTP 式节点，待下次编 Image）。
+- **08:21 实机**：overlay apply PASS；出现 `qcom-battmgr-{bat,usb,wls}`；读 capacity/status → **EAGAIN**（疑 `charger_pd`/PDR 未 UP）。随后 USB gadget 断——后证多为低电/线松，非必然 hang。
+- **09:25 续**：用户确认昨夜是**没电**不是 crash。capacity 仍 EAGAIN。dmesg：`PDR: service lookup for tms/servreg failed: -6`。Cerro ADSP servreg **无 charger_pd**（仅 audio/root/sensor），上游 `pmic_glink` 死等 PDR。已打 `0001-pmic-glink-skip-charger-pd-pdr.patch`（去 PDR 门闩，RPMSG 即 UP）。
+- **10-19 Android 基线（slot A，ADB+KSU）**：`battery capacity=73 status=Charging charge_type=Fast`；UCSI `usb_type=[C] PD PD_PPS`；`typec port0` sink。PC USB 上 `input_current_limit≈500mA`（墙充才会拉高 PPS 电流）。
+- **10-19 Linux PASS（slot B）**：装 no-PDR 栈 + `battmgr.jsn` + enable `cerro-battmgr.service`。实读：`capacity=72/73 status=Charging charge_type=Fast`；`qcom-battmgr-usb` online；UCSI `usb_type=[C] PD PD_PPS`；`typec port0`+partner；电池 `current_now≈-0.9A`（充电）。与 Android 同栈语义对齐。安装脚本：`patches/power-pmic-glink-c1/install-on-phone.sh`（ECM `192.168.68.1:8768`，校验 ko 字节数防 0 字节假装）。
+- **坑**：① 主机 ECM 需手配 `192.168.68.1/24`（`ip route get 192.168.68.1` 曾误走 wlan）；② 曾 curl 出 **0 字节 .ko** 仍 `install`——必须 size 校验；③ modprobe 期间 ACM/USB 可能抖，装机用手机 `nohup` 后台跑；④ `switch-to-linux.sh` 的 `adb_has` 用了 BRE `grep`（`|` 不生效）→ 误报无设备，已改 `grep -E`。
+- **下一步（非阻塞）**：下次编 builtin DTB Image 去掉 runtime overlay；墙充上再验 PPS 大电流数值（PC 口只能证 Fast/PD_PPS 标志）。
 ### 蜂窝 / 短信（2026-10-15→16）
 
 - **目标**：插卡 4G/5G 上网（系统路由可用）+ 短信；操作中 60Hz / 低亮度 / 做完熄屏。
