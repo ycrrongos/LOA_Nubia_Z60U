@@ -54,7 +54,7 @@
 		 * Stock ABL leaves /proc/cmdline empty for our boot.img, so
 		 * boot.img --cmdline is ineffective. Put bring-up args here.
 		 */
-		bootargs = "ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=cam-c1";
+		bootargs = "ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=cam-c7";
 	};
 
 	gpio-keys {

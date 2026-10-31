@@ -6,7 +6,17 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-31（A1 CAMSS/CCI 上线：media0+video×17 PASS；早期 autoload 竞态用开机有序加载绕开；蜂窝硬件搁置）
+最后更新：2026-10-31 下午（显示栈丢失事故全记录 + 面板驱动重建进展；相机 SoC 里程碑保持）
+
+- **2026-10-31 下午 显示栈丢失事故（用户报「boot 没显示驱动、屏幕一直不亮」→ 根因 + 重建进展）**：
+  1. **根因**：10-21 清理 WIP 时把内核树 `setup.c` 还原 stock，**连带洗掉了从未提交的本地显示栈文件**；此后从未重编全量镜像（一直走 splice），故未暴露。我重链的 cam-c1/c2 系列首次踩中。**丢失清单（好内核 config/strings vs 树全量对比）**：① `panel-raydium-rm692h0.c`（`=y`，config 符号消失）② `dsi_host.c` 的 DSC `slice_per_pkt=2` 补丁（upstream TODO 原文还在）③ 最终版 `setup.c`（字符串证据：`mid/late ABL` 内存扩展、`BL initrd` 禁用、`prefer_builtin_dtb`、**`cerro: msm_drm_register enter/done modeset=%d`**）。**GitHub 远程已核对 = 本地子集，从未包含内核 .c**（仓库规矩 build/ 不进 git）。审计其余 =y 符号：无其他丢失。
+  2. **判错过程（教训）**：relink-test 只验网络/SSH 就判「重链无罪」，漏验显示——实际 relink-test 就已无显示（journal drm 行数=1）。**以后判 PASS 必须含显示（fb0/连接器）**。
+  3. **cam-c2（装回 stale WIP 快照）= 更早死**：快照里 harvest 被 stub（`(void)cerro_harvest_bl_fdt`），只剩 256MiB fallback，90MB initramfs 解压即炸 → 无 gadget。**`patches/setup.c.cerro-wip` 是中间快照非最终版，勿再直接用**。
+  4. **cam-c4（好内核 + 破坏内建 DTB magic 逼 fallback）= 不启动**：最终版 setup.c 的 fallback 行为与快照不符。
+  5. **重建进展（cam-c7/c8）**：`panel-raydium-rm692h0.c` 重写（rm692e5 模板 + notes/panel-rm692h0 厂商数据 + DCS 背光 0x51 初值）+ `MIPI_DSI_MODE_DSC_ALL_SLICES_IN_PKT`（BIT(12)）+ dsi_host 三处 spp=2 数学（正好补上游 TODO）。**cam-c7：管线全起**（DPU bound DSI/GPU、`Initialized msm 1.13.0`、fb0、`card0-DSI-1 connected enabled`、背光 999/3515）但屏黑。**cam-c8：从好内核 blob 0x18fe7f8..0x18feb78 提取确切命令表**（339 写，含 60Hz 体+120Hz 切换、`bd 00`/`b3 7f` 等毒化条目已被原驱动抠掉）逐字节复刻 + 120Hz preferred——**仍黑屏**。
+  6. **结论**：字节流一致仍不亮 → 差异在**发送语义**（流的分组/写类型假设可能错）、**dsi_host DSC 其余细节**、或 **msm_drm_register** bits。下一步（未做）：a) 驱动加 DCS 回读探针（0x0A power_mode：0x9c=面板活、0x00=毒化）定位是「面板没收到/没听懂」还是「DSC 流不对」；b) 反汇编好内核 prepare 调用路径核对流的解释方式；c) msm_drm_register 语义挖掘。
+  7. **产物**：`build/dualboot/linux-cam-c7.img`（`a70be99b…`）/`cam-c8`（`7f03ced8…`）；内核树两个快照 commit（`a8cccd207` 事故现场、本次重建后另交）。**手机已回 rescue（`a9430604…`）显示正常**。
+  8. **防再丢（用户要求）**：内核树 `build/linux-7.2` 有自己的 git——**树内任何本地改动（.c/.config/wrap/dts）必须随手 commit 到树内 git**，出镜像时把树内 sha 记进 bringup；已加入 AGENTS.md。
 
 - **2026-10-31 A1-DT 相机 SoC 上线 PASS（camss+CCI enabled → `/dev/media0` + video×17，开机自动加载，回归全绿）**：
   1. **镜像方案 E**（DTB 结构性变大无法等长 splice：新 139988B > 老槽 137535B，老 DTB 是 10-21 手工精简版）：从运行镜像 Image 里解出内嵌 gzip initramfs（90619392B cpio，`cerro_fix_lib`/`CONSOLE_ON`/`cerro-s5ca` 齐）→ 放回 `usr/cerro-initramfs.cpio.gz` → 新 DTB 装 `arch/arm64/kernel/` 删 `.dtb.o` → `make LLVM=1 Image` 重链 → 按 rescue 的 header 参数（v2/pagesize/offsets/127B ramdisk stub 原样）mkbootimg 重打包 → pad 100663296。产物 `build/dualboot/linux-cam-c1.img`（sha `e7e79456…`，DTB tag `cerro_dtb=cam-c1`）。**只刷 `boot_b=/dev/sde42`**（Linux 下 dd+读回校验，勿动 A 槽安卓；仓库参考 `tools/cerro-dualboot/linux/switch-to-linux-variant.sh`，但注意 Debian 上没有 `/dev/block/by-name`，用 `/dev/disk/by-partlabel/boot_b`）。
