@@ -1,27 +1,21 @@
 # Cerro active experiment card
 
 ## status
-
-`aborted`（显示重建 cam-c7/c8 未点亮，已回滚 rescue 保用户可用；下一刀见 evidence_log）
+`in_progress` — 显示历史取证/源码恢复；下一步刷 disp-r1（仅 boot_b）。
 
 ## one_variable
-
-（历史）显示栈重建：自建 panel 驱动 + dsi_host spp=2 + 好内核字节流复刻（cam-c8）。
+恢复已知好显示栈：以旧 Cursor 最终记录与好内核为依据核对 panel/DSI host/显示 DT。
 
 ## falsifier
-
-cam-c7/c8 屏幕仍黑 = 命中（字节流一致仍不亮 → 差异在发送语义 / dsi_host 其余细节 / msm_drm_register bits）。
+恢复代码与最终记录/好内核行为不符，或实机仍黑屏/帧完成超时，则不判完成。
 
 ## blast_radius
-
-boot_b（已回滚 rescue sha `a9430604…`）。相机 SoC 里程碑（media0+video17+unit 自动加载，cam-c1 血统）不受影响，待显示镜像就绪后合并回归。
+当前先改本机内核源码，保留现有 cam-c10 差异并提交。实机实验仅 Linux boot_b，保留 A 槽 Aurora 与 rescue 回滚锚点；不改 rootfs/音频/电源 UX。
 
 ## regression_must_pass
-
-（rescue 回滚后）显示 fb0/用户可见、ACM/SSH、A 槽安卓不变。
+构建前 guard PASS + tree SHA；实机本枪标签、fb0/DSI、用户可见画面、触控、ACM/SSH、Wi-Fi、媒体声；稳定观察至少 2 分钟。黑屏即取证后回 rescue。
 
 ## evidence_log
+- 2026-10-31：用户要求从旧 .cursor、Aurora Cerro 树及旧好内核恢复显示。已有 cam-c9 记录只证明管线注册，黑屏尚未解决。
 
-- 2026-10-31 下午全记录见 bringup「显示栈丢失事故」条。要点：丢失三件套确认（panel 驱动 / dsi_host spp=2 / 最终版 setup.c 含 msm_drm_register）；cam-c7 管线全起（fb0、DSI-1 connected enabled）但屏黑；cam-c8 好内核字节流（blob 0x18fe7f8..0x18feb78，339 写）逐字节复刻 + 120Hz preferred 仍黑。
-- **下一刀（显示）**：a) 驱动加 DCS 回读探针（`0x0A` power_mode：0x9c=面板活着、0x00=毒化）区分「面板没收到/没听懂」vs「DSC 流不对」；b) 反汇编好内核 prepare 发送路径核对流的解释（分组/写类型）；c) `cerro: msm_drm_register` 语义挖掘。
-- 2026-10-31 中午 A1 相机 SoC 里程碑 PASS（6dbb396）：camss+CCI enabled、unit 自动加载、media0+video17、回归绿；早期 udev autoload 竞态已用 unit 时序绕开（根因遗留）。
+- 构建 guard PASS，tree=52fa4bbc4；恢复 panel typed 包多重集与好内核一致。下一步上传 disp-r1，校验 boot_a 保持 b7dddcc1…，刷前/后读回 boot_b sha。

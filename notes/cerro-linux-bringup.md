@@ -6,7 +6,20 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-31 下午晚段（.cursor 备份考古：面板驱动 v3 复原，面板活了；剩余缺口=host 侧 DSC/CMD 细节；rescue 已恢复）
+最后更新：2026-10-31 显示恢复 disp-r1（历史源码重建并编译；准备实机验收，尚未 PASS）
+
+- **2026-10-31 disp-r1 构建/数据核对**：242 个常量 typed 包（type+完整变长 payload）与好内核 243 处消息提交去掉动态 BD 后的多重集逐项一致，无多余/缺失；原 339 写方案作废。首次编译因 panel 引用 MSM 私有 dsi.h 触发 msm_drv.h include-path 缺失，改用原有 getter 的前置声明后重编。测试前 boot_a sha `b7dddcc1…`，boot_b(cam-c10) `0f750e6c…`。
+
+- **2026-10-31 显示重新取证：发现 cam-c9/c10 重建错误，修复候选 disp-r1（未实测）**：
+  - 实机 SSH 当前为 `cam-c10-spp1-20261031`、boot id `8fd7254b…`，并非前文所称 rescue。ACM USB=1d6b:0104。
+  - 原记录 7f8c3d7b L137：ACTIVE_LOW reset 必须 `0,1,0`；重建版用了 `1,0,1`，结束仍复位。L1021：s5bt 取消反相 DBV，写 3515 后用户 L1027 明确“亮了”。这两个已验证修复均被重建遗漏。
+  - 好内核 `rm692h0_on` 0xb6e738..0xb77630 反汇编：243 处 typed 消息提交，首包 FE98 为 dtype 0x39；此前按常量区顺序切出“339 写”并统一 0x15 是错误推断。已从 L336 的完整函数依次重放 L341..L761、L3528、L3566..L3578 的源码替换，恢复最终有类型/变长/120fps 黑线块的 on()。
+  - 候选恢复 reset、正向亮度、typed 包及 60/90/120 模式；补回 host mode getter，DSC flag 用历史 BIT(8)，避免重建 BIT(12) 与 HS_PKT_END_ALIGNED 冲突。初次测试仅改显示栈，保留 rootfs、A 槽与 rescue。
+
+- **2026-10-31 用户指定显示恢复重新取证（进行中，未判 PASS）**：
+  - 当前最高优先级改为恢复丢失显示栈，暂停相机队列。用户指定三份资源：旧 `.cursor` 全流程/代码；Aurora AOSP Cerro 设备树（历史 PenguinOS/ArtistAOSP 按用户说明均指此参考）；显示正常的旧 boot/内核，可刷入并反汇编对照。
+  - 先保留当前未提交 cam-c10 差异（panel 去掉 ALL_SLICES 标志及 DT 标签）；逐项核对历史最终态和好内核，不直接沿用“host 已定位”的推论。DSI 写成功、fb0 存在不证明面板亮。
+  - 本刀计划：源码/二进制考古，确定 panel/host/DT 的最终差异，先提交恢复源码，再 guard、构建和实机回归。蜂窝硬件损坏仍搁置。
 
 - **2026-10-31 下午晚段 显示栈重建 v3（.cursor 备份考古；面板驱动基本复原，显示仍未亮，缺口精确定位）**：
   1. **素材**：用户备份 `rong-important-backup-20261013-231723.zip`（545MB）内 `.cursor/projects/mnt-data-LOA-Nubia-Z60U/agent-transcripts/`（55bc8cee 3MB = 8-12 s5aa 日；7f8c3d7b 6.4MB = 8 月→10-08 长会话）含 s5an→s5ew 全部改驱动的命令现场（75 个大块已提档 /tmp/panel-hist/ + /tmp/panel-chronology.txt）。
@@ -1834,4 +1847,3 @@ CELLULAR GUI POLKIT FIX (2026-08-19): user reported GUI control buttons all fail
 - `auto-flash-watch.sh --daemon` 已等 9008/fastboot 双槽刷。舵机串口当前无 Espressif by-id，无法自动进 9008。
 
 **验收**：刷后 ACM 见 `[cerro-s5ca] REPAIR` 或 `lib ok`；`/lib` 为 symlink；可登录。
-
