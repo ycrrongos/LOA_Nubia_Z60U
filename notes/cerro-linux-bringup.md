@@ -6,7 +6,181 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-19（电源 PASS：no-PDR battmgr + UCSI；`charge_type=Fast` / PD_PPS）
+最后更新：2026-10-31（A1 相机模块投递+加载 PASS；Aurora 对照缺口入队；蜂窝硬件搁置）
+
+- **2026-10-31 A1 相机模块投递 + 加载 PASS（单变量：只装 .ko，不改 DT / 不刷机 / 不碰蜂窝音频）**：
+  1. **模块来源**：`build/linux-7.2`（`build/linux` 是其符号链接；**clang + `make LLVM=1`**）里 camcc-sm8650 / i2c-qcom-cci / qcom-camss 的 `.ko` 10-23 已存在可直接用；但 `modprobe qcom-camss` 报 Unknown symbol（`v4l2_async_nf_*`、`v4l2_fwnode_endpoint_parse`）——`CONFIG_V4L2_ASYNC/FWNODE=m`，10-23 只编到 `.o` 没链 `.ko`。补编坑：主机缺 `bc`（timeconst.h 生成）；`Module.symvers` 是指向搬家前 `/mnt/data/...` 的悬空链接（真实 `vmlinux.symvers` 在 `build/linux-7.2/` 根，已 `ln -sf` 修复）。
+  2. **modpost 闭包缺口**：单目标 `KBUILD_MODPOST_WARN=1` 编出 `v4l2-async.ko`/`v4l2-fwnode.ko`（余 2 个 unresolved 警告，运行时由 videodev 解析）；camss 的 `depends` 因此不含它们 → 手机 `/etc/modprobe.d/cerro-camss.conf` 写 `softdep qcom-camss pre: v4l2-async v4l2-fwnode`，之后**单命令** `modprobe qcom-camss` 全栈自载 rc=0。
+  3. **投递路径（安全，未重演 10-23 `/lib` 事故）**：归档 `build/cerro-cam-modules-20261031.tar.gz`（9 个 .ko，sha256 `d7d9d3e1…`，条目全为 `lib/modules/<kver>/…`）→ Wi‑Fi scp（手机 `192.168.0.68`；**ECM 22 口被主机 nftables 拦**、ping 却通——以后传输走 Wi‑Fi 或放行 ECM）→ 手机 `tar -C /usr -xzf` + 两个 v4l2 用 `install -D` 直达；前后 `/lib -> usr/lib` 均完好。
+  4. **验收**：vermagic `7.2.0-rc5-dirty` 与运行内核一致；camcc/cci/camss + v4l2/mc/videobuf2 栈 lsmod 全在位、dmesg 零 oops；全栈 `rmmod` 干净（unwind_rc=0、无残留引用）后单命令重载 rc=0；boot id `287f1420…` 全程未变；`/dev/media*`、`/dev/video*` 无节点 = 预期（DT camss 仍 disabled，未 probe）。
+  5. **回归 PASS**：default sink `alsa_output.platform-sound.HiFi__Speaker__sink`、`paplay /usr/share/sounds/alsa/Front_Center.wav` OK、Wi‑Fi 会话存活。
+  6. **下一刀（A1 续，另开实验卡）**：DT enable camss/CCI 节点（先查供电/regulator 与 CCI 引脚），目标是 probe 出 media/video 节点；传感器驱动（imx800 等）仍是更长活。
+
+- **2026-10-31 Aurora vs Linux 功能缺口归档（用户确认蜂窝硬件坏，暂不做）**：
+  1. 完整队列写入 `notes/cerro-open-work.md`「当前队列」：**A1 相机 → A2 自动旋转 → A5 震动 / A4 NFC / A6 耳机 → A3 指纹**；半成品 **B1–B5**（墙充 PPS、关机充电 UI、ToF/闪光灯、肩键、DP alt-mode）。
+  2. **搁置**：移动数据/SIM/通话远端声/IMS/短信/GNSS（硬件）；历史蜂窝 PASS 仅作回归锚点。
+  3. **已对齐勿重开**：显示触控、GPU/桌面、Wi‑Fi/BT、媒体扬声器+手麦+听筒、电量充电读数、电源键 v2、双系统、USB gadget。
+  4. 下一刀仍是 **A1 只装 camss 系 .ko**（禁止 `tar -C /` 带顶层 `lib/`）；动手前重填 `cerro-active-experiment.md`。
+
+- **2026-10-23 18:59 恢复 Android A 槽（用户验蜂窝/排线）**：
+  1. 救援 `linux-debug-rescue` 曾双槽刷 → `boot_a` 变 Linux；`qbootctl -s 0` 仍起 Linux。
+  2. ECM 推入 `backups/aurora-slot-a-20261015`，**只** `dd` → `boot_a`/`vendor_boot_a`/`init_boot_a`/`dtbo_a`；`boot_b` sha 不变。
+  3. 验收：adb `320243913409` = **NX721J** / `PQ83A01`，`boot_completed=1`。待用户验蜂窝。
+  4. 用户确认：安卓上蜂窝仍挂 → **硬件**（排线/座子）嫌疑坐实；非本轮 Linux 软件回归。
+
+- **2026-10-23 debug-rescue boot + `/lib` REPAIR PASS**：
+  1. 产物：`build/dualboot/linux-debug-rescue.img`（`boot-live-b` + init：`CONSOLE_ON=1` + `cerro_fix_lib`）。
+  2. 用户进 fastboot → `flash-boot-any.sh` **双槽** `boot_a`+`boot_b` OK；gadget `1d6b:0104` + ACM `cerro-debug`。
+  3. dmesg：`REPAIR /sysroot/lib was real dir` → `-> usr/lib`；nested `debian-root` 同样 REPAIR。
+  4. 验收：`/lib -> usr/lib`；ACM 可登录 `rong@nubia-cerro`；uptime 稳定。systemd 当时仍 `starting`（正常冷启）。
+  5. 备注：`auto-flash-watch` 见 d00d 仍 stuck waiting（`fb_ok`/竞态）；本轮改为手动 `flash-boot-any`。
+- **2026-10-23 相机装 ko FAIL / `/lib` 事故**：
+  1. 单变量本意：只装 `camcc-sm8650`+`i2c-qcom-cci`+`qcom-camss`（及 v4l 依赖）到 modules。
+  2. **事故**：`tar -C / -xvf` 归档含真实目录 `lib/`；Debian merged-/usr 上 **`/lib` symlink 被换成真目录**，只剩 `lib/modules/…`，动态链接全挂。SSH reset、ACM 无 getty。
+  3. **门禁教训**：装模块必须 `tar` 到 `/usr` 或路径只有 `lib/modules/...` 且确认不会替换 `/lib`；禁止对 `/` 解开带顶层 `lib/` 的包。
+  4. **救援**：已由 debug-rescue init 在 switch_root 前修好（见上条 PASS）。`tools/cerro-fix-lib-symlink.sh` 仍可作 Android 侧备用。
+  5. 模块产物仍在主机 `/tmp/cerro-cam-modules.tar`（下一刀再用**正确**路径装，勿 `tar -C /`）。
+- **2026-10-23 相机证据盘点 PASS（单变量；测 agent 门禁）**：
+  1. **门禁**：填了 `notes/cerro-active-experiment.md`；只用 SSH 只读 + 无效 modprobe；boot id 不变；**未**碰蜂窝/IMS。
+  2. **实机**：无 media/video 节点；`isp@acb6000`=`qcom,sm8650-camss` **disabled**；无 CCI 设备节点（仅 pinctrl）；`CONFIG_VIDEO_QCOM_CAMSS=m` 但 modules 目录空。
+  3. **源树**：`build/linux` 已有 SM8650 CAMSS 驱动与 `sm8650.dtsi` camss/cci；HDK overlay 参考 `sm8650-hdk-rear-camera-card.dtso`。
+  4. **传感器（Android proprietary）**：imx800、imx906、ov12d2q、ov50e40、ov64b40；主线无对应 i2c 驱动 → 出图是长活，先 CAMSS enable/模块投递。
+  5. **agent 配置观感**：hooks 在写实验卡时注入了 CERRO GATE；本轮未叠子系统。下一刀另开实验卡。
+- **2026-10-22 19:26 agent 防跑偏基建**：
+  1. 确认：长工具循环**不会**每步重读 `AGENTS.md`；compaction 后更易丢「单变量/blast radius」。
+  2. 未装嵌套 AGENTS（Cursor 易 Always 灌爆）→ `.cursor/rules/cerro-{cellular,audio}.mdc`（globs）+ 收短 `cerro-agent.mdc`。
+  3. 项目 skill：`.agents/skills/cerro-bringup-gate/`；实验卡：`notes/cerro-active-experiment.md`。
+  4. hooks：`sessionStart`/`postToolUse`/`beforeShellExecution` 注入短门禁；`preCompact` 提示用户 nudge。
+  5. 上游 `linux-phone-porting`：本机 GitHub/代理当时不通，待 FlClash 后再 `clone` 到 `~/.agents/skills/`。
+- **2026-10-22 08:02 用户要求回退到 10-17**：
+  1. **根因**：本轮为修移动数据乱停/重连 IMS+MM/NM，IMS 与 3GNET 抢 `qmapmux`，数据面反复 DOWN；又叠了未完成的 wwan-apply。
+  2. **已恢复**：锚点 `e21b13e`/`ceaaed7` — UCM **HiFi+VoiceCall**、`callaudiod`、`cerro-mm-voice-watch`、`cerro-voice-bridge` 重装；仓库 `install-audio-voice.sh`/UCM 同步回 10-17。
+  3. **蜂窝**：`81voltd`/`cerro-qcom-imsd`/`cerro-ims-iface` **disable**（10-17 无此栈）；删 NM `98-cerro-ims-iface`；`cerro-cellular` autoconnect=no；启用并跑通 `cerro-cell-connect`（`qmapmux0.0` IPv4、`ping`/`curl baidu=200`）。
+  4. **明确代价**：无 IMS → VoLTE 信令不在 10-17 路径上；先保媒体+上网。未装本轮 wwan-apply。
+- **2026-10-22 07:45 日用版纠偏 + 槽位成功标记**：
+  1. ABL **不吃** boot.img cmdline（实跑 cmdline 全来自内置 DTB `ignore_loglevel`…）；只改 header quiet **不能**关 CONSOLE_ON。
+  2. 正确日用：嵌入 `/init` 的 `CONSOLE_ON` 改为仅 `cerro_acm_log` 才写 ttyGS0；**`setup_acm` 仍跑**（ACM/ECM 保留）。产物 `build/dualboot/linux-daily.img`（SHA `f2e4db59…`）。
+  3. 登录界面后清重试：`cerro-slot-success.service`（`After=sddm` → `qbootctl -m`）。B 槽已 `Successful=1 Bootable=1`。
+  4. 误把 Linux 刷进 `boot_a` 后已从 `backups/aurora-slot-a-20261015/` 恢复 Android `boot_a`+`vendor_boot_a`。
+
+- **2026-10-22 07:10–07:15 #4 用户反馈：能接打、无远端声；挂断后媒体声卡死只能重启**：
+  1. **根因**：通话自动路径里 AGM 为抢 MI2S 做了 `MultiMedia1 off` + `pactl suspend-sink`；挂断恢复不干净 → PCM `RUNNING` 但 `avail=0`/`tstamp=0`，HiFi 僵死。
+  2. **回退（对齐「10-16 挂了还能用」+ 用户「不要分通道」）**：UCM **只留 HiFi**（删 VoiceCall use-case）；`voice-bridge` 只切 `HiFi Earpiece↔Speaker`（同一 MultiMedia1）；`mm-voice-watch` **不再调 AGM**；`callaudiod` disable。社区：pmOS/WP 也是同一声卡上切 profile/port；Qualcomm 官方 VoIP 另节点是远期，当前先保媒体不崩。
+  3. **AGENTS.md**：接打验收必须用 **登录 KDE 后的 Dialer**；对照资料优先网上/Linux，安卓只作参考不能全抄。
+  4. 软重启后 `paplay` PASS；远端声仍缺口（AGM 改 probe-only，待不伤 MultiMedia1 的方案）。
+- **2026-10-22 00:33 #4 passthru 开机晚载**：`cerro-aud-pasthru.service`（`After=sound.target`，脚本内等 `q6apm_lpass_dais` 再 `modprobe` shmem/pasthru）— 对症等 ADSP，不是 timer/摘 wants。已 enable。
+
+
+- **2026-10-22 00:31 #4 共存链路联调 PASS（机器证据；听感未标 PASS）**：
+  1. 软重启清 AGM leftover（`open=-68`）；晚载 passthru 后 `voice-bridge on` + `cerro-voice-agm start`（**不关 PW**）→ RX/ProxyTX 双 `start=0`。
+  2. 建呼：`mmcli -m any --voice-create-call="number=10086"` 后 **`mmcli -m any -o N --start`**（仅 create 会停在 `unknown`）→ ~4s **`active`**；通话中 `Active Profile: VoiceCall (Earpiece, Mic)` + PW `active`。
+  3. 挂断：`agm stop` + `bridge off` → HiFi Speaker + `paplay` OK。
+  4. 修：`test-agm-voice-rxtx.c` RX `open` 失败立即退出（禁止 `open=-68` 还 hold 3600s）。
+- **2026-10-22 00:05–00:25 #4 电话回退 + 正确 AGM 共存**：
+  1. **用户否决**：以停 PipeWire 换 AGM `start=0` 的路径作废（毁媒体，不能当完成）。
+  2. **回退 AP 到 10-17 晚**：锚点 `127e10a`/`ceaaed7`/`e21b13e` — UCM + `cerro-voice-bridge` + `callaudiod` + `cerro-mm-voice-watch`（sidetone 仅本地）。手机已重装；`cerro-voice-agm.sh.disabled` 去掉。
+  3. **IMS 保留**（信令）：`81voltd`+`qcom-imsd` 仍 active；与 10-17 音频栈叠用。
+  4. **共存根因**：VoiceCall UCM 默认 `PRIMARY_MI2S_RX Audio Mixer MultiMedia1` on，BE 被 MM1 占住 → AGM `start=-131`。断 MultiMedia1（`off,off`）+ 卸 sidetone/suspend sink 后，**PW 不关**即可 RX `start=0` + Proxy TX `start=0`。
+  5. **脚本**：`cerro-voice-agm.sh` 去掉 `stop_pw`；watch = bridge on → AGM start → 挂断反过来。sudoers `cerro-voice-agm`。冷启仍须等 ADSP 再 `modprobe` shmem/pasthru（`/dev/aud_pasthru_adsp` 曾缺 → `agm_init=-131`）。
+  6. **资料**：pmOS 2026-05 明确 SM8350+ AudioReach **不能**用 q6voice(d)；Qualcomm Linux 文档是 PW+PAL+AGM 同栈。下一步：真机听感确认；Fluence TX；passthru 开机晚载。
+- **22:52–23:30 #4 VoLTE IMS + AGM（重大进展；AGM 停 PW 段已作废）**：
+  1. **`81voltd`**：stock unit `PrivateNetwork=yes` → `AF_QIPCRTR` errno97；drop-in `PrivateNetwork=no` 后 service770 PASS。IMS bearer `apn=ims` IPv6；`qmapmux0.1` 常 DOWN → `cerro-ims-iface.sh`。
+  2. **`qcom-imsd`**：需 openimsd `libqmi`（`/opt/cerro/libqmi-openimsd`）+ GI；修 `_config` 与 StateMachine 冲突→`_imsd_cfg`；PolicyManager `*Settings`；GEnum `value_nick`。IMSA **registered** / Voice **available**。
+  3. **建呼**：`mmcli` 10086 → **state=active**（此前 dialing→terminated）。`Audio format rate=0` 仍预期（HOSTLESS）。
+  4. **AGM**：PipeWire 占 MI2S 时 `start=-131`；停 PW 后 RX `start=0`。TX Fluence `open=-131`；Proxy TX `open/start=0`（prepare=-95）。通话中 RX+ProxyTX 同时 start=0；挂断后 HiFi paplay + WWAN 204 PASS。
+  5. **误进 Android**：Linux `reboot` 曾落到 `_a` Android；`linux-boot.img` bootswap 进 fastboot；双槽刷回 `boot-v2-pmic-imem-c5-init.img`（SHA `560e3441…`）恢复。
+  6. **仓库**：`patches/cellular-ims-c1/`；`test-agm-voice-rxtx.c` / `cerro-voice-agm.sh`；`cerro-mm-voice-watch` 改 AGM。`q6voiced` 对 `hw:0,4` 失败（主线无该节点）可忽略。
+  7. **听感**：机器证据到 graph start；**听筒是否有 10086 声待用户确认**后才能标远端 PCM PASS。
+- **22:42–22:52 #4 建呼信令（已由 IMS 越过）**：
+  1. QMI Dial → `origination` + `mode=lte`，MM 侧 `dialing`，约 45s `terminated`，从未 `active`。`Audio format rate=0`（远端应走 modem↔ADSP，不经 MM PCM）。
+  2. LTE `Voice support=yes` / `IMS voice support=yes`；QRTR 有 IMS settings/app/priv 服务，但 `qmicli --ims*` / `--imsa*` → `InvalidOperation`（须 `-p` bind 后再 get）。
+  3. 自建 `qmicli-cerro` 可设 NAS voice domain：`cs-preferred`/`cs-only` 已写入并经 disable/enable 生效；**仍**是 `mode=lte` origination——联通侧基本是 VoLTE，CSFB 救不了。当时阻塞在 **IMS 注册**。
+  4. 工具：`/home/rong/bin/qmicli-cerro`；补丁笔记 `patches/cellular-voice-domain-c1/`；RX 探针 `patches/audio-ar-voice-c1/test-agm-voice-rx.c`。
+- **22:25–22:42 #4 ARGS 通话图（继续）**：
+  1. **`set_config` segfault 根因**：`session_obj_set_config` 无条件 `*buffer_config`；HOSTLESS 也必须传非 NULL `agm_buffer_config`（可全 0）。
+  2. **RX 全链路 PASS**：`aif_media`→open→config→`VCPM_PARAM_ID_VSID(0x11C05000)`→prepare→start→stop→close 全 0。缺 `agm_aif_set_media_config` 时 prepare=-131（HW EP rate=0）。
+  3. **TX Fluence**：ACDB alias 正确（Handset_Mic+SMECNS+Voice_Call_Tx+VSID），但 SPF `graph_open failed:1`。Proxy TX（DEVICETX=0xA3000008）可 open。AMDB register 回 `AR_EALREADY(9)`（soft-continue）；dyn mods 是否真加载仍待查。
+  4. **建呼**：`mmcli --voice-create-call number=10086` + `--start` → state=`dialing`，约 17–40s 后 `terminated`；从未 `active`。`Audio format rate=0`（预期：远端 PCM 走 modem↔ADSP mailbox/VCPM，不经 MM host PCM）。LTE `Voice support=yes` / `IMS voice support=yes`，但 `qmicli --ims*` 报 InvalidOperation——**信令面未真正接通是当前远端声阻塞**，不只是 AGM。
+  5. **回归（部分）**：通话图 close 后 `paplay` beep PASS；WWAN `curl --interface qmapmux0.0` → 204；`HiFi__Speaker__sink` 仍在。完整回归仍等电话/数据都标 PASS 后再跑。
+  6. **探针**：`/home/rong/vcall`（已存 `patches/audio-ar-voice-c1/test-agm-voice-rx.c`）。冷启仍须等 `q6apm-dais` 再 insmod shmem/pasthru。
+- **22:00–22:25 #4 ARGS 通话图（重大进展，未完成远端声）**：
+  1. **GKV PASS**：须完整键 `STREAM + DEVICERX/TX + DEVICEPP + STREAMPP(RX) + VSID`。仅 stream+device+VSID → ACDB −19。手听筒 RX 在 ACDB 无 alias 字符串但 LUT 有图；TX alias=`DeviceTX_Handset_Mic_DevicePP_Tx_Voice_Fluence_SMECNS_…`。
+  2. **物理 shmem PASS（经 q6apm-dais SMMU）**：`cerro-audio-shmem.ko` 在 `qcom,q6apm-dais` 上 `dma_alloc`，MAP 地址=`IOVA|(sid<<32)`（本机 sid=1）。裸 CMA PA / 错误 hyp_assign 会直接把 SoC 打崩重启——**禁止**。
+  3. **`/dev/aud_pasthru_adsp` + cerro shmem**：冷启需等 ADSP `dais` 再 `insmod`（`modules-load` 太早会失败）。
+  4. **RX `graph_open` PASS**：`session_open(VOICEMMODE1p/106)=0`，GSL `graph_handle` 非空。失败残留会导致下次 `AR_EDUPLICATE(24)/−68`——需干净重启，**不要** `echo stop > adsp`（会连带崩）。
+  5. **卡点**：`agm_session_set_config` 对 HOSTLESS voice **segfault**；`open+close` 正常。TX `graph_open` 仍 `AR_EFAILED(1)/−131`。下一步：HOSTLESS 跳过/弱化 set_config，直接 prepare/start；修 TX GKV/后端；建呼验收远端 PCM。
+  6. **蜂窝数据**：IPv6 ping OK；IPv4 TCP（`curl --interface qmapmux0.0`）OK；ICMP 可能被运营商丢掉——**数据可用**，勿只靠 ping4 判死。
+- **18:20–18:25 Android 充电 / 传感器深挖（仍 PC USB）**：
+  1. **主机口**：`speed=480` USB2.0，`bMaxPower=500mA`。Android `usb_real_type=SDP`，`input_current_limit=500000`，`Iusb≈453mA`；ADSP 检测日志 `V=5000mV C=900mA MaxPower=4.5W`（SDP 上限语义），**未谈成 PD**（partner `supports_usb_power_delivery=no`）。UCSI 里的 `PD PD_PPS` 是手机能力位，不是已协商。
+  2. **Ibat 抖动**：同 SDP 下 `current_now` 在约 −18mA…+400mA 间跳；`charge_type=Fast` 名不副实（仍是 5V/0.5A 级）。
+  3. **10h→74% 账**：满量 `charge_full=6069000µAh`。按净充 ~0.35–0.5A 估，从很低电充到 74% 大约就是 **8–12h**，和「PC 口挂 Linux 冲一夜」对得上——**不一定是 Linux 独有慢**，首先是 **SDP 限流**。要证 Linux vs Android 差，必须 **同一墙充** 双侧抓 `usb_real_type` / ICL / Ibat（监听已挂，等改插墙充）。
+  4. **Linux 仍要查的充电差**：缺 `charge_full*`；PC 口上曾见 Ibat 很低甚至符号变放电；10-19 好栈墙充方向曾见 ~0.9A——builtin pmic 后需墙充回归。
+  5. **传感器**：`sscrpcd sensorspd`（`vendor.sensors.sscrpcd.rc`，`early_hal`）+ `sensors.qti` + `sensors.qsh*.so`；设备节点 **`/dev/adsprpc-smd(-secure)`**；`adsps.jsn`=`sensor_pd`。`init.vendor.sensors.rc` 还有 `boot_slpi/boot`（本机 `remoteproc-spss` offline，实际 SEE 在 ADSP）。refs：`notes/android-sensor-refs/`。
+- **18:08–18:14 电量对照 + 进 Android**：
+  1. Linux（切前）：`capacity=74` Charging Fast，`voltage≈4.08V`，`charge_counter=4491060`，`charge_full`/`charge_full_design` **ENODATA**，`cycle_count=1`（假）。UPower energy 全 0Wh 因缺 full。
+  2. 早先会话曾见 Linux `capacity=5`——与本次 74% 差大；对照后 **百分比与 coulomb 与 Android 一致**，更像当时真低电/已充上来，不是现在读数漂。
+  3. 双槽 `boot_{a,b}` 曾都被 Linux 盖掉；`switch-to-android.sh` 只切槽不够。已从 `backups/aurora-slot-a-20261015/` **只修槽 A**（boot/init_boot/vendor_boot/dtbo/vbmeta），B 仍留 Linux。
+  4. Android（`18d1:4e11`，slot `_a`，指纹 `CP2A.260605.016`）：sysfs `capacity=74` Charging，`voltage_now=4084115`，`current_now=238043`，`charge_counter=4491060`（与 Linux **同值**），**`charge_full=6069000` / `charge_full_design=6000000`（Linux 这两项 ENODATA）**，`cycle_count=1`（Android 也是 1，不是 Linux 独有假值）。
+  5. **结论**：Linux **74% 与 Android 一致**，不是乱报电量；早先会话的 5% 更像当时真低/已充。Linux 真缺口是 **`charge_full*` 读不出** → UPower Wh=0。`cycle_count=1` 两边一样。
+  6. **#5 Android 对照**：`sscrpcd sensorspd` + `sensors.qti` + HAL；accel=`lsm6dso` 正常。`sscrpcd` 开的是 **`/dev/adsprpc-smd-secure`（FastRPC）**，不是 QRTR SNS。`qrtr-lookup` 在 Android 上也 **没有** 经典 SNS QMI。Linux 走 `libssc`/sensh（QRTR）对不上路；要对齐就得 FastRPC SEE/`sensor_pd`（`adsps.jsn`）+ 类 sscrpcd 客户端。
+- **07:35–07:40 #5 自动旋转复核（仍缺口；18:14 Android 已纠偏）**：
+  1. `hexagonrpcd -s` + registry 299 + `lanai_lsm6dso_0` + `/dev/fastrpc-adsp` 仍好；IIO 仍空。
+  2. Linux/`sensh` 无 SNS：Android 同样无 QRTR SNS——**不是 Linux 少挂服务**，是 SM8650 Cerro 传感器走 FastRPC SEE。
+  3. 固件有 `adsps.jsn` → `sensor_pd`；Android `sscrpcd sensorspd`。下一步：Linux 侧起 sensor_pd + FastRPC SEE 客户端（不是再装 libssc）。
+- **07:30–07:35 #4 通话远端 PCM（研究，未通）**：
+  1. AP 侧仍 PASS：`VoiceCall` UCM、`cerro-voice-bridge`、`callaudiod`、`cerro-mm-voice-watch` active；PCM 仅 `MultiMedia1 Playback` / `MultiMedia2 Capture`。
+  2. `alsatplg -d` 现网 tplg（SHA `67a093d0…`）：subgraph scenario token5 ∈ {1,2}，**无 3**。
+  3. 克隆 `linux-msm/audioreach-topology`：常量有 `APM_SUB_GRAPH_SID_VOICE_CALL=0x3`，全树 m4 **零引用**；SM8650-MTP/QRD 与 SM8550-HDK 同构，只有媒体 playback/record。
+  4. pmOS 2026-05：SM8350+ AudioReach **不适用** q6voice；主线尚无 phone voice 方案。
+  5. Aurora `voice-handset` → 仅 `handset` mixer，不是 host CVD 图。下一步要 Android 实机通话抓 AGM/GPR graph，不能靠改 UCM。
+- **07:22–07:29 #8 MM enable/disable 抖动 PASS**：
+  1. 槽2 有幽灵/空卡（ICCID 截断 `898602`），UIM Primary GW 在槽1 时 MM 仍报 `primary-sim-slot=2`；`mmcli --enable` 后 journal `SIM identifier has changed` → `override - disabling` → `creating modemN+1`。
+  2. **修**：`qmicli --uim-sim-power-off=2`（+ secondary-gw deactivate）后槽2 `Card status: absent`；再 enable → **registered / 46001 / attached**，≥60s 无 override 环。`set-primary-sim-slot=1` 仍 QMI Internal（可忽略）。
+  3. 另一条假抖：NM `WWANEnabled=false`（state file）→ 启 NM 时 `rfkill: WWAN … disabled by state file` 把已 registered 的 modem 关掉。`nmcli radio wwan on` 后 `WWANEnabled=true`，与 NM 并存稳定。
+  4. 已装：`/usr/local/sbin/cerro-qcom-modem-setup`（仓库 `tools/cerro-qcom-modem-setup.sh`）含槽2 power-off；`/etc/NetworkManager/dispatcher.d/99-cerro-wwan-on`（仓库 `tools/cerro-nm-wwan-on.sh`）。
+- **22:34–07:18 pmic builtin / init / 翻车与恢复（#2/#3/#7）**：
+  1. **splice PASS（`boot-v2-pmic-imem-c5.img` SHA `fac311c4…`）**：等长替换 memshare Image 内 builtin+appended+header DTB（短 bootargs + 最小 `/pmic-glink`）。证据：`Using built-in cerro DTB`、`cerro_dtb=cellular-c5-pmic-builtin`、livetree `/pmic-glink`、CAP/Charging、无 overlay ko、IMEM `0x3000/0x2000`。
+  2. **正式 Image FAIL（`boot-v2-c5-pmic-imem-init.img` SHA `04a4b14b…`）**：误把 `patches/setup.c.cerro-wip` 整份编进 `linux-7.2`。该 WIP 含 **`#define CERRO_PROBE_STAGE 31`**（`map_mem` 后 PSCI SYSTEM_RESET）+ harvest 关掉只留 256MiB fallback。现象：解锁橙屏后黑屏、无内核日志/显示、USB 长时间空。**根因是 WIP 探针，不是 DTB/pmic**。已把 WIP 的 `CERRO_PROBE_STAGE` 改为 `-1`，`setup.c` 恢复 `setup.c.stock-bak`，去掉 Makefile wrap。
+  3. **恢复**：fastboot 双槽刷回 `boot-v2-pmic-imem-c5.img` → Linux PASS（CAP=5 Charging、pmic/IMEM/sddm）。
+  4. **#3 正确做法 PASS（`boot-v2-pmic-imem-c5-init.img` SHA `560e3441…`）**：**不重编内核**，只在已知好 Image 的嵌入 gzip initramfs 里替换 `init`（新 gz 还小了 ~4.8KiB）。冷启 dmesg 有 `[cerro-s5ca] ACM+ECM` / `BANK_MEM` / `root part=`；`wants_ok`、NM-wait masked、sddm active。墙充 PPS 仍待验。
+- **20:13 刷回 B**：fastboot 刷 `patches/stability-ipa-imem-c1/out/boot-v2-s5gb-ipa-imem-memshare.img` → `boot_b`，stock `vendor_boot_b`，擦 `dtbo_b`，`set_active b`。实读 REG=`0x3000`，`14684080` fault=0。
+- **20:22 低电**：电量约 2% 关机；无 off-mode charge UI 适配 → 插电又直接进 Linux。重启后 upt≈101s：`sddm=active`、`cerro-audio=active`、声卡 `SM8650-CERRO`、modem running、CAP=2 Charging/Fast。当时 `qcom-modem-setup` 仍因 loc QMI failed（**21:18 已用 wrapper 跳过 loc → PASS**）。PC 口充电电流偏低，优先挂墙充。
+- **ACM 中断口诀（用户 20:40 确认）**：Linux 下 ACM/gadget 突然没了，**约 90% 是异常重启或有序关机**，不要先当拔线。先比 boot id / 看 `-b -1` 尾。已写入 `AGENTS.md` §2。
+- **登录进桌面 / 甚至未登录就关机**：有序 `will power off now`，不是 panic。双路径：
+  1. **UPower（主因，可在 greeter 就杀）**：默认 `PercentageAction=2.0` + `CriticalPowerAction=HybridSleep`；`cerro-nosleep` 把 sleep/hibernate mask 掉后，HybridSleep→Hibernate→**回退 PowerOff**。CAP=2% 命中 action → 开机约 1–2min 关机（20:39 那枪 ~104s，未进 Plasma）。实机已改 `/etc/UPower/UPower.conf`：`PercentageAction=0.0`（Critical/Low 降到 1/5）；重启 upower 后 `warning-level` 从 `action` 变为 `low`。`tools/cerro-nosleep.sh` 已带上同逻辑。
+  2. **PowerDevil（登录后）**：CAP≈2% 时 UPower 仍常报 `state=discharging`（sysfs 却是 Charging；`charge_full` ENODATA）。已设 `BatteryCriticalAction=0`（`powerdevilrc` + `/etc/xdg` + `install-desktop-ux.sh`）。
+- **登录验收 PASS（21:42 用户确认）**：进桌面不再自动关机。UPower/PowerDevil 低电 critical 已关。CAP 仍低，优先墙充。
+- **§5.2 / 音频（20:51 用户纠正）**：「冷启 45s 自启 active」不算修好。根因是错误 `After=cellular-prepare` + `bootfix` restart PW。已：`cerro-audio-up.sh` 内 MPSS running 后再起 ADSP；删 `zz-stability-adsp-serialize-c1`；unit `Before=sddm`；`sddm.service.d/cerro-after-audio.conf`；禁用 bootfix；`AGENTS.md` §5.2 加严。
+- **软重启时间线（用户 21:00 提醒后核对）**：勿把 journal `short-monotonic` 的大数当成「进 Debian 后又等了很久」。以 `systemd-analyze` 的 userspace 为准。
+- **音频根因 PASS（21:18 冷启 `2a99fe89`）**：`Finished cerro-audio` → `Started sddm` → PipeWire；session 日志 `default sink=alsa_output.platform-sound.HiFi__Speaker__sink`；`Active Profile: HiFi (Mic, Speaker)`；默认 Loudspeaker（非 Cerro_Speakers/Dummy）；无 bootfix。另修：WP/`session` 错用 profile 名 `HiFi`（应为 `HiFi (Mic, Speaker)`）；linger 用户 PW 用 `ExecStartPre=cerro-wait-alsa-card`。
+- **qcom-modem-setup PASS**：oneshot `Result=success`；UIM 选槽后跳过 `--loc-*`（Cerro QMI Internal）。wrapper `tools/cerro-qcom-modem-setup.sh`。
+- **MM 仍抖（21:27+；07:29 已修，见上 #8）**：曾 modemN `enabled`→`disabling`→`creating modemN+1`；根因是槽2 幽灵卡 +（另一路径）NM WWAN state off，不是 setup oneshot。`/dev/qrtr0` reset 警告仍非致命。
+- **battmgr early**：`Before=sddm/upower`，本枪 `Finished battmgr` @61.9s、`Started sddm` @66.4s。builtin DTB / 去 overlay 仍待编 Image。
+
+- **观察**：`python3 tools/cerro-state-watch.py` 同时记 USB 模式（linux/acm/android/fastboot/edl/dump/none）和 ACM 上的 journal。boot id 变化记 `REBOOT` 并立刻拉上一轮 `-p err` / coredump。日志 `/tmp/cerro-state-watch.log`，状态 `/tmp/cerro-state-watch.status`。只看 lsusb 变空会把崩溃误判成拔线。
+- **21:04 实抓（upt≈53s）**：journal 先 `arm-smmu 15000000` `iova=0x14684080` SID `0x4a0`，接着 `ipa_hal.c:3109` FATAL IPA IRQ，`remoteproc0` modem fatal → recovering。随后 ACM 断开。不是拔线。
+- **Aurora 对照**：`ArtistAOSP/.../pineapple-ipa.dtsi` 里 `&ipa_smmu_ap` 只有一条 `qcom,additional-mapping = <0x14683000 0x14683000 0x2000>`，正好盖住 `0x14684080`。主线只 identity-map DT `sram`。当时在跑的 boot_b 实读 `modem-tables` reg=`0x8000/0x2000`（`0x14688000`），故障地址不在窗口里。
+- **21:29 修复**：先 `echo stop` 停 modem（停住崩溃环），`tools/patch-ipa-imem-boot.py` 把 boot_b 里 4 份 DTB 的该 reg 改成 `0x3000/0x2000`，再 reboot。新启动实读 reg=`0x3000`；upt 131s 时 `14684080` 次数=0、无 `ipa_hal`、modem `running`、SDDM active。旧环在 ~53s 必断。
+
+### 音频 vs 通话（2026-10-19 核对 git）
+
+- **语音提交没有拆掉媒体声**：`127e10a` 加 UCM HiFi/VoiceCall + `cerro-audio-route`/`cerro-voice-bridge`；`ceaaed7` 修冷启 PipeWire 早于 ADSP 的 HiFi race（`cerro-audio-bootfix`）；`e21b13e` 只补 sidetone/FastRPC 笔记。10-17 听筒/扬声器路由仍是 PASS，缺口只在 modem 远端 PCM（tplg 无 SID=3）。
+- **这轮没声的原因**：为解开 SDDM，把 `cerro-audio.service` **mask** 了。实机 `aplay` = no soundcards，ADSP `offline`。`cerro-audio` 自己 `TimeoutStartSec=180` + `WantedBy=multi-user`，和 BT 一样会拖死登录，所以不能直接挂回开机关键路径。
+- **电量本轮未稳住**：`cerro-battmgr` 拉起后节点在，capacity/status **EAGAIN**；dmesg 只有 `cerro-pmic-glink: overlay applied`。随后 uptime 回到 ~50s（又重启）。10-19 早些时候的 Fast/72% **不能算当前 boot 仍 PASS**。电量读数稳定前不续通话 PCM。
+
+### 登录页 / 桌面（2026-10-19）**SDDM greeter PASS**
+
+- **现象（用户截图）**：fbcon 停在 `(4 of 5) Job cerro-bt.service/start running (1m 5s / no limit)`；`[ FAILED ] Modem Manager`；`arm-smmu … Unhandled context fault … iova=0x0`；`cerro-cellular-prepare` OK、`getty@tty0` 已到。`graphical.target`/SDDM 被 multi-user 里无超时 oneshot 拖死。槽位曾被标坏弹回 Android。
+- **根因（多源叠加）**：
+  1. `tools/cerro-bt.service`（initrd 维护版）`TimeoutStartSec=120` + `WantedBy=multi-user.target`，每次开机 `cp` 盖掉 heredoc。
+  2. `cerro-bt-up.sh` 里 `btmgmt` 可无视 SIGTERM；仅 `TimeoutStartSec` 不够，需 `KillMode=mixed` + `FinalKillSignal=SIGKILL`，且 **不要挂 multi-user**。
+  3. 同窗口还有 `cerro-wifi`（无超时 + 二次 `ExecStartPost`）、`droid-juicer`、`cerro-usbnet`（`sleep 4`+`sleep 10` 二次 ExecStartPost，Timeout 仍激活中）、`NetworkManager-wait-online` 堵 `multi-user`→`graphical`。
+- **修复（实机已生效）**：
+  - 摘掉 `cerro-bt` / `cerro-usbnet` 的 `multi-user.wants`；mask `NetworkManager-wait-online`；`sddm=active`，greeter `seat0 tty2`；**`is-system-running=degraded` + `No jobs running`**；`qbootctl -m` 槽 `_b` successful。
+  - 仓库：`tools/cerro-bt.service`、`tools/cerro-bt-up.sh`、`tools/cerro-init/init`（BT/usbnet 改 timer 延迟；wifi 加超时；NM-wait mask）。**改 init 后需重打包 boot 才对冷启永久生效**；当前 rootfs 落盘已够撑到下次编镜像。
+  - `cerro-audio` 仍 mask。充电栈晚启。
+- **验收**：请看屏是否已是 SDDM 登录页；ACM 侧 greeter 已在。
+- **下一步**：用户登录进桌面确认；再单独恢复 BT/audio；下次编 `linux-debug.img` 把 init 改带进去。
 
 ### 搁置（2026-10-18，切电源优先）
 
@@ -1567,3 +1741,70 @@ STABILITY OBSERVATION + CELLULAR GUI TOOL (2026-08-19): the IPA-fix boot `8e557c
 SCREEN MIRROR (SCRCPY-LIKE) OVER USB ECM (2026-08-19): added `tools/cerro-screen-server.py` (SHA `f9ce52df...`, stdlib-only HTTP server on port 8660: spectacle Wayland fullscreen capture -> ImageMagick JPEG downscale -> MJPEG `/stream.mjpg` / single `/shot.jpg` / HTML viewer `/`) and `tools/cerro-screen-server.service` (systemd, User=user, Restart=always, enabled for boot persistence); host side `tools/cerro-screen-view.sh` opens ffplay or a single frame with `no_proxy` (FlClash SOCKS otherwise hijacks 192.168.68.2). Host USB ECM needed `ip addr add 192.168.68.1/24 dev enp0s20f0u5i2` (was IPv6-only) to reach phone `usb0 192.168.68.2/24`; ping ~2ms. Verified end-to-end: captured frame shows the live KDE desktop (app launcher open, built-in display 1116x2480 @225%). Frame rate is limited by spectacle round-trip (~1-2 fps), adequate for fixture/servo observation. Capture requires user 1000 session env (`/run/user/1000/bus`, `wayland-0`), embedded in the server; frames fail gracefully until KDE is up after boot.
 CELLULAR GUI FIX / MM 1.24 INTERFACE RENAMES (2026-08-19): user reported the cellular GUI showed "ModemManager 不可用" with all fields "—". Root cause: Debian trixie ModemManager 1.24 renamed D-Bus interfaces — `org.freedesktop.ModemManager1.Modem3GPP` is now `org.freedesktop.ModemManager1.Modem.Modem3gpp` (likewise `.Modem.Signal`, `.Modem.Simple`, `.Modem.Voice`, `.Modem3gpp.ProfileManager`); `Modem`/`Sim`/`Bearer` names unchanged. GetAll on the old name returns `No such interface`, which the GUI's catch-all turned into the misleading "不可用". Fix in `tools/cerro-cellular-gui.py` (new SHA `d82932b3...`): probe actual iface names from GetManagedObjects per modem (candidate lists for 3GPP/Sim), print refresh tracebacks to stdout. Relaunched via ACM with session+system bus env; GUI now shows live state: CHINA MOBILE 46000, home-registered, 5GNR+5GNR-NSA, signal 70%, SIM CMCC, IMEI 867378070901055. Launch method when the menu entry is missing: `cerro-cellular-gui` from Konsole, or ACM `setsid` with `WAYLAND_DISPLAY/XDG_RUNTIME_DIR/DBUS_SESSION_BUS_ADDRESS/DBUS_SYSTEM_BUS_ADDRESS`. Lesson: MM >= 1.24 D-Bus API is NOT backward compatible by name; any new MM tool must introspect instead of hardcoding old iface strings.
 CELLULAR GUI POLKIT FIX (2026-08-19): user reported GUI control buttons all failed. Root cause: every control call (Enable / SetCurrentModes / CreateBearer / Bearer.Connect) is polkit-gated by `org.freedesktop.ModemManager1.Device.Control`, whose default for active sessions is `auth_admin`; the GUI (launched from ACM/serial session 3 on ttyGS0, no seat) got `Unauthorized: not authorized for Device.Control` on all of them. Read-only status display needs no authorization, which is why only the buttons failed. Fix: added `tools/50-cerro-modemmanager.rules` (polkit JS rule, allows all `org.freedesktop.ModemManager1.*` actions for local user `user`), installed to phone `/etc/polkit-1/rules.d/`; polkit hot-reloads rules.d, no service restart needed. Re-test: Enable(true) OK, SetCurrentModes(current) OK, CreateBearer(cmnet/IPv4v6) OK -> Bearer/1 (left unconnected; user presses 连接 to establish data). Method signatures unchanged in MM 1.24 (Enable=b, SetCurrentModes=(uu), CreateBearer=a{sv}->o). Lesson: when an MM GUI shows status but all actions fail, check polkit first — Device.Control defaults to auth_admin, and seat-less serial-session callers fail even `allow_active: yes` actions.
+
+- **18:25–18:42 #2 充电对照（同 Type-C 主机口）**：
+  1. **Android PD 基线 PASS（同口）**：`usb_real_type=PD`，`ICL=3000000`，`Iusb≈2812000`，`Ibat≈2925365`，`capacity=79`。主机 Type-C 作 source；partner sink-cap 含 5V/3A + PPS。此前 USB2 SDP 500mA 基线仍有效，但**本机 Type-C 口能谈成 PD≈3A**，不是「只有墙充才快」。
+  2. **切 Linux**：`bootctl`/KSU HAL 无 bootctrl → 失败。改 `fastboot --set-active=b`（`boot_b` 仍为 `cerro_dtb=cellular-c5-pmic-init`，**未动**已还原的 Aurora `boot_a`）→ reboot。
+  3. **卡点**：≥7min 无 `1d6b:0104`/`18d1:*`；主机 `port0-partner` 仍在、PD sink-cap 可见 → 电已通、数据未枚举，**高度像 ABL 解锁橙屏未跳过**（舵机 Espressif by-id 不在，无法代按）。等用户音量键跳过后再抓 Linux ICL/Ibat/`charge_full*`。
+  4. **#2c 线索（离线）**：主线 `qcom_battmgr` 对 `CHARGE_FULL*` 在 `unit!=mAh` 时直接 `-ENODATA`；`ENERGY_FULL*` 要 `mWh`。现网 capacity/charge_counter 有值而 `charge_full` ENODATA → 下次 ACM 先读 `energy_full*` + dmesg battmgr unit/property 错，再决定补请求还是单位桥接。
+  5. **18:51–18:56 续**：仍无 USB 枚举；Type-C `port0-partner` 仍在；舵机串口全无；后台 `cerro-resume-on-usb` 等 `1d6b:0104` 后自动抓 ICL/Ibat/`charge_full*`。**阻塞：需用户音量键跳过 ABL 橙屏（或确认黑屏后硬重启）**。
+
+- **19:45–19:52 USB 重连 / SSH / charge_full PASS**：
+  1. **误判纠正**：此前 Type-C 口长时间无 `1d6b:0104` 被当成 ABL 橙屏；用户确认一直在 Linux——实为 **该 Type-C 主机口热插拔/数据枚举失败**（只有 partner、无 gadget）。冷启后再插 **USB-A/总线3** 立刻出 `1d6b:0104` + ECM。
+  2. **SSH PASS**：装 `openssh-server`；USB ECM `192.168.68.2`↔主机 `.1`；WiFi `192.168.0.247`。账号 `rong`/`artistycr`。以后测墙充/Type-C PD 可走 WiFi SSH，不必死盯 ACM。
+  3. **#2b 本口**：Linux `ICL=500000` `Iusb=453000` `usb_type` 含 SDP——与早先 Android **SDP 基线同量级**；Android Type-C **PD 3A** 基线仍在，Linux 同 Type-C 口 PD 对照可改插后用 WiFi SSH 抓（非阻塞 charge_full）。
+  4. **#2c charge_full PASS**：根因=SM8550 属性路径从不填 `power_unit`，默认 0=mWh → `CHARGE_FULL*` 恒 `-ENODATA`。补丁强制 SM8350/SM8550 `unit=mAh` + of 表加 `sm8650`。实读 `charge_full=6080000` `charge_full_design=6000000`（Android 6069000/6000000）。ko 已装 `/lib/modules/…/extra/qcom_battmgr.ko`；源补丁 `patches/power-pmic-glink-c1/0002-qcom-battmgr-sm8550-default-unit-mAh.patch`。
+
+- **19:52–19:58 #5 自动旋转推进（仍缺口）**：
+  1. `hexagonrpcd -s` + `/dev/fastrpc-adsp` + persist registry + `adsps.jsn`/`sensor_pd` **仍 PASS**；IIO 空。
+  2. `chrecd` 是 **SLPI CHRE** 客户端（字符串 `chre_slpi`），本机无 SLPI remoteproc → 立刻退出 RC=1，**不对路**。
+  3. `sensh`/`libssc`（Codeberg）仍走 **QRTR+QMI SNS**；Debian 无 `libssc0` 包；与 Android `sscrpcd` FastRPC SEE **不是一条栈**。
+  4. 下一步仍须：类 `libssc_default_listener`/`sensors.qti` 的 **ADSP FastRPC SEE 客户端**（或上游出 iio 驱动）；禁止再试 QRTR sensh / SLPI chrecd。
+- **#4**：仍缺 Android 实机通话 AGM/GPR graph；Linux 侧 tplg 无 SID=3 结论不变。脚本 `tools/cerro-android-voice-capture.sh` 已备，切回 A 槽后跑。
+
+- **19:59–20:02 #4 Android 回槽抓 voice**：
+  1. Linux `qbootctl -s 0` → slot `_a` Android 起（`boot_b` Linux 保留）。
+  2. 同 USB 口 Android 亦 **SDP 500mA**（`charge_full=6080000` 与 Linux 修后一致）。
+  3. 首轮 `cerro-android-voice-capture` **无通话** → logcat/hits 空；已改脚本去掉 `*:S`，二轮 180s 抓取中（需用户打/接电话）。
+
+- **20:06–20:10 #4 10086 实机通话抓取 PASS（证据）**：
+  1. 选卡 UI 点 **CMCC**（SIM2）后 `TC@10 state=ACTIVE`；保持 ~70s 后挂断。
+  2. log：`AHAL AudioVoice` **VSID=`0x11c05000` / `0x11dc5000`**；AGM `aifid:6` + `aifid:23`；设备 `CODEC_DMA-LPAIF_RXTX-TX-3`（TX）+ `MI2S-LPAIF-RX-PRIMARY`（RX 48k）；`graph_prepare` `miid 4615 mid 700100a tag c0000004`；DSP `fluence_nn_module_fvxiii.so.1`。
+  3. 证据目录：`notes/android-voice-refs/20261021-200849/`（含 SUMMARY）。确认 Linux 缺的是 **VSID/AGM voice 图**，不是再改 UCM VoiceCall。
+
+- **20:26–20:28 #4 通话功能对照基线（免提/静音/保持）PASS**：
+  1. 用户点 CMCC 后 `TC@15 ACTIVE`；依次测免提→静音开/关→保持/恢复→录音（仅同意框）→视频（无升级）→挂断。
+  2. **免提**：UI `免提，已开启`；telecom `AUDIO_ROUTE` `TYPE_EARPIECE`→**`TYPE_SPEAKER`**（`CARC.pM_SPEAKER_ON`）。
+  3. **静音**：UI `已静音`↔`已取消静音`；`setMuteState` ✅，通话仍 ACTIVE。
+  4. **保持**：`ACTIVE`→**`ON_HOLD`**→`ACTIVE`（恢复通话）。
+  5. **录音**：弹出「启用通话录音？」法律提示，本轮未点确认（未真正开录）。
+  6. **转视频**：tap 后 `vidst=A` 不变（10086 不适合作 VT 基线；cap 有 VT*）。
+  7. 证据：`notes/android-voice-refs/20261021-202626-callfeat/`（dumpsys+截图+SUMMARY；本轮 logcat 未落盘，AGM 设备切换细节待补抓）。
+  8. Linux 优先级：免提（听筒↔扬声器设备切）> 静音 > 保持；录音/VT 低优。
+
+- **20:38–20:48 #4 Linux 通话开工（路径定案，远端仍未通）**：
+  1. `fastboot set_active b` → Linux gadget/ACM/SSH PASS；modem `running` registered CHN-UNICOM；PCM 仍仅 MM1/MM2；tplg SHA `67a093d0…`；QRTR 有 **Voice service**（node9）。
+  2. Aurora 源码钉死路径：`AudioVoice.cpp` + `SessionAlsaVoice.cpp`——**HOSTLESS** `VOICEMMODE{1,2}{p,c}`（pineapple card-defs id 106–109，`session_mode=1`）+ ACDB GKV `VOICE_CALL_RX/TX` + `VSID_DEFAULT` + `VCPM_PARAM_ID_VSID`；设备与 10086 抓取一致（TX-3 / MI2S-RX-PRIMARY）。
+  3. **排除**：主线 tplg 只加 SID=3；q6voice/q6voiced（SM8350+ AR 不适用，pmOS 2026-05 已写明）。
+  4. **选定**：开源 AudioReach `graphservices`+`graphmgr` + 本机 `MTP_acdb_cal.acdb`（`backups/android-voice-acdb/`；源 Artist proprietary）。计划：`patches/audio-ar-voice-c1/README.md`。已 clone `build/audioreach-{topology,conf,graphmgr,graphservices}`。
+  5. **新阻塞**：ARGS Linux GPR 要 `/dev/aud_pasthru_*`；主线无 → 已开做。
+  6. `cerro-voice-bridge on` → PW `VoiceCall (Earpiece, Mic)` PASS（仅本地）；`mmcli` 10010 曾卡 dialing——建呼与音频图分线。
+  7. 配置摘录：`notes/android-voice-refs/vendor-cfg/`。
+
+- **21:19 #4 `/dev/aud_pasthru_adsp` PASS（GPR 用户态口）**：
+  1. 模块 `patches/audio-ar-voice-c1/cerro-aud-pasthru.ko`：找 aprbus `qcom,q6apm` → `gpr_alloc_port`；misc `/dev/aud_pasthru_adsp`；写包改写 `src_port`；stub `aud_pasthru_modem` + `gpr_channel`。
+  2. 实机：`insmod` 后 dmesg `port=268435600`；`test-apm-ping` 发 `APM_CMD_GET_SPF_STATE(0x01001021)` → 回 `0x02001007` payload `state=1`。
+  3. **未做**：ION offset MAP、真 modem pasthru、编 ARGS/AGM、通话远端声。下一步编 graphservices+graphmgr 挂本机 ACDB。
+
+
+## 2026-10-23 18:20 — debug-rescue boot（/lib 修复 + 强制 ACM log）
+
+**背景**：相机 kos 用 `tar -C /` 带真实 `lib/` 顶层目录，砸掉 Debian merged-/usr 的 `/lib→usr/lib`，用户态崩；gadget 偶现但无 ttyACM。
+
+**动作（单变量）**：
+- 基线 `boot-live-b.img`，inplace init（slot 45942）：`CONSOLE_ON=1` + `cerro_fix_lib`（若 `/lib` 为真目录则迁 modules 后 `ln -sfn usr/lib`；同步修 nested `debian-root`）。
+- 产物：`build/dualboot/linux-debug-rescue.img`（sha 见构建输出）。
+- `auto-flash-watch.sh --daemon` 已等 9008/fastboot 双槽刷。舵机串口当前无 Espressif by-id，无法自动进 9008。
+
+**验收**：刷后 ACM 见 `[cerro-s5ca] REPAIR` 或 `lib ok`；`/lib` 为 symlink；可登录。
+
