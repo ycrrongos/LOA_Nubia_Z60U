@@ -1,7 +1,7 @@
 # Cerro active experiment card
 
 ## status
-`in_progress` — 显示历史取证/源码恢复；disp-r1 启动 FAIL，自行 fastboot；回 rescue 取日志。
+`analysis_complete` — 本轮只读复盘已形成对策；手机仍 fastboot/B，启动/显示根因均未完成实机归因。
 
 ## one_variable
 恢复已知好显示栈：以旧 Cursor 最终记录与好内核为依据核对 panel/DSI host/显示 DT。
@@ -25,3 +25,7 @@
 - rescue 本身也被 ABL Device Error 拒绝；下一步仅 B 槽 stock vendor_boot + 清 DTBO 使已知好镜像能启动（与既有刷机配方一致），不扩到 A 槽。
 
 - 最新现场：boot_b=原 cam-c10（fastboot 写入），vendor_boot_b=stock、dtbo_b 已清，A 未写。用户提醒 retry 后复核 reset 7 → 尝试启动 → 6，几秒回 fastboot；不是额度未重置。当前阻塞 ABL 载入，暂停 panel 修改。
+
+- 2026-10-31 新技能复盘：本轮范围仅只读分析/提出对策，无刷机或重启。后续实机实验须重写本卡：优先保存当前 B 完整启动链并读回校验，不继续面板猜改。发现确定的模块vermagic不匹配，属独立构建闭包缺陷。详细结论与证据等级见 bringup 最新条。
+
+- 上游固定版本核实 Device Error 的候选前置错误点：GPT类型GUID / UFS BootLUN-槽后缀校验、AVB rollback IO。retry扣减在GUID/LUN检查前，不能据此声称内核运行。尚未对应本机ABL，下一步是只读验证假设。

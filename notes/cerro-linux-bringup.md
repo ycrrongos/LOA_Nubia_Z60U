@@ -6,7 +6,20 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-31 显示恢复 disp-r1（历史源码重建并编译；准备实机验收，尚未 PASS）
+最后更新：2026-10-31 新技能只读复盘（当前 fastboot/B；根因未定位，未继续刷机）
+
+- **2026-10-31 新技能只读复盘（用户要求重新分析并给对策；未刷/未重启）**：
+  1. 使用 `systematic-debugging`、`verification-before-completion`、`linux-phone-porting` 及 Cerro 门禁。用户再次确认：当前 fastboot，之前运行自封装 Linux；恢复对象是这套 Linux 及其配套启动状态，不是通用 Android ROM。
+  2. **现场**：USB fastboot、current-slot=b、retry=6、successful=no；内核树干净。此前 reset 后 7→6 的证据仅证明有预算并登记了一次启动尝试，不证明已跳到内核。首次重启后的 gadget 设备地址与刷前相同，且未读到 disp-r1 标签，不能把该次枚举作为新内核运行证据（撤回此前含糊的“重启短暂 gadget”推论）。
+  3. **离线镜像核对**：cam-c10 文件 sha 与本轮起点 boot_b 读回 sha 相同。c10/rescue/disp-r1 均 header v2、4096 页、127B stub ramdisk，Image/DTB 边界不越界、适配96MiB分区。新旧镜像 root DT 均不含 qcom,msm-id / board-id，不能只给新镜像补该属性当解法。上述通过仅排除这些特定格式问题，不等于 ABL 接受或系统能启动。
+  4. **确定的构建闭包缺口**：实际嵌入 disp-r1 的 initramfs 与树上 gzip 逐字节相同；其中106个 ko 的 vermagic 是 `7.2.0-rc5-dirty`，运行候选版本为 `7.2.0-rc5-00007-g52fa4bbc4caf`。当前 `MODVERSIONS`/`MODULE_FORCE_LOAD` 均关闭，`kernel/module/internal.h:same_magic()` 全字符串比较，`main.c:check_modinfo()` 不匹配即 -ENOEXEC。此为启动后模块兼容性缺陷；尚不能用它解释 ABL Device Error。
+  5. **AVB证据边界**：c10和disp-r1无footer；rescue有残留AVBf，但其记录的vbmeta偏移指向已覆盖的内核字节，`avbtool info_image` 三者均 exit1。c10此前确实运行，故缺/坏footer不能独立解释新故障。旧备份vbmeta的flags=3，也不能冒充当前设备vbmeta_b状态。必须先读现状，禁止据此直接刷vbmeta。
+  6. **恢复证据不完整**：本轮没有操作前 vendor_boot_b / dtbo_b / init_boot_b / vbmeta_b 与 GPT/BootLUN 的完整即时快照。后来改 vendor_boot_b、清dtbo_b后，已不是只换boot的对照。旧boot失败不能证明新显示代码无罪，更不能判UFS硬坏。
+  7. **显示恢复判定降级**：历史源码支持 reset=0/1/0、取消反相DBV、准确dtype等修复；242常量包的多重集一致不证明发送顺序/时序、全部路径或DSC正确。恢复脚本只重放匹配片段，不能作为完整最终源码的事务式重放证书。disp-r1标为候选，未完成实机验收。
+  8. **下一步顺序（本轮仅提出）**：先通过已验证的只读存储通道保存当前GPT/槽属性/BootLUN及B启动相关分区，核对boot_b实际字节与目标镜像、配套依赖和ABL错误来源；再按有来源的备份最小恢复B完整启动组合，证明旧Linux可重启。之后另开单变量显示实验，并按相同源码/config重建模块闭包与initramfs。A槽、ABL/XBL、userdata不作盲目修复目标。
+  9. **工具定位纠正**：本仓库 `tools/edl-tools/venv`/`edl.py` 缺失不等于本机没工具；实际在 `/data/ArtistAOSP/edl-tools`，v1 firehose存在、`edl.py --help` exit0；尚未进入EDL或验证本轮读取。离线证据存 `build/display-recovery-20261031/reanalysis/`（gitignore）。
+  10. **上游错误路径已核对（不是本机ABL版本证明）**：CodeLinaro mirror `la_abl_tianocore_edk2` commit `f5526d28a29c1358f9e59f9e4bd50c253a95dc67`，`FastbootCmds.c:2778/2963` 两条错误串均包装 `LoadImageAndAuth()` 失败且在调用 `BootLinux()` 前返回。`PartitionTableUpdate.c:2208` 先扣 retry，`:2227` 后验 `ValidateSlotGuids()`；该函数对分区类型GUID异常或 UFS BootLUN/槽后缀不一致返回 EFI_DEVICE_ERROR。`VerifiedBoot.c:1821..1845` 的 rollback index 读写错误也可映射同码。因此优先只读查GPT类型GUID/属性/BootLUN和AVB状态，不直接把 Device Error 当成签名错误或硬件坏。公开代码的header>=3/4依赖门槛也说明不能仅凭存在vendor_boot/init_boot就判v2必须修这些分区。来源与sha见 ignored reanalysis/source-manifest.json；本机July ABL备份A/B相同，尚未解包映射到此代码，适用性仍有限。
+  11. **研究覆盖**：当前问题限定fastboot载入/自封装Linux闭包。已查本仓库记录和镜像、具体Linux树模块加载实现、AOSP槽语义、Qualcomm公开ABL固定版本、本机历史ABL/启动分区备份及EDL实现。panel/LKML/pmOS等驱动搜索不用于解释前置ABL拒绝；留待可启动基线建立后的显示实验。首个高信息量实验是只读核验当前分区/GPT/UFS状态；若全部匹配，则提升AVB/实际ABL分支调查优先级，不直接新增刷写。
 
 - **2026-10-31 用户提醒槽位重试次数：已重置并现场复核**：初次 disp-r1 后 B 确实 retry=0；后续每次 `fastboot set_active b` 已重置。本次实读 6 → set_active b → **7**（unbootable=no、successful=no）→ reboot 后几秒自行 fastboot、**6**。所以本次退回不是次数仍耗尽；已完成一次有额度的载入尝试。当前 boot_b 已回本轮开始的 cam-c10，vendor_boot_b=stock、dtbo_b 已清；rescue 与 cam-c10 同样 ABL Device Error，显示修复尚不能判 FAIL/PASS。下一步先定位 ABL 镜像载入失败，避免继续改 panel。
 
