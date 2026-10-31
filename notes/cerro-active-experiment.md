@@ -2,31 +2,28 @@
 
 ## status
 
-`done`（PASS，2026-10-31）
+`done`（A1-DT PASS，2026-10-31）
 
 ## one_variable
 
-A1-投递：只把 camss/cci/camcc 系 `.ko` 用**安全路径**装进手机 `/usr`（归档仅含 `lib/modules/<kver>/...`，**禁止** `tar -C /`），装后 `depmod` + 逐个 `modprobe`/`rmmod` 验证可干净加载。不改 DT、不刷机、不碰蜂窝/音频。
+（历史）A1-DT 判别-2 → 最终形态：cam-c1 DTB（camss+CCI enabled）+ `cerro-camss-load.service`（After=graphical，正常开机路径）自动加载相机栈。
 
 ## falsifier
 
-- 装包后 `/lib` 不再是 `usr/lib` 的 symlink（= 10-23 事故重演，立即 FAIL）。→ 未发生（前后均 `usr/lib`）
-- 任一模块 modprobe 后 dmesg 出现 oops/panic 或整机重启（boot id 变）。→ 未发生（boot id `287f1420…` 全程不变）
-- vermagic 与运行内核不符导致 insmod 拒载。→ 首轮 camss 曾 Unknown symbol（v4l2-async/fwnode 未编出），补编两模块 + softdep 后 PASS。
+（全部未命中）开机即冻（unit 在 graphical 后加载，安全）；CCI probe 挂（无辜）；camss 手动 probe 挂（t+10min 无辜；竞态仅限早期 udev autoload）。
 
 ## blast_radius
 
-手机 `/usr/lib/modules/` + 动态加载驱动。未碰音频、蜂窝、显示、电源链。
+boot_b（cam-c1 镜像 sha `e7e79456…`）+ 手机 unit/NM profile。A 槽安卓全程 Successful=1。
 
 ## regression_must_pass
 
-- ACM 可登录 ✓、boot id 不变 ✓（`287f1420…`）。
-- HiFi Speaker `paplay` ✓（default sink `HiFi__Speaker__sink`，`Front_Center.wav` OK）。
-- Wi‑Fi ✓（会话全程走 `192.168.0.68`）。
-- `/lib -> usr/lib` ✓。
+全过：`/dev/media0`+video×17、sddm active、HiFi `paplay` OK、boot 稳定 15min+、qbootctl A 槽不变。
 
 ## evidence_log
 
-- 2026-10-31：上一枪遗留 `/tmp/cerro-cam-modules.tar` 已被清（/tmp 清空）；主机 `build/linux-7.2`（7.2.0-rc5-dirty）三 .ko 复用 + 补编 `v4l2-async/fwnode`（缺 `bc`、`Module.symvers` 悬空链接均修复）。
-- 2026-10-31 投递：tar（sha `d7d9d3e1…`）经 Wi‑Fi scp → `tar -C /usr`；`install -D` 补两 v4l2 模块；`/etc/modprobe.d/cerro-camss.conf` softdep。
-- 2026-10-31 验收：全栈 modprobe rc=0、无 oops；全栈 rmmod 干净后单命令 `modprobe qcom-camss` rc=0；无 media/video 节点（DT disabled，预期）。
+- 2026-10-31 冻死#1（真，udev 早期 autoload 竞态）→ fastboot 回滚（用户手动）。
+- 2026-10-31 relink-test：重链无罪（老 DTB + 重链 Image 300s+ 稳）。
+- 2026-10-31 黑名单受控 probe：CCI rc=0 无辜；camss rc=0 t+10min 无辜 → 竞态=早期时序。
+- 2026-10-31 unit 方案冷启 PASS：两 modprobe SUCCESS（11:40:25）、media0+video×17、回归绿。中途两次「假冻死」误判（ACM getty 缺 + usb0 晚配），已修 usb0 NM profile；教训入 bringup。
+- 遗留子项：早期竞态根因、cam-c1 无 ACM getty、sensor 驱动移植。

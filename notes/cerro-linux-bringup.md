@@ -6,7 +6,16 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-31（A1 相机模块投递+加载 PASS；Aurora 对照缺口入队；蜂窝硬件搁置）
+最后更新：2026-10-31（A1 CAMSS/CCI 上线：media0+video×17 PASS；早期 autoload 竞态用开机有序加载绕开；蜂窝硬件搁置）
+
+- **2026-10-31 A1-DT 相机 SoC 上线 PASS（camss+CCI enabled → `/dev/media0` + video×17，开机自动加载，回归全绿）**：
+  1. **镜像方案 E**（DTB 结构性变大无法等长 splice：新 139988B > 老槽 137535B，老 DTB 是 10-21 手工精简版）：从运行镜像 Image 里解出内嵌 gzip initramfs（90619392B cpio，`cerro_fix_lib`/`CONSOLE_ON`/`cerro-s5ca` 齐）→ 放回 `usr/cerro-initramfs.cpio.gz` → 新 DTB 装 `arch/arm64/kernel/` 删 `.dtb.o` → `make LLVM=1 Image` 重链 → 按 rescue 的 header 参数（v2/pagesize/offsets/127B ramdisk stub 原样）mkbootimg 重打包 → pad 100663296。产物 `build/dualboot/linux-cam-c1.img`（sha `e7e79456…`，DTB tag `cerro_dtb=cam-c1`）。**只刷 `boot_b=/dev/sde42`**（Linux 下 dd+读回校验，勿动 A 槽安卓；仓库参考 `tools/cerro-dualboot/linux/switch-to-linux-variant.sh`，但注意 Debian 上没有 `/dev/block/by-name`，用 `/dev/disk/by-partlabel/boot_b`）。
+  2. **冻死#1（真）**：无黑名单首发 → udev 早期（~t+8-15s）OF-modalias autoload `qcom-camss` 撞上 ADSP/GPU/音频初始化 → 渐进 wedge（用户屏黑；journal 显示用户会话 7.5s 跑完后内核日志断流；ECM 曾短暂应答后死；USB 枚举稳定=非 panic 环）。恢复=用户长按电源+音量下进 fastboot，主机 `auto-flash` 监听刷回 rescue。
+  3. **判别枪 relink-test PASS（重链无罪）**：同树重链 Image + 老 DTB（`linux-relink-test.img` sha `67ce0e00…`）→ 300s+ 网络/SSH/sddm 全稳 → 冻死归因 DT enable。
+  4. **受控 probe（黑名单拦截 autoload 后手动加载）**：`/etc/modprobe.d` blacklist camss+cci → 开机安全 → 手动 `modprobe i2c-qcom-cci`（rc=0，i2c-0..5 适配器出现，无辜）→ `modprobe qcom-camss`（rc=0，`/dev/media0`+video×14，无 oops，30s+存活）→ **probe 本身不挂，挂的是开机早期时序**。
+  5. **最终形态**：`/etc/systemd/system/cerro-camss-load.service`（`After=graphical.target sddm.service`，`WantedBy=graphical.target`，两个 modprobe，**正常开机路径、无 timer/mask**）→ 冷启验证：unit 11:40:25 两 modprobe SUCCESS、`/dev/media0`+video×17、sddm/HiFi `paplay` PASS、A 槽 Successful=1 不变、之后 15min+ 零负载稳定。**开机自动相机栈=可用**。
+  6. **「假冻死」教训（曾误判两次）**：cam-c1 血统 boot 上 **ACM getty 不起**（原因未查，rescue 血统正常）+ **usb0 曾长期不自动配置**（→ 已建 NM profile `cerro-usb0`（manual 192.168.68.2/24 autoconnect），主机侧 NM 也改静态 192.168.68.1/24）→ 两通道同时安静酷似冻死。**判死前必须：看 boot id 是否变化 + 等足 5 分钟 + ACM/ICMP/SSH 多通道交叉**。
+  7. **遗留（A1 子项）**：a) 早期 autoload 竞态根因（camss probe × 开机 settle，疑 TITAN GDSC/SMMU/interconnect，证据在 `-b -3` journal）；b) cam-c1 boot 无 ACM getty；c) **传感器驱动（imx800/imx906/ov12d2q/ov50e40/ov64b40 主线全无）= 相机真正出图的长活**，CCI i2c 总线已可用（下一步 sensor 摸地址）。
 
 - **2026-10-31 A1 相机模块投递 + 加载 PASS（单变量：只装 .ko，不改 DT / 不刷机 / 不碰蜂窝音频）**：
   1. **模块来源**：`build/linux-7.2`（`build/linux` 是其符号链接；**clang + `make LLVM=1`**）里 camcc-sm8650 / i2c-qcom-cci / qcom-camss 的 `.ko` 10-23 已存在可直接用；但 `modprobe qcom-camss` 报 Unknown symbol（`v4l2_async_nf_*`、`v4l2_fwnode_endpoint_parse`）——`CONFIG_V4L2_ASYNC/FWNODE=m`，10-23 只编到 `.o` 没链 `.ko`。补编坑：主机缺 `bc`（timeconst.h 生成）；`Module.symvers` 是指向搬家前 `/mnt/data/...` 的悬空链接（真实 `vmlinux.symvers` 在 `build/linux-7.2/` 根，已 `ln -sf` 修复）。

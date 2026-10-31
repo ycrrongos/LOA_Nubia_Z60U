@@ -54,7 +54,7 @@
 		 * Stock ABL leaves /proc/cmdline empty for our boot.img, so
 		 * boot.img --cmdline is ineffective. Put bring-up args here.
 		 */
-		bootargs = "ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=cellular-c4-memshare-native-stage";
+		bootargs = "ignore_loglevel pd_ignore_unused clk_ignore_unused fw_devlink=on deferred_probe_timeout=60 console=tty0 fbcon=font:TER16x32 plymouth.enable=0 systemd.mask=plymouth-start.service systemd.mask=plymouth-quit.service systemd.mask=plymouth-quit-wait.service systemd.mask=plymouth-read-write.service systemd.mask=plymouth-reboot.service systemd.crash_reboot=1 panic=10 cerro_dtb=cam-c1";
 	};
 
 	gpio-keys {
@@ -1377,6 +1377,34 @@
 	vdda-phy-supply = <&vreg_l3i_1p2>;
 	vdda-pll-supply = <&vreg_l3g_0p91>;
 
+	status = "okay";
+};
+
+/*
+ * Camera SoC bring-up (2026-10-23): enable CAMSS + CCI only.
+ * CSIPHY supplies: Android/QRD share ~0.9V/1.2V rails (cerro L2I/L3I).
+ * Wire all three supply groups so every CSIPHY can regulator_bulk_get.
+ * Sensors (imx800/…) are a later single-variable DT+driver step.
+ */
+&camss {
+	vdd-csiphy01-0p9-supply = <&vreg_l2i_0p88>;
+	vdd-csiphy01-1p2-supply = <&vreg_l3i_1p2>;
+	vdd-csiphy24-0p9-supply = <&vreg_l2i_0p88>;
+	vdd-csiphy24-1p2-supply = <&vreg_l3i_1p2>;
+	vdd-csiphy35-0p9-supply = <&vreg_l2i_0p88>;
+	vdd-csiphy35-1p2-supply = <&vreg_l3i_1p2>;
+	status = "okay";
+};
+
+&cci0 {
+	status = "okay";
+};
+
+&cci1 {
+	status = "okay";
+};
+
+&cci2 {
 	status = "okay";
 };
 

@@ -12,7 +12,7 @@
 
 | 序 | 项 | Aurora | Linux | 难度 | 状态 |
 |----|----|--------|-------|------|------|
-| **A1** | **相机** | 多摄可用 | **模块投递+加载 PASS（2026-10-31）**：camss/cci/camcc+v4l2 栈已装 `/usr` 且单命令 `modprobe qcom-camss` rc=0；但 CAMSS livetree **disabled**、无 media/video 节点；传感器 imx800/imx906/ov12d2q/ov50e40/ov64b40 **主线无驱动** | 高 | **下一刀**：DT enable camss/CCI（先查供电），出新实验卡 |
+| **A1** | **相机** | 多摄可用 | **SoC 侧 PASS（2026-10-31）**：camss+CCI enabled（`cam-c1` DTB），开机经 `cerro-camss-load.service`（After=graphical）自动加载，`/dev/media0`+video×17；早期 udev autoload 有竞态冻死（unit 时序绕开，根因未挖）。**传感器 imx800/imx906/ov12d2q/ov50e40/ov64b40 主线无驱动 = 出图的长活** | 高 | 下一刀：CCI 上摸 sensor I²C 地址（无驱动阶段先探存在性）；竞态根因与 cam-c1 boot 无 ACM getty 作旁支 |
 | **A2** | **自动旋转 / 运动传感器** | `sscrpcd` + LSM6DSO（SEE/FastRPC on ADSP） | fastrpc/`hexagonrpcd -s`/registry/`sensor_pd` PASS；**IIO 空** | 中高 | 未完成；禁再拧 QRTR sensh |
 | **A3** | **屏下指纹** | Goodix 可用 | `goodix,fingerprint` SPI + gpio93；**主线无驱动** | 高 | 未开做 |
 | **A4** | **NFC** | ST21 + SE | `st21nfc` I²C + `st54spi`；社区有方向，**本机未做** | 中 | 未开做 |
