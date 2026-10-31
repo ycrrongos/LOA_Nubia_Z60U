@@ -99,6 +99,16 @@ setsid python3 tools/cerro-state-watch.py >/tmp/cerro-state-watch.stdout 2>&1 < 
 
 `cerro-audio` 挂 40s timer、只验「45s 自启 active」、或靠 `cerro-audio-bootfix` restart PW——均作废。蓝牙、usbnet、充电同样禁止用摘 wants / 晚 timer / 事后 restart 交差。
 
+## 5.3 内核树保护（2026-10-31 显示栈丢失事故后立，曾丢整个显示栈，硬规则）
+
+背景：10-21 清理时把从未提交的本地显示文件（panel 驱动/dsi_host 补丁/最终 setup.c）洗掉，10-31 重链镜像才暴露，代价一整天。**结构上防再犯**：
+
+1. **内核树 `build/linux-7.2` 有自己的 git**：树内任何本地改动（`.c`/`.h`/`Kconfig`/`Makefile`/`.config`/wrap/dts）**必须随手 commit 到树内 git**；保持 `git -C build/linux-7.2 status` 干净。
+2. **任何 Image / boot.img 构建打包前必须跑 `tools/guard-kernel-tree.sh` 且 PASS**：树脏=拒绝；好内核（`patches/kernel-config-good-20260817.config`）里 =y 的符号在树 config 里**蒸发**（连 `# not set` 都没有）=拒绝（=源码被删，正是面板驱动的丢失签名）；=y→=m 只警告。产出镜像必须把 guard 打印的 tree sha 记进 bringup。
+3. **禁止**在内核树里 `git checkout .` / `git clean` / 批量恢复覆盖——除非先 commit 当前现场。恢复单个文件前先确认改动已提交。
+4. **好内核二进制锚点**：`backups/kernel-good-20260817.bin`（sha `a6201111…`，显示/一切正常的已知好内核 blob，含丢失显示栈的编译产物，考古用）；配套 config 在 patches/。
+5. 主仓库继续不收内核树与二进制（`.gitignore`）；树的安全靠树内 git + 本 guard。
+
 ## 5.1 桌面 UX / 电源键（2026-10-15/16 血泪，曾反复被骂）
 
 根因不是「电源键本身」，是 **v2 之后又叠了一堆试验**（`cerro-dpms`、`DisplayServer=wayland` greeter、KWin `brightness=0`）把面板/会话干崩。
