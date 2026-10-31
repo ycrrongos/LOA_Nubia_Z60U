@@ -6,7 +6,15 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-31 下午（显示栈丢失事故全记录 + 面板驱动重建进展；相机 SoC 里程碑保持）
+最后更新：2026-10-31 下午晚段（.cursor 备份考古：面板驱动 v3 复原，面板活了；剩余缺口=host 侧 DSC/CMD 细节；rescue 已恢复）
+
+- **2026-10-31 下午晚段 显示栈重建 v3（.cursor 备份考古；面板驱动基本复原，显示仍未亮，缺口精确定位）**：
+  1. **素材**：用户备份 `rong-important-backup-20261013-231723.zip`（545MB）内 `.cursor/projects/mnt-data-LOA-Nubia-Z60U/agent-transcripts/`（55bc8cee 3MB = 8-12 s5aa 日；7f8c3d7b 6.4MB = 8 月→10-08 长会话）含 s5an→s5ew 全部改驱动的命令现场（75 个大块已提档 /tmp/panel-hist/ + /tmp/panel-chronology.txt）。
+  2. **复原出的最终驱动架构（v3，已入树 commit `6cfc0fab3`/`62882525d`）**：typed write（显式 dtype 0x39/0x15，仅 ret<0 判失败）+ **先 wake 再 FE**（s5at：FE-before-wake 砖 RX）+ **毒包 `0x15 B3 7F` 跳过**（s5ba）+ PPS=`drm_dsc_setup_rc_params(PRE_SCR)`（s5bq：chunk=698/xmit=410 须与 FE D2 一致）+ prepare 发 PPS+`compression_mode_ext`+enable 再重推 + **DBV 反相（0=全亮）** + `NO_EOT_PACKET|CLOCK_NON_CONTINUOUS|LPM` mode_flags + 120Hz preferred+60Hz 双模式。FE 体直接逐字节复刻好内核 blob `0x18fe7f8..0x18feb78`（339 写，B3 7F 天然不在其中）。
+  3. **cam-c9 实测（重大进步）**：面板驱动 probe/prepare/enable **全部成功**（accum=0，写入被 ack）；`fb0`+`DSI-1 connected enabled`。**仍未亮**，剩余证据=`dpu_encoder_phys_cmd prepare_for_kickoff failed wait_for_idle -110` + `frame done timeout` 循环 → **DPU 的 CMD 模式视频流从未被面板确认**；`get_power_mode` 读超时 -110（s5ao 时代已知此 host 读不可靠，非致命）。
+  4. **缺口=host 侧**（面板驱动已不再是阻塞点）：好内核里的 msm 侧丢失改动还有 a) `dsi_host.c` DSC 数学**其余部分**（spp=2 之外：eol_byte_num/WC/PPS-to-host 路径，需对着好内核反汇编核对）b) `dpu_encoder/dpu_hw` 的 DSC+TE 处理（好内核字符串 `cerro: msm_drm_register enter/done modeset=%d` = msm_drv.c 也被动过）c) `msm_fbdev.c`（`msm_fbdev mapped`/`sys_fillrect` 是当年 PASS 标记）。
+  5. **下一刀（显示收尾）**：解析好内核 kallsyms → 反汇编 `dsi_update_dsc_timing`/`dpu_encoder_phys_cmd*`/`msm_drm_register`，把 host 侧丢失改动逐个复原（同样用备份 transcripts 交叉验证）。
+  6. **运维**：cam-c9 测后已 dd 回 rescue（sha `a9430604…`）恢复显示；屏幕诊断新招：SSH 读 `/dev/fb0`（1116×2480×4B，stride 4480）base64/scp 回主机转 PNG。
 
 - **2026-10-31 下午 显示栈丢失事故（用户报「boot 没显示驱动、屏幕一直不亮」→ 根因 + 重建进展）**：
   1. **根因**：10-21 清理 WIP 时把内核树 `setup.c` 还原 stock，**连带洗掉了从未提交的本地显示栈文件**；此后从未重编全量镜像（一直走 splice），故未暴露。我重链的 cam-c1/c2 系列首次踩中。**丢失清单（好内核 config/strings vs 树全量对比）**：① `panel-raydium-rm692h0.c`（`=y`，config 符号消失）② `dsi_host.c` 的 DSC `slice_per_pkt=2` 补丁（upstream TODO 原文还在）③ 最终版 `setup.c`（字符串证据：`mid/late ABL` 内存扩展、`BL initrd` 禁用、`prefer_builtin_dtb`、**`cerro: msm_drm_register enter/done modeset=%d`**）。**GitHub 远程已核对 = 本地子集，从未包含内核 .c**（仓库规矩 build/ 不进 git）。审计其余 =y 符号：无其他丢失。
