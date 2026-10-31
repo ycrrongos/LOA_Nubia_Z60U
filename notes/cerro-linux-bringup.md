@@ -8,6 +8,14 @@
 
 最后更新：2026-10-31 显示恢复 disp-r1（历史源码重建并编译；准备实机验收，尚未 PASS）
 
+- **2026-10-31 用户提醒槽位重试次数：已重置并现场复核**：初次 disp-r1 后 B 确实 retry=0；后续每次 `fastboot set_active b` 已重置。本次实读 6 → set_active b → **7**（unbootable=no、successful=no）→ reboot 后几秒自行 fastboot、**6**。所以本次退回不是次数仍耗尽；已完成一次有额度的载入尝试。当前 boot_b 已回本轮开始的 cam-c10，vendor_boot_b=stock、dtbo_b 已清；rescue 与 cam-c10 同样 ABL Device Error，显示修复尚不能判 FAIL/PASS。下一步先定位 ABL 镜像载入失败，避免继续改 panel。
+
+- **2026-10-31 启动链对照续**：B stock vendor_boot + erase dtbo 后 rescue 仍早回 fastboot（retry=6），电池 3.89V/SOC OK，排除低电。下一次只用本轮开始实跑的原 cam-c10（不作显示 PASS）验证 boot_b 能否载入；不刷 ABL/XBL，不改 A。
+
+- **2026-10-31 rescue 回滚也被 ABL 拒绝（启动链，不能归因 panel）**：仅刷 boot_b=a9430604… 后 set_active b/reboot 仍 fastboot，B retry=6；continue 报 `Failed to load image from partition: Device Error`，临时 boot rescue 报 `Failed to load/authenticate boot image: Device Error`。fastboot 不支持 fetch。下一步按既有 flash-boot-any 配方只修 B 的 stock vendor_boot/清 DTBO，A 槽不动。尚无 disp-r1 内核运行证据。
+
+- **2026-10-31 disp-r1 首轮启动 FAIL（用户确认未操作，自行进 fastboot）**：boot_b 读回 sha `7ebed233…` 正确，boot_a `b7dddcc1…` 不变；重启短暂 gadget，SSH refused，随后 fastboot。current-slot=b / slot-successful:b=no / retry-count:b=0。尚未获得本枪 ACM 标签，不据此判断面板结果。计划仅 boot_b 回 rescue 后读 journal/pstore 归因；源码 tree `52fa4bbc4`、guard PASS。
+
 - **2026-10-31 disp-r1 构建/数据核对**：242 个常量 typed 包（type+完整变长 payload）与好内核 243 处消息提交去掉动态 BD 后的多重集逐项一致，无多余/缺失；原 339 写方案作废。首次编译因 panel 引用 MSM 私有 dsi.h 触发 msm_drv.h include-path 缺失，改用原有 getter 的前置声明后重编。测试前 boot_a sha `b7dddcc1…`，boot_b(cam-c10) `0f750e6c…`。
 
 - **2026-10-31 显示重新取证：发现 cam-c9/c10 重建错误，修复候选 disp-r1（未实测）**：
