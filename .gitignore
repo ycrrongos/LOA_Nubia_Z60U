@@ -81,3 +81,4 @@ edl_config.json
 tools/edl-tools/edl_config.json
 **/*credentials*
 **/.env
+GITHUBTOKEN.txt

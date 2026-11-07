@@ -1,13 +1,13 @@
 ---
-description: Cerro bring-up hard rules — always read agent.md first
+description: Cerro bring-up hard rules — always on (keep SHORT; details in skill + notes)
 alwaysApply: true
 ---
 
-# 每次对话必读
+# 每次对话 / 长循环必守
 
-1. **先读并遵守**仓库根目录 [`agent.md`](../../agent.md)（用户长期要求的硬约定汇总）。
-2. 动手前再读 `notes/cerro-linux-bringup.md` 的「当前状态」与相关章节。
-3. 踩坑 / 探针结论 / 误判纠正：**立刻追加**到 `notes/cerro-linux-bringup.md`；改代码前先查该文件。
-4. 进 9008/fastboot/Dump 后先观察 USB，再下结论；刷完继续盯，不要停。
-5. 无人值守用 **Cursor 后台终端** + `tools/edl-tools/auto-flash-watch.sh --daemon`，禁止用烧 token 的子 agent 空盯。
-6. 双槽刷机；GitHub/国外资源走 FlClash；默认中文简报。
+1. 遵守根目录 `AGENTS.md`（先「当前战役」）+ `agent.md`；动手前读 `notes/cerro-display-campaign.md`、`notes/cerro-linux-bringup.md`、`notes/cerro-open-work.md`。
+2. **长工具循环不会自动重读 AGENTS.md**。改手机前先读/更新 `notes/cerro-active-experiment.md`；skill：`cerro-bringup-gate` + `cerro-boot-pack`；排障 `systematic-debugging`；终判前 `verification-before-completion`。
+3. **单变量**：同轮禁止叠 IMS+MM/NM+音频+刷机+面板。禁止子 agent 做主线。
+4. 刷完先看 USB；显示中间刀以 **`1d6b:0104` 认出/能连** 为主，勿默认等完整桌面。ACM 账号常 `user`/`user`。
+5. **禁止**「rescue/旧 blob 已亮 → 显示战役收工」；锚点≠树内屏驱已恢复。
+6. 无人值守用后台终端 + `auto-flash-watch.sh`；Phone Bridge：`pb watch --interval 5` 别关。子系统用 `cerro-*.mdc` globs，勿嵌套 AGENTS。

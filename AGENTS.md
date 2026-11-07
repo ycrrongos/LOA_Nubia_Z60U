@@ -1,15 +1,34 @@
 # Cerro / LOA_Nubia_Z60U — Agent 强制约定
 
-每次新对话**先读本文件**，再读 `notes/cerro-linux-bringup.md` 当前状态段，再动手。  
-违反过的坑下面都标了「曾反复被骂」——当硬规则，不要再犯。
+每次新对话**先读本文件「当前战役」+ §0**，再读 `notes/cerro-linux-bringup.md` 当前状态段与 `notes/cerro-active-experiment.md`，再动手。  
+违反过的坑下面都标了「曾反复被骂」——当硬规则，不要再犯。  
+结构对齐同机 ColorOS_Z60U / PenguinAOSP：战役置顶、细节进 notes、禁止嵌套 AGENTS 灌爆上下文。
 
-## 0. 怎么加载（防跑偏，2026-10-22）
+## 当前战役（压缩上下文后必读）
+
+进度真相源：**[`notes/cerro-display-campaign.md`](notes/cerro-display-campaign.md)**（每推进一刀就改那篇，不要只写在聊天里）。
+
+**正确方向（2026-11-07 加硬，曾偷懒被骂）**：rescue/好内核 blob 能亮 = **回滚锚点与对照标本**，**不是**显示战役终点。目标是在**当前内核树**里一步一步把丢失的屏驱摸回来并固化（方案 E 底如 cam-c1 → 最小差分并面板）。禁止「锚点已亮就别折腾重建」。
+
+摘要：
+
+1. rescue（`a9430604…`）回滚 PASS，用户确认**亮**——只当锚点。
+2. cam-c1（`e7e79456…`）起系统 PASS（丢屏）——方案 E 底已证实。
+3. disp-r1b FAIL（黑+无 USB）——重建路上的早挂，要拆变量继续，不是弃重建。
+4. **下一刀**：cam-c1 底上最小并面板；观察从简：**USB 认出/连上即可**，勿每刀等完整系统。
+
+## 0. 怎么加载（防跑偏）
 
 - **根 `AGENTS.md` / `alwaysApply` rule**：主要在**用户发消息、组请求**时注入。长工具循环里模型跟轨迹走，**不会每步重读**；compaction 后更易忘。
-- **定时重读守护（2026-10-31 用户要求，硬规则）**：长会话中**每 ~15 次工具调用、每个新实验刀/刷机动作开始前、任何 compaction/上下文摘要之后、以及用户在消息里提到 agentsmd 时，必须重读本文件 + `notes/cerro-active-experiment.md`**，核对当前动作是否仍符合：单变量、blast radius、回归 must-pass、槽位/刷机纪律、禁改清单。发现漂移（正在做的事和实验卡不符）**立即停手改卡**，不许将错就错。用户会不定期在消息里提醒「看 agentsmd」——那是第二道保险，不能替代自查。
-- **预防**：改手机前读/写 `notes/cerro-active-experiment.md`；方法 skill `.agents/skills/cerro-bringup-gate/`；hooks（`.cursor/hooks.json`）在 `sessionStart` / 高危 `postToolUse` / `beforeShellExecution` 再灌短门禁；`preCompact` 只提示用户去 nudge。
-- **禁止**再堆嵌套 `notes/**/AGENTS.md`：Cursor 常把嵌套 AGENTS 当 Always 整仓灌进上下文（论坛 3.6+）。子系统门禁用 `.cursor/rules/cerro-cellular.mdc` / `cerro-audio.mdc` 的 **`globs`**。
-- 上游手机 bringup skill（网络好时装）：`git clone https://github.com/angelwzr/linux-phone-porting ~/.agents/skills/linux-phone-porting`（FlClash）。
+- **定时重读守护（硬规则）**：长会话中**每 ~15 次工具调用、每个新实验刀/刷机动作开始前、任何 compaction/上下文摘要之后、以及用户在消息里提到 agentsmd 时，必须重读本文件 + `notes/cerro-active-experiment.md`**，核对：单变量、blast radius、回归 must-pass、槽位/刷机纪律、禁改清单、**是否仍符合「当前战役」**。发现漂移 **立即停手改卡**。
+- **必开 skill（改手机/排障前）**：
+  - `.agents/skills/cerro-bringup-gate/` — 实验门禁
+  - `.agents/skills/cerro-boot-pack/` — boot 打包（方案 E / splice / ID 审计）
+  - `.agents/skills/systematic-debugging/` — 先根因再改
+  - `.agents/skills/verification-before-completion/` — 无新鲜证据禁止宣称 PASS
+  - `linux-phone-porting`（`.agents/skills/` 链到 `~/.agents/skills/`；网络好时更新）
+- **预防**：改手机前读/写 `notes/cerro-active-experiment.md`；hooks（`.cursor/hooks.json`）在 `sessionStart` / 高危 `postToolUse` / `beforeShellExecution` 再灌短门禁。
+- **禁止**再堆嵌套 `notes/**/AGENTS.md`（Cursor 易 Always 灌爆）。子系统用 `.cursor/rules/cerro-*.mdc` 的 **`globs`**。
 
 ## 1. 经验文档（最高优先级，曾反复被骂）
 
@@ -107,7 +126,8 @@ setsid python3 tools/cerro-state-watch.py >/tmp/cerro-state-watch.stdout 2>&1 < 
 2. **任何 Image / boot.img 构建打包前必须跑 `tools/guard-kernel-tree.sh` 且 PASS**：树脏=拒绝；好内核（`patches/kernel-config-good-20260817.config`）里 =y 的符号在树 config 里**蒸发**（连 `# not set` 都没有）=拒绝（=源码被删，正是面板驱动的丢失签名）；=y→=m 只警告。产出镜像必须把 guard 打印的 tree sha 记进 bringup。
 3. **禁止**在内核树里 `git checkout .` / `git clean` / 批量恢复覆盖——除非先 commit 当前现场。恢复单个文件前先确认改动已提交。
 4. **好内核二进制锚点**：`backups/kernel-good-20260817.bin`（sha `a6201111…`，显示/一切正常的已知好内核 blob，含丢失显示栈的编译产物，考古用）；配套 config 在 patches/。
-5. 主仓库继续不收内核树与二进制（`.gitignore`）；树的安全靠树内 git + 本 guard。
+5. **主仓仍可不收整棵 `build/linux-7.2` 与巨型二进制**（`.gitignore` `/build/`），但 **显示栈源码必须进主仓 GitHub**：镜像目录 `patches/kernel-display-stack/`（panel / dsi_host / 相关头与 DTS / setup）。改显示后同步拷贝 → 主仓 commit → push。  
+   **禁止**再写「屏驱只靠树内 git、主仓不用管」——用户从没说过不要推屏驱；旧第 5 条是漏洞，已废。整树另推备份仓可以，失败也不能挡住主仓镜像。
 
 ## 5.1 桌面 UX / 电源键（2026-10-15/16 血泪，曾反复被骂）
 
@@ -124,7 +144,7 @@ setsid python3 tools/cerro-state-watch.py >/tmp/cerro-state-watch.stdout 2>&1 < 
 ## 6. 工程边界
 
 - Path A：原厂 ABL + 自编 `boot.img`（header **v2** + 内置 DTB）；vendor_boot 保持原厂；擦 dtbo。
-- 完整内核在 `build/linux/`（gitignore）；仓库以 notes / tools / patches / linux DTS 为主。
+- 完整内核在 `build/linux-7.2`（gitignore；`build/linux` 常为其 symlink）；仓库以 notes / tools / patches / linux DTS 为主。
 - 主屏是 **BF068 / RM692H0（1116×2480 CMD+DSC）**，不要把 Visionox VTDR6130 当主屏。
 - 显示硬坑（须保留绕过）：见 bringup「当前状态」——`assigned-clocks`、bind-direct、勿乱 `component_bind_all` 等。
 - 改 `/init` / 嵌入 cpio 必须重编镜像（BL initrd 故意未 apply）。
@@ -132,9 +152,23 @@ setsid python3 tools/cerro-state-watch.py >/tmp/cerro-state-watch.stdout 2>&1 < 
 - 用户说「先刷回 AOSP / 暂不刷 Linux」时：可继续改代码，**不要擅自刷 Linux**。
 - **对照顺序（曾被纠正：不能「全看安卓」）**：
   1. **优先**：网上/社区 Linux 资料（pmOS、Qualcomm Linux/AudioReach 文档、主线/pipewire/wireplumber/callaudiod issue、同类机 bringup）。
-  2. **其次**：本仓库 bringup / 已验证补丁。
+  2. **其次**：本仓库 bringup / 已验证补丁 / `.cursor/restored-agent-transcripts/`。
   3. **再次**：Aurora/Android 作「原厂行为参考」（IPA、modem、rmnet、mixer 名等）——**只取接口与事实，不要把 Android HAL/会话模型原样搬到 Linux**；主线表常从旧 IPA 抄错（v5.5 EP23/EP24），Linux 用户态是 PipeWire/UCM/AGM，不是 AudioFlinger。
-  4. 需要实机 Android 对照时：切槽前先告诉用户；不要为了抓 log 刷掉 Linux。树：`/mnt/data/ArtistAOSP`（`source/device/nubia/cerro`，下游 IPA `…/dataipa`）。
+  4. 需要实机 Android 对照时：切槽前先告诉用户；不要为了抓 log 刷掉 Linux。树：`/data/ArtistAOSP`（`source/device/nubia/cerro`）。
+
+### 6.2 boot 打包纪律（2026-11-07 加严；细节 skill `cerro-boot-pack`）
+
+对照 `notes/cerro-daily-boot-fix.md` + cam-c1「方案 E」实绩：
+
+| 场景 | 做法 |
+|------|------|
+| 只改嵌入 init / header cmdline | **克隆**已验证 `linux-debug.img` / rescue，splice；**保持** 127B stub ramdisk |
+| DTB/Image 结构性变大，无法等长 splice | **方案 E**：从能跑的 Image 抠 gzip initramfs → `usr/cerro-initramfs.cpio.gz` → 新 DTB 进 `arch/arm64/kernel/` 删 `.dtb.o` → `make LLVM=1 Image` → **按 rescue 头参数** `mkbootimg` → pad 96MiB |
+| 出镜像前 | `tools/guard-kernel-tree.sh` PASS；记 tree sha；可选 `unpack`+重算 ID[576:596] 审计——**ID 不自洽 ≠ 一定拒载**（rescue 反例），**ID 自洽 ≠ 一定能亮屏**（disp-r1b 反例） |
+
+- Linux 在跑时优先机内 `dd`→`/dev/disk/by-partlabel/boot_b`（读回 sha）；`reboot bootloader` 在本机 Debian **常无效**。
+- fastbootd 上 `erase dtbo_b` 可能 FAIL → **zero-flash** 同尺寸代替。
+- 已知好 dualboot boot 锚点：`build/dualboot/linux-debug-rescue.img`（现网基线）/ `linux-debug.img`；弄崩优先回锚点。
 
 ### 6.1 通话验收（2026-10-22，强制）
 
@@ -149,3 +183,18 @@ setsid python3 tools/cerro-state-watch.py >/tmp/cerro-state-watch.stdout 2>&1 < 
 - 需要用户操作（手动 9008、看屏、跳过解锁、**用 Dialer 打一通电话**）时**直接说清楚要干什么**，不要闷头改完不刷也不看。
 - 自动化能覆盖的（摸内存、刷机监听）用脚本；需要归因时再深入分析，避免手工空烧 token。
 - 不要换 ABL/XBL；不要把 MemoryDump 当 EDL；不要在未观察 USB 时宣称「刷成功/失败」。
+- **用户反复说过的要求若还没进本文件：当场补进 `AGENTS.md`（并 bringup 一行）**，不要只道歉下次再忘（对齐 Penguin）。
+- **禁止开子 agent / Task 做本仓库主线**（刷机、显示刀、蜂窝/音频）；子 agent 不继承实验卡与 USB 现场。Phone Bridge 盯梢用后台终端脚本，不用空转子 agent。
+- 用户说「无人值守 / 开干 / 继续」时少问、连续做到可验收点；仅物理断线 / Phone Bridge 未 ready / 必须人手进 9008 时短问。
+- **显示战役禁偷懒（2026-11-07）**：不得以「rescue/旧 blob 已经亮屏」为由停止重建树内显示栈；锚点≠终点。中间刀验收以 **USB gadget 枚举/可连** 为主，禁止把「等到进完桌面再测」当默认流程。
+
+## 8. 与 PenguinAOSP 共用 Z60U（Phone Bridge，2026-11-07）
+
+Z60U 常插在 HP（`192.168.0.124` / `ssh penguinaosp-hp`，**禁止代理**）上编 PenguinAOSP；本机测 Linux 必须走共享租约。
+
+- 手册：`notes/cerro-phone-bridge.md`；CLI：`tools/phone-bridge/pb`。
+- Hub：`penguinaosp-hp:/run/media/rong/data/cerro-phone-bridge/`。
+- **禁止**在 `pb status` 显示 request `ready`（对端 GRANT + 本侧 CONFIRM）之前刷机 / 切槽 / 搬 USB。
+- 会话开头先 `pb status`；对面 `need_device` 时立刻停持机并配合还机。
+- **后台终端盯对面（默认动作，不必用户再提醒）。** 会话一开始就另开一条 Cursor 后台终端跑 `tools/phone-bridge/pb watch --interval 5`，专门看 penguin 的 phase / holder / 对面 request。看到 `need_device` 立刻停手；看到自己的 request 变成 `pending_requester_confirm` 再 `confirm`。这条终端只盯桥，不要关，不要换成子 agent 空转。
+- 看屏：一加 12 摄像头 → `pb cam-snap`。

@@ -6,7 +6,122 @@
 > 3. 进 9008/fastboot 后先观察 USB ID，再下结论、再刷机。  
 > 相关硬件事实见 `notes/cerro-hardware.md`；EDL 工具见 `tools/edl-tools/README.md`。
 
-最后更新：2026-10-31 新技能只读复盘（当前 fastboot/B；根因未定位，未继续刷机）
+最后更新：2026-11-07 修正「主仓不收屏驱」规则漏洞；镜像进 patches/
+
+- **2026-11-07 规则漏洞**：用户未禁止推屏驱。旧 AGENTS §5.3.5「主仓库不收内核树」+ `.gitignore` `/build/` → GitHub 主仓长期无 panel。整树推 `LOA_Nubia_Z60U-linux-7.2` 因树内误跟踪大文件（`out/kernel` ~74MB）index-pack 失败。已废旧表述；屏驱强制镜像 `patches/kernel-display-stack/` 进主仓并 push。
+
+- **2026-11-07 用户纠正（硬）**：rescue 肯定亮——那只是锚点。把「有图就别折腾」当方向 = **偷懒**。正确方向：像最初一样在**当前树**一步步把屏驱摸回来固化；中间刀观察从简（USB 认出/连上即可），不要每刀等进完系统。已写进 `AGENTS.md` + `notes/cerro-display-campaign.md`。下一刀：cam-c1 底最小并面板。
+
+- **2026-11-07 rescue 回刷（用户手动 9008）**：
+  1. EDL（ArtistAOSP edl-tools）只 `w boot_b`←`linux-debug-rescue.img`；读回 sha=`a9430604…` PASS；`reset`。
+  2. ~17s 起 `1d6b:0104`；ACM `user`/`user`；`#447 … Aug 17`；boot_id=`2dff498d-…`。
+  3. 面板 dmesg 正常；用户确认亮屏 → **锚点健康**，不是树内显示栈恢复完成。
+
+- **2026-11-07 cam-c1 单变量复测（Aurora-B 基线）PASS**：
+  1. 刷前 rescue：内核 `#447 … Aug 17`，`cerro_dtb=cellular-c5-pmic-builtin`，ACM `user`/`user`，boot_id=`7c5597cc-…`，usb0=`192.168.68.2`。
+  2. 机内 wget←主机 `8765` + `dd`→`boot_b`；文件/分区读回 sha 均为 `e7e7945686b8c40f`（=主机 `linux-cam-c1.img`）。
+  3. `reboot` 后：USB `1d6b:0104`（Bus 041）；**ACM 无 login prompt**（历史 cam-c1 形态）；ECM ICMP `192.168.68.2` 稳定；SSH 拒连。无端口服务可登。
+  4. **结论**：方案 E 镜像在**当前**完整 Aurora-B 配套上仍能起——disp-r1b 黑屏/无 USB 更像面板/host 早挂，不是「本基线拒一切 mkbootimg」。现网 `boot_b`=cam-c1。
+  5. **收尾卡点**：想刷回 rescue（有 getty；历史上 panel on/`power_mode=0x9c`）做目视验收，但 cam-c1 无 shell/SSH，本机无舵机 Espressif，`enter-9008-hand` 无法跑。串口 break+sysrq 无反应。需用户手动 9008/fastboot 或插回舵机后再回 rescue。
+
+- **2026-11-07 AGENTS 优化 + skill**（对照 PenguinAOSP / ColorOS_Z60U）：
+  1. 根 `AGENTS.md`：战役置顶 → 细节进 `notes/cerro-display-campaign.md`；新增 §6.2 boot 打包；§7 补「当场写进 AGENTS / 禁子 agent 主线」。
+  2. Skills：新建 `.agents/skills/cerro-boot-pack/`；装入 `systematic-debugging`、`verification-before-completion`；链 `linux-phone-porting`；`cerro-bringup-gate` 挂上 companions。
+  3. `.cursor/rules/cerro-agent.mdc` 同步战役/账号/`user`/`user`。
+  4. 纠正此前「disp-r1b 下一刀只能 clone+splice」表述：cam-c1 **就是方案 E 且能起**；先在现基线复测 cam-c*，再谈面板差分。
+
+- **2026-11-07 聊天/路线梳理**：
+  1. 重要备份 `rong-important-backup-20261013-231723.zip`：Cursor 屏驱 transcript 早已恢复（`55bc8cee`/`7f8c3d7b` + `panel-driver-history-merged.md`）。zip 内 ZCode **仅 Electron 壳**，无完整气泡。
+  2. 本机 `~/.zcode/cli/db` 导出 LOA 会话 → `.cursor/restored-agent-transcripts/zcode-loa-session_9fd5e80c.md`（丢屏/相机/cam-c1）。
+  3. 路线：守 rescue 基线 → 先复测 cam-c1/c10（方案 E）→ 再最小差分并面板 → 验收必须目视有图。Canvas：`cerro-display-roadmap`。
+
+- **2026-11-07 用户确认黑屏 + 9008 回刷 rescue**：
+  1. 用户：disp-r1b 时屏幕黑；已手动进 `05c6:9008`。
+  2. `EDL w boot_b`←rescue，读回 sha=`a9430604…` PASS；`EDL reset`。
+  3. **打包审计（对照成功法）**：`unpack`+`mkbootimg` 重算 header ID[576:596]——**disp-r1b `ID match=True`**（`6045401a…`）；**rescue `ID match=False`**（存 `880454b1…`，应为 `134cd03d…`）却能在 Aurora-B 基线启动。故本刀黑屏/无 USB **不是**「又忘改验证值」。disp-r1b 与 cam-c1 同属方案 E（mkbootimg）；能起的反例是 cam-c*，不是「mkbootimg 本身非法」。更可疑：面板/host 早挂。下一刀：**现基线复测 cam-c1/c10**，再最小差分并面板；勿只拧 ID。
+
+- **2026-11-07 disp-r1b 单变量（可启动基线上）**：
+  1. 基线 rescue ACM 实读：已有 `panel-raydium-rm692h0` prepare/on、`power_mode=0x9c`、`fb0`、`probe ok`（`cerro_dtb=cellular-c5-pmic-builtin`）。账号 `user`/`user`。
+  2. `reboot bootloader` 未进 fastboot（又起 Linux）。USB ECM 起 `192.168.68.2`，wget 推送 `linux-disp-r1b.img`，机内 `dd`→`boot_b`（`/dev/sde42`），读回 sha=`a5f871bd…` 与主机一致。
+  3. `reboot` 后约 2min：主机 **无** `1d6b:0104` / `18d1:d00d` / `05c6:9008`。用户后确认**黑屏**；9008 回刷 rescue。
+
+- **2026-11-07 Aurora 完整 B + Linux 配方 PASS**：
+  1. 用户自刷完整 Aurora 到 B；fastbootd 见 `current-slot:b`、`slot-successful:b:yes`。
+  2. 本刀：`flash boot_b`←`linux-debug-rescue.img`（`a9430604…`）；`erase dtbo_b` 在 fastbootd 失败 → **zero-flash 24MiB** 代替；`set_active b`；reboot。未改 A / vendor_boot_b / GPT。
+  3. ~9s USB `1d6b:0104`，ACM `nubia_Z60U…cerro-debug`。登录现为 **`user`/`user`**（旧 `rong`/`artistycr` 拒识）。
+  4. 实读：`cerro_dtb=cellular-c5-pmic-builtin`；`Linux 7.2.0-rc5-dirty #447 … Aug 17`；root=`/dev/sda13[/debian-root]` ext4；Debian 13；boot_id=`27449240-4105-4bb0-9d4a-6362e53fa00b`；uptime≈2min。
+  5. **结论**：此前只换 boot 拒载，主因是 B 槽配套不齐；完整 Aurora 落 B 后再套 rescue+清 dtbo 即可。后续显示试验可在此基线上只换 boot。
+
+- **2026-11-07 vbmeta 单变量（只读证伪）**：
+  1. 手机已在 `05c6:9008`。双读备份 → `backups/edl-vbmeta-20261107-1816/`。
+  2. `avbtool`：`vbmeta_a`/`vbmeta_b` **Flags=3**（DISABLE_VERITY|VERIFICATION）；`vbmeta_system_*` Flags=0。
+  3. 哈希与 pre-aosp/aurora/pmos 的 flags=3 镜像均不同，但**验签总开关已关**。未再写 vbmeta、未复测 rescue（相对上一刀无增量）。`EDL reset` 回 Android。
+  4. **结论**：不能把当前 ABL 拒载归因于「整包把 AVB 又打开了」。日常 Linux 不刷 vbmeta 的前提（槽内 flags=3）**现网仍成立**。
+
+- **2026-11-07 用户要求不测 B、刷 A（A 表项看起来正确）**：
+  1. 仍在 9008：补备 `vendor_boot_a`（`3005779c…`）、`dtbo_a`（`cd1d0537…`）；`boot_a` 备份仍是 `14bcc023…`。
+  2. **只** `EDL w boot_a` ← rescue；读回 sha=`a9430604…` PASS。未写 B/GPT/vendor_boot/dtbo。
+  3. `EDL reset` → `18d1:d00d`，`current-slot: a`，retry a=6。无 Linux gadget。
+  4. **推论更新**：拒载不能只怪 B 的 Type GUID，也不能只怪 fastboot 写通道；同一 rescue 经 9008 写进「类型正确」的 A 也拒载。下一刀应扩大到 vendor_boot/dtbo/init_boot/vbmeta 或 GPT/BootLUN 深挖，而不是再换槽硬试。
+  5. 已 `fastboot flash boot_a` 回 `14bcc023…` 并 reboot，意图恢复 Android。
+
+
+- **2026-11-07 9008 备份 +「写通道」变量核对**：
+  1. 用户进 `05c6:9008`；怀疑以前成功路径（含改分区表）都走 9008，近期 FAIL 都是 fastboot。
+  2. 双读 PASS → `backups/edl-boot-20261107-180831/`。`boot_b` sha **`a9430604…` = 主机 `linux-debug-rescue.img`**。故刚才 fastboot `flash boot_b` **内容已正确落盘**，拒载不能归因「fastboot 写坏内核」。
+  3. `boot_a` sha `14bcc023…` ≠ 旧 aurora/`b7dddcc1…`（现网 Android boot 已变）。
+  4. printgpt：`cerro_linux` 仍在。大量 `*_b` Type=`0x77036cd4` 与对应 `*_a` 不同；对照 `backups/debian-native-20260817/pre-aosp-partitions/printgpt.edl.log` **同样不对称** → 不单是这次 zcode 新引入（或是 edl 打印伪影）。**暂不改 GPT type。**
+  5. 更贴旧成功配方的下一刀单变量：9008 写 `vendor_boot_b`（aurora stock）+ 擦 `dtbo_b`，再 `set_active b` 测同一张 rescue（boot_b 已是该镜像，可不再重写）。
+
+
+- **2026-11-07 用户搬线到本机**：租约不作门槛。fastboot 上 `set_active a` 后进 Android（`18d1:4e11` / adb `320243913409`，槽 `_a`，boot_completed=1）。当前系统 `ro.build.type=user` / `ro.debuggable=0`，adb root 关、无 su，不能从 Android 读 boot 分区。fastboot 无 fetch。本机无舵机串口。旧备份仍在：`backups/boot-a-before-linux-20261031-9008/boot_a.read1.img`（`b7dddcc1…`）、`backups/aurora-slot-a-20261015/`。等手动 9008 后再双读现网 boot_a/boot_b，然后才刷已知好 rescue 复测。
+
+
+- **2026-11-07 已知好 `linux-debug-rescue.img` 只刷 boot_b 仍 FAIL**：租约 `5c99c4a0c01c` grant 后 confirm。手机当时已在 fastboot/槽 b。只 `flash boot_b`（sha `a9430604…`，OKAY）+ `set_active b`（retry 6→7）+ reboot。约 6–9s 后回到 `18d1:d00d`，槽仍 b，retry 6，successful=no，unbootable=no。无 `1d6b:0104`。A 槽未写。与刚失败的 disp-r1b 同形。**结论：当前 B 槽拒载不能归因于新显示栈；旧能开机镜像同样起不来。** 下一步应查 GPT/BootLUN/vendor_boot_b/dtbo_b/vbmeta_b，或先确认 A 槽 Android 是否还能起。
+
+- **2026-11-07 disp-r1b 只刷 boot_b（租约 ready 后）**：Penguin grant `baa6592a1bd9`（明确不碰 A 槽）。刷前 Android 在槽 A（`ro.boot.slot_suffix=_a`，`18d1:4e11` / adb `320243913409`）。fastboot 只执行 `flash boot_b`（sha `a5f871bd…`，98304KB，OKAY）和 `set_active b`。没有 `flash boot_a`，没有动 vendor_boot / dtbo / GPT。`set_active` 后 `current-slot: b`，`slot-retry-count:b` 7。`reboot` 后几秒回到 `18d1:d00d`，`current-slot: b`，retry 6，unbootable=no，successful=no。没有 Linux gadget。未取得 `cerro_boot=disp-r1b-20261107`。
+
+
+
+- **2026-11-07 disp-r1b 打包（未刷）**：用户要求先别管上次 ABL 拒载（可能是当时分区表被写坏）。本刀不读不写 GPT、不申请租约。`tools/guard-kernel-tree.sh` PASS，tree `ab9c02b61`，config `f8b07b979ad1`（非致命警告 `CONFIG_PCI_PWRCTRL_PWRSEQ=y->m`）。重链 Image sha `ce0892bc551aa608d1e4db8459f5b1620ceb3d819358ef0a1ee822f536e5325a`，字符串含 `cerro_dtb=disp-r1` 与 `raydium,rm692h0`。boot `build/dualboot/linux-disp-r1b.img` sha `a5f871bd1dadfabb81dd67d6f337a156ed7c0a0c3b73bfc5265ab025e966bf67`，100663296 字节，header v2，cmdline `cerro_boot=disp-r1b-20261107`，ramdisk 仍是 127B stub。内核树保持干净。
+
+- **2026-11-07 显示源码恢复（单变量，未刷机）**：
+  1. 用户要求按已并入的旧 Cursor 屏驱对话开做。Phone bridge：`holder=penguin` / `usb_on_hp` / 无 ready 租约，本刀不申请、不刷。
+  2. 内核此前停在丢屏基线 `b8e4093d9`。正确面板仍在树内 reflog `52fa4bbc4`（reset GPIO `0,1,0`、typed 0x39/0x15、s5bt 直接亮度、`MIPI_DSI_MODE_DSC_ALL_SLICES_IN_PKT=BIT(8)`、host `slice_per_pkt=2`）。
+  3. **没有**整树 checkout `52fa4bbc4`：那次提交把 `setup.c` 的 `cerro_harvest_bl_fdt` 删回 stock。只检出面板 + DSI host + DTS 标记 `cerro_dtb=disp-r1`。`setup.c` 相对 `b8e4093d9` diff 行数 = 0。
+  4. 树内 commit `ab9c02b61`（detached）。`.config` 被内核 gitignore，已 `scripts/config -e DRM_PANEL_RAYDIUM_RM692H0`（`=y`）。`make LLVM=1` 只编 `panel-raydium-rm692h0.o` + `dsi_host.o` **EXIT 0**。尚未重链 boot.img。
+  5. 已知未做：disp-r1 上次实机是 ABL Device Error，且当时 rescue 也同样拒载，不能把黑屏归因到这版面板。下一刀要先有可启动 Linux，再只换带 `ab9c02b61` 的 boot。
+
+- **2026-10-31 17:4x 还原「相机能用、屏幕驱动彻底丢失」并完整编译（刷机待 USB）**：
+  1. **对照**：内核树事故快照 `a8cccd207`（无 `panel-raydium-rm692h0.c`）；cam-c1 为该丢失显示栈上首枪全量重链且相机 SoC PASS。其后显示重建 commit（c7…disp-r1）本刀不保留。修屏 agent 聊天回放按用户要求**先不做**。
+  2. **树操作**：`git reset --hard a8cccd207` → 清 stale `CONFIG_DRM_PANEL_RAYDIUM_RM692H0=y`（源已不在）→ DTS 标记 `cerro_dtb=cam-c1-lostdisp-20261031` → commit `b8e4093d9`。
+  3. **全量编译**：`make ARCH=arm64 LLVM=1 Image` PASS；Image 含标记字符串、**无** `panel-raydium-rm692h0`。
+  4. **产物**：`build/dualboot/linux-cam-c1-lostdisp-20261031.img` sha256 `d3dd0a7a906bcf44d1e183df9515984183a93cf6b484820b08659cd16f13e4d9`（96MiB，rescue/cam-c1 同款 header+127B stub）；tree sha 见同名 `.tree-sha`。
+  5. **刷机阻塞**：整包后原厂 GPT **无 `cerro_linux`**，仅刷 boot 不能起 Debian。PBRP-with-cerro-kernel `fastboot boot` 弹回 Android；随后 adb 枚举不稳/`error: closed`，`adb reconnect` 后 USB 仍 `19d2:1352` 但无 adb。无舵机。待用户再给 **fastboot 或可用 adb**，再：recovery 分区 → 展开 `debian-root.tar.zst` → 刷本 lostdisp boot（建议只动 B + stock vendor_boot_b，或按 flash-boot-any 双槽策略由用户确认）。
+
+
+- **2026-10-31 17:1x 接手：ColorOS 旧砖 vs 保留 `cerro_linux`（只读分析，未刷）**：
+  1. **现场**：仍 `18d1:d00d` / `320243913409`；`slot=a`；**双系统 GPT 还在**：`userdata≈200GiB`，`cerro_linux≈260.43GiB`。
+  2. **ColorOS 救砖标准流程**（`ColorOS_Z60U/.cursor/skills/zte-9008-unbrick/SKILL.md`）：  
+     `bash scripts/zte-toolbox-edlflashfull.sh`（包=`/data/ColorOS_Z60U/资源/NebulaAIOS2.0.13_NX721J`）→ 确认开机 → 再进 9008 → `bash scripts/flash-eng-abl-edl.sh`。  
+     默认 **不擦 userdata 文件内容**；但 rawprogram **会写 PrimaryGPT+BackupGPT（原厂表）** → **`cerro_linux` 表项会没**。之后若再 `make_f2fs`/整盘 wipe userdata，扇区数据也没。
+  3. **要「全部重刷系统但保留 Linux 数据」**：禁止原样跑工具箱；须 **先 EDL dump 现网 lun0 GPT** → 刷 2.0.13 时 **跳过 gpt_main0/gpt_backup0**（或刷完立刻写回备份）→ **永不** WIPE_DATA / 整盘 format userdata。persist/fsg/modemst 保持注释。
+  4. **兜底**：`backups/debian-native-20260817/debian-root.tar.zst` 可重建 rootfs，不等于保住现盘近期改动。
+  5. 实验卡已改 `planning`，等用户授权再动刷。
+
+- **2026-10-31 boot_a完整备份PASS / 仅写boot_a计划**：用户手动9008确认05c6:9008 device034；v1 firehose按GPT检测boot_a(lun4/sector112006/count24576)完整读取两次，各100663296字节且逐字节一致，SHA256 `b7dddcc1089142f67cf236aab9b7f5d09d6a7ad97ea3ab8f667e898d61491f05`。主机备份 `backups/boot-a-before-linux-20261031-9008/` 含两份和SHA256SUMS。下一步只写原始rescue到boot_a，并完整读回比较，再reset观察；不写其他分区。
+
+- **2026-10-31 A 原 Android 未刷任何镜像即启动 FAIL**：仅 fastboot set_active a/reboot 后 USB从device031变032且仍18d1:d00d；current-slot=a，successful=no、unbootable=no、retry=6；连续观察约50秒没有ADB。此次未写boot_a或任何配套分区，用户要求的“先备份当前Android boot，再只换Linux boot”尚未到刷写步骤。A也失败使“仅B镜像/显示代码导致当前拒载”不足以解释现象；不据此猜定硬件或AVB。fastboot fetch不支持，主机无舵机by-id，已请用户手动9008后只读双备份boot_a。
+
+- **2026-10-31 用户指定 A 槽仅换 boot 对照（开始）**：切 A 启动 Android，完整双读备份当前 boot_a 并校验后，仅将旧成品 linux-debug-rescue.img 原件写入 boot_a 测试；除槽选择与重启，不写任何其他分区，不再扩展恢复项。此为用户对保留 A 槽规则的本次明确覆盖。
+
+- **2026-10-31 原始旧版 boot 保留核验 / 当前 B 仍拒载**：原样 `linux-debug.img`（100663296字节，SHA256 `5c83dd3061be7aba827df286b03d8e604f2730656f691586f0a80a0b8488e8d2`）已刷 boot_b 并重置启动次数，重启仍 fastboot（USB device031，retry6），未获得 Linux 标记，判启动 FAIL。10/23 实测可启动的 `linux-debug-rescue.img` 与带日期副本均仍存在，完整 SHA256 都是 `a94306044d96ba33d2e1a0129bc5632c34e00cc0758b21ffcbfbfa454ea16a7a`；旧成品没有丢失，也未被 ID 修复覆盖。`dtbo-b-before.img` 实为0字节，不能作为备份。用户要求先回退 B 槽所有本轮更改、验证旧版启动，再处理新版校验/打包。已改范围为 boot_b/vendor_boot_b/dtbo_b/槽元数据；没有执行 vbmeta 刷写。提出临时启动 A 读取 B 后被用户打断，尚未切 A；现场再次确认 current-slot=b。当前重点是恢复完整可启动组合，不能把保存旧镜像说成当前已经启动旧版。
+
+- **2026-10-31 rescue ID修复单变量实测 FAIL**：仅偏移576..595的20字节由旧ID改为重算ID，其他字节和96MiB长度完全不变；产物 `linux-debug-rescue-idfix.img` sha `d5499829…`。fastboot写boot_b/set_active/reboot后仍d00d，retry6，无ACM。本轮未刷vbmeta。下一步严格按AGENTS锚点，原样写 `build/dualboot/linux-debug.img`（其SHA1自洽），不经mkbootimg/不改payload；同时补读此前漏掉的 `notes/cerro-daily-boot-fix.md`，其中明确重打包可导致拒载、正确做法是克隆好镜像。
+
+- **2026-10-31 用户指出boot头SHA1 ID遗漏，实际重算确认（修复测试进行中）**：按本机mkbootimg `update_sha` 完整v2算法核对；linux-debug/boot-live-b/cam-c10/disp-r1匹配，**rescue与daily不匹配**。rescue仍保存boot-live-b旧ID `880454b1…`，内容应为`134cd03d…`。历史8/18笔记也明确20字节header ID必须随payload更新。下一刀只克隆rescue修复偏移576..595，保留内核/显示/init/DTB/stub，不执行vbmeta修改；仅boot_b测试。
+
+- **2026-10-31 用户要求先恢复启动（进行中）**：重读§2启动链、§5.15显示试验和8/14 s5bd+verity实测。优先恢复已验证自封装Linux组合，不再从通用Android经验推断。当前fastboot/B；无舵机by-id，计划尝试OEM EDL并先只读采集GPT与B启动分区/验证配置，读取小区域双次验证通过后再扩大。
 
 - **2026-10-31 新技能只读复盘（用户要求重新分析并给对策；未刷/未重启）**：
   1. 使用 `systematic-debugging`、`verification-before-completion`、`linux-phone-porting` 及 Cerro 门禁。用户再次确认：当前 fastboot，之前运行自封装 Linux；恢复对象是这套 Linux 及其配套启动状态，不是通用 Android ROM。
@@ -381,6 +496,11 @@
 **与「现在」的差距**：V2 userdata 是 08-17 快照，缺之后装进 rootfs 的 cellular/stability 单元——靠补丁包重装即可对齐，不必再全盘备份。
 
 ---
+
+
+## Phone Bridge（2026-11-07）
+
+与 HP 上 PenguinAOSP agent 共用 Z60U：双向无代理 SSH（`penguinaosp-hp` ↔ `loa-asus`）；租约 hub `/run/media/rong/data/cerro-phone-bridge`；双确认后才刷/搬线。手册 `notes/cerro-phone-bridge.md`。一加摄像头 `pb cam-snap` 可用。
 
 ## 1. USB / 模式速查
 
